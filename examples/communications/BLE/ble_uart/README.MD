@@ -2,7 +2,7 @@
 This example shows how to initialize BLE on the RAK4631 module. Furthermore it shows how to setup  BLE UART service.
 
 - BLE UART
-     - Serial communication over BLE.
+- Serial communication over BLE.
 
 ----
 ## Hardware required

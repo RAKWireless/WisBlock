@@ -1,10 +1,4 @@
----
-typora-copy-images-to: assets
----
-
 # WisBlock Quick Start Guide
-
-[TOC]
 
 ![image-20200714152453848](assets/image-20200714152453848.png)
 
@@ -70,7 +64,7 @@ RAK4631 is the WisBlock Core board, because the MCU stay on this board.
 
 RAK4631 consists of a nRF52840 MCU and a SX1262 LoRa® chip mainly. The final Arduino  code will be uploaded into nRF52840 actually. This core board supports BLE and LoRa® features. You can connect it with RAK5005-O base board with slot, and program it through the USB interface on RAK5005-O through Arduino IDE.
 
-![RAK5005 connect RAK4631](assets\RAK5005 connect RAK4631.PNG)
+![RAK5005 connect RAK4631](assets\RAK5005&#32;connect&#32;RAK4631.PNG)
 
 
 
@@ -280,7 +274,9 @@ Please use the battery which RAK suggest, and connect the battery with RAK5005-O
 
 ![image-20200702193814577](assets/image-20200702193814577.png)
 
-
+# When connecting the battery make sure the polarity is correct. Not all connectors are wired the same.
+# Ground pole should be close to the PCB boarder.
+# Plus pole should be close to USB connector.
 
 Battery specification
 
@@ -440,7 +436,7 @@ We use https://github.com/adafruit/Adafruit_nRF52_Arduino and do as below:
 
 - Open ./adafruit/hardware/nrf52/0.20.5/boards.txt, and copy the content of the following file into the end of boards.txt:
 
-  	https://github.com/RAKWireless/WisBlock/tree//master/BSP/config.txt
+  	https://github.com/RAKWireless/WisBlock/tree/master/BSP/config.txt
 
   Then add **menu.region=Region** to the begin of boards.txt (line 21) like
 

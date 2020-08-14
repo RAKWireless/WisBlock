@@ -56,7 +56,7 @@ Let's get started.
         - [Hydraulic_Pressure_Monitoring](/examples/solutions/Hydraulic_Pressure_Monitoring/)
         - [Environment_Monitoring](/examples/solutions/Environment_Monitoring/)
         - [Water_Level_Monitoring](/examples/solutions/Water_Level_Monitoring/)
-        - [Weather_Monitoring](/examples/solutions/Wind_Speed_Monitoring/)
+        - [Weather_Monitoring](/examples/solutions/Weather_Monitoring/)
         - [GPS_Tracker](/examples/solutions/GPS_Tracker/)
         - [PAR_Monitoring](/examples/solutions/PAR_Monitoring/)
         - [Soil_Conductivity_Monitoring](/examples/solutions/Soil_Conductivity_Monitoring/)
