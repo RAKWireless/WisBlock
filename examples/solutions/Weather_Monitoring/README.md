@@ -37,7 +37,7 @@ To build this system, the following hardware are required:
 
 ### Software required
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 - Arduino LPS22HB library
 
 ![2](res/2.png)

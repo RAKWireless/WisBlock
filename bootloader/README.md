@@ -43,7 +43,8 @@ Steps as below:
 - Open J-Flash
 - Create a new project. Choose the board as below
 - Go into Target->Connect
-- Download the booloader from https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bootloader/
+- Download the booloader from [here](/bootloader/boot_3V3.hex)
+- Alternative a secure bootloader with the DFU option disabled [here](/bootloader/RAK4630_bootloader_disable_DFU_button_pin_s140_6.1.1.hex)
 - Drag the HEX to the J-Flash
 - Target->Production Programming. 
 

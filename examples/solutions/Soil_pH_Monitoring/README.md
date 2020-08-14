@@ -22,7 +22,7 @@ where
 
 If you want to know how to use the LoRa® communication with WisBlock. You can refer to the following document.
 
-[LoRaWAN® ](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/communications/LoRa/LoRaWAN® /) 
+[LoRaWAN® ](/examples/communications/LoRa/LoRaWAN® /) 
 
 #### 1.2 Modbus
 

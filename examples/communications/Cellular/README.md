@@ -27,7 +27,7 @@ BG77 is an ultra-compact LPWA module supporting LTE Cat M1, LTE Cat NB2 and inte
 To test the RAK5860, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 
 
 

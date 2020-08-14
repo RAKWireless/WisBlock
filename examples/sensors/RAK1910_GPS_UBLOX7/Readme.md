@@ -10,7 +10,8 @@ The information obtained from the GPS will then be printed over the USB debug po
 ## 2. Hardware ##
 WisBlock can integrate this GPS receiver which allows to know the exact outside location of the mote anytime. In this way the exact position of the mote can be obtained and even the current time and date, to synchronize the WisBlock Core internal clock (RTC) with the real time. 
 
-- [WisBlock Sensor RAK1910](https://store.rakwireless.com/)
+- WisBlock Core RAK4631
+- WisBlock Sensor RAK1910
  ![](Images/RAK1910_Back_01.png)
 
 
@@ -97,13 +98,16 @@ The principal purpose of this section is how to get location, time, date and mov
 
 To build this system the WisBlock Core RAK4631 microcontroller is using the RAK1910 GPS module. With just two WisBlock boards plugged into the WisBlock Base RAK5005-O board the system is ready to be used.
 
-- [WisBlock Base RAK5005-O](https://store.rakwireless.com/)    ![](Images/RAK5005-O.png)
-- [WisBlock Core RAK4631](https://store.rakwireless.com/)   ![](Images/RAK4631_Front_01.png) ![](Images/RAK4631_Back_01.png)
+- WisBlock Base RAK5005-O    
+- WisBlock Core RAK4631    
+![](Images/RAK5005-O.png)    
+![](Images/RAK4631_Front_01.png)    
+![](Images/RAK4631_Back_01.png)    
 
 ### 3.2 Software required
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 
 ### 3.1 How to initialize GPS module
 

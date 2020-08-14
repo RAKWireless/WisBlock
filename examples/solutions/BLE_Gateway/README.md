@@ -32,7 +32,7 @@ For stable connection, please use screws to tighten.
 ----
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP]([https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/doc/Quick_Start/Wisblock%20Quick%20Start%20Guide.md#markdown-header-5-configuration-on-arduino-ide](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/doc/Quick_Start/Wisblock Quick Start Guide.md#markdown-header-5-configuration-on-arduino-ide))
+- [RAK4630 BSP](/BSP/)
 - BlueDot_BME680 library
 
 ![image-20200717120930209](images/image-bme680-lib.png)

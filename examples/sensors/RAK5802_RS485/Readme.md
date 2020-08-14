@@ -4,7 +4,7 @@
 
 ## 1.Introduction
 
-This guide introduces the WisBlock IO RAK5802 RS485 board features and explains how to program, communicate with two this modules. This module was designed for WisBlock Base [RAK5005-O](https://link.to.RAKwireless.shop). 
+This guide introduces the WisBlock IO RAK5802 RS485 board features and explains how to program, communicate with two this modules. This module was designed for WisBlock Base RAK5005-O. 
 You can get more information about using the Modbus Protocol on the document “WisBlock IO RS485 Application Tutorial(*<u>There needs to be a link here</u>*)”.
 
 ### 1.1 RS485 standard
@@ -17,17 +17,17 @@ You can get more information about using the Modbus Protocol on the document “
 
 To build this system the WisBlock Core RAK4631 microcontroller is using the RAK5802 module. With just two WisBlock plugged into the WisBlock Base RAK5005-O board the system is ready to be used.
 
-- [WisBlock Base RAK5005-O](https://link.to.RAKwireless.shop) 
+- WisBlock Base RAK5005-O     
 
   ![](Images/RAK5005-O_45_02.png)
 
-- [WisBlock Core RAK4631](https://link.to.RAKwireless.shop) 
+- WisBlock Core RAK4631     
 
   ![](Images/RAK4631_Back_01.png)
 
   ![]Images/RAK4631_Front_01.png)
 
-- [WisBlock IO RAK5802](https://link.to.RAKwireless.shop) 
+- WisBlock IO RAK5802     
 
   ![](Images/RAK5802_45_03.png)
 
@@ -58,7 +58,7 @@ To build this system the WisBlock Core RAK4631 microcontroller is using the RAK5
 ### 3.1.Software required
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 - [Arduino RS485 library](https://www.arduino.cc/en/Reference/ArduinoRS485)
 - [ArduinoModbus library](https://www.arduino.cc/en/ArduinoModbus/ArduinoModbus) (if you use Modbus protocol)
 

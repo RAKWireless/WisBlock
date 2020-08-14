@@ -21,7 +21,7 @@ where
 
 If you want to know how to use the LoRa® communication with WisBlock. You can refer to the following document.
 
-[LoRaWAN® ](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/communications/LoRa/LoRaWAN® /) 
+[LoRaWAN® ](/examples/communications/LoRa/LoRaWAN® /) 
 
 #### 1.2 Modbus
 
@@ -45,11 +45,11 @@ If result is 0x0017.
 
 To build this system, the following hardware are required:
 
-[WisBlock Base RAK5005-O](https://store.rakwireless.com) * 1pcs
+WisBlock Base RAK5005-O * 1pcs
 
-[WisBlock Core RAK4631](https://store.rakwireless.com) * 1pcs
+WisBlock Core RAK4631 * 1pcs
 
-[WisBlock IO RAK5802](https://store.rakwireless.com) * 1pcs
+WisBlock IO RAK5802 * 1pcs
 
 [JXBS-3001-FS](http://jxiotcity.com/zdcs/zdcs204.html) * 1pcs
 
@@ -67,7 +67,7 @@ The assembly of sensor node is as follows:
 
 ### 3. Software required
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 - [Arduino RS485 library](https://www.arduino.cc/en/Reference/ArduinoRS485)
 - [Arduino Modbus library](https://www.arduino.cc/en/ArduinoModbus/ArduinoModbus)
 - [SX126x-Arduino library](https://github.com/beegee-tokyo/SX126x-Arduino/)

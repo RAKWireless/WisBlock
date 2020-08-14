@@ -326,19 +326,4 @@ void OnRxError(void)
 
 ```
 
-
-
-
-​	
-
-
-
-
-​	
-
-
-
-
-​	
-
 LoRa® is a registered trademark or service mark of Semtech Corporation or its affiliates. LoRaWAN® is a licensed mark.

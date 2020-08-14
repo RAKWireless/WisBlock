@@ -14,7 +14,7 @@ To test the external NOR Flash, the following is required
 
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 - Adafruit SPIFlash library    
 
 ![2](res/2.png)

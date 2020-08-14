@@ -4,17 +4,17 @@ This example calculates the battery level, displays it on an OLED display and se
 It includes as well the OTA DFU functionality
 
 ## Required hardware
-- WisBlock Base RAK5005-O
-- WisBlock Core RAK4631
-- WisBlock IO RAK1921
-- LiPo battery
+- WisBlock Base RAK5005-O    
+- WisBlock Core RAK4631    
+- WisBlock IO RAK1921    
+- LiPo battery    
 
 The hardware is connected like this:
 ![image-20200729112923398](./images/image-harware.png)
 
 ## Required software
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/69e20c26416b/bsp/?at=master)
+- [RAK4630 BSP](/BSP/)
 - nRF52_OLED library
 
 ![image-20200729103802106](./images/image-nrf52-oled.png)
@@ -30,9 +30,9 @@ Connect the assembled hardware to the PC with a USB cable, open the Arduino, and
 
 This program consists of three files.
 
-- [Read_Bettery_Level](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/sensors/battery_level_detect/Read_Battery_Level) - Main program which detect battery level and call the API of OLED and BLE UART
-- [display](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/sensors/battery_level_detect/Read_Battery_Level) - Display the battery level on SSD1306
-- [ble](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/sensors/battery_level_detect/Read_Battery_Level) - Send the data by BLE UART service
+- [Read_Bettery_Level](Read_Battery_Level/Read_Battery_Level.ino) - Main program which detect battery level and call the API of OLED and BLE UART
+- [display](Read_Battery_Level/display.ino) - Display the battery level on SSD1306
+- [ble](Read_Battery_Level/ble.ino) - Send the data by BLE UART service
 
 #### Read_Battery_Level.ino
 The usual includes

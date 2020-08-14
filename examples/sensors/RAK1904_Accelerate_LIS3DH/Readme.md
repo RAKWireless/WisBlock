@@ -34,13 +34,13 @@ The information obtained from the accelerometer will then be printed over the US
 
 To build this system the WisBlock Core RAK4631 microcontroller is using the RAK1904 3-Axis accelerometer module. With just two WisBlock board plugged into the WisBlock Base RAK5005-O board the system is ready to be used.
 
-- [WisBlock Base RAK5005-O](https://link.to.RAKwireless.shop) 
-- [WisBlock Core RAK4631](https://link.to.RAKwireless.shop) 
-- [WisBlock Sensor RAK1904](https://link.to.RAKwireless.shop) 
+- WisBlock Base RAK5005-O
+- WisBlock Core RAK4631
+- WisBlock Sensor RAK1904
 
 ### 2.2 How to install this module
 
-This module can be installed on any one SLOT(A B C D) in WisBlock Base board([WisBlock Base RAK5005-O](https://link.to.RAKwireless.shop) ).
+This module can be installed on any one SLOT(A B C D) in WisBlock Base board RAK5005-O.
 
 ## 3 How to program based on Arduino
 
@@ -49,7 +49,7 @@ This module can be installed on any one SLOT(A B C D) in WisBlock Base board([Wi
 ----
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://link.to.BSP.extension) ***(need link to RAK4630 BSP)***
+- [RAK4630 BSP](/BSP/)
 - [LIS3DH library](https://github.com/sparkfun/SparkFun_LIS3DH_Arduino_Library)
 
 ### 3.2 Install SparkFun LIS3DH Arduino Library

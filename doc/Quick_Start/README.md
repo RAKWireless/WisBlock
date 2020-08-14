@@ -429,7 +429,7 @@ We use https://github.com/adafruit/Adafruit_nRF52_Arduino and do as below:
 
 - Download and copy the following folder to the specified path:
 
-	https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/BSP/WisCore_RAK4631_Board/
+	https://github.com/RAKWireless/WisBlock/tree/master/BSP/WisCore_RAK4631_Board/
 
  	The path maybe like:
 
@@ -440,7 +440,7 @@ We use https://github.com/adafruit/Adafruit_nRF52_Arduino and do as below:
 
 - Open ./adafruit/hardware/nrf52/0.20.5/boards.txt, and copy the content of the following file into the end of boards.txt:
 
-  	https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/BSP/config.txt
+  	https://github.com/RAKWireless/WisBlock/tree//master/BSP/config.txt
 
   Then add **menu.region=Region** to the begin of boards.txt (line 21) like
 
@@ -507,7 +507,7 @@ OK, we've configured Arduino IDE correctly and install the BSP successfully!
 
 RAK has supplied many examples source code on Github for WisBlock:
 
-https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/
+https://github.com/RAKWireless/WisBlock/tree/master/examples
 
 ![image-20200703122036065](assets/image-20200703122036065.png)
 
@@ -565,7 +565,7 @@ As you know, RAK has supplied some examples source code for reference so that yo
 
 All of these tutorials can be found in every example folder:
 
-https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/
+https://github.com/RAKWireless/WisBlock/tree/master/examples
 
 
 
@@ -597,9 +597,9 @@ You can see there are several items, just click "Nordic nRF52" item and "Install
 
 ![image-20200722103232366](assets/image-20200722103232366.png)
 
-Download the PlatformIO forlder from:
+Download the PlatformIO folder from:
 
-https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/PlatformIO/
+https://github.com/RAKWireless/WisBlock/tree/master/PlatformIO/
 
 Copy wiscore_rak4631.json to the platforms folder.
 
@@ -630,7 +630,7 @@ OK, you've install and configure PlatformIO for WisBlock successfully.
 
 Now, let's try to compile an example of WisBlock using PlatformIO. We use the LoRaWAN® OTAA example in this document:
 
-https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/communications/LoRa/LoRaWAN/LoRaWAN_OTAA/
+https://github.com/RAKWireless/WisBlock/tree/master/examples/communications/LoRa/LoRaWAN/LoRaWAN_OTAA/
 
 Just copy the source code of the .ino file into the main.cpp of the PlatformIO project we just created:
 

@@ -7,10 +7,10 @@ This example shows how to use WisBlock IO RAK1920, which is a Mikrobus/Grove/QWI
 ----
 To test the RAK1920, The following hardware is required.
 
-- WisBlock Base RAK5005-O  *  1pcs
-- WisBlock Core RAK4631  *  1pcs
-- WisBlock IO RAK1920      *  1pcs
-- SparkFun SGP30 Air Quality Sensor     *  1pcs
+- WisBlock Base RAK5005-O  *  1pcs    
+- WisBlock Core RAK4631  *  1pcs    
+- WisBlock IO RAK1920      *  1pcs    
+- SparkFun SGP30 Air Quality Sensor     *  1pcs    
 
 RAK1920 is a Mikrobus/Grove/QWIIC adapter board which can be connected to Mikrobus/Grove/QWIIC sensor. This guide shows how to use QWIIC sensor with WisBlock. Here we choose SparkFun SGP30 Air Quality Sensor from https://www.sparkfun.com/products/16531.  The SparkFun SGP30 Air Quality Sensor provides information on the quality of the air in your room or house by monitoring the volatile organic compounds around the sensor. The SGP30 Air Quality Sensor can return valid indoor air quality (IAQ) readings within 15 seconds of powering up! By comparison, typical air quality (IAQ) sensors are great for measuring CO2 and volatile organic compounds (VOCs) but some of them require a burn-in time of 48 hours and a 20-min start up time. Along with a very quick start-up time, the SGP30 is very resistant to contamination from other gases to ensure low drift and long-term stability for extremely reliable results. You can read the SGP30 gas sensor output measurements of total VOCs (TVOC) in parts per billion (ppb), carbon dioxide (CO2) equivalent in parts per million (ppm) and H2. 
 
@@ -22,7 +22,7 @@ RAK1920 is a Mikrobus/Grove/QWIIC adapter board which can be connected to Mikrob
 To test the RAK1920, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 - SparkFun SGP30 Arduino library
 
 

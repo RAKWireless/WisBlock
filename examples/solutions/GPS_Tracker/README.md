@@ -34,7 +34,7 @@ To build this system, the following hardware are required:
 
 
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 - SparkFun LIS3DH Arduino library
 
 ![2](res/2.png)

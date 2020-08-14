@@ -74,7 +74,7 @@ RAKwireless provides a lot of example based on this library. Here choose a simpl
 
 #### 3.3.1 Scene description
 
-Download the example from https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/communications/LoRa/LoRaWAN/LoRaWAN_OTAA/ . The example will communicate with server in EU868, join type in OTAA. And send "hello" to server period.
+Download the example from https://github.com/RAKWireless/WisBlock/tree/master/examples/communications/LoRa/LoRaWAN/LoRaWAN_OTAA/ . The example will communicate with server in EU868, join type in OTAA. And send "hello" to server period.
 
 #### 3.3.2 Gateway configuration
 
@@ -601,7 +601,7 @@ static lmh_param_t lora_param_init = {LORAWAN_ADR_ON , LORAWAN_DATERATE, LORAWAN
 
 #### 3.5.5 Keys configuration
 
-So if want to develop own application, better based on examples of RAKwireless in https://bitbucket.org/Fomi-RAK/wisblock-RAK4630-development/src/master/examples/communications/LoRa/LoRaWAN/ . Open in Arduino, change the OTAA/ABP keys according to user's server configuration (TTN and ChirpStack are same with MSB first, only AppKey of TTN is LSB. This part should be pay more attention):
+So if want to develop own application, better based on examples of RAKwireless in https://github.com/RAKWireless/WisBlock/tree/master/examples/communications/LoRa/LoRaWAN/ . Open in Arduino, change the OTAA/ABP keys according to user's server configuration (TTN and ChirpStack are same with MSB first, only AppKey of TTN is LSB. This part should be pay more attention):
 
 ![14](res/14.png)
 
@@ -644,31 +644,6 @@ lmh_confirm gCurrentConfirm = LMH_CONFIRMED_MSG; /* confirm/unconfirm packet def
 Same in Arduino project, *.ino. LoRaWAN application port  can be set from **0~255** (do not use 224. It is reserved for certification):
 
 uint8_t gAppPort = 2;   /* data port*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 LoRa® is a registered trademark or service mark of Semtech Corporation or its affiliates. LoRaWAN® is a licensed mark.

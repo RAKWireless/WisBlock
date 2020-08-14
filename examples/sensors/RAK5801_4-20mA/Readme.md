@@ -4,7 +4,7 @@
 
 ## 1.Introduction
 
-This guide introducts what is 4-20mA current loop and shows how to connect this module and the transmitter and explains how to program. This module was designed for WisBlock Base [RAK5005-O](https://link.to.RAKwireless.shop).
+This guide introducts what is 4-20mA current loop and shows how to connect this module and the transmitter and explains how to program. This module was designed for WisBlock Base RAK5005-O.
 
 ### 1.1. The standard
 
@@ -66,17 +66,17 @@ The conversion formula is as follows:
 
 To build this system the WisBlock Core RAK4631 microcontroller is using the RAK5801 module. With just two WisBlock plugged into the WisBlock Base RAK5005-O board the system is ready to be used.
 
-- [WisBlock Base RAK5005-O](https://link.to.RAKwireless.shop)
+- WisBlock Base RAK5005-O    
 
 ![](Images/RAK5005-O_45_02.png)
 
-- [WisBlock Core RAK4631](https://link.to.RAKwireless.shop)
+- WisBlock Core RAK4631    
 
   ![](Images/RAK4631_Back_01.png)
 
   ![](Images/RAK4631_Front_01.png)
 
-- [WisBlock IO RAK5801](https://link.to.RAKwireless.shop)
+- WisBlock IO RAK5801    
 
   ![](Images/RAK5801_45_02.png)
 
@@ -112,7 +112,7 @@ The 4-20 mA Module for WisBlock Core RAK4631 has one input channels which allow 
 ### 3.1.Software required
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 
 ### 3.2.Initializes WisBlock IO 4-20mA board
 

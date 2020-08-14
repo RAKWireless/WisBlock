@@ -24,7 +24,7 @@ The assemble of RAK5005-O and RAK4631 is as bellow.
 To test the WisBlock IO RAK2305 which is a WiFi board, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 - [nRF Toolbox for BLE](https://play.google.com/store/apps/details?id=no.nordicsemi.android.nrftoolbox)
 
 ----

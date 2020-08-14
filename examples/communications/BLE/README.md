@@ -8,9 +8,9 @@ Here you find examples how to use the BLE communication.
 
 The examples are as follows:
 
-- Using BLE to sense the  proximity between devices [BLE Proximity Sensing](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/communications/BLE/ble_proximity_sensing/)
-- BLE services for firmware Upgrade **O**_ver_**T**_he_**A**_ir_ ([BLE OTA DFU](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/communications/BLE/ble_ota_dfu/))
-- BLE services for [BLE UART](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/examples/communications/BLE/ble_uart/)
+- Using BLE to sense the  proximity between devices [BLE Proximity Sensing](ble_proximity_sensing/)
+- BLE services for firmware Upgrade **O**_ver_**T**_he_**A**_ir_ ([BLE OTA DFU](ble_ota_dfu/))
+- BLE services for [BLE UART](ble_uart/)
 
 ----
 ## BLE Proximity Sensing

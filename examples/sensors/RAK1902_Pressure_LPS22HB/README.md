@@ -21,7 +21,7 @@ RAK1902 is a pressure sensor board with an I2C interface, which means it can be 
 To test the RAK1902, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://bitbucket.org/Fomi-RAK/wisblock-rak4630-development/src/master/bsp/)
+- [RAK4630 BSP](/BSP/)
 - Arduino_LPS22HB Library
 
 ![2](res/2.png)
