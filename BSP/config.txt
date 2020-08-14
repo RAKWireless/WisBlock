@@ -1,0 +1,57 @@
+# ----------------------------------
+# WisCore RAK4631 Board
+# ----------------------------------
+WisCoreRAK4631Board.name=WisCore RAK4631 Board
+WisCoreRAK4631Board.bootloader.tool=bootburn
+
+# Upload
+WisCoreRAK4631Board.upload.tool=nrfutil
+WisCoreRAK4631Board.upload.protocol=nrfutil
+WisCoreRAK4631Board.upload.use_1200bps_touch=true
+WisCoreRAK4631Board.upload.wait_for_upload_port=true
+WisCoreRAK4631Board.upload.maximum_size=815104
+WisCoreRAK4631Board.upload.maximum_data_size=237568
+
+# Build
+WisCoreRAK4631Board.build.mcu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard
+WisCoreRAK4631Board.build.f_cpu=64000000
+WisCoreRAK4631Board.build.board=WisCore_RAK4631_Board
+WisCoreRAK4631Board.build.core=nRF5
+WisCoreRAK4631Board.build.variant=WisCore_RAK4631_Board
+WisCoreRAK4631Board.build.usb_manufacturer="WisCore RAK4631 Board"
+WisCoreRAK4631Board.build.usb_product="WisCore RAK4631 Board"
+WisCoreRAK4631Board.build.extra_flags=-DNRF52840_XXAA {build.flags.usb}
+WisCoreRAK4631Board.build.ldscript=nrf52840_s140_v6.ld
+WisCoreRAK4631Board.build.vid=0x239A
+WisCoreRAK4631Board.build.pid=0x8029
+
+# SofDevice Menu
+WisCoreRAK4631Board.menu.softdevice.s140v6=0.3.2 SoftDevice s140 6.1.1
+WisCoreRAK4631Board.menu.softdevice.s140v6.build.sd_name=s140
+WisCoreRAK4631Board.menu.softdevice.s140v6.build.sd_version=6.1.1
+WisCoreRAK4631Board.menu.softdevice.s140v6.build.sd_fwid=0x00B6
+
+# Debug Menu
+WisCoreRAK4631Board.menu.debug.l0=Level 0 (Release)
+WisCoreRAK4631Board.menu.debug.l0.build.debug_flags=-DCFG_DEBUG=0
+WisCoreRAK4631Board.menu.debug.l1=Level 1 (Error Message)
+WisCoreRAK4631Board.debug.l1.build.debug_flags=-DCFG_DEBUG=1
+WisCoreRAK4631Board.menu.debug.l2=Level 2 (Full Debug)
+WisCoreRAK4631Board.menu.debug.l2.build.debug_flags=-DCFG_DEBUG=2
+WisCoreRAK4631Board.menu.debug.l3=Level 3 (Segger SystemView)
+WisCoreRAK4631Board.menu.debug.l3.build.debug_flags=-DCFG_DEBUG=3
+WisCoreRAK4631Board.menu.debug.l3.build.sysview_flags=-DCFG_SYSVIEW=1
+
+# Region Menu
+WisCoreRAK4631Board.menu.region.10=EU868
+WisCoreRAK4631Board.menu.region.10.build.region_flags=-DREGION_EU868
+WisCoreRAK4631Board.menu.region.11=US915
+WisCoreRAK4631Board.menu.region.11.build.region_flags=-DREGION_US915
+WisCoreRAK4631Board.menu.region.12=AU915
+WisCoreRAK4631Board.menu.region.12.build.region_flags=-DREGION_AU915
+WisCoreRAK4631Board.menu.region.13=KR920
+WisCoreRAK4631Board.menu.region.13.build.region_flags=-DREGION_KR920
+WisCoreRAK4631Board.menu.region.14=AS923
+WisCoreRAK4631Board.menu.region.14.build.region_flags=-DREGION_AS923
+WisCoreRAK4631Board.menu.region.15=IN865
+WisCoreRAK4631Board.menu.region.15.build.region_flags=-DREGION_IN865
