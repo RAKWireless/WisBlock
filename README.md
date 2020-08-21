@@ -12,6 +12,12 @@ WisBlock consists of WisBlock Base, WisBlock Core, WisBlock Sensor and WisBlock 
 This repository is created to make your start with WisBlock as simple as possible.
 Let's get started.
 
+**RAKwireless invests time and resources providing this open source code, please support RAKwireless and open-source hardware by purchasing products from RAKwireless!**
+
+For support and questions about RAKwireless products please visit our [forum](https://forum.rakwireless.com/)
+
+To buy WisBlock modules please visit our [online store](https://store.rakwireless.com/)
+
 ----
 ## Where to find what
 

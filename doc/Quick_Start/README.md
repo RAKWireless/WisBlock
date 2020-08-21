@@ -48,9 +48,17 @@ RAK5005-O is the WisBlock Base board which can connect with the core board and o
 
 Please note: as you see, there are 6 slots on RAK5005-O, "CPU SLOT" is used for the core board which has the main MCU, "IO SLOT" is used for IO extension, for example, RS485 board, 4~20mA/0~5V board, Wi-Fi board, Cellular board. "SLOT A", "SLOT B", "SLOT C", and "SLOT D" are used to connect with I2C board, while "SLOT A" can be used for GPS board too.
 
-You can have a look at the
+You can have a look at the datasheet for more information.
 
-
+The RAK5005-O board offers several GPIO's on solder pads or on the WisBlock Sensor or WisBlock IO modules. These GPIO's are named IO1 to IO6 and SW1. These GPIO's are connected to GPIO's of the RAK4631 module.    
+**RAK5005-O GPIO mapping to RAK4631 GPIO ports**
+ * IO1 <-> P0.17 (Arduino GPIO number 17)
+ * IO2 <-> P1.02 (Arduino GPIO number 34)
+ * IO3 <-> P0.21 (Arduino GPIO number 21)
+ * IO4 <-> P0.04 (Arduino GPIO number 4)
+ * IO5 <-> P0.09 (Arduino GPIO number 9)
+ * IO6 <-> P0.10 (Arduino GPIO number 10)
+ * SW1 <-> P0.01 (Arduino GPIO number 1)
 
 ### 3.2 WisBlock Core board --- RAK4631
 
