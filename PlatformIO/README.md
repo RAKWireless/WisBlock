@@ -30,7 +30,7 @@ Download the PlatformIO folder from:
 
 https://github.com/RAKWireless/WisBlock/tree/master/PlatformIO/
 
-Copy wiscore_rak4631.json to the platforms folder.
+Copy the file **`wiscore_rak4631.json`** to the boards folder of the nordicnrf52 platform folder.
 
 The path maybe like: 
 
@@ -48,7 +48,7 @@ After creating successfully, you can see the project:
 
 ![image-20200722105421895](assets/image-20200722105421895.png)
 
-Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder which you just downloaded to the packages folder. The path maybe like:
+Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder which you just downloaded to the framework-arduinoadafruitnrf52 package variants folder. The path maybe like:
  - Windows: %USER%\.platformio\packages\framework-arduinoadafruitnrf52\variants
 
 Finally, restart the PlatformIO.
@@ -81,4 +81,6 @@ Then compile it by click the compiling icon at the bottom tool bar as follow:
 
 Great! We've compiled this example successfully!
 
-As same as Arduino IDE, there is an upload icon on the right of compiling icon which can be used to upload the compiled firmware into your device.
+Same as in Arduino IDE, there is an upload icon (red circle) on the right of the compiling icon (green circle) which can be used to upload the compiled firmware into your device.
+
+![image-20200722113305159](assets/pio-flash.jpg)
