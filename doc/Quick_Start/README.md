@@ -7,7 +7,7 @@
 - [Safety information](#safety-information)    
 - [Hardware Setup](#hardware-setup)
 - [Arduino IDE BSP Installation](#arduino-ide-bsp-installation)
-- [PlatformIO Installation](#platformio-installation)
+- [PlatformIO Installation](#installation-of-board-support-package-in-platformio)
 
 
 ## Introduction
@@ -613,9 +613,9 @@ https://github.com/RAKWireless/WisBlock/tree/master/examples
 
 
 
-## PlatformIO Installation
+## Installation of Board Support Package in PlatformIO
 
-This appendix will show how to play WisBlock by using PlatformIO instead of Arduino IDE if you want.
+### Install PlatformIO
 
 First of all, install VS code which is a great and open source tool, and you can download it here:
 
@@ -626,6 +626,7 @@ After installing VS code, you can search PlatformIO and install it in the Extens
 ![image-20200722100737565](assets/image-20200722100737565.png)
 
 
+### Install Nordic nRF52 Arduino framework 
 
 After installing PlatformIO, you can see the PlatformIO icon and open it as follow:
 
@@ -641,11 +642,17 @@ You can see there are several items, just click "Nordic nRF52" item and "Install
 
 ![image-20200722103232366](assets/image-20200722103232366.png)
 
+### Get patch files for RAK WisBlock Core boards 
+
 Download the PlatformIO folder from:
 
 https://github.com/RAKWireless/WisBlock/tree/master/PlatformIO/
 
-Copy wiscore_rak4631.json to the platforms folder.
+and save it on your computer.
+
+### Add WisBlock Core RAK4631 to the platform
+
+Copy the file **`wiscore_rak4631.json`** to the boards folder of the nordicnrf52 platform folder.
 
 The path maybe like: 
 
@@ -663,14 +670,16 @@ After creating successfully, you can see the project:
 
 ![image-20200722105421895](assets/image-20200722105421895.png)
 
-Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder which you just downloaded to the packages folder. The path maybe like:
+### Add WisBlock Core RAK4631 to the package
+
+Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder which you just downloaded to the framework-arduinoadafruitnrf52 package variants folder. The path maybe like:
  - Windows: %USER%\.platformio\packages\framework-arduinoadafruitnrf52\variants
 
 Finally, restart the PlatformIO.
 
 OK, you've install and configure PlatformIO for WisBlock successfully.
 
-
+### First example code
 
 Now, let's try to compile an example of WisBlock using PlatformIO. We use the LoRaWAN® OTAA example in this document:
 
@@ -696,5 +705,6 @@ Then compile it by click the compiling icon at the bottom tool bar as follow:
 
 Great! We've compiled this example successfully!
 
-As same as Arduino IDE, there is an upload icon on the right of compiling icon which can be used to upload the compiled firmware into your device.
+Same as in Arduino IDE, there is an upload icon (red circle) on the right of the compiling icon (green circle) which can be used to upload the compiled firmware into your device.
 
+![image-20200722113305159](assets/pio-flash.jpg)
