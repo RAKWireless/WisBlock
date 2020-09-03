@@ -1,6 +1,6 @@
 # WisBlock Quick Start Guide
 
-![image-20200714152453848](assets/image-20200714152453848.png)
+<center><img src="assets/WisBlock-Assembly.png" alt="image-20200630170056520" width="50%" /></center>
 
 ## Content
 - [Introduction](#introduction)    
@@ -52,7 +52,7 @@ Please read the following items carefully so that WisBlock can be used safely.
 
 RAK5005-O is the WisBlock Base board which can connect with the core board and other sensor boards through some slots. RAK5005-O has an USB interface which connect with the core MCU's USB pins so that you can use Arduino IDE to upload and debug it directly.
 
-![image-20200630170056520](assets/image-20200630170056520.png)
+<center><img src="assets/image-20200630170056520.png" alt="image-20200702164625941" width="30%" /></center>
 
 Please note: as you see, there are 6 slots on RAK5005-O, "CPU SLOT" is used for the core board which has the main MCU, "IO SLOT" is used for IO extension, for example, RS485 board, 4~20mA/0~5V board, Wi-Fi board, Cellular board. "SLOT A", "SLOT B", "SLOT C", and "SLOT D" are used to connect with I2C board, while "SLOT A" can be used for GPS board too.
 
@@ -72,16 +72,14 @@ The RAK5005-O board offers several GPIO's on solder pads or on the WisBlock Sens
 
 RAK4631 is the WisBlock Core board, because the MCU stay on this board.
 
-<img src="assets/image-20200630171353822.png" alt="image-20200702164625941" style="zoom:50%;" />
+<center><img src="assets/image-20200630171353822.png" alt="image-20200702164625941" width="30%" /></center>
 
+<center><img src="assets/image-20200702164625941.png" alt="image-20200702164625941" width="75%" /></center>
 
-
-![image-20200702164625941](assets/image-20200702164625941.png)
 
 RAK4631 consists of a nRF52840 MCU and a SX1262 LoRa® chip mainly. The final Arduino  code will be uploaded into nRF52840 actually. This core board supports BLE and LoRa® features. You can connect it with RAK5005-O base board with slot, and program it through the USB interface on RAK5005-O through Arduino IDE.
 
-![RAK5005 connect RAK4631](assets/RAK5005-connect-RAK4631.PNG)
-
+<center><img src="assets/RAK5005-connect-RAK4631.PNG" alt="image-20200702164625941" width="75%" /></center>
 
 
 ### WisBlock Sensor Boards
@@ -90,7 +88,7 @@ RAK4631 consists of a nRF52840 MCU and a SX1262 LoRa® chip mainly. The final Ar
 
 RAK1901 is a Temperature & Humidity sensor board with an I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<img src="assets/image-20200702110638518.png" alt="image-20200630170056520" style="zoom:50%;" />                                         <img src="assets/image-20200807184458951.png" alt="image-20200807184458951" style="zoom:50%;" />
+<center><img src="assets/image-20200702110638518.png" alt="image-20200630170056520" width="30%"/> <img src="assets/image-20200807184458951.png" alt="image-20200807184458951" width="30%" /></center>
 
 More information about RAK1901, please have a look at the following link:
 
@@ -102,7 +100,7 @@ More information about RAK1901, please have a look at the following link:
 
 RAK1902 is a pressure sensor board with an I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<img src="assets/RAK1902.PNG" alt="image-20200630170056520" style="zoom:50%;" />                                             <img src="assets/image-20200807184635631.png" alt="image-20200807184635631" style="zoom:50%;" />
+<center><img src="assets/image-20200807184635631.png" alt="image-20200630170056520" width="30%"/> <img src="assets/image-20200807184635631.png" alt="image-20200807184458951" width="30%" /></center>
 
 More information about RAK1902, please have a look at the following link:
 
@@ -114,8 +112,8 @@ More information about RAK1902, please have a look at the following link:
 
 RAK1903 is an optical sensor board with an I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<img src="assets/RAK1903.PNG" alt="image-20200630170056520" style="zoom:50%;" />                            <img src="assets/image-20200807184755876.png" alt="image-20200807184755876" style="zoom:50%;" />
 
+<center><img src="assets/RAK1903.PNG" alt="image-20200630170056520" width="30%"/> <img src="assets/image-20200807184755876.png" alt="image-20200807184458951" width="30%" /></center>
 More information about RAK1903, please have a look at the following link:
 
 > **(need RAK1903 introduction document link)**
@@ -126,7 +124,7 @@ More information about RAK1903, please have a look at the following link:
 
 RAK1904 is a 3-axis acceleration sensor board with an I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<img src="assets/RAK1904.PNG" alt="image-20200630170056520" style="zoom:50%;" />                             <img src="assets/image-20200807184841974.png" alt="image-20200807184841974" style="zoom:50%;" />
+<center><img src="assets/RAK1904.PNG" alt="image-20200630170056520" width="30%"/> <img src="assets/image-20200807184841974.png" alt="image-20200807184458951" width="30%" /></center>
 
 More information about RAK1904, please have a look at the following link:
 
@@ -138,7 +136,7 @@ More information about RAK1904, please have a look at the following link:
 
 RAK1906 is an environment sensor board with I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<img src="assets/RAK1906.PNG" alt="image-20200630170056520" style="zoom:50%;" />                                   <img src="assets/image-20200807184924933.png" alt="image-20200807184924933" style="zoom:50%;" />
+<center><img src="assets/RAK1906.PNG" alt="image-20200630170056520" width="30%"/> <img src="assets/image-20200807184924933.png" alt="image-20200807184458951" width="30%" /></center>
 
 More information about RAK1906, please have a look at the following link:
 
@@ -150,11 +148,10 @@ More information about RAK1906, please have a look at the following link:
 
 RAK1910 is a GPS board with UART interface, which means it can only be connected with RAK5005-O through SLOT A.
 
-<img src="assets\RAK1910-1.PNG" alt="RAK1910-1" style="zoom:50%;" />                                                      <img src=".\assets\RAK1910-2.PNG" alt="RAK1910-2" style="zoom:50%;" />  
 
+<center><img src="assets/RAK1910-1.PNG" alt="image-20200630170056520" width="30%"/> <img src="assets/RAK1910-2.PNG" alt="image-20200807184458951" width="15%" /></center>
 
-
-![image-20200702160832581](assets/image-20200702160832581.png)
+<center><img src="assets/image-20200702160832581.png" alt="image-20200630170056520" width="75%"/></center>
 
 More information about RAK1910, please have a look at the following link:
 
@@ -168,11 +165,9 @@ More information about RAK1910, please have a look at the following link:
 
 RAK2305 is a WiFi board which is ESP32 module actually, and it can only be connected with RAK5005-O through the IO SLOT.
 
-<img src="assets\RAK2305-1.PNG" alt="RAK2305-1" style="zoom:50%;" />         <img src=".\assets\RAK2305-2.PNG" alt="RAK2305-2" style="zoom:50%;" /> 
+<center><img src="assets/RAK2305-1.PNG" alt="image-20200630170056520" width="30%"/> <img src="assets/RAK2305-2.PNG" alt="image-20200807184458951" width="20%" /></center>
 
-
-
-![image-20200702161818627](assets/image-20200702161818627.png)
+<center><img src="assets/image-20200702161818627.png" alt="image-20200630170056520" width="75%"/></center>
 
 More information about RAK2305, please have a look at the following link:
 
@@ -184,11 +179,9 @@ More information about RAK2305, please have a look at the following link:
 
 RAK5860 is a cellular board which uses Quectel BG77 module actually, and it can only be connected with RAK5005-O through IO SLOT.
 
-<img src="assets\RAK5860.PNG" alt="RAK5860" style="zoom:50%;" />   <img src="assets\RAK5860-1.PNG" alt="RAK5860-1" style="zoom:50%;" />  
+<center><img src="assets/RAK5860.PNG" alt="image-20200630170056520" width="30%"/> <img src="assets/RAK5860-1.PNG" alt="image-20200807184458951" width="20%" /></center>
 
-
-
-![image-20200702162227112](assets/image-20200702162227112.png)
+<center><img src="assets/image-20200702162227112.png" alt="image-20200630170056520" width="75%"/></center>
 
 More information about RAK5860, please have a look at the following link:
 
@@ -200,7 +193,7 @@ More information about RAK5860, please have a look at the following link:
 
 RAK5801 is an IO board which can connect with any 4~20mA sensors. This board can only be connected with RAK5005-O through IO SLOT.
 
-<img src="assets\RAK5801.PNG" alt="RAK5801" style="zoom:50%;" />
+<center><img src="assets/RAK5801.PNG" alt="image-20200630170056520" width="50%"/></center>
 
 More information about RAK5801, please have a look at the following link:
 
@@ -212,7 +205,7 @@ More information about RAK5801, please have a look at the following link:
 
 RAK5811 is an IO board which can connect with any 0~5V sensors. This board can only be connected with RAK5005-O through IO SLOT.
 
-<img src="assets\RAK5811.PNG" alt="RAK5811" style="zoom:50%;" />
+<center><img src="assets/RAK5811.PNG" alt="image-20200630170056520" width="50%"/></center>
 
 More information about RAK5811, please have a look at the following link:
 
@@ -224,7 +217,7 @@ More information about RAK5811, please have a look at the following link:
 
 RAK5802 is an IO board which can connect with any RS485 sensors. This board can only be connected with RAK5005-O through IO SLOT.
 
-<img src="assets\RAK5802.PNG" alt="RAK5802" style="zoom:50%;" />
+<center><img src="assets/RAK5802.PNG" alt="image-20200630170056520" width="50%"/></center>
 
 More information about RAK5802, please have a look at the following link:
 
@@ -236,7 +229,7 @@ More information about RAK5802, please have a look at the following link:
 
 RAK5804 is an IO extension board which is used to extent more IO interface, and it can only be connected with RAK5005-O through IO SLOT.
 
-<img src="assets\RAK5804.PNG" alt="RAK5804" style="zoom:50%;" />
+<center><img src="assets/RAK5804.PNG" alt="image-20200630170056520" width="50%"/></center>
 
 More information about RAK5804, please have a look at the following link:
 
@@ -248,7 +241,7 @@ More information about RAK5804, please have a look at the following link:
 
 RAK1920 is a sensor conversion board which can connect with any Microbus, Grove, or Qwiic sensors. This board can only be connected with RAK5005-O through IO SLOT.
 
-<img src="assets\RAK1920.PNG" alt="RAK1920" style="zoom:50%;" />
+<center><img src="assets/RAK1920.PNG" alt="image-20200630170056520" width="50%"/></center>
 
 More information about RAK1920, please have a look at the following link:
 
@@ -260,7 +253,7 @@ More information about RAK1920, please have a look at the following link:
 
 RAK1921 is an OLED board which uses SSD1306(128*64, I2C) actually.
 
-![image-20200813110158840](assets/image-20200813110158840.png)
+<center><img src="assets/image-20200813110158840.png" alt="image-20200630170056520" width="50%"/></center>
 
 > **(need RAK1921 introduction document link)**
 
@@ -270,15 +263,15 @@ RAK1921 is an OLED board which uses SSD1306(128*64, I2C) actually.
 
 #### BLE antenna:
 
-<img src="assets/image-20200703171652793.png" alt="image-20200703171652793" style="zoom:50%;" />
+<center><img src="assets/image-20200703171652793.png" alt="image-20200630170056520" width="50%"/></center>
 
 #### LoRa® antenna:
 
-<img src="assets/image-20200703171725507.png" alt="image-20200703171725507" style="zoom: 33%;" />
+<center><img src="assets/image-20200703171725507.png" alt="image-20200630170056520" width="50%"/></center>
 
 #### GPS antenna:
 
-<img src="assets/image-20200703171833874.png" alt="image-20200703171833874" style="zoom:50%;" />
+<center><img src="assets/image-20200703171833874.png" alt="image-20200630170056520" width="50%"/></center>
 
 Just connect them with RAK4631 or RAK1910.
 
@@ -288,7 +281,7 @@ Just connect them with RAK4631 or RAK1910.
 
 Please use the battery which RAK suggest, and connect the battery with RAK5005-O as follow:
 
-![image-20200702193814577](assets/image-20200702193814577.png)
+<center><img src="assets/image-20200702193814577.png" alt="image-20200630170056520" width="50%"/></center>
 
 # When connecting the battery make sure the polarity is correct. Not all connectors are wired the same.
 # Ground pole should be close to the PCB boarder.
@@ -311,7 +304,7 @@ Battery specification
 
 You can connect the solar panel with RAK5005-O as follow:
 
-![image-20200703171106240](assets/image-20200703171106240.png)
+<center><img src="assets/image-20200703171106240.png" alt="image-20200630170056520" width="50%"/></center>
 
 
 
