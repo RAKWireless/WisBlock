@@ -101,7 +101,7 @@ And then we can start the LoRaWAN join process.
 ```
 As you might have seen, here we do not block the `loraTask` immediately by taking the `loraEvent` semaphore. This is because until the _**join network process**_ is finished, it is required to keep the `loraTask` running.
 
-#### The function that wakes up the `loraTask` frequently.
+#### The function that wakes up the `loraTask`.
 If the SX1262 sets its interrupt to inform the MCU about an event (can be RX, TX or error events), the function `loraIntHandler` is called.
 This function gives (frees) the `loraEvent` semaphore, which wakes up the `loraTask` and lets the task handle the event.
 ```cpp
@@ -174,7 +174,7 @@ In every LoRa event handler function, you can find the lines
 ```
 which takes the `loraEvent` semaphore. That causes the `loraTask` to go back to sleep again until the next event happens.
 
-### The function that wakes up the `loopTask`
+### The function that wakes up the `loopTask` frequently
 As already mentioned, the `loopTask` sleeps until either a downlink package is received, or wakes up every 2 minutes to send a status package.    
 After the node has joined the LoRaWAN network, a timer is initialized (see above), that calls every 2 minutes the function `periodicWakeup()`. In this function, the `taskEvent` semaphore is given, which will wake up the `loopTask`.
 ```cpp
