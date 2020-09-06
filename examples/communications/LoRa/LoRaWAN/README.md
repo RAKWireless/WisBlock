@@ -2,6 +2,8 @@
 
 ## 1. Overview
 
+If you are working on a battery powered solution and want to minimize the power consumption of the WisBlock, please have a look at [Low Power Example](Low_Power_Example.md). There is a separate example that concentrates on low power consumption.
+
 This example shows how to setup the WisBlock as a LoRaWan® sensor node. There are two examples available, one for nodes with ABP network join function and one for nodes using the OTAA network join function. If you want to use LoRaWan® communication you need to define a region. The defined region tells the library which frequency and which channels should be used. Valid regions are:
 
 - REGION_AS923 -> Asia 923 MHz

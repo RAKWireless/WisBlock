@@ -28,6 +28,7 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
     - [Communications](/examples/communications/)
         - [LoRa](/examples/communications/LoRa/)
             - [LoRaWAN](/examples/communications/LoRa/LoRaWAN/)
+			- [LoRaWAN Low Power](/examples/communications/LoRa/LoRaWAN/Low_Power_Example.md)
             - [LoRa P2P](/examples/communications/LoRa/LoRaP2P/)
 
         - [BLE](/examples/communications/BLE/)
