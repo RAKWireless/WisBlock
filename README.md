@@ -56,7 +56,6 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
         - [RAK5801_4-20mA](/examples/sensors/RAK5801_4-20mA/)
         - [RAK5811_0-5V](/examples/sensors/RAK5811_0-5V/)
         - [RAK4630_Battery_Level](/examples/sensors/RAK4630_Battery_Level_Detect/)
-        - [RAK4630_NOR_Flash](/examples/sensors/RAK4630_NOR-Flash/)
         
     - [Solutions](/examples/solutions/)
         - [BLE_Gateway](/examples/solutions/BLE_Gateway/)
