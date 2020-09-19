@@ -19,7 +19,7 @@
  */
 #include <Arduino.h>
 
-#include <nRF_SSD1306Wire.h>
+#include <nRF_SSD1306Wire.h>   //Click here to get the library: http://librarymanager/All#nRF52_OLED
 
 void dispShow(void);
 void dispWriteHeader(void);
@@ -58,7 +58,6 @@ void initDisplay(void)
 	display.displayOn();
 	display.flipScreenVertically();
 	display.setContrast(128);
-	// display.set_contrast(128);
 	display.setFont(ArialMT_Plain_10);
 
 	dispWriteHeader();
@@ -132,7 +131,6 @@ void dispShow(void)
 				buffer[line],
 				line,
 				(line * LINE_HEIGHT) + STATUS_BAR_HEIGHT + 1);
-		// display.draw_string(0, (line * LINE_HEIGHT) + STATUS_BAR_HEIGHT + 1, buffer[line]);
 		display.drawString(0, (line * LINE_HEIGHT) + STATUS_BAR_HEIGHT + 1, buffer[line]);
 	}
 	display.display();

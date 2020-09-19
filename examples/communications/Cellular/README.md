@@ -27,7 +27,7 @@ BG77 is an ultra-compact LPWA module supporting LTE Cat M1, LTE Cat NB2 and inte
 To test the RAK5860, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)     
 
 
 
@@ -36,7 +36,6 @@ To test the RAK5860, The following software is required.
 The demo is written as follow. It shows how to connect to NB-IOT net with CHINA UNICOM NBIOT sim card and then ping with a website.
 
 ```
-
 #define BG77_POWER_KEY    17
 String bg77_rsp = "";
 void setup()
@@ -78,7 +77,8 @@ void setup()
   delay(2000);
   bg77_at("AT+QIACT=1",3000);
   delay(2000);
-}//
+}
+
 //this function is suitable for most AT commands of bg96. e.g. bg96_at("ATI")
 void bg77_at(char *at, uint16_t timeout)
 {
@@ -120,13 +120,13 @@ void ping_at(char *at)
   Serial.println(bg77_rsp);
   bg77_rsp="";
 }
+
 void loop() // run over and over//
 {   
   Serial.println("Begin receive packet from www.baidu.com!");
   ping_at("AT+QPING=1,\"www.baidu.com\"");
   delay(1000);
 }
-
 ```
 
 
@@ -348,8 +348,6 @@ Begin receive packet from www.baidu.com!
 The demo shows how to communicate with BG77 via WisBlock via USB on RAK5005-O.
 
 ```
-
-
 /*
  *
  * bg77-at module product testing
@@ -455,7 +453,7 @@ OK
 
 ## How to use USB on RAK5860
 
-Firstly download related tools from https://www.quectel.com/ProductDownload/BG77.html . Then Download our unvarnished transmission demo which will power up BG77. After the BG77 starts ok (blue led on and green led blink), connect to the USB of BG77 to your PC. According to your PC, choose appropriate driver. For windows 10, Open the ..\BG77\05 Tool&Driver\Quectel_LTE&5G_Windows_USB_Driver_V2.2.2 and install.  Then open Device manager and find Quectel USB Modem's port. This is the At port of BG77.
+Firstly download related tools from https://www.quectel.com/ProductDownload/BG77.html . Then Download our unvarnished transmission demo which will power up BG77. After the BG77 starts ok (blue led on and green led blink), connect to the USB of BG77 to your PC. According to your PC, choose appropriate driver. For windows 10, Open the ..\BG77\05 Tool&Driver\Quectel_LTE&5G_Windows_USB_Driver_V2.2.2 and install.  Then open Device manager and find Quectel USB Modem's port. This is the AT port of BG77.
 
 ![3](res/3.png)
 

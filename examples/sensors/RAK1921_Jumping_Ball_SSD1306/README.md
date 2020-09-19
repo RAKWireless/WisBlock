@@ -31,7 +31,7 @@ For stable connection, please use screws to tighten.
 To use the environment WisBlock Sensor RAK1906, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - U8g2 library
 
 ![image-20200716164627030](images/image-U8g2lib.png)

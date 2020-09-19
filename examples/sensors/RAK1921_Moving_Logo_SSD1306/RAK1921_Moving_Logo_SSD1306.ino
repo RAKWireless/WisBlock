@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <U8g2lib.h>
+#include <U8g2lib.h>  // Click here to get the library: http://librarymanager/All#U8g2
 
 #include <Wire.h>
 
@@ -147,17 +147,13 @@ void setup(void) {
   while (1) {
     for (int i = 0; i < 64; i++)
     {
-      //      u8g2.drawBitmap(i, 0, 8, 64, custom_start_bmp);
       u8g2.drawXBM(i, 0, 64, 64, RAK_Whirl_bits);
       u8g2.sendBuffer();
-      //      delay(50);
     }
     for (int i = 63; i >= 0 ; i--)
     {
-      //      u8g2.drawBitmap(i, 0, 8, 64, custom_start_bmp);
       u8g2.drawXBM(i, 0, 64, 64, RAK_Whirl_bits);
       u8g2.sendBuffer();
-      //      delay(50);
     }
   }
 }

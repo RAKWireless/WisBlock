@@ -17,10 +17,10 @@
  * IO6 <-> P0.10 (Arduino GPIO number 10)
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
-#include <ArduinoModbus.h>
+#include <ArduinoModbus.h>   //http://librarymanager/All#ArduinoModbus     //http://librarymanager/All#ArduinoRS485
 
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>
+#include <LoRaWan-RAK4630.h>  //http://librarymanager/All#SX126x
 #include <SPI.h>
 
 // RAK4630 supply two LED

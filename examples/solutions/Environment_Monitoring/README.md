@@ -36,7 +36,7 @@ To build this system, the following hardware are required:
 
 
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - ClosedCube BME680 library
 
 ![image-ClosedCubeBME680](res/image-ClosedCubeBME680.png)
@@ -48,14 +48,15 @@ To build this system, the following hardware are required:
 The code for the environment sensor node is as follows:
 ```cpp
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>
+#include <LoRaWan-RAK4630.h> //http://librarymanager/ALL#SX126x-Arduino
 #include <SPI.h>
 
 #include <Wire.h>
-#include "ClosedCube_BME680.h"  //https://github.com/closedcube/ClosedCube_BME680_Arduino
+#include "ClosedCube_BME680.h" //http://librarymanager/ALL#ClosedCube_BME680_Arduino
+#include <U8g2lib.h>       //http://librarymanager/ALL#u8g2
 
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);
 ClosedCube_BME680 bme680;
-
 
 // RAK4630 supply two LED
 #ifndef LED_BUILTIN
@@ -78,7 +79,7 @@ uint8_t gAppPort = LORAWAN_APP_PORT;   /* data port*/
 
 /**@brief Structure containing LoRaWan parameters, needed for lmh_init()
  */
-static lmh_param_t lora_param_init = {LORAWAN_ADR_ON , LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
+static lmh_param_t lora_param_init = {LORAWAN_ADR_ON, LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
 
 // Foward declaration
 static void lorawan_has_joined_handler(void);
@@ -91,12 +92,10 @@ static void send_lora_frame(void);
 static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
 										lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler};
 
-
 //OTAA keys
-uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x22, 0x22};
+uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
 uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
-uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88,0x88, 0x88, 0x88, 0x88, 0x22, 0x22, 0x22, 0x22};
-
+uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x22, 0x22, 0x22, 0x22};
 
 // Private defination
 #define LORAWAN_APP_DATA_BUFF_SIZE 64  /**< buffer size of the data to be transmitted. */
@@ -119,11 +118,9 @@ void setup()
 
 	// Initialize Serial for debug output
 	Serial.begin(115200);
-        while(!Serial){delay(10);}
 	Serial.println("=====================================");
 	Serial.println("Welcome to RAK4630 LoRaWan!!!");
   Serial.println("Type: OTAA");
-
 
 #if defined(REGION_AS923)
     Serial.println("Region: AS923");
@@ -153,6 +150,8 @@ void setup()
   /* bme680 init */
   bme680_init();
 
+  u8g2.begin();
+
 	//creat a user timer to send data to server period
     uint32_t err_code;
 
@@ -168,13 +167,18 @@ void setup()
 	lmh_setAppKey(nodeAppKey);
 
 	// Initialize LoRaWan
-	err_code = lmh_init(&lora_callbacks, lora_param_init,doOTAA);
+	err_code = lmh_init(&lora_callbacks, lora_param_init, doOTAA);
 	if (err_code != 0)
 	{
 		Serial.printf("lmh_init failed - %d\n", err_code);
 	}
 
 	// Start Join procedure
+  u8g2.clearBuffer();         // clear the internal memory
+  u8g2.setFont(u8g2_font_ncenB10_tr); // choose a suitable font
+
+  u8g2.drawStr(20, 39, "Joining ...");
+  u8g2.sendBuffer(); // transfer internal memory to the display 
 	lmh_join();
 }
 
@@ -189,9 +193,15 @@ void loop()
 void lorawan_has_joined_handler(void)
 {
   Serial.println("OTAA Mode, Network Joined!");
+  u8g2.clearBuffer();         // clear the internal memory
+  u8g2.setFont(u8g2_font_ncenB10_tr); // choose a suitable font
+
+  u8g2.drawStr(20, 39, "Joined");
+  u8g2.sendBuffer(); // transfer internal memory to the display
+  //delay(2000);
 
   lmh_error_status ret = lmh_class_request(gCurrentClass);
-  if(ret == LMH_SUCCESS)
+	if (ret == LMH_SUCCESS)
   {
     delay(1000);
   	TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
@@ -207,7 +217,6 @@ void lorawan_rx_handler(lmh_app_data_t *app_data)
 {
 	Serial.printf("LoRa Packet received on port %d, size:%d, rssi:%d, snr:%d, data:%s\n",
 				  app_data->port, app_data->buffsize, app_data->rssi, app_data->snr, app_data->buffer);
-
 }
 
 void lorawan_confirm_class_handler(DeviceClass_t Class)
@@ -261,7 +270,8 @@ uint32_t timers_init(void)
     return 0;
 }
 
-void bme680_init(){
+void bme680_init()
+{
   Wire.begin();
   bme680.init(0x76); // I2C address: 0x76 or 0x77
   bme680.reset();
@@ -276,8 +286,10 @@ void bme680_init(){
 
   bme680.setForcedMode();
 }
-String data="";
-void bme680_get(){
+String data = "";
+void bme680_get()
+{
+  char oled_data[32] = {0};
     Serial.print("result: ");
     uint32_t i = 0;
     memset(m_lora_app_data.buffer, 0, LORAWAN_APP_DATA_BUFF_SIZE);
@@ -289,27 +301,48 @@ void bme680_get(){
       
     uint32_t gas = bme680.readGasResistance();
 
-    data = "Tem:"+String(temp)+"C "+"Hum:"+String(hum)+"% "+"Pres:"+String(pres)+"KPa "+"Gas:"+String(gas)+"Ohms";
+	data = "Tem:" + String(temp) + "C " + "Hum:" + String(hum) + "% " + "Pres:" + String(pres) + "KPa " + "Gas:" + String(gas) + "Ohms";
     Serial.println(data);
 
+  // display bme680 sensor data on OLED
+  u8g2.clearBuffer();         // clear the internal memory
+  u8g2.setFont(u8g2_font_ncenB10_tr); // choose a suitable font
+
+  memset(oled_data, 0, sizeof(oled_data));
+  sprintf(oled_data, "T=%.2fC", temp);
+  u8g2.drawStr(3, 15, oled_data);
+
+  memset(oled_data, 0, sizeof(oled_data));
+  snprintf(oled_data, 64, "RH=%.2f%%", hum);
+  u8g2.drawStr(3, 30, oled_data);
+
+  memset(oled_data, 0, sizeof(oled_data));
+  sprintf(oled_data, "P=%.2fhPa", pres);
+  u8g2.drawStr(3, 45, oled_data);
+
+  memset(oled_data, 0, sizeof(oled_data));
+  sprintf(oled_data, "G=%dOhms", gas);
+  u8g2.drawStr(3, 60, oled_data);
+
+  u8g2.sendBuffer(); // transfer internal memory to the display 
     
-    uint16_t t = temp*100;
-    uint16_t h = hum*100;
-    uint32_t pre = pres *100;
+	uint16_t t = temp * 100;
+	uint16_t h = hum * 100;
+	uint32_t pre = pres * 100;
     
     //result: T=28.25C, RH=50.00%, P=958.57hPa, G=100406 Ohms
     m_lora_app_data.buffer[i++] = 0x01;
-    m_lora_app_data.buffer[i++] = (uint8_t) (t>>8);
+	m_lora_app_data.buffer[i++] = (uint8_t)(t >> 8);
     m_lora_app_data.buffer[i++] = (uint8_t)t;
-    m_lora_app_data.buffer[i++] = (uint8_t)(h>>8);
+	m_lora_app_data.buffer[i++] = (uint8_t)(h >> 8);
     m_lora_app_data.buffer[i++] = (uint8_t)h;
-    m_lora_app_data.buffer[i++] = (uint8_t)((pre & 0xFF000000)>>24);
-    m_lora_app_data.buffer[i++] = (uint8_t)((pre & 0x00FF0000)>>16);
-    m_lora_app_data.buffer[i++] = (uint8_t)((pre & 0x0000FF00)>>8);
+	m_lora_app_data.buffer[i++] = (uint8_t)((pre & 0xFF000000) >> 24);
+	m_lora_app_data.buffer[i++] = (uint8_t)((pre & 0x00FF0000) >> 16);
+	m_lora_app_data.buffer[i++] = (uint8_t)((pre & 0x0000FF00) >> 8);
     m_lora_app_data.buffer[i++] = (uint8_t)(pre & 0x000000FF);
-    m_lora_app_data.buffer[i++] = (uint8_t)((gas & 0xFF000000)>>24);
-    m_lora_app_data.buffer[i++] = (uint8_t)((gas & 0x00FF0000)>>16);
-    m_lora_app_data.buffer[i++] = (uint8_t)((gas & 0x0000FF00)>>8);
+	m_lora_app_data.buffer[i++] = (uint8_t)((gas & 0xFF000000) >> 24);
+	m_lora_app_data.buffer[i++] = (uint8_t)((gas & 0x00FF0000) >> 16);
+	m_lora_app_data.buffer[i++] = (uint8_t)((gas & 0x0000FF00) >> 8);
     m_lora_app_data.buffer[i++] = (uint8_t)(gas & 0x000000FF);
     m_lora_app_data.buffsize = i;
     bme680.setForcedMode();

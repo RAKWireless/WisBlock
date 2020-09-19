@@ -17,11 +17,8 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 
-// Include the SparkFun TMP102 library.
-// Click here to get the library: http://librarymanager/All#SparkFun_TMP102
-
 #include <Wire.h>			// Used to establied serial communication on the I2C bus
-#include <SparkFunTMP102.h> // Used to send and recieve specific information from our sensor
+#include <SparkFunTMP102.h> // Click here to get the library: http://librarymanager/All#SparkFun_TMP102
 
 TMP102 sensor0;
 
@@ -71,11 +68,9 @@ void setup()
 
 	//set T_HIGH, the upper limit to trigger the alert on
 	sensor0.setHighTempF(85.0); // set T_HIGH in F
-	//sensor0.setHighTempC(29.4); // set T_HIGH in C
 
 	//set T_LOW, the lower limit to shut turn off the alert
 	sensor0.setLowTempF(84.0); // set T_LOW in F
-							   //sensor0.setLowTempC(26.67); // set T_LOW in C
 }
 
 void loop()

@@ -18,7 +18,7 @@
  */
 
 #include <Arduino.h>
-#include <SX126x-RAK4630.h>
+#include <SX126x-RAK4630.h>  //http://librarymanager/All#SX126x
 #include <SPI.h>
 
 // Function declarations

@@ -14,7 +14,7 @@ The hardware is connected like this:
 
 ## Required software
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - nRF52_OLED library
 
 ![image-20200729103802106](./images/image-nrf52-oled.png)
@@ -328,7 +328,6 @@ void initDisplay(void)
   display.displayOn();
   display.flipScreenVertically();
   display.setContrast(128);
-  // display.set_contrast(128);
   display.setFont(ArialMT_Plain_10);
 
   dispWriteHeader();
@@ -397,7 +396,6 @@ void dispShow(void)
         buffer[line],
         line,
         (line * LINE_HEIGHT) + STATUS_BAR_HEIGHT + 1);
-    // display.draw_string(0, (line * LINE_HEIGHT) + STATUS_BAR_HEIGHT + 1, buffer[line]);
     display.drawString(0, (line * LINE_HEIGHT) + STATUS_BAR_HEIGHT + 1, buffer[line]);
   }
   display.display();

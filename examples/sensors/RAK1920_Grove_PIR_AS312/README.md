@@ -31,7 +31,7 @@ RAK1920 is a Mikrobus/Grove/QWIIC adapter board which can be connected to Mikrob
 To test the RAK1920, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 
 
 
@@ -43,16 +43,13 @@ The Arduino test software is written as follow:
 */
 
 void setup() {
-
   Serial.begin(115200);
   while(!Serial);
   pinMode(21, INPUT);
 }
 
 void loop() {
-
   if(digitalRead(21)==1){
-
     Serial.println("PIR Status: Sensing");
     Serial.println(" value: 1");
   }

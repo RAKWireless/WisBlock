@@ -41,7 +41,7 @@ We chose a water level sensor with a voltage of 3v3, so we can use the board to 
 ### Software required
 
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - SX126x-Arduino library
 
 ![image-sx126x-lib](./images/image-sx126x-lib.png)

@@ -25,7 +25,7 @@ Measurements can be made from 0.01 lux up to 83k lux without manually selecting 
 To test the RAK1903, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - ClosedCube OPT3001 Library
 
 ![2](res/2.png)

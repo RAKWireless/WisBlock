@@ -37,7 +37,7 @@ The test scenario is shown as follows:
 
 ### Software required
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - SX126x-Arduino library
 
 ![image-sx126x-lib.png](./images/image-sx126x-lib.png)

@@ -31,8 +31,7 @@ For stable connection, please use screws to tighten.
 To test the WisBlock IO RAK2305 WiFi board, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
-
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 ----
 ## AT commands test
 Test the AT commands through the serial tool of the Arduino IDE. AT commands are referred to the [ESP32 AT commands](https://docs.espressif.com/projects/esp-at/en/latest/AT_Command_Set/Wi-Fi_AT_Commands.html). 
@@ -278,8 +277,6 @@ void loop()
   execute_at("AT+QPING=1,\"8.8.8.8\"\r\n", "OK");
   delay(5000);
 }
-
-
 ```
 
 The test results are as follows:

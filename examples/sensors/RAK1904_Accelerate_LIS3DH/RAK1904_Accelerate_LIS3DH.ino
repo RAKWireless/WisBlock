@@ -16,7 +16,7 @@
  * IO6 <-> P0.10 (Arduino GPIO number 10)
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
-#include "SparkFunLIS3DH.h" ////https://github.com/sparkfun/SparkFun_LIS3DH_Arduino_Library/blob/master/examples/MultiI2C/MultiI2C.ino
+#include "SparkFunLIS3DH.h" //http://librarymanager/All#SparkFun-LIS3DH
 #include <Wire.h>
 
 LIS3DH SensorTwo(I2C_MODE, 0x18);
@@ -25,8 +25,7 @@ void setup()
 {
 	// Setup usb
 	Serial.begin(115200);
-	while (!Serial)
-		;
+	while (!Serial);
 
 	if (SensorTwo.begin() != 0)
 	{
@@ -41,7 +40,6 @@ void setup()
 
 void loop()
 {
-
 	lis3dh_get();
 	delay(1000);
 }

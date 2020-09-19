@@ -34,7 +34,7 @@ To build this system, the following hardware are required:
 
 
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - SparkFun LIS3DH Arduino library
 
 ![2](res/2.png)
@@ -302,8 +302,7 @@ void tx_lora_periodic_handler(void)
                break;
             }
        }
-	   //for test
-       //comdata = "$GPRMC,080655.00,A,4546.40891,N,12639.65641,E,1.045,328.42,170809,,,A*60";
+
        Serial.println(comdata);
        res = parse_gps();
        if(res == 1)

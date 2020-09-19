@@ -19,12 +19,14 @@
  */
 
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>
+#include <LoRaWan-RAK4630.h> //http://librarymanager/ALL#SX126x-Arduino
 #include <SPI.h>
 
 #include <Wire.h>
-#include "ClosedCube_BME680.h" //https://github.com/closedcube/ClosedCube_BME680_Arduino
+#include "ClosedCube_BME680.h" //http://librarymanager/ALL#ClosedCube_BME680_Arduino
+#include <U8g2lib.h>       //http://librarymanager/ALL#u8g2
 
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);
 ClosedCube_BME680 bme680;
 
 // RAK4630 supply two LED
@@ -87,10 +89,10 @@ void setup()
 
 	// Initialize Serial for debug output
 	Serial.begin(115200);
-	while (!Serial)
-	{
-		delay(10);
-	}
+//	while (!Serial)
+//	{
+//		delay(10);
+//	}
 	Serial.println("=====================================");
 	Serial.println("Welcome to RAK4630 LoRaWan!!!");
 	Serial.println("Type: OTAA");
@@ -123,6 +125,8 @@ void setup()
 	/* bme680 init */
 	bme680_init();
 
+  u8g2.begin();
+
 	//creat a user timer to send data to server period
 	uint32_t err_code;
 
@@ -145,6 +149,11 @@ void setup()
 	}
 
 	// Start Join procedure
+  u8g2.clearBuffer();         // clear the internal memory
+  u8g2.setFont(u8g2_font_ncenB10_tr); // choose a suitable font
+
+  u8g2.drawStr(20, 39, "Joining ...");
+  u8g2.sendBuffer(); // transfer internal memory to the display 
 	lmh_join();
 }
 
@@ -159,6 +168,12 @@ void loop()
 void lorawan_has_joined_handler(void)
 {
 	Serial.println("OTAA Mode, Network Joined!");
+  u8g2.clearBuffer();         // clear the internal memory
+  u8g2.setFont(u8g2_font_ncenB10_tr); // choose a suitable font
+
+  u8g2.drawStr(20, 39, "Joined");
+  u8g2.sendBuffer(); // transfer internal memory to the display
+  //delay(2000);
 
 	lmh_error_status ret = lmh_class_request(gCurrentClass);
 	if (ret == LMH_SUCCESS)
@@ -249,6 +264,7 @@ void bme680_init()
 String data = "";
 void bme680_get()
 {
+  char oled_data[32] = {0};
 	Serial.print("result: ");
 	uint32_t i = 0;
 	memset(m_lora_app_data.buffer, 0, LORAWAN_APP_DATA_BUFF_SIZE);
@@ -262,6 +278,28 @@ void bme680_get()
 
 	data = "Tem:" + String(temp) + "C " + "Hum:" + String(hum) + "% " + "Pres:" + String(pres) + "KPa " + "Gas:" + String(gas) + "Ohms";
 	Serial.println(data);
+
+  // display bme680 sensor data on OLED
+  u8g2.clearBuffer();         // clear the internal memory
+  u8g2.setFont(u8g2_font_ncenB10_tr); // choose a suitable font
+
+  memset(oled_data, 0, sizeof(oled_data));
+  sprintf(oled_data, "T=%.2fC", temp);
+  u8g2.drawStr(3, 15, oled_data);
+
+  memset(oled_data, 0, sizeof(oled_data));
+  snprintf(oled_data, 64, "RH=%.2f%%", hum);
+  u8g2.drawStr(3, 30, oled_data);
+
+  memset(oled_data, 0, sizeof(oled_data));
+  sprintf(oled_data, "P=%.2fhPa", pres);
+  u8g2.drawStr(3, 45, oled_data);
+
+  memset(oled_data, 0, sizeof(oled_data));
+  sprintf(oled_data, "G=%dOhms", gas);
+  u8g2.drawStr(3, 60, oled_data);
+
+  u8g2.sendBuffer(); // transfer internal memory to the display 
 
 	uint16_t t = temp * 100;
 	uint16_t h = hum * 100;

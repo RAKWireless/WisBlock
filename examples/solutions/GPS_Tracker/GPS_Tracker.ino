@@ -20,9 +20,9 @@
  */
 
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>
+#include <LoRaWan-RAK4630.h>  //http://librarymanager/All#SX126x
 #include <SPI.h>
-#include "SparkFunLIS3DH.h" ////https://github.com/sparkfun/SparkFun_LIS3DH_Arduino_Library/blob/master/examples/MultiI2C/MultiI2C.ino
+#include "SparkFunLIS3DH.h" //http://librarymanager/All#SparkFun-LIS3DH
 #include "Wire.h"
 
 LIS3DH SensorTwo(I2C_MODE, 0x18);
@@ -271,8 +271,7 @@ void tx_lora_periodic_handler(void)
 				break;
 			}
 		}
-		//for test
-		//comdata = "$GPRMC,080655.00,A,4546.40891,N,12639.65641,E,1.045,328.42,170809,,,A*60";
+   
 		Serial.println(comdata);
 		res = parse_gps();
 		if (res == 1)

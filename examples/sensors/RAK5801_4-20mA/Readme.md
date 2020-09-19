@@ -112,7 +112,7 @@ The 4-20 mA Module for WisBlock Core RAK4631 has one input channels which allow 
 ### 3.1.Software required
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 
 ### 3.2.Initializes WisBlock IO 4-20mA board
 
@@ -148,8 +148,6 @@ The 4-20 mA Module for WisBlock Core RAK4631 has one input channels which allow 
 
 
 ## 4. Code examples
-
-\
 
 ```c
 #include <Arduino.h>

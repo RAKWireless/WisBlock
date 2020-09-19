@@ -19,7 +19,7 @@
  */
 #include <Arduino.h>
 
-#include <LoRaWan-RAK4630.h>
+#include <LoRaWan-RAK4630.h>  //Click here to get the library: http://librarymanager/All#SX126x
 
 #include <SPI.h>
 
@@ -219,8 +219,6 @@ int get_depths(void)
 
 	depths = (voltage_sensor * 1000 - 574) * 2.5; //Convert to millivolt. 574mv is the default output from sensor
 
-	//  Serial.printf("-------average_value------ = %d\n", average_value);
-	//  Serial.printf("-------voltage_sensor------ = %f\n", voltage_sensor);
 	Serial.printf("-------depths------ = %d mm\n", depths);
 	return depths;
 }

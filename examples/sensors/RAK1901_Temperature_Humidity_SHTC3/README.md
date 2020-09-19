@@ -23,7 +23,7 @@ The sensor covers a humidity measurement range of 0 to 100 %RH and a temperature
 To test the RAK1901, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - SparkFun SHTC3 Humidity and Temperature Sensor Library
 
 

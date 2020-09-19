@@ -24,6 +24,10 @@ WisBlock is not only functional testability product in product development verif
 
 WisBlock uses a compact stacked hardware design, which integrates various computing, connecting and sensor circuits in the size of 60*30mm. The compact size makes it easy for users to build in various customized housings to achieve complete products. RAK also have a series of housings for WisBlock modules, which can meet the requirements of various protection levels.
 
+More details about WisBlock hardware, please have a look at the document:
+
+https://docs.rakwireless.com/Product-Categories/WisBlock/
+
 ## Safety information
 
 Please read the following items carefully so that WisBlock can be used safely.
@@ -56,7 +60,9 @@ RAK5005-O is the WisBlock Base board which can connect with the core board and o
 
 Please note: as you see, there are 6 slots on RAK5005-O, "CPU SLOT" is used for the core board which has the main MCU, "IO SLOT" is used for IO extension, for example, RS485 board, 4~20mA/0~5V board, Wi-Fi board, Cellular board. "SLOT A", "SLOT B", "SLOT C", and "SLOT D" are used to connect with I2C board, while "SLOT A" can be used for GPS board too.
 
-You can have a look at the datasheet for more information.
+You can have a look at the datasheet for more information:
+
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK5005-O/Datasheet/#wisblock-overview
 
 The RAK5005-O board offers several GPIO's on solder pads or on the WisBlock Sensor or WisBlock IO modules. These GPIO's are named IO1 to IO6 and SW1. These GPIO's are connected to GPIO's of the RAK4631 module.    
 **RAK5005-O GPIO mapping to RAK4631 GPIO ports**
@@ -76,8 +82,9 @@ RAK4631 is the WisBlock Core board, because the MCU stay on this board.
 
 <center><img src="assets/image-20200702164625941.png" alt="image-20200702164625941" width="75%" /></center>
 
-
 RAK4631 consists of a nRF52840 MCU and a SX1262 LoRa® chip mainly. The final Arduino  code will be uploaded into nRF52840 actually. This core board supports BLE and LoRa® features. You can connect it with RAK5005-O base board with slot, and program it through the USB interface on RAK5005-O through Arduino IDE.
+
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK4631/Datasheet/#overview
 
 <center><img src="assets/RAK5005-connect-RAK4631.PNG" alt="image-20200702164625941" width="75%" /></center>
 
@@ -92,7 +99,7 @@ RAK1901 is a Temperature & Humidity sensor board with an I2C interface, which me
 
 More information about RAK1901, please have a look at the following link:
 
-> **(need RAK1901 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1901/Overview/#product-description
 
 
 
@@ -104,7 +111,7 @@ RAK1902 is a pressure sensor board with an I2C interface, which means it can be 
 
 More information about RAK1902, please have a look at the following link:
 
-> **(need RAK1902 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1902/Overview/#product-description
 
 
 
@@ -116,7 +123,7 @@ RAK1903 is an optical sensor board with an I2C interface, which means it can be 
 <center><img src="assets/RAK1903.PNG" alt="image-20200630170056520" width="30%"/> <img src="assets/image-20200807184755876.png" alt="image-20200807184458951" width="30%" /></center>
 More information about RAK1903, please have a look at the following link:
 
-> **(need RAK1903 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1903/Overview/#product-description
 
 
 
@@ -128,7 +135,7 @@ RAK1904 is a 3-axis acceleration sensor board with an I2C interface, which means
 
 More information about RAK1904, please have a look at the following link:
 
-> **(need RAK1904 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1904/Overview/
 
 
 
@@ -140,7 +147,7 @@ RAK1906 is an environment sensor board with I2C interface, which means it can be
 
 More information about RAK1906, please have a look at the following link:
 
-> **(need RAK1906 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1906/Overview/#product-description
 
 
 
@@ -155,7 +162,7 @@ RAK1910 is a GPS board with UART interface, which means it can only be connected
 
 More information about RAK1910, please have a look at the following link:
 
-> **(need RAK1910 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1910/Overview/#product-description
 
 
 
@@ -171,7 +178,7 @@ RAK2305 is a WiFi board which is ESP32 module actually, and it can only be conne
 
 More information about RAK2305, please have a look at the following link:
 
-> **(need RAK2305 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK2305/Overview/#product-description
 
 
 
@@ -185,7 +192,7 @@ RAK5860 is a cellular board which uses Quectel BG77 module actually, and it can 
 
 More information about RAK5860, please have a look at the following link:
 
-> **(need RAK5860 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK5860/Overview/#product-description
 
 
 
@@ -197,7 +204,7 @@ RAK5801 is an IO board which can connect with any 4~20mA sensors. This board can
 
 More information about RAK5801, please have a look at the following link:
 
-> **(need RAK5801 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK5801/Overview/#product-description
 
 
 
@@ -209,7 +216,7 @@ RAK5811 is an IO board which can connect with any 0~5V sensors. This board can o
 
 More information about RAK5811, please have a look at the following link:
 
-> **(need RAK5811 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK5811/Overview/#product-description
 
 
 
@@ -221,7 +228,7 @@ RAK5802 is an IO board which can connect with any RS485 sensors. This board can 
 
 More information about RAK5802, please have a look at the following link:
 
-> **(need RAK5802 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK5802/Overview/#product-description
 
 
 
@@ -233,7 +240,7 @@ RAK5804 is an IO extension board which is used to extent more IO interface, and 
 
 More information about RAK5804, please have a look at the following link:
 
-> **(need RAK5804 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK5804/Overview/#product-description
 
 
 
@@ -245,7 +252,7 @@ RAK1920 is a sensor conversion board which can connect with any Microbus, Grove,
 
 More information about RAK1920, please have a look at the following link:
 
-> **(need RAK1920 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1920/Overview/#product-description
 
 
 
@@ -255,7 +262,7 @@ RAK1921 is an OLED board which uses SSD1306(128*64, I2C) actually.
 
 <center><img src="assets/image-20200813110158840.png" alt="image-20200630170056520" width="50%"/></center>
 
-> **(need RAK1921 introduction document link)**
+https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1921/Overview/#product-description
 
 
 
@@ -413,7 +420,7 @@ You can see the output message in this area, no matter failed information and su
 
 Once Arduino IDE has been installed successfully, and you've understood the mainly parts of Arduino IDE, we can do some configuration changes on Arduino IDE so that it can be adapted to WisBlock.
 
-We use https://github.com/adafruit/Adafruit_nRF52_Arduino and do as below:
+We use https://github.com/RAKWireless/RAK-nRF52-Arduino and do as below:
 
 - Open Arduino IDE
 
@@ -421,7 +428,7 @@ We use https://github.com/adafruit/Adafruit_nRF52_Arduino and do as below:
 
   ![image-20200702170623007](assets/image-20200702170623007.png)
 
-- Add https://www.adafruit.com/package_adafruit_index.json as an 'Additional Board Manager URL'
+- Add https://downloads.rakwireless.com/Arduino/BSP/package_raknrf_index.json as an 'Additional Board Manager URL':
 
   ![image-20200702170822034](assets/image-20200702170822034.png)
 
@@ -431,81 +438,15 @@ We use https://github.com/adafruit/Adafruit_nRF52_Arduino and do as below:
 
   ![image-20200702171102982](assets/image-20200702171102982.png)
 
-- Search and install "Adafruit nRF52" as the following image shows, and install it. It is the BSP actually.
+- Search and install "RAK" as the following image shows, and install it. It is the BSP actually.
 
   ![image-20200702171813125](assets/image-20200702171813125.png)
 
-- Download and copy the following folder to the specified path:
-
-	https://github.com/RAKWireless/WisBlock/tree/master/BSP/WisCore_RAK4631_Board/
-
- 	The path maybe like:
-
-	  - macOS : `~/Library/Arduino15/packages/adafruit/hardware/nrf52/0.20.5/variants/`
-	  - Linux : `~/.arduino15/packages/adafruit/hardware/nrf52/0.20.5/variants/`
-	  - Windows: `%APPDATA%\Local\Arduino15\packages\adafruit\hardware\nrf52\0.20.5\variants\`
 
 
-- Open ./adafruit/hardware/nrf52/0.20.5/boards.txt, and copy the content of the following file into the end of boards.txt:
 
-  	https://github.com/RAKWireless/WisBlock/tree/master/BSP/config.txt
 
-  Then add **menu.region=Region** to the begin of boards.txt (line 21) like
-
-  ```
-  menu.softdevice=Bootloader
-  menu.debug=Debug
-  menu.region=Region
-  ```
-
-- Open ./adafruit/hardware/nrf52/0.20.5/platform.txt.
-
-  Add **-DDEBUG** at the end of line 39 like below:
-
-  ```
-  compiler.cpp.flags=-mcpu={build.mcu} -mthumb -c -g {compiler.warning_flags} {build.float_flags} -std=gnu++11 -ffunction-sections -fdata-sections -fno-threadsafe-statics -nostdlib --param max-inline-insns-single=500 -fno-rtti -fno-exceptions -MMD -DDEBUG
-  ```
-  
-  Add **build.region_flags=-DREGION_EU868** in the end of line 56 like below:
-  
-  ```
-  # this can be overriden in boards.txt 
-  build.float_flags=-mfloat-abi=hard -mfpu=fpv4-sp-d16 -u _printf_float 
-  build.debug_flags=-DCFG_DEBUG=0 
-  build.logger_flags=-DCFG_LOGGER=1 
-  build.sysview_flags=-DCFG_SYSVIEW=0 
-  build.region_flags=-DREGION_EU868
-  ```
-  
-  Add **{build.region_flags}** after **{build.debug_flags}** at line 64 like below:
-  
-  ```
-  build.flags.nrf= -DSOFTDEVICE_PRESENT -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DLFS_NAME_MAX=64 -Ofast {build.debug_flags} {build.region_flags} {build.logger_flags} {build.sysview_flags} "-
-  ```
-  
-  Add **compiler.libraries.ldflags=** in the end of line 76 like below:
-  
-  ```
-  # These can be overridden in platform.local.txt
-  compiler.c.extra_flags=
-  compiler.c.elf.extra_flags=
-  compiler.cpp.extra_flags=
-  compiler.S.extra_flags=
-  compiler.ar.extra_flags=
-  compiler.elf2bin.extra_flags=
-  compiler.elf2hex.extra_flags=
-  compiler.libraries.ldflags=
-  ```
-  
-  Add **{compiler.libraries.ldflags}** before **-Wl,--end-group** at line 95 like below:
-  
-  ```
-  recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}"  "-L{build.path}" {compiler.c.elf.flags} {compiler.c.elf.extra_flags} "-L{build.core.path}/linker" "-T{build.ldscript}" "-Wl,-Map,{build.path}/{build.project_name}.map" {compiler.ldflags} -o "{build.path}/{build.project_name}.elf" {object_files} -Wl,--start-group -lm "{build.path}/{archive_file}" {compiler.libraries.ldflags} -Wl,--end-group
-  ```
-  
-  
-  
-- Restart Arduino IDE, and select "WisCore RAK4631 Board" as follow:
+- After installing BSP successfully, just restart Arduino IDE, and select "WisBlock Core RAK4631 Board" as follow:
 
 ![image-20200714154646417](assets/image-20200714154646417.png)
 

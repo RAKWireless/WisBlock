@@ -402,11 +402,11 @@ This function will fill in the packet and send data to server. m_lora_app_data i
 ​	static uint32_t count = 0;
 ​	static uint32_t count_fail = 0;
 ​	
-	void setup()
-	{
-		pinMode(LED_BUILTIN, OUTPUT);
-		digitalWrite(LED_BUILTIN, LOW);
-	
+​	void setup()
+​	{
+​		pinMode(LED_BUILTIN, OUTPUT);
+​		digitalWrite(LED_BUILTIN, LOW);
+​	
 	  // Initialize LoRa chip.
 	  lora_rak4630_init();
 	
@@ -459,13 +459,13 @@ This function will fill in the packet and send data to server. m_lora_app_data i
 ​		lmh_setAppEui(nodeAppEUI);
 ​		lmh_setAppKey(nodeAppKey);
 ​	
-		// Initialize LoRaWan
-		err_code = lmh_init(&lora_callbacks, lora_param_init,doOTAA);
-		if (err_code != 0)
-		{
-			Serial.printf("lmh_init failed - %d\n", err_code);
-		}
-	
+​		// Initialize LoRaWan
+​		err_code = lmh_init(&lora_callbacks, lora_param_init,doOTAA);
+​		if (err_code != 0)
+​		{
+​			Serial.printf("lmh_init failed - %d\n", err_code);
+​		}
+​	
 		// Start Join procedure
 		lmh_join();
 	}

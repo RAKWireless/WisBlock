@@ -17,15 +17,14 @@
    SW1 <-> P0.01 (Arduino GPIO number 1)
 */
 
-#include "SparkFun_SHTC3.h" // Click here to get the library: http://librarymanager/All#SparkFun_SHTC3
+#include "SparkFun_SHTC3.h" //Click here to get the library: http://librarymanager/All#SparkFun_SHTC3
 SHTC3 mySHTC3;				// Declare an instance of the SHTC3 class
 
 void setup()
 {
   // Setup usb
   Serial.begin(115200);
-  while (!Serial)
-    ;
+  while (!Serial);
 
   /* shtc3 init */
   Wire.begin();
@@ -49,7 +48,6 @@ void setup()
 
 void loop()
 {
-
   shtc3_get();
   delay(1000);
 }

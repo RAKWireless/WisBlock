@@ -58,7 +58,7 @@ To build this system the WisBlock Core RAK4631 microcontroller is using the RAK5
 ### 3.1.Software required
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - [Arduino RS485 library](https://www.arduino.cc/en/Reference/ArduinoRS485)
 - [ArduinoModbus library](https://www.arduino.cc/en/ArduinoModbus/ArduinoModbus) (if you use Modbus protocol)
 

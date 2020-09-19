@@ -59,7 +59,8 @@ void setup()
 	delay(2000);
 	bg77_at("AT+QIACT=1", 3000);
 	delay(2000);
-} //
+}
+
 //this function is suitable for most AT commands of bg96. e.g. bg96_at("ATI")
 void bg77_at(char *at, uint16_t timeout)
 {
@@ -103,7 +104,8 @@ void ping_at(char *at)
 	Serial.println(bg77_rsp);
 	bg77_rsp = "";
 }
-void loop() // run over and over//
+
+void loop()
 {
 	Serial.println("Begin receive packet from www.baidu.com!");
 	ping_at("AT+QPING=1,\"www.baidu.com\"");

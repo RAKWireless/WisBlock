@@ -20,7 +20,7 @@
  */
 
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>
+#include <LoRaWan-RAK4630.h>   //Click here to get the library: http://librarymanager/All#SX126x
 #include <SPI.h>
 #include <bluefruit.h>
 

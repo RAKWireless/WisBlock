@@ -16,7 +16,7 @@
  * IO6 <-> P0.10 (Arduino GPIO number 10)
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
-#include <ArduinoRS485.h>
+#include <ArduinoRS485.h>  //Click here to get the library: http://librarymanager/All#ArduinoRS485
 
 int counter = 0;
 

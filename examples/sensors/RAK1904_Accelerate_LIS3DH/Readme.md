@@ -49,7 +49,7 @@ This module can be installed on any one SLOT(A B C D) in WisBlock Base board RAK
 ----
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - [LIS3DH library](https://github.com/sparkfun/SparkFun_LIS3DH_Arduino_Library)
 
 ### 3.2 Install SparkFun LIS3DH Arduino Library

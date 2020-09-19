@@ -16,7 +16,7 @@
  * IO6 <-> P0.10 (Arduino GPIO number 10)
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
-#include "bsec.h"
+#include "bsec.h"   //http://librarymanager/All#BSEC_BME680
 
 // Helper functions declarations
 void checkIaqSensorStatus(void);

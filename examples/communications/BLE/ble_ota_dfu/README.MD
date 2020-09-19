@@ -21,10 +21,10 @@ The assemble of RAK5005-O and RAK4631 is as bellow.
 
 ----
 ## Software required
-To test the WisBlock IO RAK2305 which is a WiFi board, The following software is required.
+The following software are required in this example.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - [nRF Toolbox for BLE](https://play.google.com/store/apps/details?id=no.nordicsemi.android.nrftoolbox)
 
 ----
@@ -121,7 +121,7 @@ void loop()
 ## BLE OTA DFU testing
 1. **Burn the test program.**
 
-   Connect the hardware with PC by USB, Open the test program, select the "WisCore RAK4631 Board" board and Port. Then do **upload**.
+   Connect the hardware with PC by USB, Open the test program, select the "WisBlock Core RAK4631 Board" board and Port. Then do **upload**.
 
    ![image-20200728110646822](./images/image-upload.png)
 
@@ -135,7 +135,7 @@ void loop()
 
 ![image-20200728111245768](./images/image-binary-directory.png)
 
- In this example we use a BME680 zip file as the DFU file.
+ In this example we use a the following demo zip file as the DFU file.
 
 ​		![image-20200728181447095](./images/image-20200728181447095.png)
 

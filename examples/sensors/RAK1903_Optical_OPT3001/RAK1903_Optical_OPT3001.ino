@@ -25,8 +25,7 @@ void setup()
 {
 	// Setup usb
 	Serial.begin(115200);
-	while (!Serial)
-		;
+	while (!Serial);
 
 	/* opt3001 init */
 	opt3001.begin(OPT3001_ADDRESS);
@@ -42,7 +41,6 @@ void setup()
 
 void loop()
 {
-
 	opt3001_get();
 	delay(1000);
 }

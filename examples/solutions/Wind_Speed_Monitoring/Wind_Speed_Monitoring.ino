@@ -18,8 +18,8 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 #include <Arduino.h>
-#include <ArduinoModbus.h> // Click here to get the library: http://librarymanager/All#ArduinoModbus
-#include <LoRaWan-RAK4630.h>
+#include <ArduinoModbus.h> //Click here to get the library: http://librarymanager/All#ArduinoModbus
+#include <LoRaWan-RAK4630.h>  // Click here to get the library: http://librarymanager/All#SX126x
 
 #include <SPI.h>
 

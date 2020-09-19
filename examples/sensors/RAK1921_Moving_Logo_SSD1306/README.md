@@ -31,7 +31,7 @@ For stable connection, please use screws to tighten.
 To use the environment WisBlock Sensor RAK1906, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - U8g2 library
 
 ![image-20200716164627030](images/image-U8g2lib.png)
@@ -199,17 +199,13 @@ void setup(void) {
   while (1) {
     for (int i = 0; i < 64; i++)
     {
-      //      u8g2.drawBitmap(i, 0, 8, 64, custom_start_bmp);
       u8g2.drawXBM(i, 0, 64, 64, RAK_Whirl_bits);
       u8g2.sendBuffer();
-      //      delay(50);
     }
     for (int i = 63; i >= 0 ; i--)
     {
-      //      u8g2.drawBitmap(i, 0, 8, 64, custom_start_bmp);
       u8g2.drawXBM(i, 0, 64, 64, RAK_Whirl_bits);
       u8g2.sendBuffer();
-      //      delay(50);
     }
   }
 }

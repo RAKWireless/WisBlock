@@ -18,16 +18,17 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>
+#include <LoRaWan-RAK4630.h>  //Click here to get the library: http://librarymanager/All#SX126x
 #include <SPI.h>
 #include <Wire.h>
 #include <Arduino_LPS22HB.h> // Click here to get the library: http://librarymanager/All#Arduino_LPS22HB
 #include "SparkFun_SHTC3.h"	 // Click here to get the library: http://librarymanager/All#SparkFun_SHTC3
-SHTC3 mySHTC3;				 // Declare an instance of the SHTC3 class
-
 #include <ClosedCube_OPT3001.h> // Click here to get the library: http://librarymanager/All#OPT3001
-ClosedCube_OPT3001 opt3001;
+
 #define OPT3001_ADDRESS 0x44
+
+ClosedCube_OPT3001 opt3001;
+SHTC3 mySHTC3;         // Declare an instance of the SHTC3 class
 
 // RAK4630 supply two LED
 #ifndef LED_BUILTIN
@@ -122,6 +123,7 @@ void setup()
 #endif
 	Serial.println("=====================================");
 
+  Wire.begin();
 	/* shtc3 init */
 	Serial.println("shtc3 init");
 	Serial.print("Beginning sensor. Result = "); // Most SHTC3 functions return a variable of the type "SHTC3_Status_TypeDef" to indicate the status of their execution
@@ -143,8 +145,7 @@ void setup()
 	if (!BARO.begin())
 	{
 		Serial.println("Failed to initialize pressure sensor!");
-		while (1)
-			;
+		while (1);
 	}
 	/* opt3001 init */
 	opt3001.begin(OPT3001_ADDRESS);
@@ -154,11 +155,9 @@ void setup()
 	Serial.println(opt3001.readDeviceID());
 
 	configureSensor();
-	//printResult("High-Limit", opt3001.readHighLimit());
-	//printResult("Low-Limit", opt3001.readLowLimit());
+
 	// Initialize Scheduler and timer
 	uint32_t err_code;
-
 	err_code = timers_init();
 	if (err_code != 0)
 	{

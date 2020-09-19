@@ -17,7 +17,7 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 #include <Wire.h>
-#include "ClosedCube_BME680.h" //https://github.com/closedcube/ClosedCube_BME680_Arduino
+#include "ClosedCube_BME680.h" //http://librarymanager/All#ClosedCube_BME680
 
 ClosedCube_BME680 bme680;
 
@@ -66,7 +66,6 @@ void setup()
 {
 	// Initialize Serial for debug output
 	Serial.begin(115200);
-	// while(!Serial){delay(10);}
 
 	bme680_init();
 }

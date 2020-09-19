@@ -1,4 +1,4 @@
- /*
+/*
   Copyright (c) 2014-2015 Arduino LLC.  All right reserved.
   Copyright (c) 2016 Sandeep Mistry All right reserved.
   Copyright (c) 2018, Adafruit Industries (adafruit.com)
@@ -16,8 +16,10 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef _VARIANT_PCA10056_
-#define _VARIANT_PCA10056_
+#ifndef _VARIANT_RAK4630_
+#define _VARIANT_RAK4630_
+
+#define RAK4630
 
 /** Master clock frequency */
 #define VARIANT_MCK       (64000000ul)
@@ -49,7 +51,7 @@ extern "C"
 #define LED_BUILTIN          PIN_LED1
 #define LED_CONN             PIN_LED2
 
-#define LED_RED              PIN_LED1
+#define LED_GREEN              PIN_LED1
 #define LED_BLUE             PIN_LED2
 
 #define LED_STATE_ON         0         // State when LED is litted
@@ -65,7 +67,7 @@ extern "C"
 /*
  * Analog pins
  */
-#define PIN_A0               (4)
+#define PIN_A0               (5)
 #define PIN_A1               (31)
 #define PIN_A2               (28)
 #define PIN_A3               (29)
@@ -124,15 +126,15 @@ static const uint8_t SCK  = PIN_SPI_SCK ;
 #define PIN_WIRE_SCL         (14)
 
 // QSPI Pins
-#define PIN_QSPI_SCK         19
-#define PIN_QSPI_CS          17
-#define PIN_QSPI_IO0         20
-#define PIN_QSPI_IO1         21
-#define PIN_QSPI_IO2         22
-#define PIN_QSPI_IO3         23
+#define PIN_QSPI_SCK 3
+#define PIN_QSPI_CS 26
+#define PIN_QSPI_IO0 30
+#define PIN_QSPI_IO1 29
+#define PIN_QSPI_IO2 28
+#define PIN_QSPI_IO3 2
 
 // On-board QSPI Flash
-#define EXTERNAL_FLASH_DEVICES   MX25R6435F
+#define EXTERNAL_FLASH_DEVICES IS25LP080D
 #define EXTERNAL_FLASH_USE_QSPI
 
 #ifdef __cplusplus

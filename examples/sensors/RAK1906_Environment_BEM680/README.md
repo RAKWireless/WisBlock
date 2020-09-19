@@ -39,7 +39,7 @@ For stable connection, please use screws to tighten.
 To use the WisBlock Sensor RAK1906 environment board, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - CloseCube BME680 Library
 
 ![image-20200716105611448](images/image-ClosedCubeBME680.png)

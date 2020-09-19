@@ -51,7 +51,7 @@ The Module includes a 12 V power which is controled by RAK4631,GPIO 0.17. This G
 ### 3.1.Software required
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 
 ### 3.2.Initializes module
 

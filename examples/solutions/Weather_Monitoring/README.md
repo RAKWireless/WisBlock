@@ -37,7 +37,7 @@ To build this system, the following hardware are required:
 
 ### Software required
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - Arduino LPS22HB library
 
 ![2](res/2.png)
@@ -163,6 +163,7 @@ void setup()
 #endif
     Serial.println("=====================================");
     
+  Wire.begin();
  /* shtc3 init */
   Serial.println("shtc3 init");
   Serial.print("Beginning sensor. Result = ");           // Most SHTC3 functions return a variable of the type "SHTC3_Status_TypeDef" to indicate the status of their execution 
@@ -193,8 +194,7 @@ void setup()
   Serial.println(opt3001.readDeviceID());
 
   configureSensor();
-  //printResult("High-Limit", opt3001.readHighLimit());
-  //printResult("Low-Limit", opt3001.readLowLimit());
+
 	// Initialize Scheduler and timer
     uint32_t err_code;
 

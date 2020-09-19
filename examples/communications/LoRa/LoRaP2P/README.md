@@ -24,8 +24,8 @@ The application has to take care that both nodes are initialized to use the same
 
 To build the LoRa® system. With just one WisBlock Core RAK4631 plugged into the WisBlock Base RAK5005-O board the system is ready to be used.
 
-- WisBlock Base RAK5005-O X 2
-- WisBlock Core RAK4631 X 2
+- WisBlock Base RAK5005-O * 2
+- WisBlock Core RAK4631 * 2
 
 The RAK4631 is the WisBlock Core which can be connected to CPU SLOT of WisBlock via pin to pin groove like below. Besides, it provides SWD port to download via J-Link. Two antenna (BLE and LoRa®). Screws of four corners help stabilize connection with WisBlock.
 
@@ -187,7 +187,6 @@ void send()
     TxdBuffer[4] = 'o';
     Radio.Send(TxdBuffer, 5);  
 }
-
 ```
 
 
@@ -323,7 +322,6 @@ void OnRxError(void)
 	Serial.println("OnRxError");
 	Radio.Rx(RX_TIMEOUT_VALUE);
 }
-
 ```
 
 LoRa® is a registered trademark or service mark of Semtech Corporation or its affiliates. LoRaWAN® is a licensed mark.

@@ -32,7 +32,7 @@ For stable connection, please use screws to tighten.
 To use the environment WisBlock Sensor RAK1906, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - U8g2 library
 
 ![image-20200716164627030](images/image-U8g2lib.png)
@@ -62,8 +62,8 @@ The Demo  is designed to display BME680 sensor data on SSD1306.
    This sketch demonstrate how to use SSD1306 to display sensor data of BME680.
 */
 #include <Wire.h>
-#include "ClosedCube_BME680.h"  //https://github.com/closedcube/ClosedCube_BME680_Arduino
-#include <U8g2lib.h>   //https://github.com/olikraus/u8g2
+#include "ClosedCube_BME680.h"  //http://librarymanager/All#ClosedCube_BME680
+#include <U8g2lib.h>   //http://librarymanager/All#U8g2
 
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);
 ClosedCube_BME680 bme680;
@@ -135,7 +135,6 @@ void setup()
 {
   // Initialize Serial for debug output
   Serial.begin(115200);
-  // while(!Serial){delay(10);}
 
   bme680_init();
   u8g2.begin();

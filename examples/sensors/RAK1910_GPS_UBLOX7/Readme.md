@@ -755,6 +755,7 @@ bool status;
 char state[2];
 bool signal_status = 0;
 char latitude[11];
+char longitude[11];
 
 void setup() {
     // put your setup code here, to run once:
@@ -936,9 +937,12 @@ bool wait_for_signal(unsigned long timeout)
         //avoid millis overflow problem
         if( millis() < initTime ) initTime=millis();
 
+        if(0 == status)
+        {
         PRINT_GPS(F("status_waitforsignal = "));
         Serial.println(status);
 	}
+  }
 	return status;
 }
 
@@ -1010,6 +1014,72 @@ char* get_latitude(void)
     }
 }
 
+/*
+ * getLongitude (void) - gets the longitude the GPS
+ *
+ * forces getLocation and responds the current value of the longitude
+ * variable as a string
+ *
+ * return longitude if ok, 0 if timeout or no gps signal.
+ */
+ char* get_longitude(void)
+ {
+    char *argument;
+    char *_dataBuffer;
+    unsigned long previous = millis();
+    uint16_t flag = 0;
+
+    // check if GPS signal
+    if (signal_status == 1)
+    {
+        _dataBuffer = (char *)malloc(GPS_BUFFER_SIZE);
+        //update longitude variable
+        while((flag != 1) && (millis()-previous)<5000)
+        {
+            rec_nmea("$GPGGA", _dataBuffer);
+            _dataBuffer[strlen(_dataBuffer)]='\0';
+      
+      //first of all, look if connected
+      argument = strtok (_dataBuffer,",");
+      if(strcmp(argument,"0") )
+      {
+                // status or LAT?
+                argument = strtok(NULL, ",");
+                if(strcmp(argument,"0") )
+          {
+                    //connected. keep extracting tokens.
+                    // latitude
+                    // North/South
+                    argument = strtok(NULL, ",");
+                    // Longitude
+                    argument = strtok(NULL, ",");
+                    strncpy(longitude, argument, strlen(argument));
+                    longitude[strlen(argument)] = '\0';
+
+                    flag = 1;
+        }
+      }
+        //avoid millis overflow problem
+        if( millis() < previous ) previous = millis();
+    }
+    free(_dataBuffer);
+    //if timeout, date not updated.
+    if (flag != 1)
+    {
+        return 0;
+    }
+    else
+    {
+        return longitude;
+    }
+  }
+  else
+  {
+      // No gps signal
+      return 0;
+    }
+}
+
 void loop() {
     char *latitude;
     char *longitude;
@@ -1017,11 +1087,14 @@ void loop() {
     status = wait_for_signal(TIMEOUT);
     if( status == true )
   	{
-        Serial.printf("\n----------------------\n");
-        Serial.printf("Connected\n");
-        Serial.printf("----------------------\n");
+        Serial.println("status: Connected");
         latitude = get_latitude();
-        Serial.println(latitude);
+        longitude = get_longitude();
+        Serial.print("latitude: ");
+        Serial.print(latitude);
+        Serial.print("\t");
+        Serial.print("longitude: ");
+        Serial.println(longitude);
 	}
     else
     {
@@ -1035,8 +1108,16 @@ void loop() {
 **Results**
 
 ```
-----------------------
-Connected
-----------------------
-3412.50295
+15:56:32.212 -> status: Connected
+15:56:32.212 -> latitude: 3412.509.0 longitude: 10853.10251
+15:56:34.219 -> status: Connected
+15:56:34.219 -> latitude: 3412.50.6 longitude: 10853.10234
+15:56:36.226 -> status: Connected
+15:56:36.226 -> latitude: 3412.50.4 longitude: 10853.10439
+15:56:38.234 -> status: Connected
+15:56:38.234 -> latitude: 3412.509 longitude: 10853.10593
+15:56:40.216 -> status: Connected
+15:56:40.216 -> latitude: 3412.503.4 longitude: 10853.10697
 ```
+
+Please note that the above value of latitude and longitude are the original value which comes from GPS $GPGGA format.

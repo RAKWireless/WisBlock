@@ -54,7 +54,7 @@ This solutions diagram:
 ### 3. Software required
 
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)     
 - [Arduino RS485 library](https://www.arduino.cc/en/Reference/ArduinoRS485)
 - [Arduino Modbus library](https://www.arduino.cc/en/ArduinoModbus/ArduinoModbus)
 - [SX126x-Arduino library](https://github.com/beegee-tokyo/SX126x-Arduino)

@@ -78,7 +78,7 @@ The assembly of sensor node is as follows:
 ### 3. Software required
 
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - [Arduino RS485 library](https://www.arduino.cc/en/Reference/ArduinoRS485)
 - [Arduino Modbus library](https://www.arduino.cc/en/ArduinoModbus/ArduinoModbus)
 - [SX126x-Arduino library](https://github.com/beegee-tokyo/SX126x-Arduino/)
@@ -100,8 +100,8 @@ The code for the agriculture soil conductivity sensor node is as follows:
 #include <Arduino.h>
 #include <LoRaWan-RAK4630.h>
 
-#include <ArduinoRS485.h>                             //Click here to get the library: http://librarymanager/All#ArduinoRS485
-#include <ArduinoModbus.h>                            //Click here to get the library: http://librarymanager/All#ArduinoModbus
+#include <ArduinoRS485.h> 
+#include <ArduinoModbus.h> 
 #include <SPI.h>
 
 #define SOIL_EC_SENSOR

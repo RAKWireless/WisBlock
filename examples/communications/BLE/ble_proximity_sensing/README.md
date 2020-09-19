@@ -24,7 +24,7 @@ For stable connection, please use screws to tighten.
 ----
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)    
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 
 ----
 

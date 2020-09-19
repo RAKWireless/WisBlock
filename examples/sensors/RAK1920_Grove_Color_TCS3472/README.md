@@ -22,7 +22,7 @@ RAK1920 is a Mikrobus/Grove/QWIIC adapter board which can be connected to Mikrob
 To test the RAK1920, The following software is required.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](/BSP/)
+- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - Adafruit TCS34725 library
 
 
