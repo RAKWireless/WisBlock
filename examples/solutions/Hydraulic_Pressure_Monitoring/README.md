@@ -242,8 +242,6 @@ int get_pressure(void)
   //0.01mA == 6.25KPa
   pressure =  (current_sensor - 3.95) * 100 * 2.5; 
                     
-  Serial.printf("-------average_value------ = %d\n", average_value);
-  Serial.printf("-------current_sensor------ = %f\n", current_sensor);
   Serial.printf("-------pressure------ = %d KPa\n", pressure);
 
   return pressure;
