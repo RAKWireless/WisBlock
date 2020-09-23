@@ -81,6 +81,6 @@ Then compile it by click the compiling icon at the bottom tool bar as follow:
 
 Great! We've compiled this example successfully!
 
-Same as in Arduino IDE, there is an upload icon (red circle) on the right of the compiling icon (green circle) which can be used to upload the compiled firmware into your device.
+Same as in Arduino IDE, there is an upload icon (green circle) on the right of the compiling icon (red circle) which can be used to upload the compiled firmware into your device.
 
 ![image-20200722113305159](assets/pio-flash.jpg)
