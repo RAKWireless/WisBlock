@@ -20,7 +20,7 @@
  */
 
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>  //http://librarymanager/All#SX126x
+#include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
 #include <SPI.h>
 #include "SparkFunLIS3DH.h" //http://librarymanager/All#SparkFun-LIS3DH
 #include "Wire.h"
@@ -271,7 +271,7 @@ void tx_lora_periodic_handler(void)
 				break;
 			}
 		}
-   
+
 		Serial.println(comdata);
 		res = parse_gps();
 		if (res == 1)

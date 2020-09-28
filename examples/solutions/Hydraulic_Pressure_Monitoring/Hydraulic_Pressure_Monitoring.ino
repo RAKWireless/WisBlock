@@ -19,7 +19,7 @@
  */
 
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>  //http://librarymanager/All#SX126x
+#include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
 #include <SPI.h>
 
 #define P300_SENSOR

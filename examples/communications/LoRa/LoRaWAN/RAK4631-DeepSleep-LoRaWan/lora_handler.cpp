@@ -51,7 +51,7 @@ static lmh_param_t lora_param_init = {LORAWAN_ADR_OFF, DR_3, LORAWAN_PUBLIC_NETW
 
 /** Structure containing LoRaWan callback functions, needed for lmh_init() */
 static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
-                    lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler};
+										lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler};
 
 /** Device EUI required for OTAA network join */
 uint8_t nodeDeviceEUI[8] = {0x00, 0x0D, 0x75, 0xE6, 0x56, 0x4D, 0xC1, 0xF6};
@@ -82,12 +82,12 @@ void loraTask(void *pvParameters);
  */
 void loraIntHandler(void)
 {
-  // SX126x set IRQ
-  if (loraEvent != NULL)
-  {
-    // Wake up LoRa task
-    xSemaphoreGive(loraEvent);
-  }
+	// SX126x set IRQ
+	if (loraEvent != NULL)
+	{
+		// Wake up LoRa task
+		xSemaphoreGive(loraEvent);
+	}
 }
 
 /**
@@ -102,57 +102,57 @@ void loraIntHandler(void)
  */
 int8_t initLoRaWan(void)
 {
-  // Create the LoRaWan event semaphore
-  loraEvent = xSemaphoreCreateBinary();
-  // Initialize semaphore
-  xSemaphoreGive(loraEvent);
+	// Create the LoRaWan event semaphore
+	loraEvent = xSemaphoreCreateBinary();
+	// Initialize semaphore
+	xSemaphoreGive(loraEvent);
 
-  // Initialize LoRa chip.
-  if (lora_rak4630_init() != 0)
-  {
-    return -1;
-  }
+	// Initialize LoRa chip.
+	if (lora_rak4630_init() != 0)
+	{
+		return -1;
+	}
 
-  // Setup the EUIs and Keys
-  lmh_setDevEui(nodeDeviceEUI);
-  lmh_setAppEui(nodeAppEUI);
-  lmh_setAppKey(nodeAppKey);
-  lmh_setNwkSKey(nodeNwsKey);
-  lmh_setAppSKey(nodeAppsKey);
-  lmh_setDevAddr(nodeDevAddr);
+	// Setup the EUIs and Keys
+	lmh_setDevEui(nodeDeviceEUI);
+	lmh_setAppEui(nodeAppEUI);
+	lmh_setAppKey(nodeAppKey);
+	lmh_setNwkSKey(nodeNwsKey);
+	lmh_setAppSKey(nodeAppsKey);
+	lmh_setDevAddr(nodeDevAddr);
 
-  // Initialize LoRaWan
-  if (lmh_init(&lora_callbacks, lora_param_init, doOTAA) != 0)
-  {
-    return -2;
-  }
+	// Initialize LoRaWan
+	if (lmh_init(&lora_callbacks, lora_param_init, doOTAA) != 0)
+	{
+		return -2;
+	}
 
-  // For some regions we might need to define the sub band the gateway is listening to
-  // This must be called AFTER lmh_init()
-  if (!lmh_setSubBandChannels(1))
-  {
-    return -3;
-  }
+	// For some regions we might need to define the sub band the gateway is listening to
+	// This must be called AFTER lmh_init()
+	if (!lmh_setSubBandChannels(1))
+	{
+		return -3;
+	}
 
 	// In deep sleep we need to hijack the SX126x IRQ to trigger a wakeup of the nRF52
 	attachInterrupt(PIN_LORA_DIO_1, loraIntHandler, RISING);
 
-  // Start the task that will handle the LoRaWan events
+	// Start the task that will handle the LoRaWan events
 #ifndef MAX_SAVE
-  Serial.println("Starting LoRaWan task");
+	Serial.println("Starting LoRaWan task");
 #endif
-  if (!xTaskCreate(loraTask, "LORA", 2048, NULL, TASK_PRIO_LOW, &loraTaskHandle))
-  {
-    return -4;
-  }
+	if (!xTaskCreate(loraTask, "LORA", 2048, NULL, TASK_PRIO_LOW, &loraTaskHandle))
+	{
+		return -4;
+	}
 
-  // Start Join procedure
+	// Start Join procedure
 #ifndef MAX_SAVE
-  Serial.println("Start network join request");
+	Serial.println("Start network join request");
 #endif
-  lmh_join();
+	lmh_join();
 
-  return 0;
+	return 0;
 }
 
 /**
@@ -162,23 +162,23 @@ int8_t initLoRaWan(void)
  */
 void loraTask(void *pvParameters)
 {
-  while (1)
-  {
-    if (lmh_join_status_get() == LMH_SET)
-    { // Switch off the indicator lights
-      digitalWrite(LED_CONN, LOW);
-    }
-    // Only if semaphore is available we need to handle LoRa events.
-    // Otherwise we sleep here until an event occurs
-    if (xSemaphoreTake(loraEvent, portMAX_DELAY) == pdTRUE)
-    {
-      // Switch off the indicator lights
-      digitalWrite(LED_CONN, HIGH);
+	while (1)
+	{
+		if (lmh_join_status_get() == LMH_SET)
+		{ // Switch off the indicator lights
+			digitalWrite(LED_CONN, LOW);
+		}
+		// Only if semaphore is available we need to handle LoRa events.
+		// Otherwise we sleep here until an event occurs
+		if (xSemaphoreTake(loraEvent, portMAX_DELAY) == pdTRUE)
+		{
+			// Switch off the indicator lights
+			digitalWrite(LED_CONN, HIGH);
 
-      // Handle Radio events with special process command!!!!
-      Radio.IrqProcessAfterDeepSleep();
-    }
-  }
+			// Handle Radio events with special process command!!!!
+			Radio.IrqProcessAfterDeepSleep();
+		}
+	}
 }
 
 /**
@@ -186,28 +186,28 @@ void loraTask(void *pvParameters)
  */
 static void lorawan_has_joined_handler(void)
 {
-  if (doOTAA)
-  {
-    uint32_t otaaDevAddr = lmh_getDevAddr();
+	if (doOTAA)
+	{
+		uint32_t otaaDevAddr = lmh_getDevAddr();
 #ifndef MAX_SAVE
-    Serial.printf("OTAA joined and got dev address %08X\n", otaaDevAddr);
+		Serial.printf("OTAA joined and got dev address %08X\n", otaaDevAddr);
 #endif
-  }
-  else
-  {
+	}
+	else
+	{
 #ifndef MAX_SAVE
-    Serial.println("ABP joined");
+		Serial.println("ABP joined");
 #endif
-  }
-	
+	}
+
 	// Default is Class A, where the SX1262 transceiver is in sleep mode unless a package is sent
 	// If switched to Class C the power consumption is higher because the SX1262 chip remains in RX mode
 
-  // lmh_class_request(CLASS_C);
+	// lmh_class_request(CLASS_C);
 
-  // Now we are connected, start the timer that will wakeup the loop frequently
+	// Now we are connected, start the timer that will wakeup the loop frequently
 	taskWakeupTimer.begin(SLEEP_TIME, periodicWakeup);
-  taskWakeupTimer.start();
+	taskWakeupTimer.start();
 }
 
 /**
@@ -218,63 +218,63 @@ static void lorawan_has_joined_handler(void)
 static void lorawan_rx_handler(lmh_app_data_t *app_data)
 {
 #ifndef MAX_SAVE
-  Serial.printf("LoRa Packet received on port %d, size:%d, rssi:%d, snr:%d\n",
-    app_data->port, app_data->buffsize, app_data->rssi, app_data->snr);
+	Serial.printf("LoRa Packet received on port %d, size:%d, rssi:%d, snr:%d\n",
+				  app_data->port, app_data->buffsize, app_data->rssi, app_data->snr);
 #endif
-  switch (app_data->port)
-  {
-  case 3:
-    // Port 3 switches the class
-    if (app_data->buffsize == 1)
-    {
-      switch (app_data->buffer[0])
-      {
-      case 0:
-        lmh_class_request(CLASS_A);
+	switch (app_data->port)
+	{
+	case 3:
+		// Port 3 switches the class
+		if (app_data->buffsize == 1)
+		{
+			switch (app_data->buffer[0])
+			{
+			case 0:
+				lmh_class_request(CLASS_A);
 #ifndef MAX_SAVE
-        Serial.println("Request to switch to class A");
+				Serial.println("Request to switch to class A");
 #endif
-        break;
+				break;
 
-      case 1:
-        lmh_class_request(CLASS_B);
+			case 1:
+				lmh_class_request(CLASS_B);
 #ifndef MAX_SAVE
-        Serial.println("Request to switch to class B");
+				Serial.println("Request to switch to class B");
 #endif
-        break;
+				break;
 
-      case 2:
-        lmh_class_request(CLASS_C);
+			case 2:
+				lmh_class_request(CLASS_C);
 #ifndef MAX_SAVE
-        Serial.println("Request to switch to class C");
+				Serial.println("Request to switch to class C");
 #endif
-        break;
+				break;
 
-      default:
-        break;
-      }
-    }
+			default:
+				break;
+			}
+		}
 
-    // Send LoRaWan handler back to sleep
-    xSemaphoreTake(loraEvent, 10);
-    break;
-  case LORAWAN_APP_PORT:
-    // Copy the data into loop data buffer
-    memcpy(rcvdLoRaData, app_data->buffer, app_data->buffsize);
-    rcvdDataLen = app_data->buffsize;
-    eventType = 0;
-    // Notify task about the event
-    if (taskEvent != NULL)
-    {
+		// Send LoRaWan handler back to sleep
+		xSemaphoreTake(loraEvent, 10);
+		break;
+	case LORAWAN_APP_PORT:
+		// Copy the data into loop data buffer
+		memcpy(rcvdLoRaData, app_data->buffer, app_data->buffsize);
+		rcvdDataLen = app_data->buffsize;
+		eventType = 0;
+		// Notify task about the event
+		if (taskEvent != NULL)
+		{
 #ifndef MAX_SAVE
-      Serial.println("Waking up loop task");
+			Serial.println("Waking up loop task");
 #endif
-      xSemaphoreGive(taskEvent);
-    }
+			xSemaphoreGive(taskEvent);
+		}
 
-    // Send LoRa handler back to sleep
-    xSemaphoreTake(loraEvent, 10);
-  }
+		// Send LoRa handler back to sleep
+		xSemaphoreTake(loraEvent, 10);
+	}
 }
 
 /**
@@ -285,16 +285,16 @@ static void lorawan_rx_handler(lmh_app_data_t *app_data)
 static void lorawan_confirm_class_handler(DeviceClass_t Class)
 {
 #ifndef MAX_SAVE
-  Serial.printf("switch to class %c done\n", "ABC"[Class]);
+	Serial.printf("switch to class %c done\n", "ABC"[Class]);
 #endif
 
-  // Informs the server that switch has occurred ASAP
-  m_lora_app_data.buffsize = 0;
-  m_lora_app_data.port = LORAWAN_APP_PORT;
-  lmh_send(&m_lora_app_data, LMH_UNCONFIRMED_MSG);
+	// Informs the server that switch has occurred ASAP
+	m_lora_app_data.buffsize = 0;
+	m_lora_app_data.port = LORAWAN_APP_PORT;
+	lmh_send(&m_lora_app_data, LMH_UNCONFIRMED_MSG);
 
-  // Send LoRa handler back to sleep
-  xSemaphoreTake(loraEvent, 10);
+	// Send LoRa handler back to sleep
+	xSemaphoreTake(loraEvent, 10);
 }
 
 /**
@@ -304,36 +304,36 @@ static void lorawan_confirm_class_handler(DeviceClass_t Class)
  */
 bool sendLoRaFrame(void)
 {
-  if (lmh_join_status_get() != LMH_SET)
-  {
-    //Not joined, try again later
+	if (lmh_join_status_get() != LMH_SET)
+	{
+		//Not joined, try again later
 #ifndef MAX_SAVE
-    Serial.println("Did not join network, skip sending frame");
+		Serial.println("Did not join network, skip sending frame");
 #endif
-    // Send LoRa handler back to sleep
-    xSemaphoreTake(loraEvent, 10);
-    return false;
-  }
+		// Send LoRa handler back to sleep
+		xSemaphoreTake(loraEvent, 10);
+		return false;
+	}
 
-  m_lora_app_data.port = LORAWAN_APP_PORT;
+	m_lora_app_data.port = LORAWAN_APP_PORT;
 
 	//******************************************************************
-  /// \todo here some more usefull data should be put into the package
+	/// \todo here some more usefull data should be put into the package
 	//******************************************************************
 
-  uint8_t buffSize = 0;
-  m_lora_app_data_buffer[buffSize++] = 'H';
-  m_lora_app_data_buffer[buffSize++] = 'e';
-  m_lora_app_data_buffer[buffSize++] = 'l';
-  m_lora_app_data_buffer[buffSize++] = 'l';
-  m_lora_app_data_buffer[buffSize++] = 'o';
+	uint8_t buffSize = 0;
+	m_lora_app_data_buffer[buffSize++] = 'H';
+	m_lora_app_data_buffer[buffSize++] = 'e';
+	m_lora_app_data_buffer[buffSize++] = 'l';
+	m_lora_app_data_buffer[buffSize++] = 'l';
+	m_lora_app_data_buffer[buffSize++] = 'o';
 
-  m_lora_app_data.buffsize = buffSize;
+	m_lora_app_data.buffsize = buffSize;
 
-  lmh_error_status error = lmh_send(&m_lora_app_data, LMH_UNCONFIRMED_MSG);
+	lmh_error_status error = lmh_send(&m_lora_app_data, LMH_UNCONFIRMED_MSG);
 
-  // Send LoRa handler back to sleep
-  xSemaphoreTake(loraEvent, 10);
+	// Send LoRa handler back to sleep
+	xSemaphoreTake(loraEvent, 10);
 
-  return (error == 0);
+	return (error == 0);
 }

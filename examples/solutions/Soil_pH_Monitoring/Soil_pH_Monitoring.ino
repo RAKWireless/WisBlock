@@ -22,7 +22,7 @@
 #include <ArduinoRS485.h> //Click here to get the library: http://librarymanager/All#ArduinoRS485
 
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>  //Click here to get the library: http://librarymanager/All#SX126x
+#include <LoRaWan-RAK4630.h> //Click here to get the library: http://librarymanager/All#SX126x
 #include <SPI.h>
 
 // RAK4630 supply two LED
@@ -236,6 +236,12 @@ unsigned short get_ph(void)
 	unsigned short rawph;
 	float ph;
 
+	/* RS485 Power On */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, HIGH);
+	delay(100);
+	/* RS485 Power On */
+
 	if (!ModbusRTUClient.requestFrom(1, HOLDING_REGISTERS, 0x0006, 1))
 	{
 		Serial.print("failed to read registers! ");
@@ -253,6 +259,13 @@ unsigned short get_ph(void)
 		ph = (int)(ph / 0.01) * 0.01;
 		Serial.printf("-------ph------ = %02f\n", ph);
 	}
+
+	/* RS485 Power Off */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, LOW);
+	delay(100);
+	/* RS485 Power Off */
+
 	return rawph;
 }
 

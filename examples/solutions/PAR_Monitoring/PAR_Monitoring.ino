@@ -18,8 +18,8 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 #include <Arduino.h>
-#include <ArduinoModbus.h> // Click here to get the library: http://librarymanager/All#ArduinoModbus
-#include <LoRaWan-RAK4630.h>  // Click here to get the library: http://librarymanager/All#SX126x
+#include <ArduinoModbus.h>	 // Click here to get the library: http://librarymanager/All#ArduinoModbus
+#include <LoRaWan-RAK4630.h> // Click here to get the library: http://librarymanager/All#SX126x
 
 #include <SPI.h>
 
@@ -214,6 +214,12 @@ short get_par(void)
 	//Photosynthetically Active Radiation Sensor
 	short par;
 
+	/* RS485 Power On */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, HIGH);
+	delay(100);
+	/* RS485 Power On */
+
 	if (!ModbusRTUClient.requestFrom(1, HOLDING_REGISTERS, 0x0006, 1))
 	{
 		Serial.print("failed to read registers! ");
@@ -228,6 +234,13 @@ short get_par(void)
 
 		Serial.printf("-------par------ = %d w/m2\n", par);
 	}
+
+	/* RS485 Power Off */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, LOW);
+	delay(100);
+	/* RS485 Power Off */
+
 	return par;
 }
 

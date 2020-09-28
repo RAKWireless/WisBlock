@@ -17,7 +17,7 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 #include <Wire.h>
-#include "Adafruit_TCS34725.h"   //http://librarymanager/All#Adafruit_TCS34725
+#include "Adafruit_TCS34725.h" //http://librarymanager/All#Adafruit_TCS34725
 
 // set to false if using a common cathode LED
 #define commonAnode true

@@ -285,6 +285,12 @@ short get_speed(void)
   short rawspeed;
   float speed;
   
+  /* RS485 Power On */
+  pinMode(34, OUTPUT); 
+  digitalWrite(34, HIGH);
+  delay(100);
+  /* RS485 Power On */
+    
   if (!ModbusRTUClient.requestFrom(1, HOLDING_REGISTERS, 0x0016, 2)) {
     Serial.print("failed to read registers! ");
     Serial.println(ModbusRTUClient.lastError());
@@ -298,6 +304,13 @@ short get_speed(void)
     speed = rawspeed / 10.0;
     Serial.printf("-------speed------ = %f\n", speed);
   }
+    
+  /* RS485 Power Off */
+  pinMode(34, OUTPUT); 
+  digitalWrite(34, LOW);
+  delay(100);
+  /* RS485 Power Off */
+    
   return rawspeed;
 }
 

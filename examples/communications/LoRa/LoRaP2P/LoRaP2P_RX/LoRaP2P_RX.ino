@@ -17,7 +17,7 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 #include <Arduino.h>
-#include <SX126x-RAK4630.h>  //http://librarymanager/All#SX126x
+#include <SX126x-RAK4630.h> //http://librarymanager/All#SX126x
 #include <SPI.h>
 
 // Function declarations

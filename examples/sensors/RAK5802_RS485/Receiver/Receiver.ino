@@ -16,15 +16,20 @@
  * IO6 <-> P0.10 (Arduino GPIO number 10)
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
-#include<ArduinoRS485.h>   //Click here to get the library: http://librarymanager/All#ArduinoRS485
+#include <ArduinoRS485.h> //Click here to get the library: http://librarymanager/All#ArduinoRS485
 
-	void setup()
+void setup()
 {
 	Serial.begin(9600);
-	while (!Serial);
+	while (!Serial)
+		;
 
 	RS485.begin(9600);
-
+	/* IO2 HIGH  3V3_S ON */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, HIGH);
+	delay(500);
+	/* IO2 HIGH  3V3_S ON */
 	// enable reception, can be disabled with: RS485.noReceive();
 	RS485.receive();
 }

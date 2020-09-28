@@ -18,8 +18,8 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 #include <Arduino.h>
-#include <ArduinoModbus.h> //Click here to get the library: http://librarymanager/All#ArduinoModbus
-#include <LoRaWan-RAK4630.h>  // Click here to get the library: http://librarymanager/All#SX126x
+#include <ArduinoModbus.h>	 //Click here to get the library: http://librarymanager/All#ArduinoModbus
+#include <LoRaWan-RAK4630.h> // Click here to get the library: http://librarymanager/All#SX126x
 
 #include <SPI.h>
 
@@ -168,6 +168,7 @@ void loop2()
 	m_lora_app_data.buffsize = i;
 
 	delay(10000);
+	yield();
 }
 
 void loop()
@@ -215,6 +216,12 @@ short get_speed(void)
 	short rawspeed;
 	float speed;
 
+	/* RS485 Power On */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, HIGH);
+	delay(100);
+	/* RS485 Power On */
+
 	if (!ModbusRTUClient.requestFrom(1, HOLDING_REGISTERS, 0x0016, 1))
 	{
 		Serial.print("failed to read registers! ");
@@ -231,6 +238,13 @@ short get_speed(void)
 		speed = rawspeed / 10.0;
 		Serial.printf("-------speed------ = %f\n", speed);
 	}
+
+	/* RS485 Power Off */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, LOW);
+	delay(100);
+	/* RS485 Power Off */
+
 	return rawspeed;
 }
 

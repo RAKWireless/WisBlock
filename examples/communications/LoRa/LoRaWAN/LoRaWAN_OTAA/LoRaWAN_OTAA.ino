@@ -17,7 +17,7 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>   //http://librarymanager/All#SX126x
+#include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
 #include <SPI.h>
 
 // RAK4630 supply two LED

@@ -46,18 +46,18 @@ BLEBas blebas; // BAS (Battery Service) helper class instance
 void bme680_init()
 {
 	Wire.begin();
-  bme680.init(0x76); // I2C address: 0x76 or 0x77
-  bme680.reset();
+	bme680.init(0x76); // I2C address: 0x76 or 0x77
+	bme680.reset();
 
-  Serial.print("Chip ID=0x");
-  Serial.println(bme680.getChipID(), HEX);
+	Serial.print("Chip ID=0x");
+	Serial.println(bme680.getChipID(), HEX);
 
-  // oversampling: humidity = x1, temperature = x2, pressure = x16
-  bme680.setOversampling(BME680_OVERSAMPLING_X1, BME680_OVERSAMPLING_X2, BME680_OVERSAMPLING_X16);
-  bme680.setIIRFilter(BME680_FILTER_3);
-  bme680.setGasOn(300, 100); // 300 degree Celsius and 100 milliseconds
+	// oversampling: humidity = x1, temperature = x2, pressure = x16
+	bme680.setOversampling(BME680_OVERSAMPLING_X1, BME680_OVERSAMPLING_X2, BME680_OVERSAMPLING_X16);
+	bme680.setIIRFilter(BME680_FILTER_3);
+	bme680.setGasOn(300, 100); // 300 degree Celsius and 100 milliseconds
 
-  bme680.setForcedMode();
+	bme680.setForcedMode();
 }
 
 void startAdv(void)
@@ -265,9 +265,9 @@ void loop()
 
 	if (Bluefruit.connected())
 	{
-    temperature = bme680.readTemperature();
+		temperature = bme680.readTemperature();
 		pressure = bme680.readPressure();
-    humidity = bme680.readHumidity();
+		humidity = bme680.readHumidity();
 
 		uint8_t tmpdata[2] = {0x0}; // little-endian
 		tmpdata[1] = (uint8_t)(((int)(temperature * 100) & 0xff00) >> 8);

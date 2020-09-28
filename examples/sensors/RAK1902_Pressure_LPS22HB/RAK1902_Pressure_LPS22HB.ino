@@ -22,13 +22,15 @@ void setup()
 {
 	// Setup usb
 	Serial.begin(115200);
-	while (!Serial);
+	while (!Serial)
+		;
 
 	/* LPS22HB init */
 	if (!BARO.begin())
 	{
 		Serial.println("Failed to initialize pressure sensor!");
-		while (1);
+		while (1)
+			;
 	}
 }
 

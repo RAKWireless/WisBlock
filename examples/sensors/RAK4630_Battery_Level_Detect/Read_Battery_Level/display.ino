@@ -19,7 +19,7 @@
  */
 #include <Arduino.h>
 
-#include <nRF_SSD1306Wire.h>   //Click here to get the library: http://librarymanager/All#nRF52_OLED
+#include <nRF_SSD1306Wire.h> //Click here to get the library: http://librarymanager/All#nRF52_OLED
 
 void dispShow(void);
 void dispWriteHeader(void);

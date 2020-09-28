@@ -16,7 +16,7 @@
  * IO6 <-> P0.10 (Arduino GPIO number 10)
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
-#include <ArduinoRS485.h>  //Click here to get the library: http://librarymanager/All#ArduinoRS485
+#include <ArduinoRS485.h> //Click here to get the library: http://librarymanager/All#ArduinoRS485
 
 int counter = 0;
 
@@ -28,8 +28,19 @@ void setup()
 void loop()
 {
 	RS485.beginTransmission();
-	RS485.write("hello ");
+	/* IO2 HIGH  3V3_S ON */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, HIGH);
+	delay(300);
+	/* IO2 HIGH  3V3_S ON */
+
+	RS485.write("hello world\n");
 	RS485.endTransmission();
+	/* IO2 LOW  3V3_S OFF */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, LOW);
+	delay(300);
+	/* IO2 LOW  3V3_S OFF */
 
 	delay(1000);
 }

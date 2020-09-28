@@ -25,7 +25,8 @@ void setup()
 {
 	// Setup usb
 	Serial.begin(115200);
-	while (!Serial);
+	while (!Serial)
+		;
 
 	if (SensorTwo.begin() != 0)
 	{

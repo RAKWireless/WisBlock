@@ -25,7 +25,7 @@ To build this system the WisBlock Core RAK4631 microcontroller is using the RAK5
 
   ![](Images/RAK4631_Back_01.png)
 
-  ![]Images/RAK4631_Front_01.png)
+  ![](Images/RAK4631_Front_01.png)
 
 - WisBlock IO RAK5802     
 
@@ -139,6 +139,22 @@ or
 }
 ```
 
+### 3.9. RS485 Power on
+
+```
+  pinMode(34, OUTPUT); 
+  digitalWrite(34, HIGH);
+  delay(500);
+```
+
+### 3.10. RS485 Power off
+
+```
+  pinMode(34, OUTPUT); 
+  digitalWrite(34, LOW);
+  delay(500);
+```
+
 ## 4 Code examples
 
 RS485 Sender: send data ,hello, every second
@@ -154,8 +170,19 @@ void setup() {
 
 void loop() {
   RS485.beginTransmission();
-  RS485.write("hello ");
+  /* IO2 HIGH  3V3_S ON */
+  pinMode(34, OUTPUT); 
+  digitalWrite(34, HIGH);
+  delay(300);
+  /* IO2 HIGH  3V3_S ON */
+    
+  RS485.write("hello world\n");
   RS485.endTransmission();
+  /* IO2 LOW  3V3_S OFF */
+  pinMode(34, OUTPUT); 
+  digitalWrite(34, LOW);
+  delay(300);
+  /* IO2 LOW  3V3_S OFF */    
 
   delay(1000);
 }
@@ -171,7 +198,11 @@ void setup() {
   while (!Serial);
 
   RS485.begin(9600);
-
+  /* IO2 HIGH  3V3_S ON */
+  pinMode(34, OUTPUT); 
+  digitalWrite(34, HIGH);
+  delay(500);
+  /* IO2 HIGH  3V3_S ON */
   // enable reception, can be disabled with: RS485.noReceive();
   RS485.receive();
 }

@@ -17,10 +17,10 @@
  * IO6 <-> P0.10 (Arduino GPIO number 10)
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
-#include <ArduinoModbus.h>   //http://librarymanager/All#ArduinoModbus     //http://librarymanager/All#ArduinoRS485
+#include <ArduinoModbus.h> //http://librarymanager/All#ArduinoModbus     //http://librarymanager/All#ArduinoRS485
 
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>  //http://librarymanager/All#SX126x
+#include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
 #include <SPI.h>
 
 // RAK4630 supply two LED
@@ -207,12 +207,24 @@ void loop2()
 	unsigned short raw_wind_speed;
 	unsigned short raw_ph;
 
+	/* RS485 Power on */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, HIGH);
+	delay(300);
+	/* RS485 Power on */
+
 	par = get_par();
 	raw_conductivity = get_soil_conductivity();
 	raw_temperature = get_soil_temperature();
 	raw_humidity = get_soil_humidity();
 	raw_ph = get_ph();
 	raw_wind_speed = get_speed();
+
+	/* RS485 Power off */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, LOW);
+	delay(300);
+	/* RS485 Power off */
 
 	Serial.printf("-----par = %d-------\n", par);
 	Serial.printf("-----raw_ph = %d-------\n", raw_ph);

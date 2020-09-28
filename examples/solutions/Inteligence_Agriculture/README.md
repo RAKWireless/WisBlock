@@ -258,6 +258,11 @@ void loop2()
   unsigned short raw_wind_speed;
   unsigned short raw_ph;
    
+  /* RS485 Power on */
+  pinMode(34, OUTPUT); 
+  digitalWrite(34, HIGH);
+  delay(300);
+  /* RS485 Power on */
 
   par = get_par();
   raw_conductivity = get_soil_conductivity();
@@ -266,6 +271,12 @@ void loop2()
   raw_ph = get_ph();
   raw_wind_speed = get_speed();
 
+  /* RS485 Power off */
+  pinMode(34, OUTPUT); 
+  digitalWrite(34, LOW);
+  delay(300);
+  /* RS485 Power off */
+   
   Serial.printf("-----par = %d-------\n", par);
   Serial.printf("-----raw_ph = %d-------\n", raw_ph);
   Serial.printf("-----raw_conductivity = %d-------\n", raw_conductivity);

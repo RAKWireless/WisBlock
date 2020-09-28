@@ -18,7 +18,7 @@
  * SW1 <-> P0.01 (Arduino GPIO number 1)
  */
 #include <Arduino.h>
-#include <LoRaWan-RAK4630.h>  // Click here to get the library: http://librarymanager/All#SX126x
+#include <LoRaWan-RAK4630.h> // Click here to get the library: http://librarymanager/All#SX126x
 
 #include <ArduinoRS485.h>  //Click here to get the library: http://librarymanager/All#ArduinoRS485
 #include <ArduinoModbus.h> //Click here to get the library: http://librarymanager/All#ArduinoModbus
@@ -161,9 +161,21 @@ void loop2()
 	short raw_temperature;
 	short raw_humidity;
 
+	/* RS485 Power On */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, HIGH);
+	delay(100);
+	/* RS485 Power On */
+
 	raw_conductivity = get_soil_conductivity();
 	raw_temperature = get_soil_temperature();
 	raw_humidity = get_soil_humidity();
+
+	/* RS485 Power Off */
+	pinMode(34, OUTPUT);
+	digitalWrite(34, LOW);
+	delay(100);
+	/* RS485 Power Off */
 
 	Serial.printf("-----raw_conductivity = %d-------\n", raw_conductivity);
 	Serial.printf("-----raw_temperature = %d-------\n", raw_temperature);
