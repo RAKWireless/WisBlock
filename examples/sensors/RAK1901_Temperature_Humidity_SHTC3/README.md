@@ -92,7 +92,7 @@ void shtc3_get(void)
     Serial.print("), T = "); 
     Serial.print(mySHTC3.toDegC());                        
     Serial.print(" deg C (checksum: "); 
-    if(mySHTC3.passTcrc)                                        )
+    if(mySHTC3.passTcrc)
     {
       Serial.print("pass");
     }
