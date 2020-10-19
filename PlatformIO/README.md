@@ -8,23 +8,21 @@ https://code.visualstudio.com/
 
 After installing VS code, you can search PlatformIO and install it in the Extensions item:
 
-![image-20200722100737565](assets/image-20200722100737565.png)
-
-
+![pio_install_pio_1](../assets/PlatformIO/pio_install_pio_1.png)
 
 After installing PlatformIO, you can see the PlatformIO icon and open it as follow:
 
-![image-20200722101053523](assets/image-20200722101053523.png)
+![pio_open_pio_home](../assets/PlatformIO/pio_open_pio_home.png)
 
 Open "Platforms" in PlatformIO and search "Nordic" as follow:
 
-![image-20200722102908384](assets/image-20200722102908384.png)
+![pio_install_platform_1](../assets/PlatformIO/pio_install_platform_1.png)
 
 You can see there are several items, just click "Nordic nRF52" item and "Install" it as follow:
 
-![image-20200722103130747](assets/image-20200722103130747.png)
+![pio_install_platform_2](../assets/PlatformIO/pio_install_platform_2.png)
 
-![image-20200722103232366](assets/image-20200722103232366.png)
+![pio_install_platform_3](../assets/PlatformIO/pio_install_platform_3.png)
 
 Download the PlatformIO folder from:
 
@@ -38,18 +36,18 @@ The path maybe like:
 
 Then, create a new project in PlatformIO:
 
-![image-20200722104754712](assets/image-20200722104754712.png)
+![pio_install_platform_4](../assets/PlatformIO/pio_install_platform_4.png)
 
 Choose "WisCore RAK4631 Board (RAKwireless)" for "Board" item, and choose "Arduino" for "Framework" item as follow:
 
-![image-20200722104925274](assets/image-20200722104925274.png)
+![pio_install_platform_5](../assets/PlatformIO/pio_install_platform_5.png)
 
 After creating successfully, you can see the project:
 
-![image-20200722105421895](assets/image-20200722105421895.png)
+![pio_install_platform_6](../assets/PlatformIO/pio_install_platform_6.png)
 
 Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder which you just downloaded to the framework-arduinoadafruitnrf52 package variants folder. The path maybe like:
- - Windows: %USER%\.platformio\packages\framework-arduinoadafruitnrf52\variants
+ - Windows: %USER%\\.platformio\packages\framework-arduinoadafruitnrf52\variants
 
 Finally, restart the PlatformIO.
 
@@ -63,24 +61,42 @@ https://github.com/RAKWireless/WisBlock/tree/master/examples/communications/LoRa
 
 Just copy the source code of the .ino file into the main.cpp of the PlatformIO project we just created:
 
-![image-20200722111241582](assets/image-20200722111241582.png)
+![pio_compile_1](../assets/PlatformIO/pio_compile_1.png)
 
 Then we need to install the LoRaWAN® library "SX126x-Arduino" in PlatformIO firstly because this example is built based on this library. Just search "SX126x" in "Libraries" item of PlatformIO, and you can see "SX126x-Arduino" as follow:
 
-![image-20200722112932981](assets/image-20200722112932981.png)
+![pio_compile_2](../assets/PlatformIO/pio_compile_2.png)
 
 Just click it and "Install" this library as follow:
 
-![image-20200722113100736](assets/image-20200722113100736.png)
+![pio_compile_3](../assets/PlatformIO/pio_compile_3.png)
+
+To define your LoRaWan regional settings, open the file `platformio.ino` and set the region as a build-flag. In this example we set it to US915:
+```ini
+[env:rak4631]
+platform = nordicnrf52
+board = wiscore_rak4631
+framework = arduino
+upload_speed = 115200
+build_flags = 
+    ; -DCFG_DEBUG=2
+    -DREGION_US915 ; -DREGION_EU868 ; -DREGION_US915
+    -DRAK4631=1
+    -DMYLOG_LOG_LEVEL=MYLOG_LOG_LEVEL_ERROR ; DEBUG NONE ERROR
+lib_deps = 
+    SX126x-Arduino
+```
+
+![pio_compile_6](../assets/PlatformIO/pio_compile_6.png) 
 
 Then compile it by click the compiling icon at the bottom tool bar as follow:
 
-![image-20200722113244435](assets/image-20200722113244435.png) 
+![pio_compile_4](../assets/PlatformIO/pio_compile_4.png) 
 
-![image-20200722113305159](assets/image-20200722113305159.png)
+![pio_compile_5](../assets/PlatformIO/pio_compile_5.png)
 
 Great! We've compiled this example successfully!
 
 Same as in Arduino IDE, there is an upload icon (green circle) on the right of the compiling icon (red circle) which can be used to upload the compiled firmware into your device.
 
-![image-20200722113305159](assets/pio-flash.jpg)
+![pio-flash](../assets/PlatformIO/pio-flash.jpg)
