@@ -73,18 +73,13 @@ Just click it and "Install" this library as follow:
 
 To define your LoRaWan regional settings, open the file `platformio.ino` and set the region as a build-flag. In this example we set it to US915:
 ```ini
-[env:rak4631]
-platform = nordicnrf52
-board = wiscore_rak4631
-framework = arduino
-upload_speed = 115200
 build_flags = 
-    ; -DCFG_DEBUG=2
-    -DREGION_US915 ; -DREGION_EU868 ; -DREGION_US915
-    -DRAK4631=1
-    -DMYLOG_LOG_LEVEL=MYLOG_LOG_LEVEL_ERROR ; DEBUG NONE ERROR
-lib_deps = 
-    SX126x-Arduino
+    -DREGION_US915
+```
+And here we set the region to EU868:
+```ini
+build_flags = 
+    -DREGION_EU868
 ```
 
 ![pio_compile_6](../assets/PlatformIO/pio_compile_6.png) 

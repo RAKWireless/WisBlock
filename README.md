@@ -74,6 +74,8 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
     - [Flashable Bootloader](bootloader/)
     - [Bootloader Source Code](bootloader/Adafruit_nRF52_Bootloader/)
 
+- PlatformIO installation
+   - [PlatformIO files](PlatformIO/)
 
 ## Overview
 WisBlock is a modular Plug&Play system. Compared with other systems (Arduino, Raspberry Pi, M5Stack) it has several advantages.
