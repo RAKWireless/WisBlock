@@ -2,7 +2,7 @@
 ----
 This example shows how to setup two WisBlock devices. Device A acts as a environmental condition sensor and sends its sensor data over BLE. Device  B acts as a gateway between the BLE sensor and LoRaWan®. With this solution we demonstrate how the communication range of BLE sensors can be extended by forwarding sensor data from BLE to LoRaWan®. 
 
-![image-20200713144806141.png](images/image-20200713144806141.png)
+![exa-ble-solution](../../../assets/Examples/exa-ble-solution.png)
 
 ## Hardware required
 ----
@@ -15,7 +15,7 @@ The sensor node uses a WisBlock Core RAK4631 microcontroller and the WisBlock Se
 
 The assembly of sensor node is as follows:
 
-![image-20200713104859416](images/image-20200713104859416.png)
+![exa-ble-rak1906-assy](../../../assets/repo/exa-ble-rak1906-assy.png)
 
 
 
@@ -23,7 +23,7 @@ The gateway uses a WisBlock Core RAK4631 microcontroller and no additional modul
 
 The assembly of gateway is as follows:
 
-![image-20200713104134045](images/image-20200713104134045.png)
+![exa-ble-gateway](../../../assets/repo/exa-ble-gateway.png)
 
 For stable connection, please use screws to tighten.
 
@@ -35,11 +35,11 @@ For stable connection, please use screws to tighten.
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - CloseCube_BME680 library
 
-![image-20200717120930209](images/image-bme680-lib.png)
+![lib-bme680-install](../../../assets/Arduino/lib-bme680-install.png)
 
 - SX126x-Arduino
 
-  ![image-20200717120820639](images/image-sx126x-lib.png)
+  ![lib-sx12x-install](../../../assets/Arduino/lib-sx12x-install.png)
 
 ----
 

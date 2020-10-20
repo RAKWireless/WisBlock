@@ -1,8 +1,10 @@
 # BLE proximity sensing examples
 ----
-This example shows how to setup two WisBlock devices and use BLE to detect each other and give a visual signal if the two modules can see each other.     Both devices are using BLE advertising and BLE device scanning functionality of BLE. 
+This example shows how to setup two WisBlock devices and use BLE to detect each other and give a visual signal if the two modules can see each other.     
 
-![image-20200713143334302](images/image-20200713143334302.png)
+Both devices are using BLE advertising and BLE device scanning functionality of BLE. 
+
+![ble-proximity](../../../../assets/Examples/ble-proximity.png)
 
 ----
 ## Hardware required
@@ -15,7 +17,7 @@ To build this system the WisBlock Core RAK4631 microcontroller and WisBlock Base
 
 The assembly is as follows:
 
-![image-20200713093804742](images/image-20200713093804742.png)
+![ble-rak4631-proxy](../../../../assets/repo/ble-rak4631-proxy.png)
 
 For stable connection, please use screws to tighten.
 

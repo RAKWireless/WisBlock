@@ -15,16 +15,18 @@ This example shows how to setup the WisBlock as a LoRaWan® sensor node. There a
 
 The region can be selected from the tools menu of ArduinoIDE
 
-![6](res/6.jpg)
+![ard-select-region](../../../../assets/Arduino/ard-select-region.jpg)
 
-In addition you need
+In addition you need keys to register the device.
 
-for OTAA
+### ALL KEYS ARE MSB!
+
+Keys required for OTAA
 - Device EUI if you want to use ABP registration of the device
 - Application EUI
 - Application Key, the AES encryption/decryption cipher application key
 
-for ABP
+Keys required for ABP
 
 - Device address
 - Network Session Key
@@ -41,7 +43,7 @@ To build the LoRa® system. With just one WisBlock Core RAK4631 plugged into the
 
 The RAK4631 is the WisBlock Core which can be connected to CPU SLOT of WisBlock via pin to pin groove like below. Besides, it provides SWD port to download via Jlink. Two antenna (BLE and LoRa®). Screws of four corners help stabilize connection with WisBlock.
 
-![2](res/2.png)
+![rak4631-connectors](../../../../assets/repo/rak4631-connectors.png)
 
 ## 3. Software Required
 
@@ -52,7 +54,7 @@ After install Arduino IDE and BSP according to the Quick Start Guide, you can in
 - Start the Arduino IDE
 - Open Library Manager, search for sx126x-Arduino, and install
 
-![3](res/3.png)
+![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
 
 
@@ -86,13 +88,18 @@ To test the example, we build node like below in ChirpStack (open-source LoRaWAN
 - Join Type: OTAA
 - Class: A
 
-![4](res/4.png)
+![lora-gateway-1](../../../../assets/Examples/lora-gateway-1.png)
 
 #### 3.3.3 Node configuration
 
 Then open the example in Arduino, fill the DeviceEUI, AppEUI, AppKey in the code like below:
 
-![5](res/5.png)
+```cpp
+//OTAA keys !!!! ALL KEYS ARE MSB !!!
+uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
+uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
+uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33, 0x33, 0x33, 0x33};
+```
 
 #### 3.3.4 Compile and download
 
@@ -104,21 +111,21 @@ There is a USB port on WisBlock. It is a debug port for RAK4631 with three funct
 
 Connect WisBlock to PC via USB. Arduino will recognize the board. The red led is on means power up. Go into tools and choose like below. 
 
-![6](res/6-1594607481721.jpg)
+![ard-select-region](../../../../assets/Arduino/ard-select-region.jpg)
 
 Then click Upload (arrow button), it will compile and download to RAK4631 automatically. The blue led is on means download ok.
 
-![7](res/7.png)
+![ard-compile-finished](../../../../assets/Arduino/ard-compile-finished.png)
 
 #### 3.3.5 Log print and server data
 
 Go into Tools, choose the port (Adafruit Feather nRF52840 Express), open Serial Monitor. Log will show as below. It will join automatically and send 'hello!' to server per 20s :
 
-![8](res/8.png)
+![lora-otaa-log](../../../../assets/Examples/lora-otaa-log.png)
 
 At the same time, server will show the data from RAK4631.
 
-![9](res/9.png)
+![lora-gateway-3](../../../../assets/Examples/lora-gateway-3.png)
 
 It is a very easy way for users to finish their first LoRaWAN® trip. But most users want to apply LoRaWAN® to their own application. RAKwireless also provide a efficient way for them.
 
@@ -194,7 +201,7 @@ lora_callbacks is struct of user callback in LoRaWAN®. There are mainly three c
 #### 3.4.5 OTAA  Keys
 
 ```
-//OTAA keys
+//OTAA keys !!!! ALL KEYS ARE MSB !!!
 uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x22, 0x22};
 uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
 uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88,0x88, 0x88, 0x88, 0x88, 0x22, 0x22, 0x22, 0x22};
@@ -344,138 +351,144 @@ This function will fill in the packet and send data to server. m_lora_app_data i
 
 #### 3.4.14 Complete code
 
-	#include <Arduino.h>
-	#include <LoRaWan-RAK4630.h>
-	#include <SPI.h>
+```cpp
+#include <Arduino.h>
+#include <LoRaWan-RAK4630.h>
+#include <SPI.h>
+
+// RAK4630 supply two LED
+#ifndef LED_BUILTIN
+#define LED_BUILTIN 35
+#endif
+
+#ifndef LED_BUILTIN2
+#define LED_BUILTIN2 36
+#endif
+
+bool doOTAA = true;
+#define SCHED_MAX_EVENT_DATA_SIZE APP_TIMER_SCHED_EVENT_DATA_SIZE /**< Maximum size of scheduler events. */
+#define SCHED_QUEUE_SIZE 60  /**< Maximum number of events in the scheduler queue. */
+#define LORAWAN_DATERATE DR_0 /*LoRaMac datarates definition, from DR_0 to DR_5*/
+#define LORAWAN_TX_POWER TX_POWER_5 /*LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15*/
+#define JOINREQ_NBTRIALS 3 /**< Number of trials for the join request. */
+DeviceClass_t gCurrentClass = CLASS_A; /* class definition*/
+lmh_confirm gCurrentConfirm = LMH_CONFIRMED_MSG; /* confirm/unconfirm packet definition*/
+uint8_t gAppPort = LORAWAN_APP_PORT;   /* data port*/
+
+/**@brief Structure containing LoRaWan parameters, needed for lmh_init()
+ */
+static lmh_param_t lora_param_init = {LORAWAN_ADR_ON , LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
+
+// Foward declaration
+static void lorawan_has_joined_handler(void);
+static void lorawan_rx_handler(lmh_app_data_t *app_data);
+static void lorawan_confirm_class_handler(DeviceClass_t Class);
+static void send_lora_frame(void);
+
+/**@brief Structure containing LoRaWan callback functions, needed for lmh_init()
+*/
+static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
+										lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler};
+```
+
+```cpp
+//OTAA keys !!!! ALL KEYS ARE MSB !!!
+uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
+uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
+uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88,0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
+```
+
+```cpp
+// Private defination
+#define LORAWAN_APP_DATA_BUFF_SIZE 64  /**< buffer size of the data to be transmitted. */
+#define LORAWAN_APP_INTERVAL 20000 /**< Defines for user timer, the application data transmission interval. 20s, value in [ms]. */
+static uint8_t m_lora_app_data_buffer[LORAWAN_APP_DATA_BUFF_SIZE]; //< Lora user application data buffer.
+static lmh_app_data_t m_lora_app_data = {m_lora_app_data_buffer, 0, 0, 0, 0}; //< Lora user application data structure.
+```
+
+
+
+```cpp
+TimerEvent_t appTimer;
+static uint32_t timers_init(void);
+static uint32_t count = 0;
+static uint32_t count_fail = 0;
 	
-	// RAK4630 supply two LED
-	#ifndef LED_BUILTIN
-	#define LED_BUILTIN 35
+void setup()
+{
+	pinMode(LED_BUILTIN, OUTPUT);
+	digitalWrite(LED_BUILTIN, LOW);
+	
+	// Initialize LoRa chip.
+	lora_rak4630_init();
+	
+	// Initialize Serial for debug output
+	Serial.begin(115200);
+	while(!Serial){delay(10);}
+	Serial.println("=====================================");
+	Serial.println("Welcome to RAK4630 LoRaWan!!!");
+	Serial.println("Type: OTAA");
+
+	
+	#if defined(REGION_AS923)
+	    Serial.println("Region: AS923");
+	#elif defined(REGION_AU915)
+	    Serial.println("Region: AU915");
+	#elif defined(REGION_CN470)
+	    Serial.println("Region: CN470");
+	#elif defined(REGION_CN779)
+	    Serial.println("Region: CN779");
+	#elif defined(REGION_EU433)
+	    Serial.println("Region: EU433");
+	#elif defined(REGION_IN865)
+	    Serial.println("Region: IN865");
+	#elif defined(REGION_EU868)
+	    Serial.println("Region: EU868");
+	#elif defined(REGION_KR920)
+	    Serial.println("Region: KR920");
+	#elif defined(REGION_US915)
+	    Serial.println("Region: US915");
+	#elif defined(REGION_US915_HYBRID)
+	    Serial.println("Region: US915_HYBRID");
+	#else
+	    Serial.println("Please define a region in the compiler options.");
 	#endif
+	    Serial.println("=====================================");
+
 	
-	#ifndef LED_BUILTIN2
-	#define LED_BUILTIN2 36
-	#endif
-	
-	bool doOTAA = true;
-	#define SCHED_MAX_EVENT_DATA_SIZE APP_TIMER_SCHED_EVENT_DATA_SIZE /**< Maximum size of scheduler events. */
-	#define SCHED_QUEUE_SIZE 60  /**< Maximum number of events in the scheduler queue. */
-	#define LORAWAN_DATERATE DR_0 /*LoRaMac datarates definition, from DR_0 to DR_5*/
-	#define LORAWAN_TX_POWER TX_POWER_5 /*LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15*/
-	#define JOINREQ_NBTRIALS 3 /**< Number of trials for the join request. */
-	DeviceClass_t gCurrentClass = CLASS_A; /* class definition*/
-	lmh_confirm gCurrentConfirm = LMH_CONFIRMED_MSG; /* confirm/unconfirm packet definition*/
-	uint8_t gAppPort = LORAWAN_APP_PORT;   /* data port*/
-	
-	/**@brief Structure containing LoRaWan parameters, needed for lmh_init()
-	 */
-	static lmh_param_t lora_param_init = {LORAWAN_ADR_ON , LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
-	
-	// Foward declaration
-	static void lorawan_has_joined_handler(void);
-	static void lorawan_rx_handler(lmh_app_data_t *app_data);
-	static void lorawan_confirm_class_handler(DeviceClass_t Class);
-	static void send_lora_frame(void);
-	
-	/**@brief Structure containing LoRaWan callback functions, needed for lmh_init()
-	*/
-	static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
-											lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler};
-
-
-​	
-​	//OTAA keys
-​	uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
-​	uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
-​	uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88,0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
-
-
-​	
-​	// Private defination
-​	#define LORAWAN_APP_DATA_BUFF_SIZE 64  /**< buffer size of the data to be transmitted. */
-​	#define LORAWAN_APP_INTERVAL 20000 /**< Defines for user timer, the application data transmission interval. 20s, value in [ms]. */
-​	static uint8_t m_lora_app_data_buffer[LORAWAN_APP_DATA_BUFF_SIZE]; //< Lora user application data buffer.
-​	static lmh_app_data_t m_lora_app_data = {m_lora_app_data_buffer, 0, 0, 0, 0}; //< Lora user application data structure.
-​	
-​	TimerEvent_t appTimer;
-​	static uint32_t timers_init(void);
-​	static uint32_t count = 0;
-​	static uint32_t count_fail = 0;
-​	
-​	void setup()
-​	{
-​		pinMode(LED_BUILTIN, OUTPUT);
-​		digitalWrite(LED_BUILTIN, LOW);
-​	
-	  // Initialize LoRa chip.
-	  lora_rak4630_init();
-	
-		// Initialize Serial for debug output
-		Serial.begin(115200);
-	  while(!Serial){delay(10);}
-		Serial.println("=====================================");
-		Serial.println("Welcome to RAK4630 LoRaWan!!!");
-	  Serial.println("Type: OTAA");
-
-
-​	
-​	#if defined(REGION_AS923)
-​	    Serial.println("Region: AS923");
-​	#elif defined(REGION_AU915)
-​	    Serial.println("Region: AU915");
-​	#elif defined(REGION_CN470)
-​	    Serial.println("Region: CN470");
-​	#elif defined(REGION_CN779)
-​	    Serial.println("Region: CN779");
-​	#elif defined(REGION_EU433)
-​	    Serial.println("Region: EU433");
-​	#elif defined(REGION_IN865)
-​	    Serial.println("Region: IN865");
-​	#elif defined(REGION_EU868)
-​	    Serial.println("Region: EU868");
-​	#elif defined(REGION_KR920)
-​	    Serial.println("Region: KR920");
-​	#elif defined(REGION_US915)
-​	    Serial.println("Region: US915");
-​	#elif defined(REGION_US915_HYBRID)
-​	    Serial.println("Region: US915_HYBRID");
-​	#else
-​	    Serial.println("Please define a region in the compiler options.");
-​	#endif
-​	    Serial.println("=====================================");
-
-
-​	
-​		//creat a user timer to send data to server period
-​	  uint32_t err_code;
-​	  err_code = timers_init();
-​		if (err_code != 0)
-​		{
-​			Serial.printf("timers_init failed - %d\n", err_code);
-​		}
-​	
-​		// Setup the EUIs and Keys
-​		lmh_setDevEui(nodeDeviceEUI);
-​		lmh_setAppEui(nodeAppEUI);
-​		lmh_setAppKey(nodeAppKey);
-​	
-​		// Initialize LoRaWan
-​		err_code = lmh_init(&lora_callbacks, lora_param_init,doOTAA);
-​		if (err_code != 0)
-​		{
-​			Serial.printf("lmh_init failed - %d\n", err_code);
-​		}
-​	
-		// Start Join procedure
-		lmh_join();
-	}
-	
-	void loop()
+	//creat a user timer to send data to server period
+	uint32_t err_code;
+	err_code = timers_init();
+	if (err_code != 0)
 	{
-		// Handle Radio events
-		Radio.IrqProcess();
+		Serial.printf("timers_init failed - %d\n", err_code);
 	}
 	
+	// Setup the EUIs and Keys
+	lmh_setDevEui(nodeDeviceEUI);
+	lmh_setAppEui(nodeAppEUI);
+	lmh_setAppKey(nodeAppKey);
+	
+	// Initialize LoRaWan
+	err_code = lmh_init(&lora_callbacks, lora_param_init,doOTAA);
+	if (err_code != 0)
+	{
+		Serial.printf("lmh_init failed - %d\n", err_code);
+	}
+	
+	// Start Join procedure
+	lmh_join();
+}
+	
+void loop()
+{
+	// Handle Radio events
+	Radio.IrqProcess();
+}
+```
+
+
+
 	/**@brief LoRa function for handling HasJoined event.
 	 */
 	void lorawan_has_joined_handler(void)
@@ -574,7 +587,7 @@ For users, application is different and complicated. Although RAKwireless provid
 
 As the example shows, its default region is EU868. User can change it in Arduino like below:
 
-![6](res/6-1594607481721.jpg)
+![ard-select-region](../../../../assets/Arduino/ard-select-region.jpg)
 
 #### 3.5.2 OTAA/ABP configuration
 
@@ -605,7 +618,17 @@ static lmh_param_t lora_param_init = {LORAWAN_ADR_ON , LORAWAN_DATERATE, LORAWAN
 
 So if want to develop own application, better based on examples of RAKwireless in https://github.com/RAKWireless/WisBlock/tree/master/examples/communications/LoRa/LoRaWAN/ . Open in Arduino, change the OTAA/ABP keys according to user's server configuration (TTN and ChirpStack are same with MSB first, only AppKey of TTN is LSB. This part should be pay more attention):
 
-![14](res/14.png)
+```cpp
+//OTAA keys !!!! ALL KEYS ARE MSB !!!
+uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
+uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
+uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33, 0x33, 0x33, 0x33};
+
+//ABP keys !!!! ALL KEYS ARE MSB !!!
+uint32_t nodeDevAddr = 0x11111111;
+uint8_t nodeNwsKey[16] = {0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11};
+uint8_t nodeAppsKey[16] = {0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11};
+```
 
 #### 3.5.6 ADR configuration
 

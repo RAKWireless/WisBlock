@@ -8,13 +8,17 @@
  * @copyright Copyright (c) 2020
  * 
  * @note RAK5005-O GPIO mapping to RAK4631 GPIO ports
- * IO1 <-> P0.17 (Arduino GPIO number 17)
- * IO2 <-> P1.02 (Arduino GPIO number 34)
- * IO3 <-> P0.21 (Arduino GPIO number 21)
- * IO4 <-> P0.04 (Arduino GPIO number 4)
- * IO5 <-> P0.09 (Arduino GPIO number 9)
- * IO6 <-> P0.10 (Arduino GPIO number 10)
- * SW1 <-> P0.01 (Arduino GPIO number 1)
+   RAK5005-O <->  nRF52840
+   IO1       <->  P0.17 (Arduino GPIO number 17)
+   IO2       <->  P1.02 (Arduino GPIO number 34)
+   IO3       <->  P0.21 (Arduino GPIO number 21)
+   IO4       <->  P0.04 (Arduino GPIO number 4)
+   IO5       <->  P0.09 (Arduino GPIO number 9)
+   IO6       <->  P0.10 (Arduino GPIO number 10)
+   SW1       <->  P0.01 (Arduino GPIO number 1)
+   A0        <->  P0.04/AIN2 (Arduino Analog A2
+   A1        <->  P0.31/AIN7 (Arduino Analog A7
+   SPI_CS    <->  P0.26 (Arduino GPIO number 26) 
  */
 #include <Arduino.h>
 #include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
@@ -54,7 +58,7 @@ static void send_lora_frame(void);
 static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
 										lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler};
 
-//OTAA keys
+//OTAA keys !!!! KEYS ARE MSB !!!!
 uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
 uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
 uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33, 0x33, 0x33, 0x33};

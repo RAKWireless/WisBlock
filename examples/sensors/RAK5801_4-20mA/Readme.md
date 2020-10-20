@@ -4,7 +4,9 @@
 
 ## 1.Introduction
 
-This guide introducts what is 4-20mA current loop and shows how to connect this module and the transmitter and explains how to program. This module was designed for WisBlock Base RAK5005-O.
+This guide introduces the 4-20mA current loop and shows how to connect this module and the transmitter and explains how to program. This module was designed for WisBlock Base RAK5005-O.
+
+<img src="../../../assets/repo/rak5801.png" alt="rak5801" style="zoom:25%;" />
 
 ### 1.1. The standard
 
@@ -27,7 +29,7 @@ This list is typical application of the standard:
 - Monitoring processes
 - Data transmission in industrial ambients
 
-![](Images/4-20_mA_standard_typical_connection_diagram.png)
+<img src="../../../assets/Examples/exa-rak5801-standard4-20_mA_standard_typical_connection_diagram.png" alt="exa-rak5801-standard4-20_mA_standard_typical_connection_diagram" style="zoom: 33%;" />
 
 ### 1.2.Transmitter Wiring
 
@@ -36,21 +38,21 @@ This list is typical application of the standard:
 2-Wire transmitters are energized by the current loop, where the supply voltage is included in the receptor. The transmitter is
 floating and the ground is in the receptor.
 
-![](Images/2-wire.png)
+<img src="../../../assets/Examples/exa-rak5801-2-wire.png" alt="exa-rak5801-2-wire" style="zoom: 50%;" />
 
 #### 1.2.2. 3-Wire
 
 3-Wire transmitters have 3 wires powered by the source voltage in them. In this case the transmitter is the power source for the
 current loop. The transmitter common is connected to the common of the receptor.
 
-![](Images/3-wire.png)
+<img src="../../../assets/Examples/exa-rak5801-3-wire.png" alt="exa-rak5801-3-wire" style="zoom: 50%;" />
 
 #### 1.2.3. 4-Wire
 
 4-Wire transmitters have 4 wires powered by the source voltage in them. The transmitter powers the current loop and the
 receptor acts a floating load.
 
-![](Images/4-wire.png)
+<img src="../../../assets/Examples/exa-rak5801-4-wire.png" alt="exa-rak5801-4-wire" style="zoom:50%;" />
 
 ### 1.3.Signal conversion
 
@@ -68,17 +70,17 @@ To build this system the WisBlock Core RAK4631 microcontroller is using the RAK5
 
 - WisBlock Base RAK5005-O    
 
-![](Images/RAK5005-O_45_02.png)
+<img src="../../../assets/repo/rak5005-o-top-tilt.png" alt="rak5005-o-top-tilt" style="zoom: 50%;" />
 
 - WisBlock Core RAK4631    
 
-  ![](Images/RAK4631_Back_01.png)
+  <img src="../../../assets/repo/RAK4631.png" alt="RAK4631" style="zoom: 5%;" />
 
-  ![](Images/RAK4631_Front_01.png)
+  
 
 - WisBlock IO RAK5801    
 
-  ![](Images/RAK5801_45_02.png)
+  <img src="../../../assets/repo/rak5801.png" alt="rak5801" style="zoom:50%;" />
 
 ### 2.2.Electrical characteristics
 
@@ -87,7 +89,7 @@ To build this system the WisBlock Core RAK4631 microcontroller is using the RAK5
 
 ### 2.3. Powering sensors from the WisBlock IO RAK5801 4-20mA board
 
-The 4-20mA Module includes a 12 V power which is controled by MCU,GPIO 0.17. This GPIO must be set to **HIGH** before sampling. The power also can be used as power supply for sensors. The majority of 4-20 mA sensor works in the 9-24 V range. Before connecting a sensor to the 4-20 mA module, you must be sure that 12 V fits the sensor’s range of the power supply. 
+The 4-20mA Module includes a 12 V power which is controlled by MCU,GPIO 0.17. This GPIO must be set to **HIGH** before sampling. The power also can be used as power supply for sensors. The majority of 4-20 mA sensor works in the 9-24 V range. Before connecting a sensor to the 4-20 mA module, you must be sure that 12 V fits the sensor’s range of the power supply. 
 
 ### 2.4. Connection diagram
 
@@ -95,17 +97,17 @@ The 4-20 mA Module for WisBlock Core RAK4631 has one input channels which allow 
 
 2.4.1. 2-wire connection
 
-![](Images/RAK5801_2-wire.png)
+<img src="../../../assets/repo/RAK5801_2-wire.png" alt="RAK5801_2-wire" style="zoom:50%;" />
 
 2.4.2. 3-wire connection
 
-![](Images/RAK5801_3-wire.png)
+<img src="../../../assets/repo/RAK5801_3-wire.png" alt="RAK5801_3-wire" style="zoom:50%;" />
 
 2.4.3. 4-wire connection
 
 *Note: The transmitter and 4-20mA module use separate power supplies. It is assumed that the power to drive the 4-20mA loop is derived from the control panel.*
 
-![](Images/RAK5801_4-wire.png)
+<img src="../../../assets/repo/RAK5801_4-wire.png" alt="RAK5801_4-wire" style="zoom:50%;" />
 
 ## 3.How to program based on Arduino
 

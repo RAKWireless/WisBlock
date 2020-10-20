@@ -53,6 +53,7 @@ static lmh_param_t lora_param_init = {LORAWAN_ADR_OFF, DR_3, LORAWAN_PUBLIC_NETW
 static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
 										lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler};
 
+//  !!!! KEYS ARE MSB !!!!
 /** Device EUI required for OTAA network join */
 uint8_t nodeDeviceEUI[8] = {0x00, 0x0D, 0x75, 0xE6, 0x56, 0x4D, 0xC1, 0xF6};
 /** Application EUI required for network join */

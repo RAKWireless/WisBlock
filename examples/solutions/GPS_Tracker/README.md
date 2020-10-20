@@ -27,7 +27,7 @@ To build this system, the following hardware are required:
 - WisBlock Sensor RAK1904 * 1pcs    
 - WisBlock Sensor RAK1910 * 1pcs   
 
-![1](res/1.png)
+![exa-tracker-assy](../../../assets/repo/exa-tracker-assy.png)
 
 ### Software required
 
@@ -37,11 +37,11 @@ To build this system, the following hardware are required:
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - SparkFun LIS3DH Arduino library
 
-![2](res/2.png)
+![lib-lis3dh-install](../../../assets/Arduino/lib-lis3dh-install.png)
 
 - SX126x-Arduino library
 
-![3](res/3.png)
+![lib-sx12x-install](../../../assets/Arduino/lib-sx12x-install.png)
 
 The code for the GPS tracker node is as follows:
 ```cpp
@@ -392,7 +392,7 @@ uint32_t timers_init(void)
 
 Data arrives at LoRaWAN® server.
 
-![4](res/4.png)
+![exa-tracker-data](../../../assets/Examples/exa-tracker-data.png)
 
 
 

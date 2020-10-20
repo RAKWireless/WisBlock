@@ -33,26 +33,26 @@ To build this system, the following hardware are required:
 - WisBlock Sensor RAK1902 * 1pcs    
 - WisBlock Sensor RAK1903 * 1pcs    
 
-![1](res/1.png)
+![exa-weather-assy](../../../assets/repo/exa-weather-assy.png)
 
 ### Software required
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - Arduino LPS22HB library
 
-![2](res/2.png)
+![lib-lps22hb-install](../../../assets/Arduino/lib-lps22hb-install.png)
 
 - Sparkfun SHTC3 library
 
-![4](res/4.png)
+![lib-shtc3-install](../../../assets/Arduino/lib-shtc3-install.png)
 
 - ClosedCube OPT3001 library
 
-![5](res/5.png)
+![lib-opt3001-install](../../../assets/Arduino/lib-opt3001-install.png)
 
 - SX126x-Arduino library
 
-![3](res/3.png)
+![lib-sx12x-install](../../../assets/Arduino/lib-sx12x-install.png)
 
 The code for the weather monitor node is as follows:
 ```cpp
@@ -431,7 +431,7 @@ void configureSensor() {
 
 Data arrives at LoRaWAN® server.
 
-![6](res/6.png)
+![exa-weather-data](../../../assets/Examples/exa-weather-data.png)
 
 
 

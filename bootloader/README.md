@@ -19,7 +19,7 @@ To Download the bootloader, below are needed
 
 The RAK4630 is a core which can be connected to CPU SLOT of Wisblock via pin to pin groove like below. Besides, it provides SWD port to download via Jlink. Two antenna (BLE and LoRa). Screws of four corners help stabilize connection with Wisblock.
 
-![2](res/2-1594625139757.png)
+![rak4631-connectors](../assets/repo/rak4631-connectors.png)
 
 
 
@@ -34,7 +34,7 @@ According to your version of J-Link, install the Segger software from https://ww
 
 Connect the swd  port to PC via Jlink like below
 
-![50](res/50.png)
+![bootloader-connection](../assets/bootloader/bootloader-connection.png)
 
 ### 3.3 Download 
 
@@ -47,4 +47,4 @@ Steps as below:
 - Drag the HEX to the J-Flash
 - Select Target->Production Programming. 
 
-![60](res/60.png)
+![bootloader-segger](../assets/bootloader/bootloader-segger.png)

@@ -2,6 +2,8 @@
 
 This example shows how to use WisBlock Sensor RAK1903 optical board.
 
+<img src="../../../assets/repo/rak1903-top.png" alt="rak1903-top" style="zoom:25%;" />
+
 ----
 ## Hardware required
 ----
@@ -17,7 +19,7 @@ Measurements can be made from 0.01 lux up to 83k lux without manually selecting 
 
 
 
-![3](res/3.png)
+![exa-rak1903-assy](../../../assets/repo/exa-rak1903-assy.png)
 
 ----
 ## Software required
@@ -28,7 +30,7 @@ To test the RAK1903, The following software is required.
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - ClosedCube OPT3001 Library
 
-![2](res/2.png)
+![lib-opt3001-install](../../../assets/Arduino/lib-opt3001-install.png)
 
 The Arduino test software is written as follow:
 

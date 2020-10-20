@@ -19,7 +19,7 @@ BG77 is an ultra-compact LPWA module supporting LTE Cat M1, LTE Cat NB2 and inte
 - Region: Global
 - GNSS (Optional): GPS/GLONASS/BeiDou/Galileo/QZSS
 
-![1](res/1.png)
+![Assembly](../../../assets/repo/cell-rak4631-rak5860.png)
 
 ----
 ## Software required
@@ -455,7 +455,7 @@ OK
 
 Firstly download related tools from https://www.quectel.com/ProductDownload/BG77.html . Then Download our unvarnished transmission demo which will power up BG77. After the BG77 starts ok (blue led on and green led blink), connect to the USB of BG77 to your PC. According to your PC, choose appropriate driver. For windows 10, Open the ..\BG77\05 Tool&Driver\Quectel_LTE&5G_Windows_USB_Driver_V2.2.2 and install.  Then open Device manager and find Quectel USB Modem's port. This is the AT port of BG77.
 
-![3](res/3.png)
+![Quectel tool](../../../assets/Examples/cell-usb-usage.png)
 
 Open Serials tool with the Quectel USB AT Port and send AT command now.
 

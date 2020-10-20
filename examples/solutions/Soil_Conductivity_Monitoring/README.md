@@ -3,7 +3,7 @@
 
 ### 1. Introduction
 
-![](Images/Arch.png)
+![exa-par-solution](../../../assets/Examples/exa-par-solution.png)
 
 This solution shows how to create an agriculture soil conductivity sensor node. The sensor node measures the soil conductivity, soil temperature and soil humidity from a sensor with a RS485 interface. It then transmits this data frequently over LoRaWan® to a LoRaWan® server.    
 At the LoRaWan® server the data arrives in the following format    
@@ -32,7 +32,7 @@ If you want to know how to use the LoRa® communication with WisBlock. You can r
 
 All Modbus devices include a register map with the location and a description of the data stored in the registers. Modbus functions operate on register map to monitor, configure, and control the device’s inputs and outputs. You have to refer to the register map of your device to gain a better understanding of its operation. Modbus registers are organized into reference types identified by the leading number of the reference address. You can see below an example of how to read and write data in a Modbus device.
 
-![](Images/Reg-map.png)
+![ex-soil-regmap](../../../assets/Examples/ex-soil-regmap.png)
 
 In our example, we are going to read the Soil Humidity Soil Temperature and Soil Conductivity from our device. We can see in the register map on above, the default Device Address is 1, the humidity value is stored in the register 0002H, the temperature value is stored in the register 0003H, the conductivity value is stored in the register 0015H and is accessible with the function ModbusRTUClient.requestFrom(), and is stored in 16 bits format (2 bytes).
 
@@ -69,9 +69,9 @@ WisBlock IO RAK5802 * 1pcs
 
 The assembly of sensor node is as follows:
 
-![ASSEMBLY](Images/assembly.png)
+![exa-par-assy](../../../assets/repo/exa-par-assy.png)
 
-![](Images/system.png)
+![ex-soil-assy](../../../assets/Examples/ex-soil-assy.png)
 
 
 
@@ -85,13 +85,13 @@ The assembly of sensor node is as follows:
 
 #### 3.1 Install library
 
-![](Images/lm.png)
+![lib-manager](../../../assets/Arduino/lib-manager.png)
 
-![](Images/Arduino_RS485.png)
+![lib-rs485-install](../../../assets/Arduino/lib-rs485-install.png)
 
-![](Images/Arduino_Modbus.png)
+![lib-modbus-install](../../../assets/Arduino/lib-modbus-install.png)
 
-![](Images/SX126x-Arduino.png)
+![lib-sx12x-install](../../../assets/Arduino/lib-sx12x-install.png)
 
 ### 4. Example
 
@@ -429,6 +429,6 @@ lmh_send ok count 3
 
 The logs of LoraWan® Server is as follows:
 
-![](Images/LoraWAN-Server-logs.png)
+![exa-soil-data](../../../assets/Examples/exa-soil-data.png)
 
 LoRa® is a registered trademark or service mark of Semtech Corporation or its affiliates. LoRaWAN® is a licensed mark.
