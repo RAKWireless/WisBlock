@@ -2,6 +2,8 @@
 
 This example shows how to use WisBlock Sensor RAK1901 temperature & humidity board.
 
+<img src="../../../assets/repo/rak1901-top.png" alt="rak1901-top" style="zoom: 25%;" />
+
 ----
 ## Hardware required
 ----
@@ -15,7 +17,7 @@ RAK1901 is a Temperature & Humidity sensor board with an I2C interface, which me
 
 The sensor covers a humidity measurement range of 0 to 100 %RH and a temperature measurement range of - 40 °C to 125 °C with a typical accuracy of ±2 %RH and ±0.2°C. The broad supply voltage of 1.62 V to 3.6 V and an energy budget below 1 µJ per measurement make the SHTC3 suitable for mobile or wireless applications powered by batteries. With the industry-proven quality and reliability of Sensirion’s humidity and temperature sensors and constant accuracy over a large measurement range, the SHTC3 offers best performance-to-price ratio. Tape and reel packaging together with suitability for standard SMD assembly processes make the SHTC3 predestined for high-volume applications.
 
-![3](res/3.png)
+![exa-rak1901-assy](../../../assets/repo/exa-rak1901-assy.png)
 
 ----
 ## Software required
@@ -27,7 +29,7 @@ To test the RAK1901, The following software is required.
 - SparkFun SHTC3 Humidity and Temperature Sensor Library
 
 
-![2](res/2.png)
+![lib-shtc3-install](../../../assets/Arduino/lib-shtc3-install.png)
 
 The Arduino test software is written as follow:
 

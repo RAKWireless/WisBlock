@@ -29,7 +29,7 @@ To build this system, the following hardware are required:
 - WisBlock Core RAK4631 * 1pcs   
 - WisBlock Sensor RAK1906 * 1pcs    
 
-![image-harware](res/image-harware.png)
+![exa-rak1906-assy](../../../assets/repo/exa-rak1906-assy.png)
 
 ### Software required
 
@@ -39,11 +39,11 @@ To build this system, the following hardware are required:
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - ClosedCube BME680 library
 
-![image-ClosedCubeBME680](res/image-ClosedCubeBME680.png)
+![lib-bme680-install](../../../assets/Arduino/lib-bme680-install.png)
 
 - SX126x-Arduino library
 
-![3](res/3.png)
+![lib-sx12x-install](../../../assets/Arduino/lib-sx12x-install.png)
 
 The code for the environment sensor node is as follows:
 ```cpp
@@ -376,7 +376,7 @@ void bme680_get()
 
 Data arrives at LoRaWAN® server.
 
-![2](res/2.png)
+![exa-env-mon-data](../../../assets/Examples/exa-env-mon-data.png)
 
 
 

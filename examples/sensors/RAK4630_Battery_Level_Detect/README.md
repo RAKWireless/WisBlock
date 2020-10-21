@@ -10,21 +10,21 @@ It includes as well the OTA DFU functionality
 - LiPo battery    
 
 The hardware is connected like this:
-![image-20200729112923398](./images/image-harware.png)
+![exa-battlevel-assy](../../../assets/repo/exa-battlevel-assy.png)
 
 ## Required software
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - nRF52_OLED library
 
-![image-20200729103802106](./images/image-nrf52-oled.png)
+![lib-oled-install](../../../assets/Arduino/lib-oled-install.png)
 
 - On the phone
   - a BLE UART application like [Serial Bluetooth Terminal](https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal) to test BLE UART communication
 
 Connect the assembled hardware to the PC with a USB cable, open the Arduino, and select the development board and port in the tool menu.
 
-![image-20200716115631123](images/image-board-info.png)
+![ard-install-21](../../../assets/Arduino/ard-install-21.png)
 
 ## Source codes
 
@@ -406,14 +406,14 @@ void dispShow(void)
 
 The battery level displays on RAK1921 is as bellow.
 
-![image-20200729114425306](./images/image-battery-level-on-oled.png)
+![exa-batt-level](../../../assets/Examples/exa-batt-level.png)
 
 
 
 Open the [Serial Bluetooth Terminal](https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal) on the phone, scan the BLE "**RAK4631_BATT_TEST**" and connect it.
 
-![image-20200729115306278](./images/image-ble-scan.png)
+![exa-batt-level-ble-1](../../../assets/Examples/exa-batt-level-ble-1.png)
 
 Then the battery level display on the phone as bellow.
 
-![image-20200729114650086](./images/image-battery-level-on-phone.png)
+![exa-batt-level-ble-2](../../../assets/Examples/exa-batt-level-ble-2.png)

@@ -4,13 +4,13 @@ This example shows how to use the WisBlock Sensor RAK1906 environment board.
 
 The WisBlock Sensor RAK1906 environment board uses gas sensor BME680  which can measure relative humidity, barometric pressure, ambient temperature and gas (VOC).
 
-![image-20200716094557813](images/image-BME680-SPEC.png)
+![exa-bme680-features](../../../assets/Examples/exa-bme680-features.png)
 
 
 
 Product physical map is as follows:
 
-![image-20200716095106656](images/image-RAK1906.png)
+<img src="../../../assets/repo/rak1906-top.png" alt="rak1906-top" style="zoom:25%;" />
 
 ----
 ## Hardware required
@@ -25,11 +25,7 @@ To use the WisBlock Sensor RAK1906 environment board, The following hardware is 
 
 Hardware is shown as follows:
 
-![image-20200716103316240](images/image-harware.png)
-
-Assembled as follows:
-
-![image-20200716102404167](images/image-RAK1906-assemble.png)
+![exa-rak1906-assy](../../../assets/repo/exa-rak1906-assy.png)
 
 For stable connection, please use screws to tighten.
 
@@ -42,17 +38,17 @@ To use the WisBlock Sensor RAK1906 environment board, The following software is 
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - CloseCube BME680 Library
 
-![image-20200716105611448](images/image-ClosedCubeBME680.png)
+![lib-bme680-install](../../../assets/Arduino/lib-bme680-install.png)
 
 - BME680 BSEC Library
 
-![image-20200716110253798](images/image-BSEC-BME680.png)
+![lib-bsec-install](../../../assets/Arduino/lib-bsec-install.png)
 
 
 
 Connect the assembled hardware to the PC with a USB cable, open the Arduino, and select the development board and port in the tool menu.
 
-![image-20200716115631123](images/image-board-info.png)
+![ard-install-21](../../../assets/Arduino/ard-install-21.png)
 
 
 

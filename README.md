@@ -1,5 +1,5 @@
 # RAKwireless WisBlock
-#### ![image-20200714152453848](doc/Quick_Start/assets/WisBlock-Assembly.png)
+#### ![WisBlock-Assembly](assets/repo/WisBlock-Assembly.png)
 ## Introduction
 WisBlock is an amazing product built by the RAK company for IoT industry. It can build circuits like clicking blocks together to quickly to realize your idea.
 
@@ -74,6 +74,8 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
     - [Flashable Bootloader](bootloader/)
     - [Bootloader Source Code](bootloader/Adafruit_nRF52_Bootloader/)
 
+- PlatformIO installation
+   - [PlatformIO files](PlatformIO/)
 
 ## Overview
 WisBlock is a modular Plug&Play system. Compared with other systems (Arduino, Raspberry Pi, M5Stack) it has several advantages.

@@ -10,7 +10,7 @@ The information obtained from the accelerometer will then be printed over the US
 
 ## 2 Hardware
 
-![](Images/RAK1904_Back_01.png)![](Images/RAK1904_Front_01.png)
+<img src="../../../assets/repo/rak1904-top.png" alt="rak1904-top" style="zoom:25%;" />
 
 
 
@@ -58,11 +58,11 @@ We need to install this Arduino IDE library to control the LIS3DH on WisBlock Se
 
 The Arduino Library Manager was added starting with Arduino IDE versions 1.5 and greater (1.6.x). It is found in the 'Sketch' menu under 'Include Library', 'Manage Libraries...'
 
-![](Images/Sketch-Manage-Libraries.png)
+![lib-manager](../../../assets/Arduino/lib-manager.png)
 
 When you open the Library Manager you will find a large list of libraries ready for one-click install. To find a library for your product, search for the product name or a keyword such as 'k type' or 'digitizer', and the library you want should show up. Click on the desired library, and the 'Install' button will appear. Click that button, and the library should install automatically. When installation finishes, close the Library Manager.
 
-![](Images/Library-list.png)
+![lib-lis3dh-install](../../../assets/Arduino/lib-lis3dh-install.png)
 
 ### 3.3 Initialization Setting Mode
 

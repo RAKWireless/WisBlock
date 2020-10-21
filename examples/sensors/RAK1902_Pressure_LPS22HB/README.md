@@ -2,6 +2,8 @@
 
 This example shows how to use WisBlock Sensor RAK1902 pressure board and program with it.
 
+<img src="../../../assets/repo/rak1902-top.png" alt="rak1902-top" style="zoom:25%;" />
+
 ----
 ## Hardware required
 ----
@@ -13,7 +15,7 @@ To test the RAK1902, The following hardware is required.
 
 RAK1902 is a pressure sensor board with an I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D). It contains LPS22HB. The LPS22HB is an ultra-compact piezoresistive absolute pressure sensor which functions as a digital output barometer. The device comprises a sensing element and an IC interface which communicates through I2C or SPI from the sensing element to the application. The sensing element, which detects absolute pressure, consists of a suspended membrane manufactured using a dedicated process developed by ST. The LPS22HB is available in a full-mold, holed LGA package (HLGA). It is guaranteed to operate over a temperature range extending from -40 °C to +85 °C. The package is holed to allow external pressure to reach the sensing element.
 
-![3](res/3.png)
+![exa-rak1902-assy](../../../assets/repo/exa-rak1902-assy.png)
 
 ----
 ## Software required
@@ -24,7 +26,7 @@ To test the RAK1902, The following software is required.
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - Arduino_LPS22HB Library
 
-![2](res/2.png)
+![lib-lps22hb-install](../../../assets/Arduino/lib-lps22hb-install.png)
 
 The Arduino test software is written as follow:
 
