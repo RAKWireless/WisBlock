@@ -1,6 +1,6 @@
 # WisBlock Quick Start Guide
 
-<center><img src="../../assets/repo/WisBlock-Assembly.png" alt="WisBlock-Assembly" width="50%" /></center>
+<center><img src="../../assets/repo/WisBlock-Assembly.png" alt="WisBlock-Assembly" width="75%" /></center>
 
 ## Content
 - [Introduction](#introduction)    
@@ -20,7 +20,7 @@ RAK5005-O is the WisBlock Base board which can be connected with WisBlock Core a
 
 RAK4631 is the WisBlock Core board which consists of nRF52840 and SX1262. It supports LoRa® and BLE functions, and supply a rich resource MCU so that you can program it if you want.
 
-WisBlock is not only functional testability product in product development verification stage, but also industrial products oriented to mass production. It uses a high-speed connector to ensure the integrity of the signal. At the same time, it is equipped with fastening screw, which can be used in vibration environment. And WisBlock can be used reliably in various civil and industrial scenarios through rigorous reliability tests.
+WisBlock is not only a functional test capable product in product development verification stage, but also industrial products oriented to mass production. It uses a high-speed connector to ensure the integrity of the signal. At the same time, it is equipped with fastening screw, which can be used in vibration environment. And WisBlock can be used reliably in various civil and industrial scenarios through rigorous reliability tests.
 
 WisBlock uses a compact stacked hardware design, which integrates various computing, connecting and sensor circuits in the size of 60*30mm. The compact size makes it easy for users to build in various customized housings to achieve complete products. RAK also have a series of housings for WisBlock modules, which can meet the requirements of various protection levels.
 
@@ -56,7 +56,7 @@ Please read the following items carefully so that WisBlock can be used safely.
 
 RAK5005-O is the WisBlock Base board which can connect with the core board and other sensor boards through some slots. RAK5005-O has an USB interface which connect with the core MCU's USB pins so that you can use Arduino IDE to upload and debug it directly.
 
-<center><img src="../../assets/repo/rak5005-o-top-tilt.png" alt="rak5005-o-top-tilt" width="30%" /></center>
+<center><img src="../../assets/repo/rak5005-o-top-tilt.png" alt="rak5005-o-top-tilt" width="75%" /></center>
 
 Please note: as you see, there are 6 slots on RAK5005-O, "CPU SLOT" is used for the core board which has the main MCU, "IO SLOT" is used for IO extension, for example, RS485 board, 4-20mA/0-5V board, Wi-Fi board, Cellular board. "SLOT A", "SLOT B", "SLOT C", and "SLOT D" are used to connect with I2C board, while "SLOT A" can be used for GPS board too.
 
@@ -65,22 +65,26 @@ You can have a look at the datasheet for more information:
 https://docs.rakwireless.com/Product-Categories/WisBlock/RAK5005-O/Datasheet/#wisblock-overview
 
 The RAK5005-O board offers several GPIO's on solder pads or on the WisBlock Sensor or WisBlock IO modules. These GPIO's are named IO1 to IO6 and SW1. These GPIO's are connected to GPIO's of the RAK4631 module.    
+
 **RAK5005-O GPIO mapping to RAK4631 GPIO ports**
- * IO1 <-> P0.17 (Arduino GPIO number 17)
- * IO2 <-> P1.02 (Arduino GPIO number 34)
- * IO3 <-> P0.21 (Arduino GPIO number 21)
- * IO4 <-> P0.04 (Arduino GPIO number 4)
- * IO5 <-> P0.09 (Arduino GPIO number 9)
- * IO6 <-> P0.10 (Arduino GPIO number 10)
- * SW1 <-> P0.01 (Arduino GPIO number 1)
+ * RAK5005-O <->  nRF52840
+ * IO1       <->  P0.17 (Arduino GPIO number 17)
+ * IO2       <->  P1.02 (Arduino GPIO number 34)
+ * IO3       <->  P0.21 (Arduino GPIO number 21)
+ * IO4       <->  P0.04 (Arduino GPIO number 4)
+ * IO5       <->  P0.09 (Arduino GPIO number 9)
+ * IO6       <->  P0.10 (Arduino GPIO number 10)
+ * SW1       <->  P0.01 (Arduino GPIO number 1)
+ * A0        <->  P0.04/AIN2 (Arduino Analog A2
+ * A1        <->  P0.31/AIN7 (Arduino Analog A7
+ * SPI_CS    <->  P0.26 (Arduino GPIO number 26) 
 
 ### WisBlock Core board --- RAK4631
 
 RAK4631 is the WisBlock Core board, because the MCU stay on this board.
 
 <center><img src="../../assets/repo/RAK4631.png" alt="RAK4631" width="30%" /></center>
-
-<center><img src="../../assets/repo/rak4631-connectors.png" alt="rak4631-connectors" width="75%" /></center>
+<center><img src="../../assets/repo/rak4631-connectors.png" alt="rak4631-connectors" width="60%" /></center>
 
 RAK4631 consists of a nRF52840 MCU and a SX1262 LoRa® chip mainly. The final Arduino  code will be uploaded into nRF52840 actually. This core board supports BLE and LoRa® features. You can connect it with RAK5005-O base board with slot, and program it through the USB interface on RAK5005-O through Arduino IDE.
 
@@ -95,7 +99,7 @@ https://docs.rakwireless.com/Product-Categories/WisBlock/RAK4631/Datasheet/#over
 
 RAK1901 is a Temperature & Humidity sensor board with an I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<center><img src="../../assets/repo/rak1901-top.png" alt="rak1901-top" width="25%" /> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom" width="30%"/> </center>
+<center><img src="../../assets/repo/rak1901-top.png" alt="rak1901-top" width="25%" /> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom" width="25%"/> </center>
 
 More information about RAK1901, please have a look at the following link:
 
@@ -107,7 +111,7 @@ https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1901/Overview/#produ
 
 RAK1902 is a pressure sensor board with an I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<center><img src="../../assets/repo/rak1902-top.png" alt="rak1902-top" width="25%"/> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom" width="30%" /></center>
+<center><img src="../../assets/repo/rak1902-top.png" alt="rak1902-top" width="25%"/> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom" width="25%" /></center>
 
 More information about RAK1902, please have a look at the following link:
 
@@ -119,7 +123,7 @@ https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1902/Overview/#produ
 
 RAK1903 is an optical sensor board with an I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<center><img src="../../assets/repo/rak1903-top.png" alt="rak1903-top" width="25%"/> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom.png" width="30%" /></center>
+<center><img src="../../assets/repo/rak1903-top.png" alt="rak1903-top" width="25%"/> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom.png" width="25%" /></center>
 
 More information about RAK1903, please have a look at the following link:
 
@@ -131,7 +135,7 @@ https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1903/Overview/#produ
 
 RAK1904 is a 3-axis acceleration sensor board with an I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<center><img src="../../assets/repo/rak1904-top.png" alt="rak1904-top" width="25%"/> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom" width="30%" /></center>
+<center><img src="../../assets/repo/rak1904-top.png" alt="rak1904-top" width="25%"/> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom" width="25%" /></center>
 
 More information about RAK1904, please have a look at the following link:
 
@@ -143,7 +147,7 @@ https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1904/Overview/
 
 RAK1906 is an environment sensor board with I2C interface, which means it can be connected with RAK5005-O through the I2C slot (SLOT A/B/C/D).
 
-<center><img src="../../assets/repo/rak1906-top.png" alt="rak1906-top" width="25%"/> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom" width="30%" /></center>
+<center><img src="../../assets/repo/rak1906-top.png" alt="rak1906-top" width="25%"/> <img src="../../assets/repo/rak190x-bottom.png" alt="rak190x-bottom" width="25%" /></center>
 
 More information about RAK1906, please have a look at the following link:
 
@@ -155,7 +159,7 @@ https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1906/Overview/#produ
 
 RAK1910 is a GPS board with UART interface, which means it can only be connected with RAK5005-O through SLOT A.
 
-<center><img src="../../assets/repo/rak1910-top.png" alt="rak1910-top.png" width="15%"/> <img src="../../assets/repo/rak1910-bottom.png" alt="rak1910-bottom" width="30%" /></center>
+<center><img src="../../assets/repo/rak1910-top.png" alt="rak1910-top.png" width="9.9%"/> <img src="../../assets/repo/rak1910-bottom.png" alt="rak1910-bottom" width="10%" /></center>
 
 <center><img src="../../assets/repo/rak1910-assembly.png" alt="rak1910-assembly" width="75%"/></center>
 
@@ -163,15 +167,13 @@ More information about RAK1910, please have a look at the following link:
 
 https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1910/Overview/#product-description
 
-
-
 ### WisBlock IO Boards
 
 #### WiFi board --- RAK2305
 
 RAK2305 is a WiFi board which is ESP32 module actually, and it can only be connected with RAK5005-O through the IO SLOT.
 
-<center><img src="../../assets/repo/rak2305-top.png" alt="rak2305-top" width="20%"/> <img src="../../assets/repo/rak2305-bottom.png" alt="rak2305-bottom" width="30%" /></center>
+<center><img src="../../assets/repo/rak2305-top.png" alt="rak2305-top" width="30%"/><img src="../../assets/repo/rak2305-bottom.png" alt="rak2305-bottom" width="30%" /></center>
 
 <center><img src="../../assets/repo/rak2307-assembly.png" alt="rak2307-assembly" width="75%"/></center>
 
@@ -179,13 +181,11 @@ More information about RAK2305, please have a look at the following link:
 
 https://docs.rakwireless.com/Product-Categories/WisBlock/RAK2305/Overview/#product-description
 
-
-
 #### Cellular board --- RAK5860
 
 RAK5860 is a cellular board which uses Quectel BG77 module actually, and it can only be connected with RAK5005-O through IO SLOT.
 
-<center><img src="../../assets/repo/rak5860-top.png" alt="rak5860-top" width="30%"/> <img src="../../assets/repo/rak5860-bottom.png" alt="rak5860-bottom" width="30%" /></center>
+<center><img src="../../assets/repo/rak5860-top.png" alt="rak5860-top" width="34%"/> <img src="../../assets/repo/rak5860-bottom.png" alt="rak5860-bottom" width="35%" /></center>
 
 <center><img src="../../assets/repo/rak5860-assembly.png" alt="rak5860-assembly" width="75%"/></center>
 
@@ -285,15 +285,18 @@ Just connect them to the IPEX connector of the RAK4631 or RAK1910.
 
 ### Battery
 
-Please use the battery which RAK suggest, and connect the battery with RAK5005-O as follow:
+Please use the battery which RAK suggest, and connect the battery with RAK5005-O as follow:     
 
 <center><img src="../../assets/repo/battery-connect.png" alt="battery-connect" width="50%"/></center>
 
-# When connecting the battery make sure the polarity is correct. Not all connectors are wired the same.
-# Ground pole should be close to the PCB boarder.
-# Plus pole should be close to USB connector.
+# Important Reminder:
+- ### When connecting the battery make sure the polarity is correct. Not all connectors are wired the same.
+- ### Ground pole should be close to the PCB boarder.
+- ### Plus pole should be close to USB connector.
 
-Battery specification
+The matching connector for the battery wires is an [JST PHR-2 2mm pitch female](https://www.jst-mfg.com/product/detail_e.php?series=199)
+
+**Battery specification**     
 
 | No.  | Items                     | Specifications           |
 | ---- | ------------------------- | ------------------------ |
@@ -310,11 +313,11 @@ Battery specification
 
 You can connect the solar panel with RAK5005-O as follow:
 
-<center><img src="../../assets/repo/solar-connect.png" alt="solar-connect" width="50%"/></center>
+<center><img src="../../assets/repo/solar-connect.png" alt="solar-connect" /></center>
 
+The matching connector for the solar panel wires is an [JST ZHR-2 1.5mm pitch female](https://www.jst-mfg.com/product/detail_e.php?series=287)
 
-
-Solar panel specification
+**Solar panel specification**
 
 | No.  | Items            | specifications                         |
 | ---- | ---------------- | -------------------------------------- |
@@ -327,8 +330,8 @@ Solar panel specification
 ### Enclosures
 | Outdoor | Indoor |
 | :-: | :-: |
-| <img src="../../assets/repo/RAKBox-B2.png" alt="B2"> | <img src="../../assets/repo/RAKBox-B3.jpg" alt="Modules"> |
-| <img src="../../assets/repo/RAKBox-B4.jpg" alt="Modules"> | <img src="../../assets/repo/RAKBox-B5.jpg" alt="Modules"> |
+| <img src="../../assets/repo/RAKBox-B2.png" alt="B2"> | <img src="../../assets/repo/RAKBox-B3.png" alt="B3"> |
+| <img src="../../assets/repo/RAKBox-B4.png" alt="B4"> | <img src="../../assets/repo/RAKBox-B5.png" alt="B5"> |
 
 
 ## Arduino IDE BSP Installation
