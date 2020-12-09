@@ -47,11 +47,11 @@ The Arduino test software is written as follow:
 void setup() {
   Serial.begin(115200);
   while(!Serial);
-  pinMode(21, INPUT);
+  pinMode(17, INPUT);
 }
 
 void loop() {
-  if(digitalRead(21)==1){
+  if(digitalRead(17)==1){
     Serial.println("PIR Status: Sensing");
     Serial.println(" value: 1");
   }
