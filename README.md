@@ -1,7 +1,7 @@
 # RAKwireless WisBlock
 #### ![WisBlock-Assembly](assets/repo/WisBlock-Assembly.png)
 ## Introduction
-WisBlock is an amazing product built by the RAK company for IoT industry. It can build circuits like clicking blocks together to quickly to realize your idea.
+WisBlock is an amazing product built by the RAKWireless company for the IoT industry. It can help you build circuits like clicking blocks together to quickly to realize your idea.
 
 WisBlock consists of WisBlock Base, WisBlock Core, WisBlock Sensor and WisBlock IO.
 - WisBlock Base → the block that the whole system is build on.    
