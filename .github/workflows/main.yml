@@ -21,21 +21,21 @@ jobs:
 
     - name: extra libraries
       run: |
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SX126x-Arduino"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SparkFun_SHTC3"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "Arduino_LPS22HB"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "OPT3001"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SparkFun-LIS3DH"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "ClosedCube_BME680_Arduino"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "BSEC_BME680"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "Adafruit_TCS34725"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SparkFun_TMP102"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SparkFun_SGP30"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "U8g2"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "nRF52_OLED"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "ArduinoRS485"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "ArduinoModbus"
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "Arduino_LPS22HB"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SX126x-Arduino
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_SHTC3
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Arduino_LPS22HB
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install OPT3001
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun-LIS3DH
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ClosedCube_BME680_Arduino
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install BSEC_BME680
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_TCS34725
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_TMP102
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_SGP30
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install U8g2
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install nRF52_OLED
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoRS485
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Arduino_LPS22HB
 
     - name: test platforms
       run: python3 ci/build_platform.py nrf52840
