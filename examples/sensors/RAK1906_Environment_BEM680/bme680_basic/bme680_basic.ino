@@ -1,13 +1,13 @@
 /**
- * @file bme680_basic.ino
- * @author rakwireless.com
- * @brief Setup and read values from a BME680 environment sensor
- * @version 0.1
- * @date 2020-07-28
- * 
- * @copyright Copyright (c) 2020
- * 
- * @note RAK5005-O GPIO mapping to RAK4631 GPIO ports
+   @file bme680_basic.ino
+   @author rakwireless.com
+   @brief Setup and read values from a BME680 environment sensor
+   @version 0.1
+   @date 2020-07-28
+
+   @copyright Copyright (c) 2020
+
+   @note RAK5005-O GPIO mapping to RAK4631 GPIO ports
    RAK5005-O <->  nRF52840
    IO1       <->  P0.17 (Arduino GPIO number 17)
    IO2       <->  P1.02 (Arduino GPIO number 34)
@@ -18,64 +18,87 @@
    SW1       <->  P0.01 (Arduino GPIO number 1)
    A0        <->  P0.04/AIN2 (Arduino Analog A2
    A1        <->  P0.31/AIN7 (Arduino Analog A7
-   SPI_CS    <->  P0.26 (Arduino GPIO number 26) 
- */
+   SPI_CS    <->  P0.26 (Arduino GPIO number 26)
+*/
 #include <Wire.h>
-#include "ClosedCube_BME680.h" //http://librarymanager/All#ClosedCube_BME680
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME680.h> // Click to install library: http://librarymanager/All#Adafruit_BME680
 
-ClosedCube_BME680 bme680;
+Adafruit_BME680 bme;
+// Might need adjustments
+#define SEALEVELPRESSURE_HPA (1010.0)
 
 void bme680_init()
 {
-	Wire.begin();
-	bme680.init(0x76); // I2C address: 0x76 or 0x77
-	bme680.reset();
+  Wire.begin();
 
-	Serial.print("Chip ID=0x");
-	Serial.println(bme680.getChipID(), HEX);
+  if (!bme.begin(0x76)) {
+    Serial.println("Could not find a valid BME680 sensor, check wiring!");
+    return;
+  }
 
-	// oversampling: humidity = x1, temperature = x2, pressure = x16
-	bme680.setOversampling(BME680_OVERSAMPLING_X1, BME680_OVERSAMPLING_X2, BME680_OVERSAMPLING_X16);
-	bme680.setIIRFilter(BME680_FILTER_3);
-	bme680.setGasOn(300, 100); // 300 degree Celsius and 100 milliseconds
-
-	bme680.setForcedMode();
+  // Set up oversampling and filter initialization
+  bme.setTemperatureOversampling(BME680_OS_8X);
+  bme.setHumidityOversampling(BME680_OS_2X);
+  bme.setPressureOversampling(BME680_OS_4X);
+  bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
+  bme.setGasHeater(320, 150); // 320*C for 150 ms
 }
 
 void bme680_get()
 {
-	double temp = bme680.readTemperature();
-	double pres = bme680.readPressure();
-	double hum = bme680.readHumidity();
+  Serial.print("Temperature = ");
+  Serial.print(bme.temperature);
+  Serial.println(" *C");
 
-	Serial.print("T=");
-	Serial.print(temp);
-	Serial.print("C, RH=");
-	Serial.print(hum);
-	Serial.print("%, P=");
-	Serial.print(pres);
-	Serial.print("hPa");
+  Serial.print("Pressure = ");
+  Serial.print(bme.pressure / 100.0);
+  Serial.println(" hPa");
 
-	uint32_t gas = bme680.readGasResistance();
+  Serial.print("Humidity = ");
+  Serial.print(bme.humidity);
+  Serial.println(" %");
 
-	Serial.print(", G=");
-	Serial.print(gas);
-	Serial.print(" Ohms");
-	Serial.println();
+  Serial.print("Gas = ");
+  Serial.print(bme.gas_resistance / 1000.0);
+  Serial.println(" KOhms");
 
-	bme680.setForcedMode();
+  Serial.println();
 }
 
 void setup()
 {
-	// Initialize Serial for debug output
-	Serial.begin(115200);
+  // Initialize the built in LED
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);
 
-	bme680_init();
+  // Initialize Serial for debug output
+  Serial.begin(115200);
+
+  time_t serial_timeout = millis();
+  // On nRF52840 the USB serial is not available immediately
+  while (!Serial)
+  {
+    if ((millis() - serial_timeout) < 5000)
+    {
+      delay(100);
+      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    }
+    else
+    {
+      break;
+    }
+  }
+
+  bme680_init();
 }
 
 void loop()
 {
-	bme680_get();
-	delay(5000);
+  if (! bme.performReading()) {
+    Serial.println("Failed to perform reading :(");
+    return;
+  }
+  bme680_get();
+  delay(5000);
 }

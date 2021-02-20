@@ -33,9 +33,12 @@ For stable connection, please use screws to tighten.
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
-- CloseCube_BME680 library
+- Adafruit BME680 Library
 
 ![lib-bme680-install](../../../assets/Arduino/lib-bme680-install.png)
+
+During the installation you will be asked to install the Adafruit Unified Sensor library. Please install it as well.
+![lib-bme680-install](../../../assets/Arduino/lib-bme680-install-2.png)
 
 - SX126x-Arduino
 
@@ -49,23 +52,36 @@ The code of sensors node is as follows:
 
 ```
 /**
- * @file ble_environment_node.ino
- * @author rakwireless.com
- * @brief This sketch demonstrate how to get environment data from BME680
- *    and send the data to ble gateway with ble gatt.
- *    ble environment node <-ble-> ble gateway <-lora-> lora gateway <--> lora server
- * @version 0.1
- * @date 2020-07-28
- * 
- * @copyright Copyright (c) 2020
- * 
- */
+   @file ble_environment_node.ino
+   @author rakwireless.com
+   @brief This sketch demonstrate how to get environment data from BME680
+      and send the data to ble gateway with ble gatt.
+      ble environment node <-ble-> ble gateway <-lora-> lora gateway <--> lora server
+   @version 0.1
+   @date 2020-07-28
+
+   @copyright Copyright (c) 2020
+
+   @note RAK5005-O GPIO mapping to RAK4631 GPIO ports
+   RAK5005-O <->  nRF52840
+   IO1       <->  P0.17 (Arduino GPIO number 17)
+   IO2       <->  P1.02 (Arduino GPIO number 34)
+   IO3       <->  P0.21 (Arduino GPIO number 21)
+   IO4       <->  P0.04 (Arduino GPIO number 4)
+   IO5       <->  P0.09 (Arduino GPIO number 9)
+   IO6       <->  P0.10 (Arduino GPIO number 10)
+   SW1       <->  P0.01 (Arduino GPIO number 1)
+   A0        <->  P0.04/AIN2 (Arduino Analog A2
+   A1        <->  P0.31/AIN7 (Arduino Analog A7
+   SPI_CS    <->  P0.26 (Arduino GPIO number 26)
+*/
 
 #include <bluefruit.h>
 #include <Wire.h>
-#include "ClosedCube_BME680.h" //https://github.com/closedcube/ClosedCube_BME680_Arduino
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME680.h> // Click to install library: http://librarymanager/All#Adafruit_BME680
 
-ClosedCube_BME680 bme680;
+Adafruit_BME680 bme;
 
 float temperature = 0;
 float humidity = 0;
@@ -77,29 +93,29 @@ float pressure = 0;
    Temperature Measurement Char: 0x2A6E
    humidity Measurement Char: 0x2A6F
 */
-BLEService        envms = BLEService(UUID16_SVC_ENVIRONMENTAL_SENSING);
+BLEService envms = BLEService(UUID16_SVC_ENVIRONMENTAL_SENSING);
 BLECharacteristic pressuremc = BLECharacteristic(0x2A6D);
 BLECharacteristic temprtmc = BLECharacteristic(UUID16_CHR_TEMPERATURE);
 BLECharacteristic humidmc = BLECharacteristic(0x2A6F); // humidity
 
-BLEDis bledis;    // DIS (Device Information Service) helper class instance
-BLEBas blebas;    // BAS (Battery Service) helper class instance
+BLEDis bledis; // DIS (Device Information Service) helper class instance
+BLEBas blebas; // BAS (Battery Service) helper class instance
 
 void bme680_init()
 {
   Wire.begin();
-  bme680.init(0x76); // I2C address: 0x76 or 0x77
-  bme680.reset();
 
-  Serial.print("Chip ID=0x");
-  Serial.println(bme680.getChipID(), HEX);
+  if (!bme.begin(0x76)) {
+    Serial.println("Could not find a valid BME680 sensor, check wiring!");
+    return;
+  }
 
-  // oversampling: humidity = x1, temperature = x2, pressure = x16
-  bme680.setOversampling(BME680_OVERSAMPLING_X1, BME680_OVERSAMPLING_X2, BME680_OVERSAMPLING_X16);
-  bme680.setIIRFilter(BME680_FILTER_3);
-  bme680.setGasOn(300, 100); // 300 degree Celsius and 100 milliseconds
-
-  bme680.setForcedMode();
+  // Set up oversampling and filter initialization
+  bme.setTemperatureOversampling(BME680_OS_8X);
+  bme.setHumidityOversampling(BME680_OS_2X);
+  bme.setPressureOversampling(BME680_OS_4X);
+  bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
+  bme.setGasHeater(320, 150); // 320*C for 150 ms
 }
 
 void startAdv(void)
@@ -124,9 +140,9 @@ void startAdv(void)
      https://developer.apple.com/library/content/qa/qa1931/_index.html
   */
   Bluefruit.Advertising.restartOnDisconnect(true);
-  Bluefruit.Advertising.setInterval(160, 244);    // in unit of 0.625 ms
-  Bluefruit.Advertising.setFastTimeout(30);      // number of seconds in fast mode
-  Bluefruit.Advertising.start(0);                // 0 = Don't stop advertising after n seconds
+  Bluefruit.Advertising.setInterval(160, 244); // in unit of 0.625 ms
+  Bluefruit.Advertising.setFastTimeout(30);	 // number of seconds in fast mode
+  Bluefruit.Advertising.start(0);				 // 0 = Don't stop advertising after n seconds
 }
 
 void setupEnvm(void)
@@ -153,9 +169,9 @@ void setupEnvm(void)
   pressuremc.setProperties(CHR_PROPS_NOTIFY);
   pressuremc.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);
   pressuremc.setFixedLen(4);
-  pressuremc.setCccdWriteCallback(cccd_callback);  // Optionally capture CCCD updates
+  pressuremc.setCccdWriteCallback(cccd_callback); // Optionally capture CCCD updates
   pressuremc.begin();
-	uint8_t pressuredata[4] = {0x00};
+  uint8_t pressuredata[4] = {0x00};
   pressuremc.write(pressuredata, 4);
 
   // Configure the Environment Measurement characteristic
@@ -164,9 +180,9 @@ void setupEnvm(void)
   temprtmc.setProperties(CHR_PROPS_NOTIFY);
   temprtmc.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);
   temprtmc.setFixedLen(2);
-  temprtmc.setCccdWriteCallback(cccd_callback);  // Optionally capture CCCD updates
+  temprtmc.setCccdWriteCallback(cccd_callback); // Optionally capture CCCD updates
   temprtmc.begin();
-	uint8_t tmpdata[2] = {0x00}; // Set the characteristic to use 8-bit values, with the sensor connected and detected
+  uint8_t tmpdata[2] = {0x00}; // Set the characteristic to use 8-bit values, with the sensor connected and detected
   temprtmc.write(tmpdata, 2);
 
   // Configure the Environment Measurement characteristic
@@ -175,18 +191,18 @@ void setupEnvm(void)
   humidmc.setProperties(CHR_PROPS_NOTIFY);
   humidmc.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);
   humidmc.setFixedLen(2);
-  humidmc.setCccdWriteCallback(cccd_callback);  // Optionally capture CCCD updates
+  humidmc.setCccdWriteCallback(cccd_callback); // Optionally capture CCCD updates
   humidmc.begin();
-	uint8_t humiddata[2] = {0x00}; // Set the characteristic to use 8-bit values, with the sensor connected and detected
+  uint8_t humiddata[2] = {0x00}; // Set the characteristic to use 8-bit values, with the sensor connected and detected
   humidmc.write(humiddata, 2);
 }
 
 void connect_callback(uint16_t conn_handle)
 {
   // Get the reference to current connection
-	BLEConnection *connection = Bluefruit.Connection(conn_handle);
+  BLEConnection *connection = Bluefruit.Connection(conn_handle);
 
-	char central_name[32] = {0};
+  char central_name[32] = {0};
   connection->getPeerName(central_name, sizeof(central_name));
 
   Serial.print("Connected to ");
@@ -200,11 +216,11 @@ void connect_callback(uint16_t conn_handle)
 */
 void disconnect_callback(uint16_t conn_handle, uint8_t reason)
 {
-	(void)conn_handle;
-	(void)reason;
+  (void)conn_handle;
+  (void)reason;
 
-	Serial.print("Disconnected, reason = 0x");
-	Serial.println(reason, HEX);
+  Serial.print("Disconnected, reason = 0x");
+  Serial.println(reason, HEX);
   Serial.println("Advertising!");
 }
 
@@ -218,36 +234,36 @@ void cccd_callback(uint16_t conn_hdl, BLECharacteristic *chr, uint16_t cccd_valu
 
   // Check the characteristic this CCCD update is associated with in case
   // this handler is used for multiple CCCD records.
-	if (chr->uuid == pressuremc.uuid)
-	{
-		if (chr->notifyEnabled(conn_hdl))
-		{
+  if (chr->uuid == pressuremc.uuid)
+  {
+    if (chr->notifyEnabled(conn_hdl))
+    {
       Serial.println("Temperature Measurement 'Notify' enabled");
-		}
-		else
-		{
+    }
+    else
+    {
       Serial.println("Temperature Measurement 'Notify' disabled");
     }
   }
-	else if (chr->uuid == temprtmc.uuid)
-	{
-		if (chr->notifyEnabled(conn_hdl))
-		{
+  else if (chr->uuid == temprtmc.uuid)
+  {
+    if (chr->notifyEnabled(conn_hdl))
+    {
       Serial.println("Temperature Measurement 'Notify' enabled");
-		}
-		else
-		{
+    }
+    else
+    {
       Serial.println("Temperature Measurement 'Notify' disabled");
     }
   }
-	else if (chr->uuid == humidmc.uuid)
-	{
-		if (chr->notifyEnabled(conn_hdl))
-		{
+  else if (chr->uuid == humidmc.uuid)
+  {
+    if (chr->notifyEnabled(conn_hdl))
+    {
       Serial.println("Humidity Measurement 'Notify' enabled");
-		}
-		else
-		{
+    }
+    else
+    {
       Serial.println("Humidity Measurement 'Notify' disabled");
     }
   }
@@ -303,23 +319,25 @@ void setup()
 
 void loop()
 {
-	digitalToggle(LED_GREEN);
+  digitalToggle(LED_GREEN);
 
-	if (Bluefruit.connected())
-	{
-        temperature = bme680.readTemperature();
-    pressure = bme680.readPressure();
-        humidity = bme680.readHumidity();
+  if (bme.performReading()) {
+    temperature = bme.temperature;
+    pressure = bme.pressure / 100.0;
+    humidity = bme.humidity;
+  }
 
-		uint8_t tmpdata[2] = {0x0}; // little-endian
+  if (Bluefruit.connected())
+  {
+    uint8_t tmpdata[2] = {0x0}; // little-endian
     tmpdata[1] = (uint8_t)(((int)(temperature * 100) & 0xff00) >> 8);
     tmpdata[0] = (uint8_t)((int)(temperature * 100) & 0xff);
 
-		uint8_t humiddata[2] = {0x0}; // little-endian
+    uint8_t humiddata[2] = {0x0}; // little-endian
     humiddata[1] = (uint8_t)(((int)(humidity * 100) & 0xff00) >> 8);
     humiddata[0] = (uint8_t)((int)(humidity * 100) & 0xff);
 
-		uint8_t pressuredata[4] = {0x0}; // little-endian
+    uint8_t pressuredata[4] = {0x0}; // little-endian
     pressuredata[3] = (uint8_t)(((int)(pressure * 1000) & 0xff000000) >> 24);
     pressuredata[2] = (uint8_t)(((int)(pressure * 1000) & 0xff0000) >> 16);
     pressuredata[1] = (uint8_t)(((int)(pressure * 1000) & 0xff00) >> 8);
@@ -328,20 +346,20 @@ void loop()
     // Note: We use .notify instead of .write!
     // If it is connected but CCCD is not enabled
     // The characteristic's value is still updated although notification is not sent
-		if (pressuremc.notify(pressuredata, sizeof(pressuredata)))
-		{
-			Serial.print("Pressure Measurement updated to: ");
-			Serial.println(pressure);
+    if (pressuremc.notify(pressuredata, sizeof(pressuredata)))
+    {
+      Serial.print("Pressure Measurement updated to: ");
+      Serial.println(pressure);
     }
-		if (temprtmc.notify(tmpdata, sizeof(tmpdata)))
-		{
-			Serial.print("Temperature Measurement updated to: ");
-			Serial.println(temperature);
+    if (temprtmc.notify(tmpdata, sizeof(tmpdata)))
+    {
+      Serial.print("Temperature Measurement updated to: ");
+      Serial.println(temperature);
     }
-		if (humidmc.notify(humiddata, sizeof(humiddata)))
-		{
-			Serial.print("Humidityrature Measurement updated to: ");
-			Serial.println(humidity);
+    if (humidmc.notify(humiddata, sizeof(humiddata)))
+    {
+      Serial.print("Humidityrature Measurement updated to: ");
+      Serial.println(humidity);
     }
   }
 
@@ -761,7 +779,7 @@ void environment_notify_callback(BLEClientCharacteristic* chr, uint8_t* data, ui
 
 ## Test Results
 
-When we burn the above examples to device a and device B respectively through Arduino IDE, and connect them to the PC through USB, open the serial port tool on the PC, set the baud rate to 115200, and connect to the two devices respectively, we will see the log printed on the serial port tool. 
+When we burn the above examples to device A and device B respectively through Arduino IDE, and connect them to the PC through USB, open the serial port tool on the PC, set the baud rate to 115200, and connect to the two devices respectively, we will see the log printed on the serial port tool. 
 
 
 

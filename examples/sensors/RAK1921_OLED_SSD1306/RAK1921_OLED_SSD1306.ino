@@ -22,35 +22,36 @@
  */
 
 #include <Wire.h>
-#include "ClosedCube_BME680.h" //https://github.com/closedcube/ClosedCube_BME680_Arduino
-#include <U8g2lib.h>		   //https://github.com/olikraus/u8g2
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME680.h> // Click to install library: http://librarymanager/All#Adafruit_BME680
+#include <U8g2lib.h>		   // Click to install library: http://librarymanager/All#u8g2
 
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);
-ClosedCube_BME680 bme680;
+Adafruit_BME680 bme;
 
 void bme680_init()
 {
-	Wire.begin();
-	bme680.init(0x76); // I2C address: 0x76 or 0x77
-	bme680.reset();
+  Wire.begin();
 
-	Serial.print("Chip ID=0x");
-	Serial.println(bme680.getChipID(), HEX);
+  if (!bme.begin(0x76)) {
+    Serial.println("Could not find a valid BME680 sensor, check wiring!");
+    return;
+  }
 
-	// oversampling: humidity = x1, temperature = x2, pressure = x16
-	bme680.setOversampling(BME680_OVERSAMPLING_X1, BME680_OVERSAMPLING_X2, BME680_OVERSAMPLING_X16);
-	bme680.setIIRFilter(BME680_FILTER_3);
-	bme680.setGasOn(300, 100); // 300 degree Celsius and 100 milliseconds
-
-	bme680.setForcedMode();
+  // Set up oversampling and filter initialization
+  bme.setTemperatureOversampling(BME680_OS_8X);
+  bme.setHumidityOversampling(BME680_OS_2X);
+  bme.setPressureOversampling(BME680_OS_4X);
+  bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
+  bme.setGasHeater(320, 150); // 320*C for 150 ms
 }
 
 void bme680_get()
 {
 	char data[32] = {0};
-	double temp = bme680.readTemperature();
-	double pres = bme680.readPressure();
-	double hum = bme680.readHumidity();
+	double temp = bme.temperature;
+	double pres = bme.pressure / 100.0;
+	double hum = bme.humidity;
 
 	Serial.print("T=");
 	Serial.print(temp);
@@ -60,14 +61,9 @@ void bme680_get()
 	Serial.print(pres);
 	Serial.print("hPa");
 
-	uint32_t gas = bme680.readGasResistance();
+	float gas = bme.gas_resistance / 1000.0;
 
-	Serial.print(", G=");
-	Serial.print(gas);
-	Serial.print(" Ohms");
-	Serial.println();
-
-	bme680.setForcedMode();
+	Serial.printf(", G= %.3f kOhms\n",gas);
 
 	// display bme680 sensor data on OLED
 	u8g2.clearBuffer();					// clear the internal memory
@@ -86,7 +82,7 @@ void bme680_get()
 	u8g2.drawStr(3, 45, data);
 
 	memset(data, 0, sizeof(data));
-	sprintf(data, "G=%dOhms", gas);
+	sprintf(data, "G=%.3f kOhms", gas);
 	u8g2.drawStr(3, 60, data);
 
 	u8g2.sendBuffer(); // transfer internal memory to the display
@@ -94,16 +90,38 @@ void bme680_get()
 
 void setup()
 {
-	// Initialize Serial for debug output
-	Serial.begin(115200);
-	// while(!Serial){delay(10);}
+  // Initialize the built in LED
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);
 
-	bme680_init();
+  // Initialize Serial for debug output
+  Serial.begin(115200);
+
+  time_t serial_timeout = millis();
+  // On nRF52840 the USB serial is not available immediately
+  while (!Serial)
+  {
+    if ((millis() - serial_timeout) < 5000)
+    {
+      delay(100);
+      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    }
+    else
+    {
+      break;
+    }
+  }
+
+  bme680_init();
 	u8g2.begin();
 }
 
 void loop()
 {
-	bme680_get();
-	delay(5000);
+  if (! bme.performReading()) {
+    Serial.println("Failed to perform reading :(");
+    return;
+  }
+  bme680_get();
+  delay(5000);
 }
