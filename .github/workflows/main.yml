@@ -22,7 +22,7 @@ jobs:
     - name: extra libraries
       run: |
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SX126x-Arduino
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_SHTC3_Humidity_and_Temperature_Sensor_Library
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_SHTC3_Arduino_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Arduino_LPS22HB
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ClosedCube_OPT3001
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_LIS3DH_Arduino_Library
