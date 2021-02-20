@@ -21,21 +21,21 @@ jobs:
 
     - name: extra libraries
       run: |
-        /home/runner/Arduino/arduino --install-library "SX126x-Arduino"
-        /home/runner/Arduino/arduino --install-library "SparkFun_SHTC3"
-        /home/runner/Arduino/arduino --install-library "Arduino_LPS22HB"
-        /home/runner/Arduino/arduino --install-library "OPT3001"
-        /home/runner/Arduino/arduino --install-library "SparkFun-LIS3DH"
-        /home/runner/Arduino/arduino --install-library "ClosedCube_BME680_Arduino"
-        /home/runner/Arduino/arduino --install-library "BSEC_BME680"
-        /home/runner/Arduino/arduino --install-library "Adafruit_TCS34725"
-        /home/runner/Arduino/arduino --install-library "SparkFun_TMP102"
-        /home/runner/Arduino/arduino --install-library "SparkFun_SGP30"
-        /home/runner/Arduino/arduino --install-library "U8g2"
-        /home/runner/Arduino/arduino --install-library "nRF52_OLED"
-        /home/runner/Arduino/arduino --install-library "ArduinoRS485"
-        /home/runner/Arduino/arduino --install-library "ArduinoModbus"
-        /home/runner/Arduino/arduino --install-library "Arduino_LPS22HB"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SX126x-Arduino"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SparkFun_SHTC3"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "Arduino_LPS22HB"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "OPT3001"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SparkFun-LIS3DH"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "ClosedCube_BME680_Arduino"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "BSEC_BME680"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "Adafruit_TCS34725"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SparkFun_TMP102"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "SparkFun_SGP30"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "U8g2"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "nRF52_OLED"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "ArduinoRS485"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "ArduinoModbus"
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli --install-library "Arduino_LPS22HB"
 
     - name: test platforms
       run: python3 ci/build_platform.py nrf52840
