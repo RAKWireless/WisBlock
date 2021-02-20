@@ -21,8 +21,21 @@ jobs:
 
     - name: extra libraries
       run: |
-        git clone --quiet https://github.com/beegee-tokyo/SX126x-Arduino.git
-        mv SX126x-Arduino /home/runner/Arduino/libraries/SX126x-Arduino
+        arduino --install-library "SX126x-Arduino"
+        arduino --install-library "SparkFun_SHTC3"
+        arduino --install-library "Arduino_LPS22HB"
+        arduino --install-library "OPT3001"
+        arduino --install-library "SparkFun-LIS3DH"
+        arduino --install-library "ClosedCube_BME680_Arduino"
+        arduino --install-library "BSEC_BME680"
+        arduino --install-library "Adafruit_TCS34725"
+        arduino --install-library "SparkFun_TMP102"
+        arduino --install-library "SparkFun_SGP30"
+        arduino --install-library "U8g2"
+        arduino --install-library "nRF52_OLED"
+        arduino --install-library "ArduinoRS485"
+        arduino --install-library "ArduinoModbus"
+        arduino --install-library "Arduino_LPS22HB"
 
     - name: test platforms
       run: python3 ci/build_platform.py nrf52840
