@@ -36,9 +36,13 @@ To use the WisBlock Sensor RAK1906 environment board, The following software is 
 
 - [ArduinoIDE](https://www.arduino.cc/en/Main/Software)
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
-- CloseCube BME680 Library
+- Adafruit BME680 Library
 
 ![lib-bme680-install](../../../assets/Arduino/lib-bme680-install.png)
+
+During the installation you will be asked to install the Adafruit Unified Sensor library. Please install it as well.
+![lib-bme680-install](../../../assets/Arduino/lib-bme680-install-2.png)
+
 
 - BME680 BSEC Library
 
@@ -60,62 +64,84 @@ The Demo is designed to get BME680 sensor data every 5 seconds and print the res
 
 ```
 #include <Wire.h>
-#include "ClosedCube_BME680.h"  //https://github.com/closedcube/ClosedCube_BME680_Arduino
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME680.h> // Click to install library: http://librarymanager/All#Adafruit_BME680
 
-ClosedCube_BME680 bme680;
+Adafruit_BME680 bme;
+// Might need adjustments
+#define SEALEVELPRESSURE_HPA (1010.0)
 
 void bme680_init()
 {
   Wire.begin();
-  bme680.init(0x76); // I2C address: 0x76 or 0x77
-  bme680.reset();
 
-  Serial.print("Chip ID=0x");
-  Serial.println(bme680.getChipID(), HEX);
+  if (!bme.begin(0x76)) {
+    Serial.println("Could not find a valid BME680 sensor, check wiring!");
+    return;
+  }
 
-  // oversampling: humidity = x1, temperature = x2, pressure = x16
-  bme680.setOversampling(BME680_OVERSAMPLING_X1, BME680_OVERSAMPLING_X2, BME680_OVERSAMPLING_X16);
-  bme680.setIIRFilter(BME680_FILTER_3);
-  bme680.setGasOn(300, 100); // 300 degree Celsius and 100 milliseconds
-
-  bme680.setForcedMode();
+  // Set up oversampling and filter initialization
+  bme.setTemperatureOversampling(BME680_OS_8X);
+  bme.setHumidityOversampling(BME680_OS_2X);
+  bme.setPressureOversampling(BME680_OS_4X);
+  bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
+  bme.setGasHeater(320, 150); // 320*C for 150 ms
 }
 
 void bme680_get()
 {
-  double temp = bme680.readTemperature();
-  double pres = bme680.readPressure();
-  double hum = bme680.readHumidity();
+  Serial.print("Temperature = ");
+  Serial.print(bme.temperature);
+  Serial.println(" *C");
 
-  Serial.print("T=");
-  Serial.print(temp);
-  Serial.print("C, RH=");
-  Serial.print(hum);
-  Serial.print("%, P=");
-  Serial.print(pres);
-  Serial.print("hPa");
+  Serial.print("Pressure = ");
+  Serial.print(bme.pressure / 100.0);
+  Serial.println(" hPa");
 
-  uint32_t gas = bme680.readGasResistance();
+  Serial.print("Humidity = ");
+  Serial.print(bme.humidity);
+  Serial.println(" %");
 
-  Serial.print(", G=");
-  Serial.print(gas);
-  Serial.print(" Ohms");
+  Serial.print("Gas = ");
+  Serial.print(bme.gas_resistance / 1000.0);
+  Serial.println(" KOhms");
+
   Serial.println();
-
-  bme680.setForcedMode();
 }
 
 void setup()
 {
+  // Initialize the built in LED
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);
+
   // Initialize Serial for debug output
   Serial.begin(115200);
-  // while(!Serial){delay(10);}
+
+  time_t serial_timeout = millis();
+  // On nRF52840 the USB serial is not available immediately
+  while (!Serial)
+  {
+    if ((millis() - serial_timeout) < 5000)
+    {
+      delay(100);
+      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    }
+    else
+    {
+      break;
+    }
+  }
 
   bme680_init();
 }
 
 void loop()
 {
+  if (! bme.performReading()) {
+    Serial.println("Failed to perform reading :(");
+    return;
+  }
   bme680_get();
   delay(5000);
 }
@@ -127,31 +153,21 @@ void loop()
 The test results are as follows：
 
 ```
-[10:46:52.455]T=27.39C, RH=65.00%, P=950.21hPa, G=37388 Ohms
+Temperature = 30.66 *C
+Pressure = 1013.80 hPa
+Humidity = 44.38 %
+Gas = 3.89 KOhms
 
-[10:46:57.460]T=27.39C, RH=66.00%, P=950.21hPa, G=65443 Ohms
+Temperature = 30.69 *C
+Pressure = 1013.78 hPa
+Humidity = 44.59 %
+Gas = 3.88 KOhms
 
-[10:47:02.467]T=27.38C, RH=66.00%, P=950.23hPa, G=157592 Ohms
+Temperature = 30.72 *C
+Pressure = 1013.82 hPa
+Humidity = 44.37 %
+Gas = 3.87 KOhms
 
-[10:47:07.471]T=27.37C, RH=66.00%, P=950.25hPa, G=469700 Ohms
-
-[10:47:12.477]T=27.37C, RH=66.00%, P=950.25hPa, G=98524 Ohms
-
-[10:47:17.482]T=27.36C, RH=66.00%, P=950.27hPa, G=114360 Ohms
-
-[10:47:22.487]T=27.35C, RH=66.00%, P=950.27hPa, G=129192 Ohms
-
-[10:47:27.493]T=27.34C, RH=66.00%, P=950.29hPa, G=143114 Ohms
-
-[10:47:32.499]T=27.34C, RH=66.00%, P=950.29hPa, G=153006 Ohms
-
-[10:47:37.504]T=27.33C, RH=66.00%, P=950.27hPa, G=163023 Ohms
-
-[10:47:42.510]T=27.33C, RH=66.00%, P=950.29hPa, G=171440 Ohms
-
-[10:47:47.515]T=27.33C, RH=66.00%, P=950.29hPa, G=177552 Ohms
-
-[10:47:52.520]T=27.32C, RH=66.00%, P=950.29hPa, G=182430 Ohms
 
 ```
 
