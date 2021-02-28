@@ -23,7 +23,7 @@ jobs:
       run: |
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SX126x-Arduino
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Arduino_LPS22HB
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_Unified_Sensor
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_Sensor
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_BME680_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install BSEC_Software_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_TCS34725
