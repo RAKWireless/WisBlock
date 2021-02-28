@@ -25,7 +25,6 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Arduino_LPS22HB
         git clone --quiet https://github.com/sparkfun/SparkFun_SHTC3_Arduino_Library
         mv SparkFun_SHTC3_Arduino_Library /home/runner/Arduino/libraries/SparkFun_SHTC3_Arduino_Library
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install /home/runner/Arduino/libraries/SparkFun_SHTC3_Arduino_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_BME680
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install BSEC_Software_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_TCS34725
@@ -35,15 +34,10 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install nRF52_OLED
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoRS485
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
-        git clone --quiet https://github.com/sparkfun/SparkFun_SHTC3_Arduino_Library
-        mv SparkFun_SHTC3_Arduino_Library /home/runner/Arduino/libraries/SparkFun_SHTC3_Arduino_Library
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_SHTC3_Arduino_Library
         git clone --quiet https://github.com/closedcube/ClosedCube_OPT3001_Arduino
         mv ClosedCube_OPT3001_Arduino /home/runner/Arduino/libraries/ClosedCube_OPT3001_Arduino
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ClosedCube_OPT3001_Arduino
         git clone --quiet https://github.com/sparkfun/SparkFun_LIS3DH_Arduino_Library
         mv SparkFun_LIS3DH_Arduino_Library /home/runner/Arduino/libraries/SparkFun_LIS3DH_Arduino_Library
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_LIS3DH_Arduino_Library
 
         
     - name: test platforms
