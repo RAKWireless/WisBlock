@@ -23,6 +23,9 @@ jobs:
       run: |
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SX126x-Arduino
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Arduino_LPS22HB
+        git clone --quiet https://github.com/sparkfun/SparkFun_SHTC3_Arduino_Library
+        mv SparkFun_SHTC3_Arduino_Library /home/runner/Arduino/libraries/SparkFun_SHTC3_Arduino_Library
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install /home/runner/Arduino/libraries/SparkFun_SHTC3_Arduino_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_BME680
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install BSEC_Software_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_TCS34725
