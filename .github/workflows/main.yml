@@ -22,11 +22,11 @@ jobs:
     - name: extra libraries
       run: |
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SX126x-Arduino
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_SHTC3_Arduino_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Arduino_LPS22HB
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ClosedCube_OPT3001
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_LIS3DH_Arduino_Library
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ClosedCube_BME680
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_Unified_Sensor
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_BME680_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install BSEC_Software_Library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_TCS34725
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_TMP102
@@ -35,6 +35,7 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install nRF52_OLED
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoRS485
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_SHTC3_Arduino_Library
 
     - name: test platforms
       run: python3 ci/build_platform.py nrf52840
