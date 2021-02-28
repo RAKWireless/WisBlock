@@ -23,21 +23,25 @@ jobs:
       run: |
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SX126x-Arduino
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Arduino_LPS22HB
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoRS485
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
         git clone --quiet https://github.com/sparkfun/SparkFun_SHTC3_Arduino_Library
         mv SparkFun_SHTC3_Arduino_Library /home/runner/Arduino/libraries/SparkFun_SHTC3_Arduino_Library
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_BME680
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install BSEC_Software_Library
+        git clone --quiet https://github.com/closedcube/ClosedCube_OPT3001_Arduino
+        mv ClosedCube_OPT3001_Arduino /home/runner/Arduino/libraries/ClosedCube_OPT3001_Arduino
+        git clone --quiet https://github.com/sparkfun/SparkFun_LIS3DH_Arduino_Library
+        mv SparkFun_LIS3DH_Arduino_Library /home/runner/Arduino/libraries/SparkFun_LIS3DH_Arduino_Library
+        git clone --quiet https://github.com/adafruit/Adafruit_Sensor
+        mv Adafruit_Sensor /home/runner/Arduino/libraries/Adafruit_Sensor
+        git clone --quiet https://github.com/adafruit/Adafruit_BME680
+        mv Adafruit_BME680 /home/runner/Arduino/libraries/Adafruit_BME680
+        git clone --quiet https://github.com/BoschSensortec/BSEC-Arduino-library
+        mv BSEC-Arduino-library /home/runner/Arduino/libraries/BSEC-Arduino-library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_TCS34725
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_TMP102
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_SGP30
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install U8g2
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install nRF52_OLED
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoRS485
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
-        git clone --quiet https://github.com/closedcube/ClosedCube_OPT3001_Arduino
-        mv ClosedCube_OPT3001_Arduino /home/runner/Arduino/libraries/ClosedCube_OPT3001_Arduino
-        git clone --quiet https://github.com/sparkfun/SparkFun_LIS3DH_Arduino_Library
-        mv SparkFun_LIS3DH_Arduino_Library /home/runner/Arduino/libraries/SparkFun_LIS3DH_Arduino_Library
 
         
     - name: test platforms
