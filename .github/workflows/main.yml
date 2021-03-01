@@ -1,4 +1,4 @@
-name: Arduino Library CI
+name: RAK BSP Arduino Build CI
 
 on: [pull_request, push, repository_dispatch]
 
