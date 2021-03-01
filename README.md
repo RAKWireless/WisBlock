@@ -1,4 +1,4 @@
-# RAKwireless WisBlock [![Build Status](https://github.com/RAKWireless/WisBlock/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/RAKWireless/WisBlock/actions)
+# RAKwireless WisBlock [![Build Status](https://github.com/RAKWireless/WisBlock/workflows/RAK%20BSP%20Arduino%20Build%20CI/badge.svg)](https://github.com/RAKWireless/WisBlock/actions)
 ----
 #### ![WisBlock-Assembly](assets/repo/WisBlock-Assembly.png)
 ----
