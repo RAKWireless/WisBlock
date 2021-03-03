@@ -43,6 +43,8 @@ jobs:
         mv SparkFun_TMP102_Arduino_Library /home/runner/Arduino/libraries/SparkFun_TMP102_Arduino_Library
         git clone --quiet https://github.com/sparkfun/SparkFun_SGP30_Arduino_Library
         mv SparkFun_SGP30_Arduino_Library /home/runner/Arduino/libraries/SparkFun_SGP30_Arduino_Library
+        git clone --quiet https://github.com/neosarchizo/TinyGPS
+        mv TinyGPS /home/runner/Arduino/libraries/TinyGPS
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install U8g2
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install nRF52_OLED
 
