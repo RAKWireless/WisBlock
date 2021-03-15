@@ -28,6 +28,7 @@
 // Function declarations
 void OnTxDone(void);
 void OnTxTimeout(void);
+void send();
 
 #ifdef NRF52_SERIES
 #define LED_BUILTIN 35
