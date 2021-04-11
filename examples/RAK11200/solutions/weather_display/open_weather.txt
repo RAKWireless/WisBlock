@@ -1,0 +1,41 @@
+{
+    "coord": {
+        "lon": 108.9286,
+        "lat": 34.2583
+    },
+    "weather": [{
+        "id": 800,
+        "main": "Clear",
+        "description": "clear sky",
+        "icon": "01d"
+    }],
+    "base": "stations",
+    "main": {
+        "temp": 279.3,
+        "feels_like": 271.6,
+        "temp_min": 278.71,
+        "temp_max": 280.15,
+        "pressure": 1032,
+        "humidity": 16
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 6,
+        "deg": 240
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1610348459,
+    "sys": {
+        "type": 1,
+        "id": 9645,
+        "country": "CN",
+        "sunrise": 1610322643,
+        "sunset": 1610358786
+    },
+    "timezone": 28800,
+    "id": 1790630,
+    "name": "Xi'an",
+    "cod": 200
+}

@@ -1,11 +1,5 @@
 # Bootloader Manual 
 
-# IMPORTANT - READ FIRST
-There are two bootloaders here. Inside the folder **`old`** is the old bootloader, which has some problems with USB upload of your application. We kept it here just for reference.  
-Inside the folder **`new`** is the new bootloader which can be updated either by DAPLink/JLink or over BLE OTA DFU.
-
-_**Below is the instruction how to upload the new bootloader with DAPLink/JLink. For instruction how to update the bootloader with BLE OTA DFU, please check the instructions given in the [OTA DFU update instructions](./new/README.md)**_
-
 # 1. Overview
 
 This guide describes how to download bootloader of RAK4630 in case of any crash or erase during use. The below is important:
@@ -49,7 +43,7 @@ Steps as below:
 - Open J-Flash
 - Create a new project. Choose the board as below
 - Go into Target->Connect
-- Download the booloader from [here](./new/RAK4630_bootloader-0.4.1.hex)
+- Download the booloader from [here](/bootloader/RAK4630_bootloader.hex)
 - Drag the HEX to the J-Flash
 - Select Target->Production Programming. 
 

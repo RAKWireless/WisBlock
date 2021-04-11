@@ -2,7 +2,7 @@
 
 This document is about using BLE OTA DFU to upgrade bootloader. 
 
-If you want to use jFlash to burn firmware, please select the [specified firmware](./RAK4630_bootloader-0.4.1.hex) and do follow the instructions given [here](../README.md).
+If you want to use jFlash to burn firmware, please select the [specified firmware](./RAK4630_bootloader-0.4.1.hex) and do not need to read this document.
 
 
 
@@ -12,12 +12,10 @@ If you want to use jFlash to burn firmware, please select the [specified firmwar
 - [nRF Connect for Mobile](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile)
 - RAK4631 + RAK5005 +USB Cable + BLE antenna
 
+
+
 ![image-20210401143000289](assets/image-20210401143000289.png)	
 
-# IMPORTANT - READ FIRST
-To be able to use BLE OTA DFU you must have a sketch running on the RAK4631 that supports OTA DFU. Please follow the instruction in [Upgrade](#upgrade) and install first the **`ble_ota_dfu`** sketch! Without this sketch it is _**NOT**_ possible to upgrade your bootloader over BLE!  
-  
-_**After you flashed the new bootloader, any existing Arduino sketch on the RAK4631 will be erased and you need to flash your application again!**_
 
 
 ## Upgrade

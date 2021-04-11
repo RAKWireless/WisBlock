@@ -1,0 +1,257 @@
+menu "AT"
+config AT_ENABLE
+    bool "Enable AT"
+    default "y"
+
+
+choice AT_COMMUNICATION_METHOD
+    prompt "communicate method for AT command"
+    default AT_BASE_ON_UART
+    depends on AT_ENABLE
+
+source "$ESP_AT_PROJECT_PATH/main/interface/uart/Kconfig"
+if IDF_TARGET_ESP8266
+source "$ESP_AT_PROJECT_PATH/main/interface/hspi/Kconfig"
+endif
+source "$ESP_AT_PROJECT_PATH/main/interface/socket/Kconfig"
+source "$ESP_AT_PROJECT_PATH/main/interface/sdio/Kconfig"
+
+endchoice
+
+config AT_TASK_STACK_SIZE
+    int "The stack size of the AT task in AT library, which will be used when process AT command."
+    default 2048
+    range 2048 8196
+    depends on AT_ENABLE
+
+config AT_COMMAND_TERMINATOR_SUPPORT
+    bool "AT command terminator support."
+    default "n"
+    depends on AT_ENABLE
+
+config AT_COMMAND_TERMINATOR
+    hex "AT command terminator. "
+    help 
+        Now just support one character, the range is from 0x01 to 0xFF.
+    range 0x01 0xFF
+    default 0x0A
+    depends on AT_COMMAND_TERMINATOR_SUPPORT
+
+config AT_BASE_COMMAND_SUPPORT
+    bool "AT base command support."
+    default "y"
+    depends on AT_ENABLE
+
+config AT_WIFI_COMMAND_SUPPORT
+    bool "AT wifi command support."
+    default "y"
+    depends on AT_ENABLE
+
+config AT_NET_COMMAND_SUPPORT
+    bool "AT net command support."
+    default "y"
+    depends on AT_WIFI_COMMAND_SUPPORT
+
+config AT_SOCKET_MAX_CONN_NUM
+    int "AT socket maximum connection number"
+    default 5
+    depends on AT_ENABLE
+
+menu "AT ssl client authentication method"
+config AT_SSL_CLIENT_SERVER_AUTH_CLIENT
+    bool "Server authenticates client, client_cert and client_key partition MUST exist in at_customize.csv"
+    default y
+    depends on AT_NET_COMMAND_SUPPORT
+
+config AT_SSL_CLIENT_CLIENT_AUTH_SERVER
+    bool "Client authenticates server, client_ca partition MUST exist in at_customize.csv"
+    default y
+    depends on AT_NET_COMMAND_SUPPORT
+endmenu
+
+menu "AT ssl server authentication method"
+config AT_SSL_SERVER_SERVER_AUTH_CLIENT
+    bool "Server authenticates clients, server_ca partition MUST exist in at_customize.csv"
+    default y
+    depends on AT_NET_COMMAND_SUPPORT
+
+config AT_SSL_SERVER_CLIENT_AUTH_SERVER
+    bool "Client authenticates server, server_cert and server_key partition MUST exist in at_customize.csv"
+    default y
+    depends on AT_NET_COMMAND_SUPPORT
+endmenu
+
+config AT_MDNS_COMMAND_SUPPORT
+    bool "AT MDNS command support."
+    default "y"
+    depends on AT_ENABLE
+
+config AT_WPS_COMMAND_SUPPORT
+    bool "AT WPS command support."
+    default "y"
+    depends on AT_WIFI_COMMAND_SUPPORT
+
+config AT_SMARTCONFIG_COMMAND_SUPPORT
+    bool "AT smartconfig command support."
+    default "y"
+    depends on AT_WIFI_COMMAND_SUPPORT
+
+config AT_PING_COMMAND_SUPPORT
+    bool "AT ping command support."
+    default "y"
+    depends on AT_ENABLE
+
+config AT_MQTT_COMMAND_SUPPORT
+    bool "AT MQTT command support."
+    default "n"
+    depends on AT_ENABLE
+
+menu "AT MQTT authentication method"
+    depends on AT_MQTT_COMMAND_SUPPORT
+    
+config AT_MQTT_BROKER_AUTH_CLIENT
+    bool "Broker authenticates clients, mqtt_ca partition MUST exist in at_customize.csv"
+    default y
+
+config AT_MQTT_CLIENT_AUTH_BROKER
+    bool "Client authenticates Broker, mqtt_cert and mqtt_key partition MUST exist in at_customize.csv"
+    default y
+endmenu
+
+config AT_HTTP_COMMAND_SUPPORT
+    bool "AT http command support."
+    default "n"
+    depends on AT_ENABLE
+
+if IDF_TARGET_ESP32    
+config AT_BLE_COMMAND_SUPPORT
+    bool "AT ble command support."
+    default "y"
+    depends on AT_ENABLE
+
+config AT_BLE_HID_COMMAND_SUPPORT
+    bool "AT ble hid command support."
+    default "y"
+    depends on AT_ENABLE
+    
+config AT_BLUFI_COMMAND_SUPPORT
+    bool "AT blufi command support."
+    default "n"
+    depends on AT_ENABLE
+
+config AT_BT_COMMAND_SUPPORT
+    bool "AT bt command support."
+    default "n"
+    select BT_CLASSIC_ENABLED
+    select BT_ALLOCATION_FROM_SPIRAM_FIRST
+    depends on AT_ENABLE
+
+config AT_BT_SPP_COMMAND_SUPPORT
+    bool "AT bt spp command support."
+    default "y"
+    select BT_SPP_ENABLED
+    depends on AT_BT_COMMAND_SUPPORT
+
+config AT_BT_A2DP_COMMAND_SUPPORT
+    bool "AT bt a2dp command support."
+    default "n"
+    select BT_A2DP_ENABLE
+    depends on AT_BT_COMMAND_SUPPORT
+    
+config AT_FS_COMMAND_SUPPORT
+    bool "AT FS command support."
+    default "n"
+    depends on AT_ENABLE
+    select WL_SECTOR_SIZE_512
+    select FATFS_LFN_HEAP
+    
+config AT_ETHERNET_SUPPORT
+    bool "AT ethernet support."
+    default "n"
+    depends on AT_ENABLE
+    help
+        Please pay attention to the usage. You can refer to the ESP32_AT_Ethernet.md and get more details.
+    
+choice PHY_MODEL
+    prompt "Ethernet PHY"
+    default CONFIG_PHY_IP101
+    depends on AT_ETHERNET_SUPPORT
+    help
+        Select the PHY driver to use for ESP32 AT.
+
+config PHY_IP101
+    bool "IP101 PHY"
+    help
+        Select this to use the IP101 PHY
+
+config PHY_RTL8201
+    bool "RTL8201 PHY"
+    help
+        Select this to use the RTL8201 PHY
+
+config PHY_DP83848
+    bool "DP83848 PHY"
+    help
+        Select this to use the DP83848 PHY
+
+config PHY_LAN8720
+    bool "Microchip LAN8720 PHY"
+    help
+        Select this to use the Microchip LAN8720 PHY
+
+endchoice
+
+endif
+
+config AT_EAP_COMMAND_SUPPORT
+    bool "AT WPA2 Enterprise command support."
+    default "n"
+    depends on AT_ENABLE
+
+config AT_OTA_SUPPORT
+    bool "AT OTA command support."
+    default "y"
+    depends on AT_ENABLE
+
+config AT_OTA_SERVER_IP
+    string "Server IP for AT OTA."
+    default "iot.espressif.cn"
+    depends on AT_OTA_SUPPORT
+
+config AT_OTA_SERVER_PORT
+    int "Server port for AT OTA."
+    default 80
+    depends on AT_OTA_SUPPORT
+
+config AT_OTA_TOKEN_KEY
+    string "The token for AT OTA."
+    default "dd93253c287f725de50d4071a05dd28b72056ca7"
+    depends on AT_OTA_SUPPORT
+
+config AT_OTA_SSL_SUPPORT
+    bool "OTA based upon ssl"
+    default "y"
+    depends on AT_OTA_SUPPORT
+
+config AT_OTA_SSL_SERVER_IP
+    string "SSL server IP for AT OTA."
+    default "iot.espressif.cn"
+    depends on AT_OTA_SSL_SUPPORT
+
+config AT_OTA_SSL_SERVER_PORT
+    int "SSL server port for AT ssl OTA."
+    default 443
+    depends on AT_OTA_SSL_SUPPORT
+
+config AT_OTA_SSL_TOKEN_KEY
+    string "The SSL token for AT OTA."
+    default "dd93253c287f725de50d4071a05dd28b72056ca7"
+    depends on AT_OTA_SSL_SUPPORT
+
+config ESP_AT_FW_VERSION
+    string "AT firmware version."
+    depends on AT_ENABLE
+    help
+      The maximum length of the string is 128 characters.
+      If more than 128 characters, it will be invalid.
+endmenu
