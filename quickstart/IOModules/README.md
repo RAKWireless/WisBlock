@@ -38,16 +38,11 @@ Please read the following items carefully so that WisBlock can be used safely.
 
 3) Don't power WisBlock using other power sources which RAK hasn't suggested.
 
-
-
 ### Software
 
 1)  SW libraries and examples are available for all WisBlock IO modules.
 
 2) Please don't unplug any hardware connector when you are uploading code into it, otherwise WisBlock may become unresponsive.
-
-
-
 
 ### WisBlock IO Boards
 
@@ -55,9 +50,7 @@ Please read the following items carefully so that WisBlock can be used safely.
 
 RAK2305 is a WiFi board which is ESP32 module actually, and it can only be connected with RAK5005-O through the IO SLOT.
 
-<center><img src="../../assets/repo/rak2305-top.png" alt="rak2305-top" width="30%"/><img src="../../assets/repo/rak2305-bottom.png" alt="rak2305-bottom" width="30%" /></center>
-
-<center><img src="../../assets/repo/rak2307-assembly.png" alt="rak2307-assembly" width="75%"/></center>
+<center><img src="../../assets/repo/rak2305-comb.png" alt="rak2305-bottom" width="75%" /></center>
 
 More information about RAK2305, please have a look at the following link:
 
