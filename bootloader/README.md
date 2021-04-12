@@ -12,7 +12,5 @@ Not all Core modules require a custom bootloader.
 Bootloader for the RAK4630 stamp module used on the RAK4631 WisBlock Core module.    
 [RAK4630](./RAK4630)
 
-<!--
 ## RAK11200
 No custom bootloader is required for the RAK11200. Instead the default bootloader from Espressif is used.
--->
