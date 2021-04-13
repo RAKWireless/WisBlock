@@ -4,13 +4,13 @@
 
 This example shows how to setup two WisBlock to communicate with each other over LoRa®.  Different to LoRaWan®, when using the low-level communication functions as below
 
-![lora-p2p-mode](../../../../assets/Examples/lora-p2p-mode.png)
+![lora-p2p-mode](../../../../../assets/Examples/lora-p2p-mode.png)
 
 The application has to take care that both nodes are initialized to use the same frequency, datarate, spreading factor, coding rates, ....   Please check below code explanation for information about these settings.         
 
 
 
-![lora-p2p-settings](../../../../assets/Examples/lora-p2p-settings.png)
+![lora-p2p-settings](../../../../../assets/Examples/lora-p2p-settings.png)
 
 | Parameters       | Unit                                                        |
 | ---------------- | ----------------------------------------------------------- |
@@ -29,7 +29,7 @@ To build the LoRa® system. With just one WisBlock Core RAK4631 plugged into the
 
 The RAK4631 is the WisBlock Core which can be connected to CPU SLOT of WisBlock via pin to pin groove like below. Besides, it provides SWD port to download via J-Link. Two antenna (BLE and LoRa®). Screws of four corners help stabilize connection with WisBlock.
 
-![rak4631-connectors](../../../../assets/repo/rak4631-connectors.png)
+![rak4631-connectors](../../../../../assets/repo/rak4631-connectors.png)
 
 ## 3. Software Required
 
@@ -38,13 +38,13 @@ After install Arduino IDE and BSP according to the Quick Start Guide, you can in
 - Start the Arduino IDE
 - Open Library Manager, search for sx126x-Arduino, and install
 
-![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
+![lib-sx12x-install](../../../../../assets/Arduino/lib-sx12x-install.png)
 
 ## 4. TX mode
 
 After download Tx demo, it will send '12345' per 5s.
 
-![lora-p2p-tx-data](../../../../assets/Examples/lora-p2p-tx-data.png)
+![lora-p2p-tx-data](../../../../../assets/Examples/lora-p2p-tx-data.png)
 
 P2P code is similar with LoRaWAN®. The difference is directly using radio part, rather than mac layer. User can attach serveral callbacks to radioevents.
 
@@ -195,7 +195,7 @@ void send()
 
 After download Rx demo, it will keep listening forever (please wait for stable after serveral seconds later). If receive some data, it will print related information, like receive data(ASCII), RSSI and SNR. The Arduino Serial Monitor responses slowly sometimes. This will lead no receive data log in it. You can choose other serial tools (must support DTR).
 
-![lora-p2p-rx-data](../../../../assets/Examples/lora-p2p-rx-data.jpg)
+![lora-p2p-rx-data](../../../../../assets/Examples/lora-p2p-rx-data.png)
 
 
 

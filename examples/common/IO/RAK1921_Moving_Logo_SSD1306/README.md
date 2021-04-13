@@ -2,7 +2,7 @@
 
 This example shows how to use WisBlock IO RAK1921 which is an OLED SSD1306(128*64, I2C) board.
 
-<img src="../../../assets/repo/rak1921.png" alt="rak1921.png" style="zoom:25%;" />
+<img src="../../../../assets/repo/rak1921.png" alt="rak1921.png" style="zoom:25%;" />
 
 ----
 ## Hardware required
@@ -17,11 +17,11 @@ The following hardware are required.
 
 Hardware is shown as follows:
 
-![exa-rak1921-assy](../../../assets/repo/exa-rak1921-assy.png)
+![exa-rak1921-assy](../../../../assets/repo/exa-rak1921-assy.png)
 
 Assembled as follows:
 
-![exa-rak1921-assy-2](../../../assets/repo/exa-rak1921-assy-2.png)
+![exa-rak1921-assy-2](../../../../assets/repo/exa-rak1921-assy-2.png)
 
 For stable connection, please use screws to tighten.
 
@@ -34,12 +34,12 @@ To use the environment WisBlock Sensor RAK1906, The following software is requir
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - U8g2 library
 
-![lib-u8g-install](../../../assets/Arduino/lib-u8g-install.png)
+![lib-u8g-install](../../../../assets/Arduino/lib-u8g-install.png)
 
 
 Connect the assembled hardware to the PC with a USB cable, open the Arduino, and select the development board and port in the tool menu.
 
-![ard-install-21](../../../assets/Arduino/ard-install-21.png)
+![ard-install-21](../../../../assets/Arduino/ard-install-21.png)
 
 
 
@@ -218,7 +218,7 @@ void loop(void) {
 
 The test results are as follows：
 
-<img src="../../../assets/Examples/exa-rak1921-logo.jpg" alt="exa-rak1921-logo" style="zoom:25%;" />
+<img src="../../../../assets/Examples/exa-rak1921-logo.jpg" alt="exa-rak1921-logo" style="zoom:25%;" />
 
 
 

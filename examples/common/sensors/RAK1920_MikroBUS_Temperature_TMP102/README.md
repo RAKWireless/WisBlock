@@ -2,7 +2,7 @@
 
 This example shows how to use WisBlock IO RAK1920, which is a MikroBUS/Grove/QWIIC adapter board, to connect with a MicroBUS interface sensor.
 
-<img src="../../../assets/repo/rak1920.png" alt="rak1920" style="zoom:25%;" />
+<img src="../../../../assets/repo/rak1920.png" alt="rak1920" style="zoom:25%;" />
 
 ----
 ## Hardware required
@@ -16,7 +16,7 @@ To test the RAK1920, The following hardware is required.
 
 RAK1920 is a Mikrobus/Grove/QWIIC adapter board which can be connected to Mikrobus/Grove/QWIIC sensor. This guide shows how to use Mikrobus sensor with WisBlock. Here we choose Thermo 3 click from https://www.mikroe.com/thermo-3-click.  Thermo 3 click carries [TMP102](https://download.mikroe.com/documents/datasheets/tmp102-data-sheet.pdf), a digital temperature sensor IC with a tiny footprint of only 1.6mm x 1.6mm. The click is designed to run on a 3.3V power supply only. It communicates with the target MCU through mikroBUS™ I2 C pins (SCL, SDA), and an additional Alert pint (INT on the default mikroBUS™ configuration). Without requiring calibration, TMP102 is accurate within 0.5°C. Measurement range is between **-25°C to 85°C**. An integrated 12-bit ADC allows for measurement resolutions down to 0.0625°C.
 
-![exa-rak1920-assy-temp](../../../assets/repo/exa-rak1920-assy-temp.png)
+![exa-rak1920-assy-temp](../../../../assets/repo/exa-rak1920-assy-temp.png)
 
 ----
 ## Software required
@@ -28,7 +28,7 @@ To test the RAK1920, The following software is required.
 - SparkFun TMP102 Breakout library
 
 
-![lib-tmp102-install](../../../assets/Arduino/lib-tmp102-install.png)
+![lib-tmp102-install](../../../../assets/Arduino/lib-tmp102-install.png)
 
 The Arduino test software is written as follow:
 

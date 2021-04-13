@@ -22,15 +22,15 @@ To build this system the WisBlock Core RAK4631 microcontroller is using the RAK5
 
 - WisBlock Base RAK5005-O    
 
-<img src="../../../assets/repo/rak5005-o-top-tilt.png" alt="rak5005-o-top-tilt" style="zoom:33%;" />
+<img src="../../../../assets/repo/rak5005-o-top-tilt.png" alt="rak5005-o-top-tilt" style="zoom:33%;" />
 
 - WisBlock Core RAK4631    
 
-<img src="../../../assets/repo/RAK4631.png" alt="RAK4631" style="zoom:5%;" />
+<img src="../../../../assets/repo/RAK4631.png" alt="RAK4631" style="zoom:5%;" />
 
 - WisBlock IO RAK5811
 
-<img src="../../../assets/repo/rak5811.png" alt="rak5811" style="zoom:33%;" />
+<img src="../../../../assets/repo/rak5811.png" alt="rak5811" style="zoom:33%;" />
 
 
 ### 2.2.Electrical characteristics
@@ -44,7 +44,7 @@ The Module includes a 12 V power which is controled by RAK4631,GPIO 0.17. This G
 
 ### 2.4. Connection diagram
 
-<img src="../../../assets/repo/exa-rak5811-wire.png" alt="exa-rak5811-wire" style="zoom:33%;" />
+<img src="../../../../assets/repo/exa-rak5811-wire.png" alt="exa-rak5811-wire" style="zoom:33%;" />
 
 ## 3.How to program based on Arduino
 

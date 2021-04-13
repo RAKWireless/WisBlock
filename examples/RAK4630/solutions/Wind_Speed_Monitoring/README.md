@@ -4,7 +4,7 @@
 
 ### 1. Introduction
 
-![exa-par-solution](../../../assets/Examples/exa-par-solution.png)
+![exa-par-solution](../../../../assets/Examples/exa-par-solution.png)
 
 This solution shows how to create an agriculture wind speed sensor node. The sensor node measures the wind speed from a sensor with a RS485 interface by Modbus protocol. It then transmits this data frequently over LoRaWAN® to a LoRaWAN® server.
 
@@ -29,7 +29,7 @@ If you want to know how to use the LoRa® communication with WisBlock. You can r
 
 All Modbus devices include a register map with the location and a description of the data stored in the registers. Modbus functions operate on register map to monitor, configure, and control the device’s inputs and outputs. You have to refer to the register map of your device to gain a better understanding of its operation. Modbus registers are organized into reference types identified by the leading number of the reference address. You can see below an example of how to read and write data in a Modbus device.
 
-![exa-wind-regmap](../../../assets/Examples/exa-wind-regmap.png)
+![exa-wind-regmap](../../../../assets/Examples/exa-wind-regmap.png)
 
 In our example, we are going to read the speed value from our device. We can see in the register map on above, the default Device Address is 1, the speed value is stored in the register 0016H, and is accessible with the function ModbusRTUClient.requestFrom(), and is stored in 16 bits format (2 bytes).
 
@@ -57,11 +57,11 @@ WisBlock IO RAK5802 * 1pcs
 
 The assembly of sensor node is as follows:
 
-![exa-par-assy](../../../assets/repo/exa-par-assy.png)
+![exa-par-assy](../../../../assets/repo/exa-par-assy.png)
 
-<img src="../../../assets/Examples/exa-wind-sensor.png" alt="exa-wind-sensor" style="zoom:50%;" />
+<img src="../../../../assets/Examples/exa-wind-sensor.png" alt="exa-wind-sensor" style="zoom:50%;" />
 
-<img src="../../../assets/Examples/exa-wind-assy.png" alt="exa-wind-assy" style="zoom:50%;" />
+<img src="../../../../assets/Examples/exa-wind-assy.png" alt="exa-wind-assy" style="zoom:50%;" />
 
 
 
@@ -74,13 +74,13 @@ The assembly of sensor node is as follows:
 
 #### 3.1 Install library
 
-![lib-manager](../../../assets/Arduino/lib-manager.png)
+![lib-manager](../../../../assets/Arduino/lib-manager.png)
 
-![lib-rs485-install](../../../assets/Arduino/lib-rs485-install.png)
+![lib-rs485-install](../../../../assets/Arduino/lib-rs485-install.png)
 
-![lib-modbus-install](../../../assets/Arduino/lib-modbus-install.png)
+![lib-modbus-install](../../../../assets/Arduino/lib-modbus-install.png)
 
-![lib-sx12x-install](../../../assets/Arduino/lib-sx12x-install.png)
+![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
 ### 4. Example
 
@@ -386,6 +386,6 @@ lmh_send ok count 4
 
 The logs of LoraWan Server is as follows:
 
-![exa-wind-data](../../../assets/Examples/exa-wind-data.png)
+![exa-wind-data](../../../../assets/Examples/exa-wind-data.png)
 
 LoRa® is a registered trademark or service mark of Semtech Corporation or its affiliates. LoRaWAN® is a licensed mark.

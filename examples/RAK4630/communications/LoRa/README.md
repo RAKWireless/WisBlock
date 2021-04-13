@@ -9,7 +9,7 @@ LoRaWAN®  is a new, private and spread-spectrum modulation technique which allo
 
 There are two basic usages, first is LoRaWAN® . WisBlock works as node, and report to LoRaWAN®  gateway. Then gateway transmit to server on the cloud, like TTN/Lora Server, finally to users. Besides WisBlock, RAKwireless provide a whole solution from node to server.
 
-![wifi-lora-net](../../../assets/Examples/wifi-lora-net.png)
+![wifi-lora-net](../../../../assets/Examples/wifi-lora-net.png)
 
 Second is based on P2P mode. Nodes may connect directly among them and send messages directly at no cost (as they are not using the LoRaWAN®  Network but just direct radio communication). For more info go to the section P2P Mode.
 

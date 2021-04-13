@@ -1,7 +1,7 @@
 ## Inteligence Agriculture based on LoRaWAN®
 ### 1. Introduction
 
-![exa-agri-arch](../../../assets/Examples/exa-agri-arch.png)
+![exa-agri-arch](../../../../assets/Examples/exa-agri-arch.png)
 
 This solution shows how to create an agriculture monitor node. The monitor node measures pH conductivity, air temperature, air humidity, photosynthetically active radiation (PAR), soil conductivity, soil humidity and wind speed from a agriculture sensor system with a RS485 interface. It then transmits this data frequently over LoRaWan® to a LoRaWan® server. 
 
@@ -49,7 +49,7 @@ WisBlock IO RAK5802 * 1pcs
 
 This solutions diagram:
 
-![exa-agri-solution](../../../assets/Examples/exa-agri-solution.png)
+![exa-agri-solution](../../../../assets/Examples/exa-agri-solution.png)
 
 ### 3. Software required
 
@@ -61,11 +61,11 @@ This solutions diagram:
 
 #### 3.1 Install library
 
-![lib-rs485-install](../../../assets/Arduino/lib-rs485-install.png)
+![lib-rs485-install](../../../../assets/Arduino/lib-rs485-install.png)
 
-![lib-modbus-install](../../../assets/Arduino/lib-modbus-install.png)
+![lib-modbus-install](../../../../assets/Arduino/lib-modbus-install.png)
 
-![lib-sx12x-install](../../../assets/Arduino/lib-sx12x-install.png)
+![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
 ### 4. Example
 
