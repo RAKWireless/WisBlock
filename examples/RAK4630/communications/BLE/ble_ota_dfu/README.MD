@@ -17,7 +17,7 @@ To test OTA DFU the following hardware is required
 
 The assemble of RAK5005-O and RAK4631 is as bellow.
 
-![ble-rak4631-rak5005-o](../../../../assets/repo/ble-rak4631-rak5005-o.png)
+![ble-rak4631-rak5005-o](../../../../../assets/repo/ble-rak4631-rak5005-o.png)
 
 ----
 ## Software required
@@ -123,21 +123,21 @@ void loop()
 
    Connect the hardware with PC by USB, Open the test program, select the "WisBlock Core RAK4631 Board" board and Port. Then do **upload**.
 
-   ![ard-install-21](../../../../assets/Arduino/ard-install-21.png)
+   ![ard-install-21](../../../../../assets/Arduino/ard-install-21.png)
 
 2. **Generate DFU file and copy it to your phone.**
 
    In the Arduino software: go to **File** -> **Preferences** and then select **Show verbose output during** -> **compilation**.
 
-![ard-compile-opt](../../../../assets/Arduino/ard-compile-opt.png)
+![ard-compile-opt](../../../../../assets/Arduino/ard-compile-opt.png)
 
 ​	Finally, when you are compiling, the program will show you the path at last lines. 
 
-![ard-binary-image](../../../../assets/Arduino/ard-binary-image.png)
+![ard-binary-image](../../../../../assets/Arduino/ard-binary-image.png)
 
  In this example we use a the following demo zip file as the DFU file.
 
-​		![ard-hex-file-location](../../../../assets/Arduino/ard-hex-file-location.png)
+​		![ard-hex-file-location](../../..././../assets/Arduino/ard-hex-file-location.png)
 
 
 
@@ -149,19 +149,19 @@ void loop()
 
    Open the nRF Toolbox and select DFU.
 
-   ![ble_toolbox-1](../../../../assets/Examples/ble_toolbox-1.png)	
+   ![ble_toolbox-1](../../../../../assets/Examples/ble_toolbox-1.png)	
 
 ​		Select the DFU file you have copied to phone.
 
-​		![ble_toolbox-1](../../../../assets/Examples/ble_toolbox-2.png)
+​		![ble_toolbox-1](../../..././../assets/Examples/ble_toolbox-2.png)
 
 ​		Select the BLE device By device name which is advertised.
 
-​		![ble_toolbox-3](../../../../assets/Examples/ble_toolbox-3.png)
+​		![ble_toolbox-3](../../..././../assets/Examples/ble_toolbox-3.png)
 
 ​		Click "UPLOAD" button to start upgrade and wait until success.
 
-​		![ble_toolbox-4](../../../../assets/Examples/ble_toolbox-4.png)
+​		![ble_toolbox-4](../../..././../assets/Examples/ble_toolbox-4.png)
 
 4. **Check the upgrade result**
 

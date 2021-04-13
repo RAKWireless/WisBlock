@@ -1,5 +1,5 @@
 ## Hydraulic Pressure Monitoring over LoRaWAN®
-![exa-hydr-press-system](../../../assets/Examples/exa-hydr-press-system.png)
+![exa-hydr-press-system](../../../../assets/Examples/exa-hydr-press-system.png)
 
 This solution shows how to create an hydraulic pressure monitor node. The monitor node measures hydraulic pressure from a sensor with a 4-20mA interface. It then transmits this data frequently over LoRaWan® to a LoRaWan® server.    
 At the LoRaWan® server the data arrives in the following format    
@@ -27,20 +27,20 @@ To build this system, the following hardware are required:
 
 The assembly of sensor node is as follows:
 
-![exa-hydr-press-assy](../../../assets/repo/exa-hydr-press-assy.png)
+![exa-hydr-press-assy](../../../../assets/repo/exa-hydr-press-assy.png)
 
 We choose a 2-wire hydraulic pressure sensor in this example, So we only need to connect the signal and power as the picture above.
 
 The test scenario is shown as follows:
 
-![exa-hydr-press-assy](../../../assets/Examples/exa-hydr-press-assy.png)
+![exa-hydr-press-assy](../../../../assets/Examples/exa-hydr-press-assy.png)
 
 ### Software required
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
 - SX126x-Arduino library
 
-![lib-sx12x-install](../../../assets/Arduino/lib-sx12x-install.png)
+![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
 The code for the hydraulic pressure sensor node is as follows:
 ```cpp
@@ -337,7 +337,7 @@ The log of sensor node is shown as follows:
 
 We use Chirpstack as LoRaWAN® server in this solution, the data sent to LoRaWAN® server is shown as follows:
 
-![exa-hydr-press-data](../../../assets/Examples/exa-hydr-press-data.png)
+![exa-hydr-press-data](../../../../assets/Examples/exa-hydr-press-data.png)
 
 
 

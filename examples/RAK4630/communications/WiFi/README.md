@@ -4,7 +4,7 @@ This example shows how to use WisBlock IO RAK2305 WiFi board.
 
 The WisBlock IO RAK2305 communicates with RAK4631 by AT commands.  The input of  AT commands and respond will be printed over the USB debug port of the WisBlock Base board.
 
-![wifi-at-command](../../../assets/Examples/wifi-at-command.png)
+![wifi-at-command](../../../../assets/Examples/wifi-at-command.png)
 
 ----
 ## Hardware required
@@ -17,11 +17,11 @@ To test the WisBlock IO RAK2305 WiFi board, The following hardware is required.
 
 Hardware is shown as follows:
 
-![wifi-rak4631-rak2305-1](../../../assets/repo/wifi-rak4631-rak2305-1.png)
+![wifi-rak4631-rak2305-1](../../../../assets/repo/wifi-rak4631-rak2305-1.png)
 
 Assembled as follows:
 
-![wifi-rak4631-rak2305-2](../../../assets/repo/wifi-rak4631-rak2305-2.png)
+![wifi-rak4631-rak2305-2](../../../../assets/repo/wifi-rak4631-rak2305-2.png)
 
 For stable connection, please use screws to tighten.
 

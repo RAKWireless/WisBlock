@@ -2,7 +2,7 @@
 
 This example shows how to use RAK1920, which is a MikroBUS/Grove/QWIIC adapter board, to connect with a Grove interface sensor.
 
-<img src="../../../assets/repo/rak1920.png" alt="rak1920" style="zoom:25%;" />
+<img src="../../../../assets/repo/rak1920.png" alt="rak1920" style="zoom:25%;" />
 
 ----
 ## Hardware required
@@ -25,7 +25,7 @@ RAK1920 is a Mikrobus/Grove/QWIIC adapter board which can be connected to Mikrob
 - Two Lego installation holes
 - Grove B
 
-![exa-rak1920-assy-sens](../../../assets/repo/exa-rak1920-assy-sens.png)
+![exa-rak1920-assy-sens](../../../../assets/repo/exa-rak1920-assy-sens.png)
 
 ----
 ## Software required

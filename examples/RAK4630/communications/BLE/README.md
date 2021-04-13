@@ -1,6 +1,6 @@
 # BLE examples
 
-![ble](../../../assets/Examples/ble-graphic2.png)	
+![ble](../../../../assets/Examples/ble-graphic2.png)	
 
 ----
 

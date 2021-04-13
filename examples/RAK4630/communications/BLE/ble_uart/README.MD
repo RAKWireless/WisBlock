@@ -14,7 +14,7 @@ To test BLE UART the following hardware is required
 
 The assemble of RAK5005-O and RAK4631 is as bellow.
 
-![ble-rak4631-rak5005-o](../../../../assets/repo/ble-rak4631-rak5005-o.png)
+![ble-rak4631-rak5005-o](../../../../../assets/repo/ble-rak4631-rak5005-o.png)
 
 ----
 ## Software required
@@ -132,15 +132,15 @@ void loop()
 ## BLE UART testing
 To test the BLE UART function upload the sketch to the RAK4631 and connect to it from the BLE UART app on your phone. 
 
-![BLE UART app](../../../../assets/Examples/ble-UART-Phone-3.jpg) 
+![BLE UART app](../../../../../assets/Examples/ble-UART-Phone-3.jpg) 
 
-![Select device](../../../../assets/Examples/ble-UART-Phone-4.jpg) 
+![Select device](../../../../../assets/Examples/ble-UART-Phone-4.jpg) 
 
-![Device List](../../../../assets/Examples/ble-UART-Phone-1.jpg)    
+![Device List](../../../../../assets/Examples/ble-UART-Phone-1.jpg)    
 
 Then you can send characters from the Arduino terminal to the BLE UART terminal on the phone and back.
 
-![OUtput](../../../../assets/Examples/ble-UART-Phone-2.jpg)    
+![OUtput](../../../../../assets/Examples/ble-UART-Phone-2.jpg)    
 
 Output in the Arduino terminal:
 

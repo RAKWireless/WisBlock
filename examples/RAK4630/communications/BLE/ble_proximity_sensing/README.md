@@ -4,7 +4,7 @@ This example shows how to setup two WisBlock devices and use BLE to detect each 
 
 Both devices are using BLE advertising and BLE device scanning functionality of BLE. 
 
-![ble-proximity](../../../../assets/Examples/ble-proximity.png)
+![ble-proximity](../../../../../assets/Examples/ble-proximity.png)
 
 ----
 ## Hardware required
@@ -17,7 +17,7 @@ To build this system the WisBlock Core RAK4631 microcontroller and WisBlock Base
 
 The assembly is as follows:
 
-![ble-rak4631-proxy](../../../../assets/repo/ble-rak4631-proxy.png)
+![ble-rak4631-proxy](../../../../../assets/repo/ble-rak4631-proxy.png)
 
 For stable connection, please use screws to tighten.
 

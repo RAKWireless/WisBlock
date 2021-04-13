@@ -2,7 +2,7 @@
 
 This example shows how to use WisBlock IO RAK1920, which is a MikroBUS/Grove/QWIIC adapter board, to connect with a Grove interface sensor.
 
-<img src="../../../assets/repo/rak1920.png" alt="rak1920" style="zoom:25%;" />
+<img src="../../../../assets/repo/rak1920.png" alt="rak1920" style="zoom:25%;" />
 
 ----
 ## Hardware required
@@ -16,7 +16,7 @@ To test the RAK1920, The following hardware is required.
 
 RAK1920 is a Mikrobus/Grove/QWIIC adapter board which can be connected to Mikrobus/Grove/QWIIC sensor. This guide shows how to use Grove sensor with WisBlock. The adapter board has two Grove interface, one near to RAK4631 is for I/O(Grove B). The other one is for I2C(Grove A). Here we choose Color Sensor RGB Unit (TCS3472) from https://m5stack.com/collections/m5-unit/products/color-unit. RGB Unit is color recognition unit integrated TCS3472. Like its namesake, It is able to detect color value and return RGB data to the host. Identify color principle: In the TCS3472, a 3*4 array of filtered photodiodes and a 16 bit analog-to-digital converters are embedded. Of the 12 photodiodes, 3 have red filters, 3 have green filters, 3 have blue filters and 3 have no filter(clear). When detecting the color of an object, TCS3472 returns data from four channels: red(R), green(G), blue(B) and clear(C)(non-filtered). The response from the red, green and blue channels (RGB) can be used to determine a particular source’s chromaticity coordinates (x, y). It should be connected to Grove A.
 
-![exa-rak1920-assy-color](../../../assets/repo/exa-rak1920-assy-color.png)
+![exa-rak1920-assy-color](../../../../assets/repo/exa-rak1920-assy-color.png)
 
 ----
 ## Software required
@@ -28,7 +28,7 @@ To test the RAK1920, The following software is required.
 - Adafruit TCS34725 library
 
 
-![lib-tcs34725-install](../../../assets/Arduino/lib-tcs34725-install.png)
+![lib-tcs34725-install](../../../../assets/Arduino/lib-tcs34725-install.png)
 
 The Arduino test software is written as follow:
 

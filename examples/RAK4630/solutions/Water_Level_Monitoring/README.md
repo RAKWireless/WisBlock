@@ -1,5 +1,5 @@
 ## Water Level Monitoring over LoRaWAN®
-![exa-waterlevel-solution](../../../assets/Examples/exa-waterlevel-solution.png)
+![exa-waterlevel-solution](../../../../assets/Examples/exa-waterlevel-solution.png)
 
 This solution shows how to create a water level monitor node. The monitor node measures the water level from a sensor with a 0 to 5V analog interface. It then transmits this data frequently over LoRaWan® to a LoRaWan® server. 
 
@@ -30,11 +30,11 @@ To build this system, the following hardware are required:
 
 The assembly of sensor node is as follows:
 
-![exa-waterlevel-assy](../../../assets/repo/exa-waterlevel-assy.png)
+![exa-waterlevel-assy](../../../../assets/repo/exa-waterlevel-assy.png)
 
 We chose a water level sensor with a voltage of 3v3, so we can use the board to supply power directly.  The test scenario is shown as follows:
 
-![exa-waterlevel-assy](../../../assets/Examples/exa-waterlevel-assy.png)
+![exa-waterlevel-assy](../../../../assets/Examples/exa-waterlevel-assy.png)
 
 
 
@@ -44,7 +44,7 @@ We chose a water level sensor with a voltage of 3v3, so we can use the board to 
 - [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)
 - SX126x-Arduino library
 
-![lib-sx12x-install](../../../assets/Arduino/lib-sx12x-install.png)
+![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
 
 
@@ -352,7 +352,7 @@ The log of sensor node is shown as follows:
 
 We use Chirpstack as LoRaWAN® server in this solution, the data sent to LoRaWAN® server is shown as follows:
 
-![exa-waterlevel-data](../../../assets/Examples/exa-waterlevel-data.png)
+![exa-waterlevel-data](../../../../assets/Examples/exa-waterlevel-data.png)
 
 
 
