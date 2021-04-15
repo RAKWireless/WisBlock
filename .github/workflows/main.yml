@@ -80,4 +80,4 @@ jobs:
         mv Arduino_JSON /home/runner/Arduino/libraries/Arduino_JSON
        
     - name: test platforms
-      run: python3 ci/build_platform.py rak_platforms
+      run: python3 ci/build_platform.py rak4631 rak11200
