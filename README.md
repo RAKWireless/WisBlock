@@ -1,5 +1,7 @@
 # RAKwireless WisBlock
-#### ![WisBlock-Assembly](assets/repo/WisBlock-Assembly.png)
+| <img src="assets/repo/RAK.png" alt="Modules" width="150"> | <img src="assets/repo/rakstar.jpg" alt="Modules" width="100"> | <img src="assets/repo/rak11200.png" alt="Modules" width="250"> | <img src="assets/repo/RAK4631.png" alt="Modules" width="250"> | [![Build Status](https://github.com/RAKWireless/WisBlock/workflows/RAK%20BSP%20Arduino%20Build%20CI/badge.svg)](https://github.com/RAKWireless/WisBlock/actions) |    
+| :-: | :-: | :-: | :-: | :-: |  
+
 ## Introduction
 WisBlock is an amazing product built by the RAK company for IoT industry. It can build circuits like clicking blocks together to quickly realize your idea.
 
@@ -8,6 +10,8 @@ WisBlock consists of WisBlock Base, WisBlock Core, WisBlock Sensor and WisBlock 
 - WisBlock Core → the processing unit with the micro-controller.    
 - WisBlock Sensor → the blocks with variety of sensors.    
 - WisBlock IO → the blocks that extend the communication options and interfacing capabilities of the WisBlock.
+
+![WisBlock-Assembly](assets/repo/WisBlock-Assembly.png)
 
 This repository is created to help you start with WisBlock as simple as possible. Let's get started.
 
