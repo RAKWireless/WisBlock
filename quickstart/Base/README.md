@@ -6,9 +6,6 @@
 - [Introduction](#introduction)    
 - [Safety information](#safety-information)    
 - [Hardware Setup](#hardware-setup)
-- [Arduino IDE BSP Installation](#arduino-ide-bsp-installation)
-- [PlatformIO Installation](#installation-of-board-support-package-in-platformio)
-
 
 ## Introduction
 
@@ -64,3 +61,46 @@ https://docs.rakwireless.com/Product-Categories/WisBlock/RAK5005-O/Datasheet/#wi
 
 The RAK5005-O board offers several GPIO's on solder pads or on the WisBlock Sensor or WisBlock IO modules. These GPIO's are named IO1 to IO6 and SW1. These GPIO's are connected to GPIO's of the WisBlock Core modules and the pin assignments can be found in the Quick Start Guides of the WisBlock Core modules.
 
+### Battery
+
+Please use the battery which RAK suggest, and connect the battery with RAK5005-O as follow:     
+
+<center><img src="../../assets/repo/battery-connect.png" alt="battery-connect" width="50%"/></center>
+
+# Important Reminder:
+- ### When connecting the battery make sure the polarity is correct. Not all connectors are wired the same.
+- ### Ground pole should be close to the PCB boarder.
+- ### Plus pole should be close to USB connector.
+
+The matching connector for the battery wires is an [JST PHR-2 2mm pitch female](https://www.jst-mfg.com/product/detail_e.php?series=199)
+
+**Battery specification**     
+
+| No.  | Items                     | Specifications           |
+| ---- | ------------------------- | ------------------------ |
+| 1    | Charge Cut-off Voltage    | 4.2V                     |
+| 2    | Nominal Voltage           | 3.7V                     |
+| 3    | Discharge Cut-off Voltage | 2.75V                    |
+| 4    | Typical Capacity          | 2650mAh                  |
+| 5    | Max Discharge Current     | 0.5C at 25℃-45℃          |
+| 6    | PH Connector              | 2.0mm pitch              |
+| 7    | Cable Length              | 110.0±3.0mm              |
+| 8    | Cable Color               | Red: VBAT+, Black: VBAT- |
+
+### Solar panel
+
+You can connect the solar panel with RAK5005-O as follow:
+
+<center><img src="../../assets/repo/solar-connect.png" alt="solar-connect" /></center>
+
+The matching connector for the solar panel wires is an [JST ZHR-2 1.5mm pitch female](https://www.jst-mfg.com/product/detail_e.php?series=287)
+
+**Solar panel specification**
+
+| No.  | Items            | specifications                         |
+| ---- | ---------------- | -------------------------------------- |
+| 1    | Nominal  Voltage | 5V                                     |
+| 2    | Typical Current  | 80mA                                   |
+| 3    | Size             | Length: 60mm, Width: 60mm, Height: 2mm |
+| 4    | Connector        | 1.5mm pitch                            |
+| 5    | Cable color      | Red: VCC, Black: GND                   |
