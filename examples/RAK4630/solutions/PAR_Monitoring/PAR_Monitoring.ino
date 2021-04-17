@@ -31,7 +31,7 @@ bool doOTAA = true;   // OTAA is used by default.
 #define JOINREQ_NBTRIALS 3 /**< Number of trials for the join request. */
 DeviceClass_t g_CurrentClass = CLASS_A;
 LoRaMacRegion_t g_CurrentRegion = LORAMAC_REGION_EU868;    /* Region:EU868*/
-lmh_confirm g_CurrentConfirm = LMH_CONFIRMED_MSG;
+lmh_confirm g_CurrentConfirm = LMH_UNCONFIRMED_MSG;
 uint8_t g_AppPort = LORAWAN_APP_PORT;
 
 /**@brief Structure containing LoRaWan parameters, needed for lmh_init()
