@@ -30,9 +30,13 @@ https://github.com/RAKWireless/WisBlock/tree/master/PlatformIO/
 
 Copy the file **`wiscore_rak4631.json`** to the boards folder of the nordicnrf52 platform folder.
 
-The path maybe like: 
+The path should be similar to:
 
- - Windows: %USER%\.platformio\platforms\nordicnrf52\boards
+```
+Windows: %USER%\.platformio\platforms\nordicnrf52\boards
+Linux:    ~/.platformio/platforms/nordicnrf52/boards
+Mac OS:  /Users/{Your_User_id}/.platformio/platforms/nordicnrf52/boards
+```
 
 Then, create a new project in PlatformIO:
 
