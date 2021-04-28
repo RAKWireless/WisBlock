@@ -1,0 +1,24 @@
+html
+latex
+*.d
+*.o
+*.P
+*.map
+*.axf
+*.bin
+*.jlink
+*.emSession
+*.elf
+*.ind
+.env
+.settings/
+.idea/
+/examples/*/*/build*
+test_old/
+tests_obsolete/
+_build
+# coverity intermediate files
+cov-int
+# cppcheck build directories
+*-build-dir
+/_bin/
