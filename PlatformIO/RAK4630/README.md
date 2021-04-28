@@ -50,10 +50,12 @@ After creating successfully, you can see the project:
 
 ![pio_install_platform_6](../../assets/PlatformIO/pio_install_platform_6.png)
 
-Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder which you just downloaded to the framework-arduinoadafruitnrf52 package variants folder. The path maybe like:
+Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder which you just downloaded to the framework-arduinoadafruitnrf52 package variants folder. The path should be similar to:
+```
  - Windows: %USER%\\.platformio\packages\framework-arduinoadafruitnrf52\variants
  - Linux:    ~/.platformio/packages/framework-arduinoadafruitnrf52/variants
  - Mac OS:  /Users/{Your_User_id}/.platformio/packages/framework-arduinoadafruitnrf52/variants
+```
 
 Finally, restart the PlatformIO.
 

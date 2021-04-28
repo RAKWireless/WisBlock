@@ -20,20 +20,22 @@ You can see there are several items, just click "Espressif 32" item and "Install
 
 Copy the file **`wiscore_rak11200.json`** to the boards folder of the espressif32 platform folder.
 
-The path maybe like:
-
+The path should be similar to:
+```
 - Windows: %USER%.platformio\platforms\espressif32\boards
 - Linux:    ~/.platformio/platforms/espressif32/boards
 - Mac OS:  /Users/{Your_User_id}/.platformio/platforms/espressif32/boards
+```
+
 ### Add WisBlock Core RAK11200 to the framework
 
 Refer to the modification method of Arduino IDE 
 
-The path of framework maybe like:
-
+The path should be similar to:
+```
 - Windows: %USER%.platformio\packages\framework-arduinoespressif32
 - Linux:    ~/.platformio/packages/framework-arduinoespressif32
 - Mac OS:  /Users/{Your_User_id}/.platformio/packages/framework-arduinoespressif32
-
+```
   
 
