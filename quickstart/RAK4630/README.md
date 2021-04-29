@@ -80,8 +80,8 @@ https://docs.rakwireless.com/Product-Categories/WisBlock/RAK4631/Datasheet/#over
 
 You can use Arduino IDE for WisBlock coding and programming.
 
-The RAK4631 is included in the RAK Arduino BSP.       
-You can find the installation instructions in our [RAK-nRF52-Arduino](https://github.com/RAKWireless/RAK-nRF52-Arduino#readme) repository
+The RAK4631 is included in the RAKwireless Arduino BSP.       
+You can find the installation instructions in our [RAKwireless Arduino BSP](https://github.com/RAKWireless/RAKwireless-Arduino-BSP-Index) repository.
 
 ### Load Examples
 
