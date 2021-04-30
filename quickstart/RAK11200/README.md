@@ -104,8 +104,8 @@ The GPIO assignments are defined in the RAK11200 variant.h file of the Arduino B
 
 You can use Arduino IDE for WisBlock coding and programming.
 
-The RAK11200 is included in the RAK Arduino BSP.       
-You can find the installation instructions in our [RAK-ESP32-Arduino](https://github.com/RAKWireless/RAK-ESP32-Arduino/blob/main/README.md) repository
+The RAK11200 is included in the RAKwireless Arduino BSP.       
+You can find the installation instructions in our [RAKwireless Arduino BSP](https://github.com/RAKWireless/RAKwireless-Arduino-BSP-Index) repository.
 
 
 ### Load Examples
@@ -166,7 +166,7 @@ RAK has supplied many examples source code on Github for WisBlock:
                 - [WiFiAccessPoint](/examples/RAK11200/communications/WIFI/WiFiAccessPoint/)
                 - [WiFiClient](/examples/RAK11200/communications/WIFI/WiFiClient/)
         - [RAK11200 Power](/examples/RAK11200/power/)
-            - [RAK4630_Battery_Level](/examples/RAK11200/power/RAK4630_Battery_Level_Detect/)
+            - [RAK11200_Battery_Level](/examples/RAK11200/power/RAK11200_Battery_Level_Detect/)
         - [RAK11200 Solutions](/examples/RAK11200/solutions/)
             - [Weather Display](/examples/RAK11200/solutions/weather_display/)
             - [mqtt_subscribe_publish](/examples/RAK11200/solutions/mqtt_subscribe_publish/)
