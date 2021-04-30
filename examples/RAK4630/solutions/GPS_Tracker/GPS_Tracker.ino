@@ -4,8 +4,8 @@
  * @brief This sketch demonstrate a GPS tracker that collect location from a uBlox M7 GNSS sensor
  *    and send the data to lora gateway.
  *    It uses a 3-axis acceleration sensor to detect movement of the tracker
- * @version 0.1
- * @date 2020-07-28
+ * @version 0.2
+ * @date 2021-04-30
  * 
  * @copyright Copyright (c) 2020
  * 
@@ -310,7 +310,6 @@ void direction_parse(String tmp)
 /**@brief Function for handling a LoRa tx timer timeout event.
  */
 String data = "";
-char str[50],str1[20];
 void tx_lora_periodic_handler(void)
 { 
   float x = 0;
@@ -342,48 +341,53 @@ void tx_lora_periodic_handler(void)
     }
     direction_parse(tmp_data);
     tmp_data = "";
-    
+    float flat, flon;
+    int32_t ilat, ilon;
     if (newData)
     {
-      float flat, flon;
       unsigned long age;  
       gps.f_get_position(&flat, &flon, &age);
       flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flat;
-      sprintf(str1, "%.6f", flat);
-      strcat(str,str1);
+      ilat = flat * 100000;
+      flon == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flon;
+      ilon = flon * 100000;
+      memset(m_lora_app_data.buffer, 0, LORAWAN_APP_DATA_BUFF_SIZE);
+      m_lora_app_data.port = gAppPort;
+      m_lora_app_data.buffer[0] = 0x09;
+      //lat data
+      m_lora_app_data.buffer[1] = (ilat & 0xFF000000) >> 24;
+      m_lora_app_data.buffer[2] = (ilat & 0x00FF0000) >> 16;
+      m_lora_app_data.buffer[3] = (ilat & 0x0000FF00) >> 8;
+      m_lora_app_data.buffer[4] =  ilat & 0x000000FF;
       if(direction_S_N == 0)
       {
-        strcat(str,",S,");
+        m_lora_app_data.buffer[5] = 'S';    
       }
       else
       {
-        strcat(str,",N,");
+        m_lora_app_data.buffer[5] = 'N';    
       }
-      flon == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flon;
-      sprintf(str1, "%.6f", flon);
-      strcat(str,str1);
+      //lon data
+      m_lora_app_data.buffer[6] = (ilon & 0xFF000000) >> 24;
+      m_lora_app_data.buffer[7] = (ilon & 0x00FF0000) >> 16;
+      m_lora_app_data.buffer[8] = (ilon & 0x0000FF00) >> 8;
+      m_lora_app_data.buffer[9] =  ilon & 0x000000FF;
       if(direction_E_W == 0)
       {
-        strcat(str,",E");
+        m_lora_app_data.buffer[10] = 'E';
       }
       else
       {
-        strcat(str,",W");
+        m_lora_app_data.buffer[10] = 'W';
       }
-      Serial.println(str);
+      m_lora_app_data.buffsize = 11;
+      send_lora_frame();
     }
-  
-    memset(m_lora_app_data.buffer, 0, LORAWAN_APP_DATA_BUFF_SIZE);
-    m_lora_app_data.port = gAppPort;
-    m_lora_app_data.buffer[0] = 0x09;
-    m_lora_app_data.buffer[1] = ',';
-    for(int i=0; i < strlen(str); i++)
+    else
     {
-      m_lora_app_data.buffer[i+2] = str[i];
+      TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
+      TimerStart(&appTimer);
     }
-    m_lora_app_data.buffsize = strlen(str)+2;
-    memset(str, 0, sizeof(str));
-    send_lora_frame();
   }
   else
   {
