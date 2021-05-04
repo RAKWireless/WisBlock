@@ -1,40 +1,35 @@
-## GPS Tracker over LoRaWAN®
-This solution shows how to create an GPS tracker node. After the node joins to server successfully, It will check acceleration of object. Once the value exceeds the threshold value (e.g. twist the board). It will transmits GPS information to a LoRaWan® server. 
+# GPS Tracker over LoRaWAN®
+This solution shows how to create an LoRaWAN GPS tracker using WisBlock RAK1910 GPS module together with RAK4631 WisBlock Core and a RAK1904 WisBlock accelerometer module. After a successful join to the LoRaWAN network server, the RAK4631 will check the orientation of the board using the RAK1904 accelerometer module. The orientation of the board is checked every 10 seconds and if it is on the trigger position, it will transmits GPS information to the LoRaWan® network server. This guide will cover both TTN V3 and Chirpstack.
 
-### Data Format 
-
-Data sent to LoRaWan® server will be like below:
-
-**9,4546.40891,N,12639.65641,E**
-
-
-
-
-  - First 9 is a marker for the data type, here always 9    
-  - 4546.40891 means latitude
-  - N means the Northern Hemisphere. Here maybe S, the Southern Hemisphere
-  - 12639.65641 means longitude
-  - E means the Eastern Hemisphere. Here maybe W, the Western Hemisphere
-
-### Attention
-If this examples is implemented for the Region US915, DR0 cannot be used because the package size is too large to fit into the allowed payload.    
+## Prerequisites
 
 ### Hardware required
 To build this system, the following hardware are required:
 
-- WisBlock Base RAK5005-O * 1pcs   
-- WisBlock Core RAK4631 * 1pcs   
-- WisBlock Sensor RAK1904 * 1pcs    
-- WisBlock Sensor RAK1910 * 1pcs   
+- WisBlock Base Board * 1 pc
+- WisBlock Core RAK4631 * 1pc   
+- WisBlock Sensor RAK1904 * 1pc    
+- WisBlock Sensor RAK1910 * 1pc   
+- USB Cable
+- Li-Ion or Li-Po battery (optional)
 
 ![exa-tracker-assy](../../../../assets/repo/exa-tracker-assy.png)
 
+Other important things you need to do.
+
+- You must ensure that the hardware are properly connected. Check the quick start guide of RAK1910 [hardware setup section](https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1910/Quickstart/#hardware-setup).
+- You need to be in a vicinity of an active LoRaWAN gateway and have access to the LoRaWAN network server where it transfers the LoRa packets. We, at RAKwireless, offers great selections of [LoRaWAN gateways](https://store.rakwireless.com/collections/wisgate) you can buy. Our gateways also have with built-in network server as well.
+- You need to be outdoor or near the open window to receive GPS signal. The GPS module will not work if you are testing it indoor.
+
+This example code is also compatible to the following LoRaWAN GPS Tracker Kits that you can purchase:
+
+* [LoRaWAN Tracker Kit](https://store.rakwireless.com/collections/kits-bundles/products/wisblock-kit-3-gps-tracker)
+* [LoRaWAN Tracker Kit with Solar Panel](https://store.rakwireless.com/collections/kits-bundles/products/wisblock-kit-2-lora-based-gps-tracker-with-solar-panel)
+
 ### Software required
 
-
-
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-- [RAK4630 BSP](https://github.com/RAKWireless/RAK-nRF52-Arduino)    
+- [RAKwireless Arduino BSP](https://github.com/RAKWireless/RAKwireless-Arduino-BSP-Index)    
 - SparkFun LIS3DH Arduino library
 
 ![lib-lis3dh-install](../../../../assets/Arduino/lib-lis3dh-install.png)
@@ -43,363 +38,130 @@ To build this system, the following hardware are required:
 
 ![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
-The code for the GPS tracker node is as follows:
-```cpp
-#include <Arduino.h>
-#include <LoRaWan-RAK4630.h>
-#include <SPI.h>
-#include "SparkFunLIS3DH.h" 
-#include "Wire.h"
-#include <SoftwareSerial.h>
+## How to use the sample code.
 
 
-SoftwareSerial Serial3(15, 16);  //GPS_UART_RX,GPS_UART_TX
-LIS3DH SensorTwo( I2C_MODE, 0x18 );
+- You need to select the right frequency band/region. By default, the example code uses EU868 but you can change it to US915, AU915 and etc. depending on your location.
+- Change the following keys related to OTAA. You must use the DEVEUI printed on the sticker of the WisBlock Core.
 
+```
+// Device EUI
+uint8_t nodeDeviceEUI[8] = {0x00, 0x95, 0x64, 0x1F, 0xDA, 0x91, 0x19, 0x0B};
+// Application EUI
+uint8_t nodeAppEUI[8] = {0x70, 0xB3, 0xD5, 0x7E, 0xD0, 0x02, 0x01, 0xE1};
+// Application key for AES encryption
+uint8_t nodeAppKey[16] = {0x07, 0xC0, 0x82, 0x0C, 0x30, 0xB9, 0x08, 0x70, 0x0C, 0x0F, 0x70, 0x06, 0x00, 0xB0, 0xBE, 0x09};
+```
+- After all the configurations, you can now upload the firmware to RAK4631 WisBlock Core and check the serial output.
 
+### Serial Logs
 
-// RAK4630 supply two LED
-#ifndef LED_BUILTIN
-#define LED_BUILTIN 35
-#endif
+If your code is successfully upload, you should see the following output on your Serial Monitor/Terminal. It shows that you are properly activated via OTAA.
 
-#ifndef LED_BUILTIN2
-#define LED_BUILTIN2 36
-#endif
+![exa-tracker-data](../../../../assets/Examples/lorawan_tracker_join.png)
 
-bool doOTAA = true;
-#define SCHED_MAX_EVENT_DATA_SIZE APP_TIMER_SCHED_EVENT_DATA_SIZE /**< Maximum size of scheduler events. */
-#define SCHED_QUEUE_SIZE 60  /**< Maximum number of events in the scheduler queue. */
-#define LORAWAN_DATERATE DR_0 /*LoRaMac datarates definition, from DR_0 to DR_5*/
-#define LORAWAN_TX_POWER TX_POWER_5 /*LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15*/
-#define JOINREQ_NBTRIALS 3 /**< Number of trials for the join request. */
-DeviceClass_t gCurrentClass = CLASS_A; /* class definition*/
-lmh_confirm gCurrentConfirm = LMH_CONFIRMED_MSG; /* confirm/unconfirm packet definition*/
-uint8_t gAppPort = LORAWAN_APP_PORT;   /* data port*/
+The next step is to reorient the whole module.
 
-/**@brief Structure containing LoRaWan parameters, needed for lmh_init()
- */
-static lmh_param_t lora_param_init = {LORAWAN_ADR_ON , LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
+The following part of the code will trigger the sending of LoRaWAN packets.
 
-// Foward declaration
-static void lorawan_has_joined_handler(void);
-static void lorawan_rx_handler(lmh_app_data_t *app_data);
-static void lorawan_confirm_class_handler(DeviceClass_t Class);
-static void send_lora_frame(void);
+```if (abs(x - z) < 400)``` 
 
-/**@brief Structure containing LoRaWan callback functions, needed for lmh_init()
-*/
-static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
-										lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler};
+If the absolute value of the difference between the X-axis and Z-axis of the accelerometer is less than 400, the LoRaWAN packets will be transmitted to the network server. Physically, you can trigger this condition by positioning the WisBlock upright with the USB connector either at the top or at the bottom. You can create your own conditions too when to transmit the LoRaWAN Payload.
 
+Take note that there will be no LoRaWAN transmissions if there is no GPS signal found and if the accelerometer is not in the right orientation.
 
-//OTAA keys
-uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
-uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
-uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88,0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
+GPS signal can take few seconds or minutes to get a good fix depending on your location and situation.
 
+If all are successful after waiting for the GPS signal, you should now see this on the serial monitor/terminal.
 
-// Private defination
-#define LORAWAN_APP_DATA_BUFF_SIZE 64  /**< buffer size of the data to be transmitted. */
-#define LORAWAN_APP_INTERVAL 10000 /**< Defines for user timer, the application data transmission interval. 10s, value in [ms]. */
-static uint8_t m_lora_app_data_buffer[LORAWAN_APP_DATA_BUFF_SIZE]; //< Lora user application data buffer.
-static lmh_app_data_t m_lora_app_data = {m_lora_app_data_buffer, 0, 0, 0, 0}; //< Lora user application data structure.
+![exa-tracker-transmit](../../../../assets/Examples/lorawan_tracker_transmit.png)
 
-TimerEvent_t appTimer;
-static uint32_t timers_init(void);
-static uint32_t count = 0;
-static uint32_t count_fail = 0;
+The packet should also arrive to the LoRaWAN® network server. 
 
-void setup()
+If you are using Chirpstack:
+
+![exa-tracker-chirpstack-notdecoded](../../../../assets/Examples/chirpstack_nodecode.png)
+
+And if you are using TTN V3:
+
+![exa-tracker-chirpstack-notdecoded](../../../../assets/Examples/ttn_notdecoded.png)
+
+The payload is not decoded yet so you can't see the actual GPS coordinates.
+
+### Data Format 
+
+Data sent to LoRaWan® server of this example code has the following formet:
+
+- **Buffer[0]** - 0x09 (Header indicator that the data is the GPS coordinate).
+- **Buffer[1-4]** - Latitude value in integer. To get the actual latitude value in float, this integer must be divided by 10000. This can be done on the payload decoder side.
+- **Buffer[5]** - It can be 'S' or 'N' which pertains to geographical location.
+- **Buffer[6-9]** - Latitude value in integer. To get the actual latitude value in float, this integer must be divided by 10000. This can be done on the payload decoder side.
+- **Buffer[10]** - It can be 'E' or 'W' which pertains to geographical location. 
+
+#### Chirpstack Decoder
+
+Here's the payload decoder that you can use for Chirpstack.
+
+``` 
+function Decode(fport, bytes) 
 {
-	pinMode(LED_BUILTIN, OUTPUT);
-	digitalWrite(LED_BUILTIN, LOW);
-
-  // Initialize LoRa chip.
-  lora_rak4630_init();
-
-	// Initialize Serial for debug output
-	Serial.begin(115200);
-  while(!Serial){delay(10);}
-	Serial.println("=====================================");
-	Serial.println("Welcome to RAK4630 LoRaWan!!!");
-  Serial.println("Type: OTAA");
-
-
-#if defined(REGION_AS923)
-    Serial.println("Region: AS923");
-#elif defined(REGION_AU915)
-    Serial.println("Region: AU915");
-#elif defined(REGION_CN470)
-    Serial.println("Region: CN470");
-#elif defined(REGION_CN779)
-    Serial.println("Region: CN779");
-#elif defined(REGION_EU433)
-    Serial.println("Region: EU433");
-#elif defined(REGION_IN865)
-    Serial.println("Region: IN865");
-#elif defined(REGION_EU868)
-    Serial.println("Region: EU868");
-#elif defined(REGION_KR920)
-    Serial.println("Region: KR920");
-#elif defined(REGION_US915)
-    Serial.println("Region: US915");
-#elif defined(REGION_US915_HYBRID)
-    Serial.println("Region: US915_HYBRID");
-#else
-    Serial.println("Please define a region in the compiler options.");
-#endif
-    Serial.println("=====================================");
-
-  //lis3dh init 
-  if( SensorTwo.begin() != 0 )
+  var longitude_int, latitude_int;
+  var decoded = {"latitude":"","longitude":""};
+  
+  if (fport === 2)
   {
-    Serial.println("Problem starting the sensor at 0x18.");
-  }
-  else
-  {
-    Serial.println("Sensor at 0x18 started.");
-  }
-  //gps init 
-  pinMode(17, OUTPUT);
-  digitalWrite(17, HIGH);
-  pinMode(34,OUTPUT); 
-  digitalWrite(34,0);
-  delay(1000);
-  digitalWrite(34,1);
-  delay(1000);
-  Serial3.begin(9600);
-  while(!Serial3);
-  Serial.println("gps uart init ok!");
-
-	//creat a user timer to send data to server period
-    uint32_t err_code;
-
-  err_code = timers_init();
-	if (err_code != 0)
-	{
-		Serial.printf("timers_init failed - %d\n", err_code);
-	}
-
-	// Setup the EUIs and Keys
-	lmh_setDevEui(nodeDeviceEUI);
-	lmh_setAppEui(nodeAppEUI);
-	lmh_setAppKey(nodeAppKey);
-
-	// Initialize LoRaWan
-	err_code = lmh_init(&lora_callbacks, lora_param_init,doOTAA);
-	if (err_code != 0)
-	{
-		Serial.printf("lmh_init failed - %d\n", err_code);
-	}
-
-	// Start Join procedure
-	lmh_join();
-}
-
-void loop()
-{
-	 // Handle Radio events
-	 Radio.IrqProcess();
-}
-
-/**@brief LoRa function for handling HasJoined event.
- */
-void lorawan_has_joined_handler(void)
-{
-  Serial.println("OTAA Mode, Network Joined!");
-
-  lmh_error_status ret = lmh_class_request(gCurrentClass);
-  if(ret == LMH_SUCCESS)
-  {
-    delay(1000);
-  	TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-  	TimerStart(&appTimer);
-  }
-}
-
-/**@brief Function for handling LoRaWan received data from Gateway
- *
- * @param[in] app_data  Pointer to rx data
- */
-void lorawan_rx_handler(lmh_app_data_t *app_data)
-{
-	Serial.printf("LoRa Packet received on port %d, size:%d, rssi:%d, snr:%d, data:%s\n",
-				  app_data->port, app_data->buffsize, app_data->rssi, app_data->snr, app_data->buffer);
-
-}
-
-void lorawan_confirm_class_handler(DeviceClass_t Class)
-{
-    Serial.printf("switch to class %c done\n", "ABC"[Class]);
-    // Informs the server that switch has occurred ASAP
-    m_lora_app_data.buffsize = 0;
-    m_lora_app_data.port = gAppPort;
-    lmh_send(&m_lora_app_data, gCurrentConfirm);
-}
-
-void send_lora_frame(void)
-{
-	if (lmh_join_status_get() != LMH_SET)
-	{
-		//Not joined, try again later
-		return;
-	}
-
-
-    lmh_error_status error = lmh_send(&m_lora_app_data, gCurrentConfirm);
-    if (error == LMH_SUCCESS)
+    if(bytes[0]==9) // check if the header byte is 9.
     {
-        count++;
-        Serial.printf("lmh_send ok count %d\n", count);
+      latitude_int = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | (bytes[4]);
+      decoded.latitude = latitude_int / 100000;
+      longitude_int = (bytes[6] << 24) | (bytes[7] << 16) | (bytes[8] << 8) | (bytes[9]);
+      decoded.longitude = longitude_int / 100000;
+      return decoded;
     }
-    else
-    {
-        count_fail++;
-        Serial.printf("lmh_send fail count %d\n", count_fail);
-    }
-    TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-    TimerStart(&appTimer);
-}
-
-String comdata = "";
-/* return 0 ok, 1 fail*/
-/*$GPRMC,080655.00,A,4546.40891,N,12639.65641,E,1.045,328.42,170809,,,A*60*/
-int parse_gps()
-{
-  if(comdata.indexOf(",V,")!= -1)
-    return 1;
-
-  return 0;
-}
-/**@brief Function for handling a LoRa tx timer timeout event.
- */
-String data="";
-void tx_lora_periodic_handler(void)
-{
-   uint32_t i = 0;
-   uint32_t j = 0;
-   uint32_t k = 0;
-   int res = 1;
-   float x = 0;
-   float y = 0;
-   float z = 0;
-   float z1 = 0;
-   Serial.println("check acc!");
-   x = SensorTwo.readFloatAccelX()*1000;
-   y = SensorTwo.readFloatAccelY()*1000;
-   z = SensorTwo.readFloatAccelZ()*1000;
-   data = "X = "+String(x)+"mg"+" Y = "+String(y)+"mg"+" Z ="+String(z)+"mg";
-   Serial.println(data);
-   if( abs(x-z) < 400)
-   {
-       while (Serial3.available() > 0){
-       // get the byte data from the GPS
-          comdata += char(Serial3.read());
-          delay(2);
-          if(comdata.indexOf("GPRMC")!= -1 && comdata.indexOf("GPVTG")!= -1)
-            {
-               break;
-            }
-       }
-
-       Serial.println(comdata);
-       res = parse_gps();
-       if(res == 1)
-       {
-            TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-            TimerStart(&appTimer);
-            return;
-       }
-       delay(1000);
-       j = comdata.indexOf(",A,");
-       j = j+3;
-       if(comdata.indexOf(",E,") != -1)
-       {
-          k = comdata.indexOf(",E,");
-          k = k+1;
-       }
-       else
-       {
-          k = comdata.indexOf(",W,");
-          k = k+1;
-       }
-
-       memset(m_lora_app_data.buffer, 0, LORAWAN_APP_DATA_BUFF_SIZE);
-       m_lora_app_data.port = gAppPort;
-       m_lora_app_data.buffer[i++] = 0x09;  
-       m_lora_app_data.buffer[i++] = ','; 	   
-       while(j!=k+1)
-       {
-         m_lora_app_data.buffer[i++] = comdata[j];
-         j++;
-       }
-       m_lora_app_data.buffsize = i;
-       comdata = "";
-       
-       send_lora_frame();
-   }
-   else
-   {
-      TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-      TimerStart(&appTimer);
-   }
-}
-
-/**@brief Function for the Timer initialization.
- *
- * @details Initializes the timer module. This creates and starts application timers.
- */
-uint32_t timers_init(void)
-{
-    TimerInit(&appTimer, tx_lora_periodic_handler);
-    return 0;
+  }
 }
 
 ```
 
-### Result
+After modifying the decoder in Chirpstack, you can now see the GPS coordinates value of latitude and longitude.
 
-```js
-11:17:33.167 -> =====================================
-11:17:33.167 -> Welcome to RAK4630 LoRaWan!!!
-11:17:33.167 -> Type: OTAA
-11:17:33.167 -> Region: EU868
-11:17:33.167 -> =====================================
-11:17:33.167 -> Sensor at 0x18 started.
-11:17:35.134 -> gps uart init ok!
-11:18:30.529 -> OTAA Mode, Network Joined!
-11:18:41.527 -> check acc!
-11:18:41.527 -> X = 7.01mg Y = -38.03mg Z =-967.79mg
-11:18:51.513 -> check acc!
-11:18:51.513 -> X = 5.00mg Y = -35.03mg Z =-942.77mg
-11:19:01.534 -> check acc!
-11:19:01.534 -> X = 11.01mg Y = -327.27mg Z =-468.38mg
-11:19:11.526 -> check acc!
-11:19:11.526 -> X = 692.56mg Y = -613.50mg Z =422.34mg
-11:19:11.630 -> $GPRMC,080655.00,A,4546.40891,N,12639.65641,E,1.045,328.42,170809,,,A*60
-11:19:12.640 -> lmh_send ok count 1
-11:19:22.642 -> check acc!
-11:19:22.642 -> X = 15.01mg Y = -22.02mg Z =-972.79mg
-11:19:32.643 -> check acc!
-11:19:32.643 -> X = 16.01mg Y = -23.02mg Z =-968.79mg
-11:19:42.669 -> check acc!
-11:19:42.669 -> X = 18.01mg Y = -25.02mg Z =-972.79mg
-11:19:52.647 -> check acc!
-11:19:52.647 -> X = 20.02mg Y = -27.02mg Z =-969.79mg
+![exa-tracker-chirpstack-decoded](../../../../assets/Examples/chirpstack_decoded.png)
+
+#### TTN V3 Decoder
+
+Here's the payload decoder that you can use for TTN V3.
+
+``` 
+function Decoder(bytes, port) 
+{
+  var longitude_int, latitude_int;
+  var decoded = {};
+  
+  if (port === 2)
+  {
+    if(bytes[0]==9) // check if the header byte is 9.
+    {
+      latitude_int = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | (bytes[4]);
+      decoded.latitude = latitude_int / 100000;
+      longitude_int = (bytes[6] << 24) | (bytes[7] << 16) | (bytes[8] << 8) | (bytes[9]);
+      decoded.longitude = longitude_int / 100000;
+      return decoded;
+    }
+  }
+}
 
 ```
 
-Data arrives at LoRaWAN® server.
+After modifying the decoder in TTN V3, you can now see the GPS coordinates value of latitude and longitude.
 
-![exa-tracker-data](../../../../assets/Examples/exa-tracker-data.png)
+![exa-tracker-chirpstack-decoded](../../../../assets/Examples/ttn_decoded.png)
 
 
+### Timing
 
-### Notes
+In this solution example, checking of accelerometer is in period of 10 seconds. On actual LoRaWAN deployment, this should be much higher to follow the regulations stated on the LoRaWAN Regional Parameters specifications.
 
-In this solution, acceleration period is 10s. Because the minimum send interval of LoRaWAN® protocol is limited. To keep success rate, the solution uses 10s.
-
+If there's no GPS coordinate transmission even if you are sure that the accelerometer is already in the right trigger orientation `if (abs(x - z) < 400)`, then you need to check the RAK1910 GPS module if you can get GPS signal. Please have a look on this [initial RAK1910 quick test](https://docs.rakwireless.com/Product-Categories/WisBlock/RAK1910/Quickstart/#initial-test-of-the-rak1910-wisblock-module).
 
 
 LoRa® is a registered trademark or service mark of Semtech Corporation or its affiliates. LoRaWAN® is a licensed mark.
