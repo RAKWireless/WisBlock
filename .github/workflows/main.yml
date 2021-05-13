@@ -3,13 +3,18 @@ name: RAK BSP Arduino Build CI
 on: [pull_request, push, repository_dispatch]
 
 jobs:
-  build:
+  arduino:
+    strategy:
+      fail-fast: false
+      matrix:
+        arduino-platform: ["rak4631", "rak11200"]
+
     runs-on: ubuntu-18.04
     
     steps:
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: '3.8'
     - uses: actions/checkout@v2
     - uses: actions/checkout@v2
       with:
@@ -80,4 +85,4 @@ jobs:
         mv Arduino_JSON /home/runner/Arduino/libraries/Arduino_JSON
        
     - name: test platforms
-      run: python3 ci/build_platform.py rak4631 rak11200
+      run: python3 ci/build_platform.py ${{ matrix.arduino-platform }}
