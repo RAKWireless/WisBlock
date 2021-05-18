@@ -8,7 +8,7 @@
 **/
 
 
-
+#include <Arduino.h>
 #include "SparkFunLIS3DH.h" //http://librarymanager/All#SparkFun-LIS3DH
 #include <Wire.h>
 
