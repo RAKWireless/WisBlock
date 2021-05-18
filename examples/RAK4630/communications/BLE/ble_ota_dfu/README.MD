@@ -137,7 +137,7 @@ void loop()
 
  In this example we use a the following demo zip file as the DFU file.
 
-​		![ard-hex-file-location](../../..././../assets/Arduino/ard-hex-file-location.png)
+​		![ard-hex-file-location](../../../../../assets/Arduino/ard-hex-file-location.png)
 
 
 
@@ -153,15 +153,14 @@ void loop()
 
 ​		Select the DFU file you have copied to phone.
 
-​		![ble_toolbox-1](../../..././../assets/Examples/ble_toolbox-2.png)
+​		![ble_toolbox-3](../../../../../assets/Examples/ble_toolbox-2.png)    
 
 ​		Select the BLE device By device name which is advertised.
 
-​		![ble_toolbox-3](../../..././../assets/Examples/ble_toolbox-3.png)
-
+​		![ble_toolbox-3](../../../../../assets/Examples/ble_toolbox-3.png)    
 ​		Click "UPLOAD" button to start upgrade and wait until success.
 
-​		![ble_toolbox-4](../../..././../assets/Examples/ble_toolbox-4.png)
+​		![ble_toolbox-3](../../../../../assets/Examples/ble_toolbox-4.png)    
 
 4. **Check the upgrade result**
 
