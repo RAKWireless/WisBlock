@@ -38,6 +38,27 @@ extern "C"
 {
 #endif // __cplusplus
 
+	/*
+ * WisBlock Base GPIO definitions
+ */
+	static const uint8_t WB_IO1 = 17;	   // SLOT_A SLOT_B
+	static const uint8_t WB_IO2 = 34;	   // SLOT_A SLOT_B
+	static const uint8_t WB_IO3 = 21;	   // SLOT_C
+	static const uint8_t WB_IO4 = 4;	   // SLOT_C
+	static const uint8_t WB_IO5 = 9;	   // SLOT_D
+	static const uint8_t WB_IO6 = 10;	   // SLOT_D
+	static const uint8_t WB_SW1 = 33;	   // IO_SLOT
+	static const uint8_t WB_A0 = 5;		   // IO_SLOT
+	static const uint8_t WB_A1 = 31;	   // IO_SLOT
+	static const uint8_t WB_I2C1_SDA = 13; // SENSOR_SLOT IO_SLOT
+	static const uint8_t WB_I2C1_SCL = 14; // SENSOR_SLOT IO_SLOT
+	static const uint8_t WB_I2C2_SDA = 24; // IO_SLOT
+	static const uint8_t WB_I2C2_SCL = 25; // IO_SLOT
+	static const uint8_t WB_SPI_CS = 26;   // IO_SLOT
+	static const uint8_t WB_SPI_CLK = 3;   // IO_SLOT
+	static const uint8_t WB_SPI_MISO = 29; // IO_SLOT
+	static const uint8_t WB_SPI_MOSI = 30; // IO_SLOT
+
 // Number of pins defined in PinDescription array
 #define PINS_COUNT (48)
 #define NUM_DIGITAL_PINS (48)
@@ -54,7 +75,7 @@ extern "C"
 #define LED_GREEN PIN_LED1
 #define LED_BLUE PIN_LED2
 
-#define LED_STATE_ON 0 // State when LED is litted
+#define LED_STATE_ON 1 // State when LED is litted
 
 /*
  * Buttons
@@ -67,8 +88,8 @@ extern "C"
 /*
  * Analog pins
  */
-#define PIN_A0 (5)
-#define PIN_A1 (31)
+#define PIN_A0 (5)	//(3)
+#define PIN_A1 (31) //(4)
 #define PIN_A2 (28)
 #define PIN_A3 (29)
 #define PIN_A4 (30)
@@ -108,11 +129,11 @@ extern "C"
  */
 #define SPI_INTERFACES_COUNT 1
 
-#define PIN_SPI_MISO (45)
-#define PIN_SPI_MOSI (44)
-#define PIN_SPI_SCK (43)
+#define PIN_SPI_MISO (29)
+#define PIN_SPI_MOSI (30)
+#define PIN_SPI_SCK (3)
 
-	static const uint8_t SS = 42;
+	static const uint8_t SS = 26;
 	static const uint8_t MOSI = PIN_SPI_MOSI;
 	static const uint8_t MISO = PIN_SPI_MISO;
 	static const uint8_t SCK = PIN_SPI_SCK;
@@ -126,12 +147,12 @@ extern "C"
 #define PIN_WIRE_SCL (14)
 
 // QSPI Pins
-#define PIN_QSPI_SCK 3
-#define PIN_QSPI_CS 26
-#define PIN_QSPI_IO0 30
-#define PIN_QSPI_IO1 29
-#define PIN_QSPI_IO2 28
-#define PIN_QSPI_IO3 2
+#define PIN_QSPI_SCK 3	// 19
+#define PIN_QSPI_CS 26	// 17
+#define PIN_QSPI_IO0 30 // 20
+#define PIN_QSPI_IO1 29 // 21
+#define PIN_QSPI_IO2 28 // 22
+#define PIN_QSPI_IO3 2	// 23
 
 // On-board QSPI Flash
 #define EXTERNAL_FLASH_DEVICES IS25LP080D

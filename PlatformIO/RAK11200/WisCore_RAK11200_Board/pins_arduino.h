@@ -29,6 +29,9 @@ static const uint8_t RX = 3;
 #define WB_IO5 13
 #define WB_IO6 22
 #define WB_SW1 34
+#define WB_A0 36
+#define WB_A1 39
+#define WB_CS 32
 #define WB_LED1 12
 #define WB_LED2 2
 
@@ -39,8 +42,5 @@ static const uint8_t SS = 32;
 static const uint8_t MOSI = 25;
 static const uint8_t MISO = 35;
 static const uint8_t SCK = 33;
-
-static const uint8_t WB_A0 = 36;
-static const uint8_t WB_A1 = 39;
 
 #endif /* Pins_Arduino_h */
