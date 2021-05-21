@@ -54,7 +54,10 @@ To build this system, the following hardware are required:
 
 ![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
-The code for the weather monitor node is as follows:
+### The code for the weather monitor node can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/Weather_Monitoring/Weather_Monitoring.ino)
+
+<!--
+is as follows:
 ```cpp
 #include <Arduino.h>
 #include <LoRaWan-RAK4630.h>
@@ -392,7 +395,10 @@ void configureSensor() {
 }
 ```
 
+-->
+
 ### Result
+Here is the log output of the application:
 
 ```
 09:41:40.546 -> =====================================

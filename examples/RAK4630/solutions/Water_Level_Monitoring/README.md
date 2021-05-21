@@ -47,7 +47,9 @@ We chose a water level sensor with a voltage of 3v3, so we can use the board to 
 ![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
 
+The code for the water level monitor node can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/Water_Level_Monitoring/Water_Level_Monitoring.ino)
 
+<!--
 The code for the water level monitor node is as follows:
 ```cpp
 #include <Arduino.h>
@@ -317,7 +319,7 @@ uint32_t timers_init(void)
 }
 ```
 
-
+-->
 
 The log of sensor node is shown as follows:
 

@@ -45,6 +45,9 @@ To build this system, the following hardware are required:
 
 ![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
+The code for the environment sensor node can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/Environment_Monitoring/Environment_Monitoring.ino)
+
+<!--
 The code for the environment sensor node is as follows:
 ```cpp
 #include <Arduino.h>
@@ -348,7 +351,7 @@ void bme680_get()
     bme680.setForcedMode();
 }
 ```
-
+-->
 ### Result
 
 ```js

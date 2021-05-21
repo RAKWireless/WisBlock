@@ -84,6 +84,9 @@ The assembly of sensor node is as follows:
 
 ### 4. Example
 
+The code for the wind speed sensor node can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/Wind_Speed_Monitoring/Wind_Speed_Monitoring.ino)
+
+<!--
 The code for the wind speed sensor node is as follows:
 
 ```cpp
@@ -355,6 +358,8 @@ uint32_t timers_init(void)
     return 0;
 }
 ```
+
+-->
 
 The logs of sensor node is as follows:
 

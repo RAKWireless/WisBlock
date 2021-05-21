@@ -1,4 +1,4 @@
-## Inteligence Agriculture based on LoRaWAN®
+## Intelligent Agriculture based on LoRaWAN®
 ### 1. Introduction
 
 ![exa-agri-arch](../../../../assets/Examples/exa-agri-arch.png)
@@ -69,6 +69,9 @@ This solutions diagram:
 
 ### 4. Example
 
+The code for the intelligent agriculture sensor node can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/Intelligent_Agriculture/Intelligent_Agriculture.ino)
+
+<!--
 The code for the intelligent agriculture sensor node is as follows:
 ```cpp
 #include <ArduinoModbus.h>
@@ -386,5 +389,7 @@ uint32_t timers_init(void)
     return 0;
 }
 ```
+
+-->
 
 LoRa® is a registered trademark or service mark of Semtech Corporation or its affiliates. LoRaWAN® is a licensed mark.

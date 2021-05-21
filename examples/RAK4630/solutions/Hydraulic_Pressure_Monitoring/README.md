@@ -42,6 +42,9 @@ The test scenario is shown as follows:
 
 ![lib-sx12x-install](../../../../assets/Arduino/lib-sx12x-install.png)
 
+The code for the hydraulic pressure sensor node can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/Hydraulic_Pressure_Monitoring/Hydraulic_Pressure_Monitoring.ino)
+
+<!--
 The code for the hydraulic pressure sensor node is as follows:
 ```cpp
 #include <Arduino.h>
@@ -302,7 +305,7 @@ uint32_t timers_init(void)
 }
 ```
 
-
+-->
 
 The log of sensor node is shown as follows:
 

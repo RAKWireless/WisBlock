@@ -79,6 +79,9 @@ The assembly of sensor node is as follows:
 
 ### 4. Example
 
+The code for the agriculture PAR sensor node can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/PAR_Monitoring/PAR_Monitoring.ino)
+
+<!--
 The code for the agriculture PAR sensor node is as follows:
 ```cpp
 #include <Arduino.h>
@@ -349,6 +352,8 @@ uint32_t timers_init(void)
     return 0;
 }
 ```
+
+-->
 
 The logs of sensor node is as follows:
 

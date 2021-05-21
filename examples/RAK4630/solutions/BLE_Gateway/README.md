@@ -43,8 +43,9 @@ For stable connection, please use screws to tighten.
 
 ----
 
+The code for the sensors node can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/BLE_Gateway/ble_environment_node/ble_environment_node.ino)
 
-
+<!--
 The code of sensors node is as follows:
 
 ```
@@ -53,7 +54,7 @@ The code of sensors node is as follows:
  * @author rakwireless.com
  * @brief This sketch demonstrate how to get environment data from BME680
  *    and send the data to ble gateway with ble gatt.
- *    ble environment node <-ble-> ble gateway <-lora-> lora gateway <--> lora server
+ *    ble environment node <- ble -> ble gateway <- lora -> lora gateway < -- > lora server
  * @version 0.1
  * @date 2020-07-28
  * 
@@ -348,9 +349,11 @@ void loop()
   delay(20000);
 }
 ```
+-->
 
+The code for the gateway can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/BLE_Gateway/ble_gateway/ble_gateway.ino)
 
-
+<!--
 The code of gateway is as follows:
 
 ```
@@ -358,7 +361,7 @@ The code of gateway is as follows:
    This sketch demonstrate how to get the environment data from ble environment node.
    And send the data to lora® gateway.
 
-   ble environment node <-ble-> ble gateway <-lora®-> lora® gateway <--> lora® server
+   ble environment node < -ble- > ble gateway < -lora®- > lora® gateway < -- > lora® server
 
 */
 #include <Arduino.h>
@@ -757,7 +760,7 @@ void environment_notify_callback(BLEClientCharacteristic* chr, uint8_t* data, ui
 }
 ```
 
-
+-->
 
 ## Test Results
 

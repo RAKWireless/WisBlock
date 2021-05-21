@@ -95,6 +95,9 @@ The assembly of sensor node is as follows:
 
 ### 4. Example
 
+The code for the agriculture soil conductivity sensor node can be found in the [sketch file](https://github.com/RAKWireless/WisBlock/blob/master/examples/RAK4630/solutions/Soil_Conductivity_Monitoring/Soil_Conductivity_Monitoring.ino)
+
+<!--
 The code for the agriculture soil conductivity sensor node is as follows:
 ```cpp
 #include <Arduino.h>
@@ -388,6 +391,8 @@ uint32_t timers_init(void)
     return 0;
 }
 ```
+
+-->
 
 The logs of sensor node is as follows:
 

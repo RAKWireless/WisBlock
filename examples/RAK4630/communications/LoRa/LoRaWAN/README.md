@@ -131,6 +131,7 @@ At the same time, server will show the data from RAK4631.
 
 It is a very easy way for users to finish their first LoRaWAN® trip. But most users want to apply LoRaWAN® to their own application. RAKwireless also provide a efficient way for them.
 
+<!--
 ### 3.4 LoRaWAN® example analyze
 
 Here will analyze the example above in details, other examples are based on this.
@@ -163,17 +164,21 @@ WisBlock Provides three LEDs, Red for power sign. The rest are for users.
 #### 3.4.3 LoRaWAN® software configuration 
 
 ```
-bool doOTAA = true;
+bool doOTAA = true;   // OTAA is used by default.
 #define SCHED_MAX_EVENT_DATA_SIZE APP_TIMER_SCHED_EVENT_DATA_SIZE /**< Maximum size of scheduler events. */
-#define SCHED_QUEUE_SIZE 60  /**< Maximum number of events in the scheduler queue. */
-#define LORAWAN_DATERATE DR_0 /*LoRaMac datarates definition, from DR_0 to DR_5*/
-#define LORAWAN_TX_POWER TX_POWER_5 /*LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15*/
-#define JOINREQ_NBTRIALS 3 /**< Number of trials for the join request. */
-DeviceClass_t gCurrentClass = CLASS_A; /* class definition*/
-lmh_confirm gCurrentConfirm = LMH_CONFIRMED_MSG; /* confirm/unconfirm packet definition*/
-uint8_t gAppPort = LORAWAN_APP_PORT;   /* data port*/
+#define SCHED_QUEUE_SIZE 60										  /**< Maximum number of events in the scheduler queue. */
+#define LORAWAN_DATERATE DR_0									  /*LoRaMac datarates definition, from DR_0 to DR_5*/
+#define LORAWAN_TX_POWER TX_POWER_5							/*LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15*/
+#define JOINREQ_NBTRIALS 3										  /**< Number of trials for the join request. */
+DeviceClass_t g_CurrentClass = CLASS_A;					/* class definition*/
+LoRaMacRegion_t g_CurrentRegion = LORAMAC_REGION_EU868;    /* Region:EU868*/
+lmh_confirm g_CurrentConfirm = LMH_UNCONFIRMED_MSG;				  /* confirm/unconfirm packet definition*/
+uint8_t gAppPort = LORAWAN_APP_PORT;							        /* data port*/
 
-static lmh_param_t lora_param_init = {LORAWAN_ADR_ON , LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
+/**@brief Structure containing LoRaWan parameters, needed for lmh_init()
+*/
+static lmh_param_t g_lora_param_init = {LORAWAN_ADR_ON, LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
+
 
 ```
 
@@ -707,5 +712,5 @@ Same in Arduino project, *.ino. LoRaWAN application port  can be set from **0~25
 
 uint8_t gAppPort = 2;   /* data port*/
 
-
+-->
 LoRa® is a registered trademark or service mark of Semtech Corporation or its affiliates. LoRaWAN® is a licensed mark.
