@@ -7,6 +7,10 @@
    @copyright Copyright (c) 2020
 **/
 
+#ifdef _VARIANT_RAK4630_
+#include "Adafruit_TinyUSB.h"
+#endif
+
 #define BG77_POWER_KEY WB_IO1
 
 void setup()

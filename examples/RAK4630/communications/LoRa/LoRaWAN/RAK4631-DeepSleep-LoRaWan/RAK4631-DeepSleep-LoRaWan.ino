@@ -52,7 +52,7 @@ uint8_t eventType = -1;
 void periodicWakeup(TimerHandle_t unused)
 {
 	// Switch on blue LED to show we are awake
-	digitalWrite(LED_CONN, HIGH);
+	digitalWrite(LED_BUILTIN, HIGH);
 	eventType = 1;
 	// Give the semaphore, so the loop task will wake up
 	xSemaphoreGiveFromISR(taskEvent, pdFALSE);
@@ -75,7 +75,7 @@ void setup(void)
 
 	// Initialize the connection status LED
 	pinMode(LED_CONN, OUTPUT);
-	digitalWrite(LED_CONN, LOW);
+	digitalWrite(LED_CONN, HIGH);
 
 #ifndef MAX_SAVE
 	// Initialize Serial for debug output
@@ -213,8 +213,8 @@ void loop(void)
 #endif
 			break;
 		}
+   digitalWrite(LED_BUILTIN, LOW);
 		// Go back to sleep
 		xSemaphoreTake(taskEvent, 10);
 	}
 }
-
