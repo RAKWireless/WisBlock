@@ -46,7 +46,7 @@ bool sendLoRaFrame(void);
    LORAWAN_DUTYCYCLE_ON or LORAWAN_DUTYCYCLE_OFF to enable or disable duty cycles
                      Please note that ETSI mandates duty cycled transmissions.
 */
-static lmh_param_t lora_param_init = {LORAWAN_ADR_OFF, DR_3, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_DEFAULT_TX_POWER, LORAWAN_DUTYCYCLE_ON};
+static lmh_param_t lora_param_init = {LORAWAN_ADR_OFF, DR_3, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_DEFAULT_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
 
 /** Structure containing LoRaWan callback functions, needed for lmh_init() */
 static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
@@ -80,7 +80,6 @@ LoRaMacRegion_t gCurrentRegion = LORAMAC_REGION_EU868;  /* Region:EU868*/
    -1 => SX126x HW init failure
    -2 => LoRaWan MAC initialization failure
    -3 => Subband selection failure
-   -4 => LoRaWan handler task start failure
 */
 int8_t initLoRaWan(void)
 {
