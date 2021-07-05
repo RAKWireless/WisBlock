@@ -21,6 +21,10 @@
    SPI_CS    <->  P0.26 (Arduino GPIO number 26) 
  */
 
+#ifdef _VARIANT_RAK4630_
+#include "Adafruit_TinyUSB.h"
+#endif
+
 #define BG77_POWER_KEY 17
 char cArr[128] = {0};
 String bg_rsp = "";

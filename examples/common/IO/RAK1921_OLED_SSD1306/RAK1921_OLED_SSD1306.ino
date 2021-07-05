@@ -104,9 +104,9 @@ void setup()
 
 void loop()
 {
-  if (! bme.performReading()) {
+  if (! bme.performReading()) 
+  {
     Serial.println("Failed to perform reading :(");
-    return;
   }
   bme680_get();
   delay(5000);
