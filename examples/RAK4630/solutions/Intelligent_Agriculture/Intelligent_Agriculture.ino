@@ -139,6 +139,9 @@ void setup()
     case LORAMAC_REGION_CN470:
       Serial.println("Region: CN470");
       break;
+  case LORAMAC_REGION_CN779:
+    Serial.println("Region: CN779");
+    break;
     case LORAMAC_REGION_EU433:
       Serial.println("Region: EU433");
       break;
@@ -154,6 +157,18 @@ void setup()
     case LORAMAC_REGION_US915:
       Serial.println("Region: US915");
       break;
+  case LORAMAC_REGION_RU864:
+    Serial.println("Region: RU864");
+    break;
+  case LORAMAC_REGION_AS923_2:
+    Serial.println("Region: AS923-2");
+    break;
+  case LORAMAC_REGION_AS923_3:
+    Serial.println("Region: AS923-3");
+    break;
+  case LORAMAC_REGION_AS923_4:
+    Serial.println("Region: AS923-4");
+    break;
   }
   Serial.println("=====================================");
   
