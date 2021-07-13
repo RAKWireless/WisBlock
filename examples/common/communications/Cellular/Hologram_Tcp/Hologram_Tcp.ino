@@ -8,9 +8,7 @@
 **/
 
 
-#ifdef _VARIANT_RAK4630_
-#include "Adafruit_TinyUSB.h"
-#endif
+#include "SPI.h"
 
 #define BG77_POWER_KEY WB_IO1
 #define BG77_GPS_ENABLE WB_IO2
