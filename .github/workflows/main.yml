@@ -31,7 +31,7 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoRS485
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SD
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit-MCP23017-Arduino-Library
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_MCP23017
 
         git clone --quiet https://github.com/sparkfun/SparkFun_SHTC3_Arduino_Library
         mv SparkFun_SHTC3_Arduino_Library /home/runner/Arduino/libraries/SparkFun_SHTC3_Arduino_Library
