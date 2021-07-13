@@ -31,7 +31,7 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoRS485
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SD
-        git clone --quiet https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library/tree/1.3.0
+        git clone --quiet https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library --branch 1.3.0
         mv Adafruit-MCP23017-Arduino-Library /home/runner/Arduino/libraries/Adafruit-MCP23017-Arduino-Library
 
 
