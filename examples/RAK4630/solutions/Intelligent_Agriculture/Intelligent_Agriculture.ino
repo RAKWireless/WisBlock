@@ -91,9 +91,6 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  // Initialize LoRa chip.
-  lora_rak4630_init();
-
   // Init Modbus
   if (!ModbusRTUClient.begin(9600))
   {
@@ -116,6 +113,9 @@ void setup()
       break;
     }
   }
+
+  // Initialize LoRa chip.
+  lora_rak4630_init();
 
   Serial.println("=====================================");
   Serial.println("Welcome to RAK4630 LoRaWan!!!");

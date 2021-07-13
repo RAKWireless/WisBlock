@@ -51,9 +51,6 @@ static uint8_t TxdBuffer[64];
 void setup()
 {
 
-	// Initialize LoRa chip.
-	lora_rak4630_init();
-
 	// Initialize Serial for debug output
 	time_t timeout = millis();
 	Serial.begin(115200);
@@ -68,6 +65,10 @@ void setup()
             break;
         }
 	}
+
+	// Initialize LoRa chip.
+	lora_rak4630_init();
+
 	Serial.println("=====================================");
 	Serial.println("LoRap2p Tx Test");
 	Serial.println("=====================================");

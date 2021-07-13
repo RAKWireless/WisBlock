@@ -96,9 +96,6 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  // Initialize LoRa chip.
-  lora_rak4630_init();
-
   // Initialize Serial for debug output
   time_t timeout = millis();
   Serial.begin(115200);
@@ -113,6 +110,10 @@ void setup()
       break;
     }
   }
+
+  // Initialize LoRa chip.
+  lora_rak4630_init();
+
   Serial.println("=====================================");
   Serial.println("Welcome to RAK4630 LoRaWan!!!");
   if (doOTAA)
