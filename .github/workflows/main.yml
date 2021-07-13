@@ -31,6 +31,7 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoRS485
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SD
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit-MCP23017-Arduino-Library
 
         git clone --quiet https://github.com/sparkfun/SparkFun_SHTC3_Arduino_Library
         mv SparkFun_SHTC3_Arduino_Library /home/runner/Arduino/libraries/SparkFun_SHTC3_Arduino_Library
@@ -87,7 +88,6 @@ jobs:
         mv Arduino_JSON /home/runner/Arduino/libraries/Arduino_JSON
         git clone --quiet https://github.com/adafruit/Adafruit_FRAM_I2C
         mv Adafruit_FRAM_I2C /home/runner/Arduino/libraries/Adafruit_FRAM_I2C
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Adafruit_MCP23017_Arduino_Library
         git clone --quiet https://github.com/melopero/Melopero_RV-3028_Arduino_Library
         mv Melopero_RV-3028_Arduino_Library /home/runner/Arduino/libraries/Melopero_RV-3028_Arduino_Library
         git clone --quiet https://github.com/janelia-arduino/PCA9685
