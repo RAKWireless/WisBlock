@@ -6,23 +6,23 @@
  * @date 2021-05-01
  * @copyright Copyright (c) 2021
  */
-#include  "lin_bus.h"
+#include  "lin_bus.h"   //library: http://librarymanager/All#RAKwireless_TLE7259_LIN_Bus_library
 
-#ifdef RAK4630
+#if defined(_VARIANT_RAK4630_)
   #define BOARD "RAK4631 "
   #define LED_GREEN 35
   #define LED_BLUE  36
   int lin_tx =  16;
-#elif ESP32
-  #define BOARD "RAK11200 " 
-  #define LED_GREEN  12
-  #define LED_BLUE   2  
-  int lin_tx =  21; 
-#else
-  #define BOARD "RAK11300 " 
+#elif defined(_VARIANT_RAK11300_) 
+  #define BOARD "RAK11300"   
   #define LED_GREEN  23
-  #define LED_BLUE   24   
-  int lin_tx =  0;                  
+  #define LED_BLUE   24
+  int lin_tx =  0;  
+#else 
+  #define BOARD "RAK11200 "   
+  #define LED_GREEN  12
+  #define LED_BLUE   2
+  int lin_tx =  21;                    
 #endif
 
 int lin_en = WB_IO6;  //internal pulldown, EN=0 is sleep mode, EN=1 is normal operation mode.
@@ -37,8 +37,8 @@ uint8_t ledOFF = 0;    //the value control led off
 int dataSize = 2;
 uint8_t readData[2];
 uint8_t sendData[2] = {0,0}; //   
-void setup() {
-  
+void setup() 
+{  
   pinMode(lin_wk,OUTPUT);
   digitalWrite(lin_wk,HIGH);
   time_t timeout = millis(); 
@@ -55,11 +55,14 @@ void setup() {
     }
   }
   lin1.master(baute);
-  Serial.println("TEST RAK13005");
+  Serial.println("------------------------------");
+  Serial.println(BOARD);
+  Serial.println("TEST RAK13005 master");
+  Serial.println("------------------------------");
 }
 
-void loop() {
- 
+void loop() 
+{ 
   lin1.write(0x01, sendData, dataSize); // Write data to LIN  
   time_t timeout = millis();
    while((millis() - timeout) < 500)
