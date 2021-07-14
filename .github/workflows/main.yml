@@ -65,7 +65,7 @@ jobs:
         mv SparkFun_u-blox_GNSS_Arduino_Library /home/runner/Arduino/libraries/SparkFun_u-blox_GNSS_Arduino_Library
         git clone --quiet https://github.com/adafruit/Adafruit_FRAM_I2C
         mv Adafruit_FRAM_I2C /home/runner/Arduino/libraries/Adafruit_FRAM_I2C
-        git clone --quiet https://github.com/adafruit/Adafruit_SPIFlash
+        git clone --quiet https://github.com/adafruit/Adafruit_SPIFlash --branch 3.5.1
         mv Adafruit_SPIFlash /home/runner/Arduino/libraries/Adafruit_SPIFlash
         git clone --quiet https://github.com/adafruit/SdFat
         mv SdFat /home/runner/Arduino/libraries/SdFat
