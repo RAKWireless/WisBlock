@@ -1,13 +1,13 @@
 /**
  * @file RAK12004_MQ2_read.ino
  * @author rakwireless.com
- * @brief use MQ2 gas sensor read sensor data and display on OLED example.
+ * @brief use MQ2 gas sensor read sensor datas and display on OLED example.
  * @version 0.1
  * @date 2021-05-08
  * @copyright Copyright (c) 2021
  */
 #include <Wire.h>
-#include "ADC121C021.h"
+#include "ADC121C021.h"     // Click to install library: http://librarymanager/All#RAKwireless MQx library
 #include <U8g2lib.h>       // Click to install library: http://librarymanager/All#u8g2
 
 #define EN_PIN        WB_IO6  //Logic high enables the device. Logic low disables the device
@@ -30,8 +30,8 @@ void setup()
 {  
  pinMode(ALERT_PIN,INPUT);
  pinMode(EN_PIN,OUTPUT);
+ delay(50);
  digitalWrite(EN_PIN,HIGH);  //power on RAK12004
- delay(5);
  time_t timeout = millis();
   Serial.begin(115200);
   while (!Serial)
