@@ -24,9 +24,7 @@ You can see there are several items, just click "Nordic nRF52" item and "Install
 
 ![pio_install_platform_3](../../assets/PlatformIO/pio_install_platform_3.png)
 
-Download the PlatformIO folder from:
-
-https://github.com/RAKWireless/WisBlock/tree/master/PlatformIO/
+Download the folder WisCore_RAK4631_board and the file wiscore_rak_4631.json from this repository
 
 Copy the file **`wiscore_rak4631.json`** to the boards folder of the nordicnrf52 platform folder.
 
@@ -37,6 +35,8 @@ Windows: %USER%\.platformio\platforms\nordicnrf52\boards
 Linux:    ~/.platformio/platforms/nordicnrf52/boards
 Mac OS:  /Users/{Your_User_id}/.platformio/platforms/nordicnrf52/boards
 ```
+
+![pio_folder_location](../../assets/PlatformIO/pio_folder_location_rak4631.png)
 
 Then, create a new project in PlatformIO:
 
@@ -56,6 +56,8 @@ Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder
  - Linux:    ~/.platformio/packages/framework-arduinoadafruitnrf52/variants
  - Mac OS:  /Users/{Your_User_id}/.platformio/packages/framework-arduinoadafruitnrf52/variants
 ```
+
+![pio_folder_location](../../assets/PlatformIO/pio_folder_location_rak4631.png)
 
 Finally, restart the PlatformIO.
 

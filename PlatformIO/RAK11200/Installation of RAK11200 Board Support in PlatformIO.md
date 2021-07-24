@@ -18,6 +18,8 @@ You can see there are several items, just click "Espressif 32" item and "Install
 
 ### Add WisBlock Core RAK11200 to the platform
 
+Download the folder WisCore_RAK11200_board and the file wiscore_rak_11200.json from this repository
+
 Copy the file **`wiscore_rak11200.json`** to the boards folder of the espressif32 platform folder.
 
 The path should be similar to:
@@ -27,15 +29,25 @@ The path should be similar to:
 - Mac OS:  /Users/{Your_User_id}/.platformio/platforms/espressif32/boards
 ```
 
+![pio_folder_location](../../assets/PlatformIO/pio_folder_location_rak11200.png)
+
+Before you can copy the variants folder, you first need to create a new project for the RAK11200 in PlatformIO
+
+Then, create a new project in PlatformIO:
+
+Choose "WisCore RAK11200 Board (RAKwireless)" for "Board" item, and choose "Arduino" for "Framework" item as follow:
+
+
 ### Add WisBlock Core RAK11200 to the framework
 
-Refer to the modification method of Arduino IDE 
+Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder which you just downloaded to the framework-arduinoadafruitnrf52 package variants folder. The path should be similar to:
 
-The path should be similar to:
 ```
-- Windows: %USER%.platformio\packages\framework-arduinoespressif32
-- Linux:    ~/.platformio/packages/framework-arduinoespressif32
-- Mac OS:  /Users/{Your_User_id}/.platformio/packages/framework-arduinoespressif32
+ - Windows: %USER%\\.platformio\packages\framework-arduinoespressif32\variants
+ - Linux:    ~/.platformio/packages/framework-arduinoespressif32/variants
+ - Mac OS:  /Users/{Your_User_id}/.platformio/packages/framework-arduinoespressif32/variants
 ```
-  
+
+![pio_folder_location](../../assets/PlatformIO/pio_folder_location_rak11200.png)
+
 
