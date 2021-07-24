@@ -40,7 +40,7 @@ Choose "WisCore RAK11200 Board (RAKwireless)" for "Board" item, and choose "Ardu
 
 ### Add WisBlock Core RAK11200 to the framework
 
-Now, Copy the complete folder "WisCore_RAK4631_Board" in the "PlatformIO" folder which you just downloaded to the framework-arduinoadafruitnrf52 package variants folder. The path should be similar to:
+Now, Copy the complete folder "WisCore_RAK11200_Board" in the "PlatformIO" folder which you just downloaded to the framework-arduinoespressif32 package variants folder. The path should be similar to:
 
 ```
  - Windows: %USER%\\.platformio\packages\framework-arduinoespressif32\variants
