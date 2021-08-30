@@ -49,6 +49,8 @@ jobs:
         mv BSEC-Arduino-library /home/runner/Arduino/libraries/BSEC-Arduino-library
         git clone --quiet https://github.com/adafruit/Adafruit_TCS34725
         mv Adafruit_TCS34725 /home/runner/Arduino/libraries/Adafruit_TCS34725
+        git clone --quiet https://github.com/hideakitai/TCS34725
+        mv TCS34725 /home/runner/Arduino/libraries/TCS34725
         git clone --quiet https://github.com/sparkfun/SparkFun_TMP102_Arduino_Library
         mv SparkFun_TMP102_Arduino_Library /home/runner/Arduino/libraries/SparkFun_TMP102_Arduino_Library
         git clone --quiet https://github.com/sparkfun/SparkFun_SGP30_Arduino_Library
