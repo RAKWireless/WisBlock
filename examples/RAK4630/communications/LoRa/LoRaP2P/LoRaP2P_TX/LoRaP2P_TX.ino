@@ -65,14 +65,11 @@ void setup()
             break;
         }
 	}
-
-	// Initialize LoRa chip.
-	lora_rak4630_init();
-
 	Serial.println("=====================================");
 	Serial.println("LoRap2p Tx Test");
 	Serial.println("=====================================");
-
+	// Initialize LoRa chip.
+	lora_rak4630_init();
 	// Initialize the Radio callbacks
 	RadioEvents.TxDone = OnTxDone;
 	RadioEvents.RxDone = NULL;

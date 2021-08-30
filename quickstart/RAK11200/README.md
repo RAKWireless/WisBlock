@@ -108,7 +108,7 @@ The RAK11200 is included in the RAKwireless Arduino BSP.
 You can find the installation instructions in our [RAKwireless Arduino BSP](https://github.com/RAKWireless/RAKwireless-Arduino-BSP-Index) repository.
 
 
-### Load Examples
+### Examples
 
 ## IMPORTANT NOTE
 Different to other ESP32 boards, the RAK11200 needs to be put _**manually**_ into _**download mode**_. If you do not force the RAK11200 _**download mode**_, you cannot upload your sketch from Arduino IDE (or PlatformIO).  
@@ -118,57 +118,4 @@ The _**BOOT0**_ pin is on the J10 pin header, the _**GND**_ pin is next to it.
   
 ![Force Download Mode](../../assets/repo/rak11200-Boot0-for-flashing.png)
 
-
-RAK has supplied many examples source code on Github for WisBlock:
-
-- [Examples](/examples/)    
-    - [Common to all WisBlock Cores](/examples/common/)
-        - [Sensors Modules](/examples/common/sensors/)
-            - [RAK1901_Temperature&Humidity_SHTC3](/examples/common/sensors/RAK1901_Temperature_Humidity_SHTC3/)
-            - [RAK1902_Pressure_LPS22HB](/examples/common/sensors/RAK1902_Pressure_LPS22HB/)
-            - [RAK1903_Optical_OPT3001](/examples/common/sensors/RAK1903_Optical_OPT3001/)
-            - [RAK1904_Accelerate_LIS3DH](/examples/common/sensors/RAK1904_Accelerate_LIS3DH/)
-            - [RAK1906_Environment_BME680](/examples/common/sensors/RAK1906_Environment_BEM680/)
-            - [RAK1910_GPS_UBLOX7](/examples/common/sensors/RAK1910_GPS_UBLOX7/)
-            - [RAK1920_MikroBUS_Temperature_TMP102](/examples/common/sensors/RAK1920_MikroBUS_Temperature_TMP102/)
-            - [RAK1920_QWIIC_AirQuality_SGP30](/examples/common/sensors/RAK1920_QWIIC_AirQuality_SGP30/)
-            - [RAK1920_Grove_PIR_AS312](/examples/common/sensors/RAK1920_Grove_PIR_AS312/)
-            - [RAK12003_FIR_MLX90632](/examples/common/sensors/RAK12003_FIR_MLX90632/)
-            - [RAK12500_GPS_ZOE-M8Q](/examples/common/sensors/RAK12500_GPS_ZOE-M8Q/)
-            - [RAK15000_EEPROM_AT24C02](/examples/common/sensors/RAK15000_EEPROM_AT24C02/)     
-            - [RAK15001_Flash_GD25Q16C](/examples/common/sensors/RAK15001_Flash_GD25Q16C/)     
-            - [RAK19002_Boost_TPS61046](/examples/common/sensors/RAK19002_Boost_TPS61046/)     
-        - [IO Modules](/examples/IO/)
-            - [RAK1921_OLED_SSD1306](/examples/common/IO/RAK1921_OLED_SSD1306/)
-            - [RAK1921_Jumping_Ball_SSD1306](/examples/common/IO/RAK1921_Jumping_Ball_SSD1306/)
-            - [RAK1921_Moving_Logo_SSD1306](/examples/common/IO/RAK1921_Moving_Logo_SSD1306/)
-            - [RAK14000-Epaper-Monochrome](/examples/common/IO/RAK14000-Epaper-Monochrome/)
-            - [RAK14000-Epaper-TriColor](/examples/common/IO/RAK14000-Epaper-Monochrome/)
-        - [Communications](/examples/common/communications/)
-            - [Cellular](/examples/common/communications/Cellular/)
-                - [BG77_Unvarnished_Transmission](/examples/common/communications/Cellular/BG77_Unvarnished_Transmission)
-                - [Cellular_Ping](/examples/common/communications/Cellular/Cellular_Ping)
-                - [Hologram_Tcp](/examples/common/communications/Cellular/Hologram_Tcp)
-                - [Hologram_Ping_LTE](/examples/common/communications/Cellular/Hologram_Ping_LTE)
-    - [RAK11200 Examples](/examples/RAK11200/) 
-        - [RAK11200 Sensors](/examples/RAK11200/sensors/)
-            - [RAK18001_Buzzer](/examples/RAK11200/sensors/RAK18001_Buzzer/)
-        - [RAK11200 IO](/examples/RAK11200/IO/)
-            - [RAK5802_RS485](/examples/RAK11200/IO/RAK5802_RS485/)
-            - [RAK5801_4-20mA](/examples/RAK11200/IO/RAK5801_4-20mA/)
-            - [RAK5811_0-5V](/examples/RAK11200/IO/RAK5811_0-5V/)
-            - [RAK18000_Stereo](/examples/RAK11200/IO/RAK18000_Stereo/)
-        - [RAK11200 Communications](/examples/RAK11200/communications/)
-            - [BLE](/examples/RAK11200/communications/BLE/)
-                - [ble_server](/examples/RAK11200/communications/BLE/ble_server/)
-                - [ble_uart](/examples/RAK11200/communications/BLE/ble_uart/)
-            - [WiFi](/examples/RAK11200/communications/WIFI/)
-                - [WiFiAccessPoint](/examples/RAK11200/communications/WIFI/WiFiAccessPoint/)
-                - [WiFiClient](/examples/RAK11200/communications/WIFI/WiFiClient/)
-        - [RAK11200 Power](/examples/RAK11200/power/)
-            - [RAK11200_Battery_Level](/examples/RAK11200/power/RAK11200_Battery_Level_Detect/)
-        - [RAK11200 Solutions](/examples/RAK11200/solutions/)
-            - [Weather Display](/examples/RAK11200/solutions/weather_display/)
-            - [mqtt_subscribe_publish](/examples/RAK11200/solutions/mqtt_subscribe_publish/)
-    
-----
+[Examples](https://github.com/RAKWireless/WisBlock#examples)

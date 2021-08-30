@@ -164,37 +164,6 @@ The RAK18000 is a digital microphone module that is designed to detect sounds an
 Just connect them to the IPEX connector of the RAK5860 or RAK1910.
 
 
-### Load Examples
+### Examples
 
-RAK has supplied many examples source code on Github for WisBlock:
-
-- [Examples](/examples/)    
-    - [Common to all WisBlock Cores](/examples/common/)
-        - [IO Modules](/examples/IO/)
-            - [RAK1921_OLED_SSD1306](/examples/common/IO/RAK1921_OLED_SSD1306/)
-            - [RAK1921_Jumping_Ball_SSD1306](/examples/common/IO/RAK1921_Jumping_Ball_SSD1306/)
-            - [RAK1921_Moving_Logo_SSD1306](/examples/common/IO/RAK1921_Moving_Logo_SSD1306/)
-            - [RAK14000-Epaper-Monochrome](/examples/common/IO/RAK14000-Epaper-Monochrome/)
-            - [RAK14000-Epaper-TriColor](/examples/common/IO/RAK14000-Epaper-Monochrome/)
-        - [Communications](/examples/common/communications/)
-            - [Cellular](/examples/common/communications/Cellular/)
-                - [BG77_Unvarnished_Transmission](/examples/common/communications/Cellular/BG77_Unvarnished_Transmission)
-                - [Cellular_Ping](/examples/common/communications/Cellular/Cellular_Ping)
-                - [Hologram_Tcp](/examples/common/communications/Cellular/Hologram_Tcp)
-                - [Hologram_Ping_LTE](/examples/common/communications/Cellular/Hologram_Ping_LTE)
-    - [RAK4630 Examples](/examples/RAK4630/) 
-        - [RAK4630 IO](/examples/RAK4630/IO/) 
-            - [RAK5802_RS485](/examples/RAK4630/IO/RAK5802_RS485/)
-            - [RAK5801_4-20mA](/examples/RAK4630/IO/RAK5801_4-20mA/)
-            - [RAK5811_0-5V](/examples/RAK4630/IO/RAK5811_0-5V/)    
-            - [RAK18000_Stereo](/examples/RAK4630/IO/RAK18000_Stereo/)
-        - [RAK4630 Communications](/examples/RAK4630/communications/)
-            - [WiFi](/examples/RAK4630/communications/WiFi/)
-                - [AT_Command_Test](/examples/RAK4630/communications/WiFi/AT_Command_Test/)
-                - [connect_ap](/examples/RAK4630/communications/WiFi/connect_ap/)
-    - [RAK11200 Examples](/examples/RAK11200/) 
-        - [RAK11200 IO](/examples/RAK11200/IO/)
-            - [RAK5802_RS485](/examples/RAK11200/IO/RAK5802_RS485/)
-            - [RAK5801_4-20mA](/examples/RAK11200/IO/RAK5801_4-20mA/)
-            - [RAK5811_0-5V](/examples/RAK11200/IO/RAK5811_0-5V/)
-            - [RAK18000_Stereo](/examples/RAK11200/IO/RAK18000_Stereo/)
+[Examples](https://github.com/RAKWireless/WisBlock#examples)

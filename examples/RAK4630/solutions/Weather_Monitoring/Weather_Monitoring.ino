@@ -248,8 +248,14 @@ void loop()
  */
 void lorawan_has_joined_handler(void)
 {
-  Serial.println("OTAA Mode, Network Joined!");
-
+  if(doOTAA == true)
+  {
+    Serial.println("OTAA Mode, Network Joined!");
+  }
+  else
+  {
+    Serial.println("ABP Mode");
+  }
   lmh_error_status ret = lmh_class_request(g_CurrentClass);
   if (ret == LMH_SUCCESS)
   {

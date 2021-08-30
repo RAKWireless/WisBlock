@@ -224,7 +224,15 @@ void lorawan_join_fail(void)
 */
 void lorawan_has_joined_handler(void)
 {
+  if(doOTAA == true)
+  {
   Serial.println("OTAA Mode, Network Joined!");
+  }
+  else
+  {
+    Serial.println("ABP Mode");
+  }
+  
   u8g2.clearBuffer();					// clear the internal memory
   u8g2.setFont(u8g2_font_ncenB10_tr); // choose a suitable font
 

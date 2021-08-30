@@ -179,31 +179,6 @@ https://docs.rakwireless.com/Product-Categories/WisBlock/
 Just connect them to the IPEX connector of the RAK5860 or RAK1910.
 
 
-### Load Examples
+### Examples
 
-
-RAK has supplied many examples source code on Github for WisBlock:
-
-- [Examples](/examples/)    
-    - [Common to all WisBlock Cores](/examples/common/)
-        - [Sensors Modules](/examples/common/sensors/)
-            - [RAK1901_Temperature&Humidity_SHTC3](/examples/common/sensors/RAK1901_Temperature_Humidity_SHTC3/)
-            - [RAK1902_Pressure_LPS22HB](/examples/common/sensors/RAK1902_Pressure_LPS22HB/)
-            - [RAK1903_Optical_OPT3001](/examples/common/sensors/RAK1903_Optical_OPT3001/)
-            - [RAK1904_Accelerate_LIS3DH](/examples/common/sensors/RAK1904_Accelerate_LIS3DH/)
-            - [RAK1906_Environment_BME680](/examples/common/sensors/RAK1906_Environment_BEM680/)
-            - [RAK1910_GPS_UBLOX7](/examples/common/sensors/RAK1910_GPS_UBLOX7/)
-            - [RAK1920_MikroBUS_Temperature_TMP102](/examples/common/sensors/RAK1920_MikroBUS_Temperature_TMP102/)
-            - [RAK1920_QWIIC_AirQuality_SGP30](/examples/common/sensors/RAK1920_QWIIC_AirQuality_SGP30/)
-            - [RAK1920_Grove_PIR_AS312](/examples/common/sensors/RAK1920_Grove_PIR_AS312/)
-            - [RAK12003_FIR_MLX90632](/examples/common/sensors/RAK12003_FIR_MLX90632/)
-            - [RAK12500_GPS_ZOE-M8Q](/examples/common/sensors/RAK12500_GPS_ZOE-M8Q/)
-            - [RAK15000_EEPROM_AT24C02](/examples/common/sensors/RAK15000_EEPROM_AT24C02/)     
-            - [RAK15001_Flash_GD25Q16C](/examples/common/sensors/RAK15001_Flash_GD25Q16C/)     
-            - [RAK19002_Boost_TPS61046](/examples/common/sensors/RAK19002_Boost_TPS61046/)     
-    - [RAK4630 Examples](/examples/RAK4630/) 
-        - [RAK4630 Sensors](/examples/RAK4630/sensors/)
-            - [RAK18001_Buzzer](/examples/RAK4630/sensors/RAK18001_Buzzer/)
-    - [RAK11200 Examples](/examples/RAK11200/) 
-        - [RAK11200 Sensors](/examples/RAK11200/sensors/)
-            - [RAK18001_Buzzer](/examples/RAK11200/sensors/RAK18001_Buzzer/)
+[Examples](https://github.com/RAKWireless/WisBlock#examples)

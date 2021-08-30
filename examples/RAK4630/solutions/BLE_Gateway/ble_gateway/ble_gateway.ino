@@ -133,7 +133,6 @@ void setup()
             break;
         }
     }
-
     // Initialize LoRa chip.
     lora_rak4630_init();
 

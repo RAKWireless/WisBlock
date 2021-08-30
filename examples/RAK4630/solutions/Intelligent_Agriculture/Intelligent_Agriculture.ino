@@ -91,14 +91,6 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
-  // Init Modbus
-  if (!ModbusRTUClient.begin(9600))
-  {
-    Serial.println("Failed to start Modbus RTU Client!");
-    while (1)
-      ;
-  }
-
   // Initialize Serial for debug output
   time_t timeout = millis();
   Serial.begin(115200);
@@ -114,6 +106,13 @@ void setup()
     }
   }
 
+  // Init Modbus
+  if (!ModbusRTUClient.begin(9600))
+  {
+    Serial.println("Failed to start Modbus RTU Client!");
+    while (1)
+      ;
+  }
   // Initialize LoRa chip.
   lora_rak4630_init();
 
@@ -324,7 +323,14 @@ void loop()
  */
 void lorawan_has_joined_handler(void)
 {
+  if(doOTAA == true)
+  {
   Serial.println("OTAA Mode, Network Joined!");
+  }
+  else
+  {
+    Serial.println("ABP Mode");
+  }
 
   lmh_error_status ret = lmh_class_request(g_CurrentClass);
   if (ret == LMH_SUCCESS)

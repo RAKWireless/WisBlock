@@ -105,10 +105,8 @@ void setup()
       break;
     }
   }
-
   // Initialize LoRa chip.
   lora_rak4630_init();
-
   Serial.println("=====================================");
   Serial.println("Welcome to RAK4630 LoRaWan!!!");
   if (doOTAA)
@@ -234,7 +232,14 @@ void loop()
  */
 void lorawan_has_joined_handler(void)
 {
+  if(doOTAA == true)
+  {
   Serial.println("OTAA Mode, Network Joined!");
+  }
+  else
+  {
+    Serial.println("ABP Mode");
+  }
 
   lmh_error_status ret = lmh_class_request(g_CurrentClass);
   if (ret == LMH_SUCCESS)

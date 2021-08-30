@@ -103,7 +103,7 @@ void setup(void)
   attachInterrupt(RIGHT_BUTTON, interruptHandle3, FALLING);
 
 
-  Serial.println("RAK11200 Epaper-DEPG0213BNS800F42HP test");
+  Serial.println("Epaper-DEPG0213RWS800F42HP test");
 
   display.begin(false);
 

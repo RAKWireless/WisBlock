@@ -10,7 +10,7 @@
 #include <Wire.h>
 #include "Adafruit_MCP23017.h"  //http://librarymanager/All#Adafruit_MCP23017
 
-#define IIC_ADDRESS 0X21 
+#define IIC_ADDRESS 0X04 
 
 Adafruit_MCP23017 mcp;
   
@@ -28,30 +28,12 @@ void setup()
   digitalWrite(WB_IO4, 1);
   delay(10);
   
-  // Initialize Serial for debug output
-  time_t timeout = millis();
-  Serial.begin(115200);
-  while (!Serial)
-  {
-    if ((millis() - timeout) < 5000)
-    {
-      delay(100);
-    }
-    else
-    {
-      break;
-    }
-  }
-  
   mcp.begin(IIC_ADDRESS,&Wire); // use default address 0.
   
   for(int i=0 ;i < 16 ;i++)
   {
-    mcp.pinMode(i, OUTPUT); // Set port as output. 
-  }
-  for(int j=0 ;j < 16 ;j++)
-  {
-	mcp.digitalWrite(j, HIGH); // Turn off all LEDs.
+    mcp.digitalWrite(i, HIGH);  // Turn off all LEDs. 
+    mcp.pinMode(i, OUTPUT);     // Set pins as output.
   }
 }
 
@@ -61,21 +43,21 @@ void loop()
 	for(i=0 ;i < 10 ;i++)
 	{
 		mcp.digitalWrite(i, LOW);
-		delay(500);
+		delay(200);
 	}
 	for(i=0 ;i < 10 ;i++)
 	{
-		mcp.digitalWrite(i, HIGH);
-		delay(500);
+		mcp.digitalWrite(9-i, HIGH);
+		delay(200);
 	}
 	for(i=0 ;i < 10 ;i++)
 	{
 		mcp.digitalWrite(i, LOW);
 	}
-	delay(1000);
+	delay(300);
 	for(i=0 ;i < 10 ;i++)
 	{
 		mcp.digitalWrite(i, HIGH);
 	}
-	delay(1000);
+	delay(300);
 }

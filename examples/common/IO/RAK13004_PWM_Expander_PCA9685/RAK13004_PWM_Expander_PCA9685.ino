@@ -10,6 +10,7 @@
 **/
 
 #include <Arduino.h>
+// Install PCA9685 library by Peter Polidoro
 #include "PCA9685.h"  //http://librarymanager/All#PCA9685
 
 PCA9685 PCA9685;

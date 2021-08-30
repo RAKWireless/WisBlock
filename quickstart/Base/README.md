@@ -104,3 +104,7 @@ The matching connector for the solar panel wires is an [JST ZHR-2 1.5mm pitch fe
 | 3    | Size             | Length: 60mm, Width: 60mm, Height: 2mm |
 | 4    | Connector        | 1.5mm pitch                            |
 | 5    | Cable color      | Red: VCC, Black: GND                   |
+
+### Examples
+
+[Examples](https://github.com/RAKWireless/WisBlock#examples)

@@ -1,5 +1,5 @@
 #include <Wire.h>
-#include <NCP5623.h>
+#include <NCP5623.h> //http://librarymanager/All#NCP5623 By:RAKWireless
 
 NCP5623 rgb;
 
