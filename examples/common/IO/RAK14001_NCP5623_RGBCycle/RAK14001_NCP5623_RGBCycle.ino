@@ -35,7 +35,7 @@ void setup() {
   }
 
   // set the current output level max, the range is 1 to 31
-  rgb.setCurrent(26);
+  rgb.setCurrent(10);
 }
 
 void breathingLamp(bool Red, bool Green, bool Blue)

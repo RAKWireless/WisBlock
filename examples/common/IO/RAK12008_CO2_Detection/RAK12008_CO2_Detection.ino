@@ -12,7 +12,7 @@
 
 #define EN_PIN          WB_IO6  //Logic high enables the device. Logic low disables the device
 #define ALERT_PIN       WB_IO5  //a high indicates that the respective limit has been violated.
-#define MG812_ADDRESS   0x52    //the device i2c address
+#define MG812_ADDRESS   0x50    //the device i2c address
 
 #define   V_RATIO  3.0 // voltage amplification factor 
 

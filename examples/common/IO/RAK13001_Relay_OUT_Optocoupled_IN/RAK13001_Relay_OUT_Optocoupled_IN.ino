@@ -31,7 +31,7 @@ void setup()
   }
   
   pinMode(RELAY_PIN,OUTPUT);
-  pinMode(OC_PIN,INPUT);
+  pinMode(OC_PIN,INPUT_PULLUP); 
 }
 
 void loop() 

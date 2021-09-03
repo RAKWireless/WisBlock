@@ -33,6 +33,7 @@ void setup() {
   {
     Serial.println("RAK14001 Found. Begining execution");
   }
+  rgb.setCurrent(10);
 }
 
 /**
