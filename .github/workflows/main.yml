@@ -96,6 +96,10 @@ jobs:
         mv Melopero_RV-3028_Arduino_Library /home/runner/Arduino/libraries/Melopero_RV-3028_Arduino_Library
         git clone --quiet https://github.com/janelia-arduino/PCA9685
         mv PCA9685 /home/runner/Arduino/libraries/PCA9685
+        git clone --quiet https://github.com/sparkfun/SparkFun_MAX3010x_Sensor_Library
+        mv SparkFun_MAX3010x_Sensor_Library /home/runner/Arduino/libraries/SparkFun_MAX3010x_Sensor_Library
+        git clone --quiet https://github.com/wollewald/INA219_WE
+        mv INA219_WE /home/runner/Arduino/libraries/INA219_WE
 
         git clone --quiet https://github.com/RAKWireless/RAK13005-TLE7259-Library
         mv RAK13005-TLE7259-Library /home/runner/Arduino/libraries/RAK13005-TLE7259-Library
@@ -105,6 +109,8 @@ jobs:
         mv RAK14001-NCP5623-Library /home/runner/Arduino/libraries/RAK14001-NCP5623-Library
         git clone --quiet https://github.com/RAKWireless/RAK14002-CAP1293-Library
         mv RAK14002-CAP1293-Library /home/runner/Arduino/libraries/RAK14002-CAP1293-Library
+        git clone --quiet https://github.com/RAKWireless/RAK-ADS7830-Library
+        mv RAK-ADS7830-Library /home/runner/Arduino/libraries/RAK-ADS7830-Library
 
     - name: test platforms
       run: python3 ci/build_platform.py ${{ matrix.arduino-platform }}
