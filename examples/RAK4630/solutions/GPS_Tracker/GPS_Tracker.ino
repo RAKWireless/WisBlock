@@ -181,6 +181,18 @@ void setup()
   else
   {
     Serial.println("Sensor at 0x18 started.");
+	// Set low power mode
+	uint8_t data_to_write = 0;
+	SensorTwo.readRegister(&data_to_write, LIS3DH_CTRL_REG1);
+	data_to_write |= 0x08;
+	SensorTwo.writeRegister(LIS3DH_CTRL_REG1, data_to_write);
+	delay(100);
+
+	data_to_write = 0;
+	SensorTwo.readRegister(&data_to_write, 0x1E);
+	data_to_write |= 0x90;
+	SensorTwo.writeRegister(0x1E, data_to_write);
+	delay(100);
   }
   //gps init
 
