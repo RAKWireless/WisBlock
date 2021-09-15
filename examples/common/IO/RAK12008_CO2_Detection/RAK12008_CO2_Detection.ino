@@ -16,8 +16,8 @@
 
 #define   V_RATIO  3.0 // voltage amplification factor 
 
-float constantA = -0.101;   //log(y) = constantA*log(x) + constantB,  y:sensor voltage,  x:gas concentration ppm
-float constantB = -0.282;   //log(y) = constantA*log(x) + constantB,  y:sensor voltage,  x:gas concentration ppm
+float constantA = 0.027;   //log(y) = constantA*log(x) + constantB,  y:sensor voltage,  x:gas concentration ppm
+float constantB = 0.4524;   //log(y) = constantA*log(x) + constantB,  y:sensor voltage,  x:gas concentration ppm
 
 ADC121C021 MG812;
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);
@@ -81,9 +81,8 @@ void loop()
   Serial.println("Getting Conversion Readings from ADC121C021");
   Serial.println(" ");  
   sensorVoltage = MG812.getSensorVoltage()/V_RATIO;
-  double ppm_log = (log10(sensorVoltage)-constantB)/constantA; //Get ppm value in linear scale according to the the ratio value  
-  sensorPPM = pow(10, ppm_log); //Convert ppm value to log scale  PPM =  pow(10, (log10(voltage)-B)/A)
-
+  double ppm_log = (constantB-sensorVoltage)/constantA;
+  sensorPPM = pow(M_E, ppm_log);
   Serial.printf("sensor voltage Value is: %3.2f\r\n",sensorVoltage);    
   Serial.printf("sensor PPM Value is: %3.2f\r\n",sensorPPM);   
   PPMpercentage = sensorPPM/10000;
