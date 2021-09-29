@@ -33,8 +33,9 @@ void setup()
     }
   }
 
-  rtc.initDevice(); // First initialize and create the rtc device
-
+  Wire.begin();
+  rtc.initI2C(); // First initialize and create the rtc device
+ 
   rtc.useEEPROM();  // Setup the device to use the EEPROM memory
 
   uint8_t eepromRegAddress = 0x11;  // User eeprom address space : [0x00 - 0x2A]
