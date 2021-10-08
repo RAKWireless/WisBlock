@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arduino-platform: ["rak4631", "rak11200"]
+        arduino-platform: ["rak4631", "rak11200", "rak11300"]
 
     runs-on: ubuntu-18.04
     
