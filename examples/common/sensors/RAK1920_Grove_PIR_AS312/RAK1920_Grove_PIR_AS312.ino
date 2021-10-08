@@ -7,6 +7,8 @@
    @copyright Copyright (c) 2020
 **/
 
+#include <Wire.h>
+
 void setup()
 {
 	pinMode(WB_IO2, OUTPUT);

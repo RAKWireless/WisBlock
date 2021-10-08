@@ -7,6 +7,8 @@
    @copyright Copyright (c) 2020
 **/
 
+#include <Wire.h>
+
 #include <TinyGPS.h>    //http://librarymanager/All#TinyGPS
 
 TinyGPS gps;

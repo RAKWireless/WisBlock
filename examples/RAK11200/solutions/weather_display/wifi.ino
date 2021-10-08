@@ -160,8 +160,8 @@ void wifi_disconnect_callback(WiFiEvent_t event, WiFiEventInfo_t info)
 void wifi_init()
 {
   // set event function for specific event
-  WiFi.onEvent(wifi_got_ip_callback, WiFiEvent_t::SYSTEM_EVENT_STA_GOT_IP);
-  WiFi.onEvent(wifi_disconnect_callback, WiFiEvent_t::SYSTEM_EVENT_STA_DISCONNECTED);
+  WiFi.onEvent(wifi_got_ip_callback, WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
+  WiFi.onEvent(wifi_disconnect_callback, WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_DISCONNECTED);
   // start wifi with stored wifi config
   WiFi.begin();
 }

@@ -6,6 +6,7 @@
    @date 2021-1-28
    @copyright Copyright (c) 2021
 **/
+#include <Wire.h>
 
 #include <SparkFun_u-blox_GNSS_Arduino_Library.h> //http://librarymanager/All#SparkFun_u-blox_GNSS
 

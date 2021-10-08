@@ -8,6 +8,7 @@
 **/
 
 #include <bluefruit.h>
+#include <Wire.h>
 
 BLEService        hrms = BLEService(UUID16_SVC_HEART_RATE);
 BLECharacteristic hrmc = BLECharacteristic(UUID16_CHR_HEART_RATE_MEASUREMENT);

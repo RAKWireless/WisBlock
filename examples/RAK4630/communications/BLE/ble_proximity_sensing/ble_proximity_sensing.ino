@@ -25,6 +25,7 @@
  */
 
 #include <bluefruit.h>
+#include <Wire.h>
 
 #define MAX_COUNT_NUM (5)
 #define AVERAGE_RSSI_VAL (-40)

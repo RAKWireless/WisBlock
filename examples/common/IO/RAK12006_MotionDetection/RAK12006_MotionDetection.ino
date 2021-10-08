@@ -6,6 +6,7 @@
  * @date 2021-06-15
  * @copyright Copyright (c) 2021
  */
+#include <Wire.h>
 #define SENSOR_PIN  WB_IO6   // Attach AM312 sensor to Arduino Digital Pin WB_IO6
 
 int gCurrentStatus = 0;         // variable for reading the pin current status
