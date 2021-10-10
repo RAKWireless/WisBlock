@@ -66,17 +66,39 @@ static void utox8(uint32_t val, uint8_t* s) {
   }
 }
 
-extern "C" {
+extern "C"
+{
 #include "hardware/flash.h"
+#include "hardware/sync.h"
 #include "pico/bootrom.h"
 }
 
-uint8_t getUniqueSerialNumber(uint8_t* name) {
-  uint32_t id[2];
-  flash_get_unique_id((uint8_t*)&id[0]);
-  utox8(id[0], &name[0]);
-  utox8(id[1], &name[16]);
-  return 32;
+#define FLASH_TARGET_OFFSET (PICO_FLASH_SIZE_BYTES - FLASH_SECTOR_SIZE)
+void eraseDataFlash(void)
+{
+	uint32_t ints = save_and_disable_interrupts();
+	flash_range_erase(FLASH_TARGET_OFFSET, FLASH_SECTOR_SIZE);
+	restore_interrupts(ints);
+}
+void writeDataToFlash(uint8_t *data)
+{
+	uint32_t ints = save_and_disable_interrupts();
+	flash_range_program(FLASH_TARGET_OFFSET, data, FLASH_PAGE_SIZE * 2);
+	restore_interrupts(ints);
+}
+
+void getUniqueDeviceID(uint8_t *id)
+{
+	flash_get_unique_id((uint8_t *)&id[0]);
+}
+
+uint8_t getUniqueSerialNumber(uint8_t *name)
+{
+	uint32_t id[2];
+	flash_get_unique_id((uint8_t *)&id[0]);
+	utox8(id[0], &name[0]);
+	utox8(id[1], &name[16]);
+	return 32;
 }
 
 void _ontouch1200bps_() {
