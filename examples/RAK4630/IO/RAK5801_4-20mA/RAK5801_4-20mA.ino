@@ -8,6 +8,7 @@
  */
  
 #include <Arduino.h>
+#include <Wire.h>
 
 #define NO_OF_SAMPLES 32
 
