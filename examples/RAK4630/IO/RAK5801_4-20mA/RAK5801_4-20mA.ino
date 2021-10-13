@@ -9,6 +9,9 @@
  
 #include <Arduino.h>
 #include <Wire.h>
+#ifdef _VARIANT_RAK4630_
+#include <Adafruit_TinyUSB.h>
+#endif
 
 #define NO_OF_SAMPLES 32
 
