@@ -1,14 +1,13 @@
 /**
  * @file RAK5801_4-20mA.ino
  * @author rakwireless.com
- * @brief Read data from a pressure sensor with 4-20mA interface.
- * @version 0.1
+ * @brief Print current value.
+ * @version 0.2
  * @date 2020-07-28
  * @copyright Copyright (c) 2020
  */
  
 #include <Arduino.h>
-#include <Wire.h>
 
 #define NO_OF_SAMPLES 32
 
@@ -37,10 +36,7 @@ void setup()
 void loop()
 {
 	int i;
-
-	int mcu_ain_raw = 0;
-
-	int pressure; 									//KPa as unit
+	int mcu_ain_raw = 0;	
 	int average_raw;
 	float voltage_ain;
 	float current_sensor; 							// variable to store the value coming from the sensor
@@ -53,17 +49,9 @@ void loop()
 
 	voltage_ain = average_raw * 3.6 / 1024; 		//raef 3.6v / 10bit ADC
 
-	current_sensor = voltage_ain / 149.9 * 1000; 	//WisBlock RAK5801 (0 ~ 20mA) I=U/149.9*1000 (mA)
+	current_sensor = voltage_ain / 149.9; 	//WisBlock RAK5801 (0 ~ 20mA) I=U/149.9(mA)
 
-	/*
-	 * Convert to millivolt. 3.95mA is the default output from sensor
-	 * 0.01mA == 6.25KPa
-	 */
-	pressure = (current_sensor - 3.95) * 100 * 2.5;
-
-	Serial.printf("-------average_value------ = %d\n", voltage_ain);
-	Serial.printf("-------current_sensor------ = %f\n", current_sensor);
-	Serial.printf("-------pressure------ = %d KPa\n", pressure);
+	Serial.printf("-------current_sensor------ = %f mA\n", current_sensor);
 
 	delay(2000);
 }
