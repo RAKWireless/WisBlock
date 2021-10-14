@@ -53,7 +53,7 @@ void loop()
 
 	voltage_ain = average_raw * 3.6 / 1024; 		//raef 3.6v / 10bit ADC
 
-	current_sensor = voltage_ain / 149.9; 	//WisBlock RAK5801 (0 ~ 20mA) I=U/149.9(mA)
+	current_sensor = voltage_ain / 149.9*1000; 	//WisBlock RAK5801 (0 ~ 20mA) I=U/149.9(mA)
 
 	Serial.printf("-------current_sensor------ = %f mA\n", current_sensor);
 

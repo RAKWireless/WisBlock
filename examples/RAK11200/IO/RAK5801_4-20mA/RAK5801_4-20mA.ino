@@ -56,8 +56,8 @@ void loop()
 
 	voltage_mcu_ain = esp_adc_cal_raw_to_voltage(average_adc_raw);
 
-	current_sensor = voltage_mcu_ain / 149.9; //WisBlock RAK5801 (0 ~ 20mA) I=U/149.9 (mA)
-
+	current_sensor = voltage_mcu_ain / 149.9*1000; //WisBlock RAK5801 (0 ~ 20mA) I=U/149.9 (mA)
+	
   Serial.printf("-------current_sensor------ = %f mA\n", current_sensor);
 
 	delay(2000);

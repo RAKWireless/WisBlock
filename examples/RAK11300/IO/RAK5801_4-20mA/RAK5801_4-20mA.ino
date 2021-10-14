@@ -26,7 +26,10 @@ void setup()
 			break;
 		}
 	}
-
+  
+  adc_init();
+  adc_gpio_init(WB_A1);
+  
 	/* WisBLOCK 5801 Power On*/
 	pinMode(WB_IO1, OUTPUT);
 	digitalWrite(WB_IO1, HIGH);
@@ -43,13 +46,12 @@ void loop()
 
 	for (i = 0; i < NO_OF_SAMPLES; i++)
 	{
-		mcu_ain_raw += analogRead(WB_A1);				// select the input pin A1 for the potentiometer
+    adc_select_input(1);
+		mcu_ain_raw += adc_read();//analogRead(WB_A1);				// select the input pin A1 for the potentiometer
 	}
-	average_raw = mcu_ain_raw / NO_OF_SAMPLES;
-
-	voltage_ain = average_raw * 3.3 / 4095; 		//raef 3.3v / 12bit ADC
-
-	current_sensor = voltage_ain / 149.9; 	//WisBlock RAK5801 (0 ~ 20mA) I=U/149.9(mA)
+	average_raw = mcu_ain_raw / NO_OF_SAMPLES;  
+	voltage_ain = average_raw * 3.3 / 4095; 		//raef 3.3v / 12bit ADC  
+	current_sensor = voltage_ain / 149.9 *1000; 	//WisBlock RAK5801 (0 ~ 20mA) I=U/149.9(mA)
 
   Serial.printf("-------current_sensor------ = %f mA\n", current_sensor);
 

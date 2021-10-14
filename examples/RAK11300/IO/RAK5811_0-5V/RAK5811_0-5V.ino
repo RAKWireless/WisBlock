@@ -25,6 +25,8 @@ void setup()
 			break;
 		}
 	}
+  adc_init();
+  adc_gpio_init(WB_A1);
 
 	/* WisBLOCK 5811 Power On*/
 	pinMode(WB_IO1, OUTPUT);
@@ -45,7 +47,8 @@ void loop()
 
 	for (i = 0; i < NO_OF_SAMPLES; i++)
 	{
-		mcu_ain_raw += analogRead(ADC0);				// the input pin A1 for the potentiometer
+    adc_select_input(1);
+		mcu_ain_raw += adc_read();  //analogRead(ADC0);				// the input pin A1 for the potentiometer
 	}
 	average_raw = mcu_ain_raw / NO_OF_SAMPLES;
 
@@ -53,7 +56,6 @@ void loop()
 
 	voltage_sensor = mcu_ain_voltage / 0.6; 		//WisBlock RAK5811 (0 ~ 5V).   Input signal reduced to 6/10 and output
 
-	Serial.printf("-------average_value------ = %d\n", average_raw);
 	Serial.printf("-------voltage_sensor------ = %f\n", voltage_sensor);
 
 	delay(2000);
