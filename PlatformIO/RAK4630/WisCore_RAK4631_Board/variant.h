@@ -117,12 +117,13 @@ extern "C"
 /*
  * Serial interfaces
  */
+// TXD1 RXD1 on Base Board
 #define PIN_SERIAL1_RX (15)
 #define PIN_SERIAL1_TX (16)
 
-// Connected to Jlink CDC
-#define PIN_SERIAL2_RX (8)
-#define PIN_SERIAL2_TX (6)
+// TXD0 RXD0 on Base Board
+#define PIN_SERIAL2_RX (19)
+#define PIN_SERIAL2_TX (20)
 
 /*
  * SPI Interfaces

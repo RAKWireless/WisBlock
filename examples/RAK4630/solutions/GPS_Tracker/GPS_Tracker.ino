@@ -53,7 +53,7 @@ bool doOTAA = true;   // OTAA is used by default.
 #define LORAWAN_TX_POWER TX_POWER_5             /*LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15*/
 #define JOINREQ_NBTRIALS 3                      /**< Number of trials for the join request. */
 DeviceClass_t gCurrentClass = CLASS_A;          /* class definition*/
-LoRaMacRegion_t gCurrentRegion = LORAMAC_REGION_EU868;    /* Region:EU868*/
+LoRaMacRegion_t gCurrentRegion = LORAMAC_REGION_AS923_3;    /* Region:EU868*/
 lmh_confirm gCurrentConfirm = LMH_UNCONFIRMED_MSG;          /* confirm/unconfirm packet definition*/
 uint8_t gAppPort = LORAWAN_APP_PORT;                      /* data port*/
 
@@ -75,9 +75,9 @@ static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, 
                                        };
                                        
 //OTAA keys !!!! KEYS ARE MSB !!!!
-uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
-uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
-uint8_t nodeAppKey[16] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88};
+uint8_t nodeDeviceEUI[8] = {0xAC, 0x1F, 0x09, 0xFF, 0xFE, 0x05, 0x07, 0xCF};
+uint8_t nodeAppEUI[8] = {0x70, 0xB3, 0xD5, 0x7E, 0xD0, 0x02, 0x01, 0xE1};
+uint8_t nodeAppKey[16] = {0x2B, 0x84, 0xE0, 0xB0, 0x9B, 0x68, 0xE5, 0xCB, 0x42, 0x17, 0x6F, 0xE7, 0x53, 0xDC, 0xEE, 0x79};
 
 // ABP keys
 uint32_t nodeDevAddr = 0x260116F8;
@@ -368,7 +368,7 @@ void tx_lora_periodic_handler(void)
       while (Serial1.available())
       {
         char c = Serial1.read();
-        // Serial.write(c); // uncomment this line if you want to see the GPS data flowing
+//         Serial.write(c); // uncomment this line if you want to see the GPS data flowing
         tmp_data += c;
         if (gps.encode(c))// Did a new valid sentence come in?
           newData = true;
@@ -420,12 +420,14 @@ void tx_lora_periodic_handler(void)
     }
     else
     {
+      Serial.println("No Location Found");
       TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
       TimerStart(&appTimer);
     }
   }
   else
   {
+    Serial.println("Turn WisBlock with USB pointing up to start location search");
     TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
     TimerStart(&appTimer);
   }
