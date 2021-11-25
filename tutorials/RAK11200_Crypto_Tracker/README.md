@@ -4,3 +4,5 @@ This cryptocurrency tracker project uses the API from [Coingecko](www.coingecko.
 
 You can get the values of all cryptocurrency supported by coingecko as well as other fiat currencies aside from USD and EURO.
 
+The default coins/tokens are BTC, ETH and HNT.
+
