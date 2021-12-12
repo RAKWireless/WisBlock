@@ -19,7 +19,7 @@ void setup()
 	pinMode(WB_IO1, OUTPUT | PULLUP);
 	digitalWrite(WB_IO1, HIGH);
 
-	adcAttachPin(WB_A1);	//将引脚连接到ADC
+	adcAttachPin(WB_A1);	//Connect pin to ADC peripherals
 
 	analogSetAttenuation(ADC_11db);
 	analogReadResolution(12);
@@ -43,11 +43,8 @@ void setup()
 void loop()
 {
 	int i;
-
 	int sensor_pin = WB_A1; // the input pin A1 for the potentiometer
 	int adc_raw = 0;
-
-	int depths; // variable to store the value of oil depths
 	int average_adc_raw;
 	float voltage_mcu_ain;
 	float voltage_sensor; // variable to store the value coming from the sensor
@@ -63,10 +60,9 @@ void loop()
 	 */
 	voltage_mcu_ain = esp_adc_cal_raw_to_voltage(average_adc_raw);
 	voltage_sensor = voltage_mcu_ain / 0.6; 	//WisBlock RAK5811 (0 ~ 5V). Input signal reduced to 6/10 and output
-	depths = (voltage_sensor * 1000 - 574) * 2.5; //Convert to millivolt. 574mv is the default V output from sensor
 
-	Serial.printf("adc_raw: %d\tvoltage_mcu_ain: %f\tvoltage: %f\n", average_adc_raw, voltage_mcu_ain, voltage_sensor);
-	Serial.printf("depths: %d mm\n\n", depths);
+  Serial.printf("-------average_value------ = %d\n", average_adc_raw);
+  Serial.printf("-------voltage_sensor------ = %f\n", voltage_sensor);
 
 	delay(2000);
 }

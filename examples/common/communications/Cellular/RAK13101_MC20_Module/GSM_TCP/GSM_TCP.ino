@@ -6,6 +6,7 @@
    @date 2021-6-28
    @copyright Copyright (c) 2020
 **/
+#include <Wire.h>
 
 #define POWER_KEY WB_IO5
 String at_rsp = "";

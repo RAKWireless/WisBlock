@@ -14,6 +14,8 @@ TMP102 g_sensor0;
 
 void setup()
 {
+    pinMode(WB_IO2, OUTPUT);
+    digitalWrite(WB_IO2, HIGH);
 	time_t timeout = millis();
 	Serial.begin(115200);
 	while (!Serial)

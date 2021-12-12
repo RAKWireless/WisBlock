@@ -7,6 +7,7 @@
    @copyright Copyright (c) 2020
 **/
 #include <TinyGPS.h>    //http://librarymanager/All#TinyGPS
+#include <Wire.h>
 
 TinyGPS gps;
 String tmp_data = "";

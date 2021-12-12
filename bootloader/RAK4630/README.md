@@ -43,7 +43,7 @@ Steps as below:
 - Open J-Flash
 - Create a new project. Choose the board as below
 - Go into Target->Connect
-- Download the booloader from [here](/bootloader/RAK4630_bootloader.hex)
+- Download the booloader from [here](./new)
 - Drag the HEX to the J-Flash
 - Select Target->Production Programming. 
 

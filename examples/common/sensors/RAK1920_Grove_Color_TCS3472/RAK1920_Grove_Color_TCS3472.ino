@@ -12,6 +12,8 @@ TCS34725 tcs;
 
 void setup(void)
 {
+  pinMode(WB_IO2, OUTPUT);
+  digitalWrite(WB_IO2, HIGH);
 	time_t timeout = millis();
 	Serial.begin(115200);
 	while (!Serial)

@@ -20,8 +20,7 @@
    A1        <->  P0.31/AIN7 (Arduino Analog A7
    SPI_CS    <->  P0.26 (Arduino GPIO number 26) 
  */
-
-#include "SPI.h"
+#include <Wire.h>
 
 #define BG77_POWER_KEY 17
 char cArr[128] = {0};

@@ -6,6 +6,7 @@
    @date 2021-3-18
    @copyright Copyright (c) 2021
 **/
+#include <Wire.h>
 
 #define OC_PIN    WB_IO3
 #define RELAY_PIN WB_IO4

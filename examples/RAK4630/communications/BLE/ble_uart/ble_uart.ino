@@ -21,6 +21,7 @@
  */
 #include <Arduino.h>
 #include <bluefruit.h>
+#include <Wire.h>
 
 // Forward declarations for functions
 void ble_connect_callback(uint16_t conn_handle);

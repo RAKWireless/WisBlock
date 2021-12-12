@@ -21,7 +21,7 @@
    WB_A0      <->  P0.04/AIN2 (AnalogIn A2)
    WB_A1      <->  P0.31/AIN7 (AnalogIn A7)
  */
-
+#include <Wire.h>
 void setup()
 {
     time_t timeout = millis();

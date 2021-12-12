@@ -368,7 +368,7 @@ void tx_lora_periodic_handler(void)
       while (Serial1.available())
       {
         char c = Serial1.read();
-        // Serial.write(c); // uncomment this line if you want to see the GPS data flowing
+//         Serial.write(c); // uncomment this line if you want to see the GPS data flowing
         tmp_data += c;
         if (gps.encode(c))// Did a new valid sentence come in?
           newData = true;
@@ -420,12 +420,14 @@ void tx_lora_periodic_handler(void)
     }
     else
     {
+      Serial.println("No Location Found");
       TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
       TimerStart(&appTimer);
     }
   }
   else
   {
+    Serial.println("Turn WisBlock with USB pointing up to start location search");
     TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
     TimerStart(&appTimer);
   }

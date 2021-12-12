@@ -6,9 +6,7 @@
    @date 2020-12-28
    @copyright Copyright (c) 2020
 **/
-
-
-#include "SPI.h"
+#include <Wire.h>
 
 #define BG77_POWER_KEY WB_IO1
 #define BG77_GPS_ENABLE WB_IO2

@@ -6,6 +6,7 @@
  * @date 2021-05-01
  * @copyright Copyright (c) 2021
  */
+#include <Wire.h>
 #include  "lin_bus.h"    //library: http://librarymanager/All#RAKwireless_TLE7259_LIN_Bus_library
 
 #if defined(_VARIANT_RAK4630_)  

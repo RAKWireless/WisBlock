@@ -6,6 +6,7 @@
    @date 2021-7-28
    @copyright Copyright (c) 2020
 **/
+#include <Wire.h>
 
 #define ENCODER_A_PIN WB_IO6  //clockwise
 #define ENCODER_B_PIN WB_IO4  //anticlockwise
