@@ -27,6 +27,7 @@ jobs:
     - name: extra libraries
       run: |
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SX126x-Arduino
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install WisBlock-API
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install Arduino_LPS22HB
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoRS485
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
@@ -123,6 +124,18 @@ jobs:
         mv RAK13600-PN532 /home/runner/Arduino/libraries/RAK13600-PN532
         git clone --quiet https://github.com/RAKWireless/RAK12019_LTR390
         mv RAK12019_LTR390 /home/runner/Arduino/libraries/RAK12019_LTR390
+        git clone --quiet https://github.com/RAKWireless/RAK13600-PN532
+        mv RAK13600-PN532 /home/runner/Arduino/libraries/RAK13600-PN532
+        git clone --quiet https://github.com/RAKWireless/RAK14012-LED-Matrix
+        mv RAK14012-LED-Matrix /home/runner/Arduino/libraries/RAK14012-LED-Matrix
+        git clone --quiet https://github.com/RAKWireless/RAK12021-TCS37725
+        mv RAK12021-TCS37725 /home/runner/Arduino/libraries/RAK12021-TCS37725
+        git clone --quiet https://github.com/RAKWireless/RAK12025-I3G4250D
+        mv RAK12025-I3G4250D /home/runner/Arduino/libraries/RAK12025-I3G4250D
+        git clone --quiet https://github.com/RAKWireless/RAK12035_SoilMoisture
+        mv RAK12035_SoilMoisture /home/runner/Arduino/libraries/RAK12035_SoilMoisture
+        git clone --quiet https://github.com/RAKWireless/RAKwireless_Storage
+        mv RAKwireless_Storage /home/runner/Arduino/libraries/RAKwireless_Storage
 
     - name: test platforms
       run: python3 ci/build_platform.py ${{ matrix.arduino-platform }}

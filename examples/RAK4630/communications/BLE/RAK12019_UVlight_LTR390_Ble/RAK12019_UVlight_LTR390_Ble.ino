@@ -54,7 +54,7 @@ void LTR390_Init(void)
   delay(300);
 
   Serial.println("RAK12019 Ble test");
-  if ( ! ltr.begin() ) {
+  if ( ! ltr.init() ) {
     Serial.println("Couldn't find LTR sensor!");
     while (1) delay(10);
   }
