@@ -96,6 +96,8 @@ jobs:
         mv INA219_WE /home/runner/Arduino/libraries/INA219_WE
         git clone --quiet https://github.com/stm32duino/VL53L0X
         mv VL53L0X /home/runner/Arduino/libraries/VL53L0X
+        git clone --quiet https://github.com/stm32duino/Proximity_Gesture
+        mv Proximity_Gesture /home/runner/Arduino/libraries/Proximity_Gesture
 
         # ESP32 specific libraries
         
