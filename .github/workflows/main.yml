@@ -94,6 +94,8 @@ jobs:
         mv SparkFun_MAX3010x_Sensor_Library /home/runner/Arduino/libraries/SparkFun_MAX3010x_Sensor_Library
         git clone --quiet https://github.com/wollewald/INA219_WE
         mv INA219_WE /home/runner/Arduino/libraries/INA219_WE
+        git clone --quiet https://github.com/stm32duino/VL53L0X
+        mv VL53L0X /home/runner/Arduino/libraries/VL53L0X
 
         # ESP32 specific libraries
         
