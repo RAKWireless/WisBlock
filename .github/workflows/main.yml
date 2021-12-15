@@ -119,6 +119,10 @@ jobs:
         mv RAK-ADS7830-Library /home/runner/Arduino/libraries/RAK-ADS7830-Library
         git clone --quiet https://github.com/RAKWireless/RAK12010-VEML7700-Library
         mv RAK12010-VEML7700-Library /home/runner/Arduino/libraries/RAK12010-VEML7700-Library
+        git clone --quiet https://github.com/RAKWireless/RAK13600-PN532
+        mv RAK13600-PN532 /home/runner/Arduino/libraries/RAK13600-PN532
+        git clone --quiet https://github.com/RAKWireless/RAK12019_LTR390
+        mv RAK12019_LTR390 /home/runner/Arduino/libraries/RAK12019_LTR390
 
     - name: test platforms
       run: python3 ci/build_platform.py ${{ matrix.arduino-platform }}
