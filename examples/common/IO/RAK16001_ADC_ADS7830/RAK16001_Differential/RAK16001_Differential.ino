@@ -10,7 +10,7 @@
 */
 
 #include <Wire.h>
-#include "ADS7830.h"  //http://librarymanager/All#ADS7830 By：RAKWireless
+#include "ADS7830.h"  //http://librarymanager/All#RAK-ADS7830 By：RAKWireless
 
 ADS7830 ads;
 
