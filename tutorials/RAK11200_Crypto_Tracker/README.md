@@ -6,3 +6,7 @@ You can get the values of all cryptocurrency supported by coingecko as well as o
 
 The default coins/tokens are BTC, ETH and HNT.
 
+The complete and detailed guide on [WisBlock Cryptocurrency Tracker](https://news.rakwireless.com/cryptocurrency-tracker-in-e-paper-using-wisblock/) can be found on RAK website.
+
+[![image](https://user-images.githubusercontent.com/72064743/146430599-e008f225-9b99-450b-bd91-0c4aa773ce7a.png)](https://news.rakwireless.com/cryptocurrency-tracker-in-e-paper-using-wisblock/)
+
