@@ -11,6 +11,13 @@
 
 #include "app.h"
 
+#define AT_PRINTF(...)                  \
+	Serial.printf(__VA_ARGS__);         \
+	if (g_ble_uart_is_connected)        \
+	{                                   \
+		g_ble_uart.printf(__VA_ARGS__); \
+	}
+
 bool user_at_handler(char *user_cmd, uint8_t cmd_size)
 {
 	MYLOG("APP", "Received User AT commmand >>%s<< len %d", user_cmd, cmd_size);

@@ -82,6 +82,43 @@ bool init_soil(void)
 		found_sensor = true;
 	}
 
+	// #define CAL_TEST
+
+#ifdef CAL_TEST
+	for (int i = 0; i < 100; i++)
+	{
+		MYLOG("SOIL", "Read cycle %d", i);
+		// Check the sensor calibration values
+		uint16_t value = 0;
+		if (!sensor.get_dry_cal(&value))
+		{
+			MYLOG("SOIL", "No Dry calibration");
+		}
+		else
+		{
+			MYLOG("SOIL", "Sensor Dry Cal %d", value);
+		}
+
+		// Check the sensor calibration values
+		if (!sensor.get_wet_cal(&value))
+		{
+			MYLOG("SOIL", "No Wet calibration");
+		}
+		else
+		{
+			MYLOG("SOIL", "Sensor Wet Cal %d", value);
+		}
+
+		MYLOG("SOIL", "Powercycle Sensor");
+		sensor.sensor_sleep();
+		digitalWrite(WB_IO2, LOW);
+		delay(500);
+		digitalWrite(WB_IO2, HIGH);
+		delay(500);
+		sensor.reset();
+	}
+#endif
+
 	sensor.sensor_sleep();
 
 	Wire.end();

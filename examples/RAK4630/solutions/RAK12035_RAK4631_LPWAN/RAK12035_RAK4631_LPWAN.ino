@@ -25,6 +25,9 @@ batt_s batt_level;
 /** Send Fail counter **/
 uint8_t send_fail = 0;
 
+/** Flag if the acc sensor is available */
+bool has_acc = false;
+
 /**
  * @brief Application specific setup functions
  * 
@@ -65,6 +68,11 @@ bool init_app(void)
 	MYLOG("APP", "init_app");
 
 	Wire.begin();
+
+	if (init_acc())
+	{
+		has_acc = true;
+	}
 	// Initialize Soil module
 	return init_soil();
 }
@@ -146,6 +154,20 @@ void app_event_handler(void)
 				g_ble_uart.println("Packet error, too big to send with current DR");
 			}
 			break;
+		}
+	}
+
+	// ACC trigger event
+	if ((g_task_event_type & ACC_TRIGGER) == ACC_TRIGGER)
+	{
+		g_task_event_type &= N_ACC_TRIGGER;
+		MYLOG("APP", "ACC triggered");
+
+		if (has_acc)
+		{
+			read_acc();
+			clear_acc_int();
+			restart_advertising(15);
 		}
 	}
 }

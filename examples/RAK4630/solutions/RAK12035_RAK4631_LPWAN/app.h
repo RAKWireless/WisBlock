@@ -47,6 +47,8 @@ void ble_data_handler(void) __attribute__((weak));
 void lora_data_handler(void);
 
 /** Application events */
+#define ACC_TRIGGER 0b1000000000000000
+#define N_ACC_TRIGGER 0b0111111111111111
 
 /** Application stuff */
 extern BaseType_t g_higher_priority_task_woken;
@@ -59,6 +61,7 @@ uint16_t start_calib(bool is_dry);
 void save_calib(void);
 void read_calib(void);
 uint16_t get_calib(bool is_dry);
+extern bool has_acc;
 
 // LoRaWan functions
 struct soil_data_s
@@ -91,5 +94,12 @@ union batt_s
 	uint16_t batt16 = 0;
 	uint8_t batt8[2];
 };
+
+/** Accelerometer stuff */
+#include <SparkFunLIS3DH.h>
+#define INT_ACC_PIN WB_IO3
+bool init_acc(void);
+void clear_acc_int(void);
+void read_acc(void);
 
 #endif
