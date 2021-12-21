@@ -9,6 +9,7 @@
 **/
 
 #include <Arduino.h>
+#include <Adafruit_TinyUSB.h>
 
 #define BUZZER_CONTROL  WB_IO1
 
@@ -103,6 +104,8 @@ int length = 0;
 
 void setup()
 {
+  Serial.begin(115200);
+  while (!Serial) {};
   pinMode(BUZZER_CONTROL,OUTPUT);
   length=sizeof(tune)/sizeof(tune[0]);   //Calculation length
 }
