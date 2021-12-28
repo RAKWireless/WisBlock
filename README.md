@@ -194,12 +194,13 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
 
 - Bootloader/Firmware
     - [RAK4630](bootloader/RAK4630)
-        - [Flashable Bootloader](bootloader/)
-        - [Bootloader Source Code](bootloader/Adafruit_nRF52_Bootloader/)
-    - [RAK2305 AT firmware](bootloader/RAK2305_ESP32_WROVER)
+        - [Flashable Bootloader](bootloader/RAK4630/Latest)
+        - [Bootloader Source Code](bootloader/RAK4630/Latest/WisCore_RAK4631_Bootloader)
+    - [RAK2305 AT firmware](bootloader/RAK2305)
 ----
 
 - PlatformIO installation
+   - [Patch for PIO installation](PlatformIO)
    - [RAK4630 PlatformIO files](PlatformIO/RAK4630/)
    - [RAK11200 PlatformIO files](PlatformIO/RAK11200/)
    - [RAK11300 PlatformIO files](PlatformIO/RAK11300/)

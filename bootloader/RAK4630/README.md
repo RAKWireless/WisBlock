@@ -52,7 +52,7 @@ Different steps are required depending on your OS.
 
 #### For Windows
 
-Download the [adafruit-nrfutil.exe](https://github.com/adafruit/Adafruit_nRF52_nrfutil/releases/download/%24(APPVEYOR_REPO_TAG_NAME)/adafruit-nrfutil.exe) and the latest [RAK4631 bootloader firmware](./V0.4.2/WisCore_RAK4631_Board_Bootloader.zip).
+Download the [adafruit-nrfutil.exe](https://github.com/adafruit/Adafruit_nRF52_nrfutil/releases/download/%24(APPVEYOR_REPO_TAG_NAME)/adafruit-nrfutil.exe) and the latest [RAK4631 bootloader firmware](./Latest/WisCore_RAK4631_Board_Bootloader.zip).
 
 Once you downloaded these files, you need to put them on a same directory/folder in your computer.
 
@@ -82,7 +82,7 @@ or
 
 `pip3 install --user adafruit-nrfutil`
 
-Then download the latest [RAK4631 bootloader firmware][RAK4631 bootloader firmware](./V0.4.2/WisCore_RAK4631_Board_Bootloader.zip).
+Then download the latest [RAK4631 bootloader firmware](./Latest/WisCore_RAK4631_Board_Bootloader.zip).
 
 You also need to determine the port name of the RAK4631 using the command:
 
@@ -97,7 +97,7 @@ Then execute the following command:
 
 ##### For macOS
 
-The same with Windows and Linux procedures, download the latest [RAK4631 bootloader firmware](./V0.4.2/WisCore_RAK4631_Board_Bootloader.zip).
+The same with Windows and Linux procedures, download the latest [RAK4631 bootloader firmware](./Latest/WisCore_RAK4631_Board_Bootloader.zip).
 
 There are two ways to update the RAK4631 bootloader in macOS.
 
@@ -146,24 +146,24 @@ Required:
 
 ### Open the example app BLE OTA DFU to the RAK4631
 
-<img src="assets/image-20210401142059859.png" width="60%" caption="ble_ota_dfu example" />
+<img src="assets/image-20210401142059859.png" width="80%" caption="ble_ota_dfu example" />
 
 ### Flash the example to the RAK4631
 
-<img src="assets/image-20210401143116455.png" width="60%" caption="ble_ota_dfu upload" />
+<img src="assets/image-20210401143116455.png" width="80%" caption="ble_ota_dfu upload" />
 
 ### Open nRF Connect for Mobile and connect the BLE named "RAK4631_OTA"
 
-<img src="assets/image-20210401143923000.png" width="60%" caption="Nordic connect" />
+<img src="assets/image-20210401143923000.png" height="50%" caption="Nordic connect" />
 
 ### Click DFU button and select the upgrade Zip package.
 
-<img src="assets/image-20210401144119394.png" width="50%" caption="ble_ota_dfu select file type" /><img src="assets/image-20210401144200872.png" width="50%" caption="ble_ota_dfu select file" />
+<img src="assets/image-20210401144119394.png" height="50%" caption="ble_ota_dfu select file type" /><img src="assets/image-20210401144200872.png" height="50%" caption="ble_ota_dfu select file" />
 
 
 ### After selecting upgrade package, upgrade starts, we wait until 100% is finished, and the upgrade is complete. If there is power failure or upgrade failure, please follow the previous steps again.
 
- <img src="assets/image-20210401144523968.png" width="60%" caption="ble_ota_dfu upload ongoing" />
+ <img src="assets/image-20210401144523968.png" height="50%" caption="ble_ota_dfu upload ongoing" />
 
 ### Now that the upgrade is successful, we can use Arduino to download the application.
 
@@ -196,7 +196,7 @@ Steps as below:
 - Open J-Flash
 - Create a new project. Choose the board as below
 - Go into Target->Connect
-- Download the booloader from [RAK4631 bootloader firmware](./V0.4.2/WisCore_RAK4631_Board_Bootloader.zip)
+- Download the booloader from [RAK4631 bootloader firmware](./Latest/WisCore_RAK4631_Board_Bootloader.zip)
 - Drag the HEX to the J-Flash
 - Select Target->Production Programming. 
 
