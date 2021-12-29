@@ -125,7 +125,7 @@ You also need to determine the port name of the RAK4631 using the command:
 
 After all these steps, you can now upload the latest RAK4631 Bootloader Firmware by executing this command:
 
-`adafruit-nrfutil-macos --verbose dfu serial --package WisCore_RAK4631_Board_Bootloader.zip -p /dev/cu.usbmodem411 -b 115200 --singlebank --touch 1200`
+`./adafruit-nrfutil-macos --verbose dfu serial --package WisCore_RAK4631_Board_Bootloader.zip -p /dev/cu.usbmodem411 -b 115200 --singlebank --touch 1200`
 
 <img src="assets/macos_boot_update.png" width="60%" caption="Updated RAK4631 Bootloader" />
 
