@@ -227,7 +227,7 @@ pyocd pack --install nrf52
 
 Use the figure below as a guide to connect RAKDAP1 SWD to RAK4631.
 
-<img src="assets/rak4600-rakdap1.svg" width="80%" caption="RAKDAP1 connection" />
+<img src="assets/rak4631-rakdap1.png" width="100%" caption="RAKDAP1 connection" />
 
 ### Download the new bootloader
 
