@@ -9,11 +9,12 @@ This guide describes how to download the bootloader of RAK4630 in case of any cr
 - Download of Arduino depends on this bootloader
 - Every board contains bootloader after leaving factory, so user does not need to flash it.
 
-To flash the bootloader, there are three options:
+To flash the bootloader, there are four options:
 
 [Update over USB](#update-over-usb)    
 [Update over BLE](#update-over-ble)    
-[Update over Jlink/SWD](#update-over-jlink)    
+[Update over Jlink/SWD](#update-over-jlink)   
+[Update over RAKDAP1](#update-over-rakdap1)   
 
 ## How to Check if You Have the Updated RAK4631 Bootloader
 
@@ -201,3 +202,42 @@ Steps as below:
 - Select Target->Production Programming. 
 
 <img src="assets/bootloader-segger.png" width="80%" caption="SWD connection" />
+
+## Update over RAKDAP1
+
+### Hardware and Tools Required
+
+Required:
+
+- WisBlock Base RAK5005-O
+- WisBlock Core RAK4631
+- The latest bootloader (V0.4.2 - WisCore_RAK4631_Board_Bootloader.zip)
+- [RAKDAP1 tool](https://store.rakwireless.com/products/daplink-tool)
+- pyOCD
+
+### Install pyOCD
+
+pyOCD is an open source Python package for programming and debugging microcontrollers. Refer to [Quick Start Guide](https://docs.rakwireless.com/Product-Categories/Accessories/RAKDAP1-Flash-and-Debug-Tool/Quickstart/#installation) for detailed instructions on how to install the pyOCD tool.
+
+Install the RAK4631 module support package, using the following command:
+```c
+pyocd pack --install nrf52
+```
+### Connect RAKDAP1 adapter to SWD of the module
+
+Use the figure below as a guide to connect RAKDAP1 SWD to RAK4631.
+
+<img src="assets/rak4631-rakdap1.png" width="100%" caption="RAKDAP1 connection" />
+
+### Download the new bootloader
+
+Download the latest [RAK4631 bootloader firmware](https://github.com/RAKWireless/WisBlock/blob/master/bootloader/RAK4630/Latest/WisCore_RAK4631_Board_Bootloader.zip)
+
+Open the command prompt and change the folder where you have saved the bootloader.
+
+After that, you can flash the bootloader using the command:
+
+```c
+pyocd flash -t nrf52840 WisCore_RAK4631_Board_Bootloader.hex
+```
+<img src="assets/pyocd-flash.png" width="90%" caption="RAKDAP1 flash" />
