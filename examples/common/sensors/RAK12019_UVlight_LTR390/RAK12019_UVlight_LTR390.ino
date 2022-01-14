@@ -96,11 +96,11 @@ void loop() {
   {
     if (ltr.getMode() == LTR390_MODE_ALS)
     {
-      Serial.printf("Lux Data:%0.2f-----Als Data:%d\r\n",ltr.getLUX(), ltr.readALS()); //calculate the lux
+      Serial.printf("Lux Data:%0.2f-----Als Data:%d\r\n", ltr.getLUX(), ltr.readALS()); //calculate the lux
     }
     else
     {
-      Serial.printf("Uvi Data:%0.2f-----Uvs Data:%d\r\n",ltr.getUVI(), ltr.readUVS());
+      Serial.printf("Uvi Data:%0.2f-----Uvs Data:%d\r\n", ltr.getUVI(), ltr.readUVS());
     }
   }
   delay(500);
