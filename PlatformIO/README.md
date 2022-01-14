@@ -20,7 +20,7 @@ Before you can use the WisBlock Core modules with PlatformIO you need to install
 - RAK11300 => install Raspberry Pi RP2040 platform
 <img src="assets/Platform-RP2040.png" alt="nRF52 platform" height="150">
 
-After the required platforms are installed, follow the steps as shown in [Update](update)
+After the required platforms are installed, follow the steps as shown in [Update](#update)
 
 ## Update
 After updating or installing the nRF52, ESP32 or Raspberry Pi RP2040 package do the following steps:
