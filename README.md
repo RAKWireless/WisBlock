@@ -47,7 +47,7 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
             - [RAK1902_Pressure_LPS22HB](/examples/common/sensors/RAK1902_Pressure_LPS22HB/)
             - [RAK1903_Optical_OPT3001](/examples/common/sensors/RAK1903_Optical_OPT3001/)
             - [RAK1904_Accelerate_LIS3DH](/examples/common/sensors/RAK1904_Accelerate_LIS3DH/)
-            - [RAK1906_Environment_BME680](/examples/common/sensors/RAK1906_Environment_BEM680/)
+            - [RAK1906_Environment_BME680](/examples/common/sensors/RAK1906_Environment_BME680/)
             - [RAK1910_GPS_UBLOX7](/examples/common/sensors/RAK1910_GPS_UBLOX7/)
             - [RAK1920_MikroBUS_Temperature_TMP102](/examples/common/sensors/RAK1920_MikroBUS_Temperature_TMP102/)
             - [RAK1920_QWIIC_AirQuality_SGP30](/examples/common/sensors/RAK1920_QWIIC_AirQuality_SGP30/)
