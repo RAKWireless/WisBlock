@@ -107,7 +107,7 @@ void LTR390_Init(void)
 	digitalWrite(WB_IO2, HIGH);
 	delay(300);
 
-	Serial.println("Rak12019 test");
+	Serial.println("RAK12019 test");
 	Wire.begin();
 	if (!ltr.init())
 	{
