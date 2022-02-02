@@ -93,7 +93,7 @@ After determining the port name, go to the directory where the bootloader FW fil
 
 Then execute the following command:
 
-`adafruit-nrfutil --verbose dfu serial --package WisCore_RAK4631_Board_Bootloader -p /dev/ttyACM0 -b 115200 --singlebank --touch 1200`
+`adafruit-nrfutil --verbose dfu serial --package WisCore_RAK4631_Board_Bootloader.zip -p /dev/ttyACM0 -b 115200 --singlebank --touch 1200`
 
 
 ##### For macOS
@@ -231,7 +231,8 @@ Use the figure below as a guide to connect RAKDAP1 SWD to RAK4631.
 
 ### Download the new bootloader
 
-Download the latest [RAK4631 bootloader firmware](https://github.com/RAKWireless/WisBlock/blob/master/bootloader/RAK4630/Latest/WisCore_RAK4631_Board_Bootloader.zip)
+Download the latest [RAK4631 bootloader firmware as hex file](https://github.com/RAKWireless/WisBlock/blob/master/bootloader/RAK4630/Latest/WisCore_RAK4631_Board_Bootloader.hex)
+
 
 Open the command prompt and change the folder where you have saved the bootloader.
 

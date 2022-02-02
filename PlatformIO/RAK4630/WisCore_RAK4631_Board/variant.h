@@ -134,10 +134,12 @@ extern "C"
 /*
  * Wire Interfaces
  */
-#define WIRE_INTERFACES_COUNT 1
+#define WIRE_INTERFACES_COUNT 2
 
 #define PIN_WIRE_SDA (13)
 #define PIN_WIRE_SCL (14)
+#define PIN_WIRE1_SDA (24)
+#define PIN_WIRE1_SCL (25)
 
 // QSPI Pins
 #define PIN_QSPI_SCK 3	// 19
