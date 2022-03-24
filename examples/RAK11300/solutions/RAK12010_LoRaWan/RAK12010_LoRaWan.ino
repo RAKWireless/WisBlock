@@ -8,8 +8,8 @@
 
 */
 #include <Arduino.h>
-#include <LoRaWan-Arduino.h>
-#include "Light_VEML7700.h"
+#include <LoRaWan-Arduino.h>  // Click to install library: http://librarymanager/All#SX126x
+#include "Light_VEML7700.h"  // Click to install library: http://librarymanager/All#RAK12010
 #include <SPI.h>
 #include <stdio.h>
 #include "mbed.h"
@@ -45,11 +45,15 @@ static void lorawan_join_failed_handler(void);
 static void lorawan_rx_handler(lmh_app_data_t *app_data);
 static void lorawan_confirm_class_handler(DeviceClass_t Class);
 static void send_lora_frame(void);
+void lorawan_unconf_finished(void);
+void lorawan_conf_finished(bool result);
 
 /**@brief Structure containing LoRaWan callback functions, needed for lmh_init()
 */
 static lmh_callback_t g_lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
-                                          lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler, lorawan_join_failed_handler
+                                          lorawan_rx_handler, lorawan_has_joined_handler,
+                                          lorawan_confirm_class_handler, lorawan_join_failed_handler,
+                                          lorawan_unconf_finished, lorawan_conf_finished
                                          };
 //OTAA keys !!!! KEYS ARE MSB !!!!
 uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
@@ -67,13 +71,16 @@ uint8_t nodeAppsKey[16] = {0xFB, 0xAC, 0xB6, 0x47, 0xF3, 0x58, 0x45, 0xC7, 0x50,
 static uint8_t m_lora_app_data_buffer[LORAWAN_APP_DATA_BUFF_SIZE];            //< Lora user application data buffer.
 static lmh_app_data_t m_lora_app_data = {m_lora_app_data_buffer, 0, 0, 0, 0}; //< Lora user application data structure.
 
-TimerEvent_t appTimer;
-static uint32_t timers_init(void);
+mbed::Ticker appTimer;
+void tx_lora_periodic_handler(void);
+
 static uint32_t count = 0;
 static uint32_t count_fail = 0;
 static float LUX_VEML = 0;
 static float WHITE_VEML = 0;
 static float ALS = 0;
+
+bool send_now = false;
 
 void setup()
 {
@@ -158,15 +165,6 @@ void LoRaWan_OTaa_Init(void)
       break;
   }
   Serial.println("=====================================");
-  //creat a user timer to send data to server period
-  uint32_t err_code;
-  err_code = timers_init();
-  if (err_code != 0)
-  {
-    Serial.printf("timers_init failed - %d\n", err_code);
-    return;
-  }
-
   // Setup the EUIs and Keys
   if (doOTAA)
   {
@@ -182,7 +180,7 @@ void LoRaWan_OTaa_Init(void)
   }
 
   // Initialize LoRaWan
-  err_code = lmh_init(&g_lora_callbacks, g_lora_param_init, doOTAA, g_CurrentClass, g_CurrentRegion);
+  uint32_t err_code = lmh_init(&g_lora_callbacks, g_lora_param_init, doOTAA, g_CurrentClass, g_CurrentRegion);
   if (err_code != 0)
   {
     Serial.printf("lmh_init failed - %d\n", err_code);
@@ -252,6 +250,13 @@ void loop()
   WHITE_VEML = VMEL.readWhite();
   ALS = VMEL.readALS();
   delay(1000);
+  // Every LORAWAN_APP_INTERVAL milliseconds send_now will be set
+  // true by the application timer and collects and sends the data
+  if (send_now)
+  {
+    send_now = false;
+    send_lora_frame();
+  }
 }
 
 /**@brief LoRa function for handling HasJoined event.
@@ -264,8 +269,8 @@ void lorawan_has_joined_handler(void)
   if (ret == LMH_SUCCESS)
   {
     delay(1000);
-    TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-    TimerStart(&appTimer);
+    // Start the application timer. Time has to be in microseconds
+    appTimer.attach(tx_lora_periodic_handler, (std::chrono::microseconds)(LORAWAN_APP_INTERVAL * 1000));
   }
 }
 /**@brief LoRa function for handling OTAA join failed
@@ -280,6 +285,17 @@ static void lorawan_join_failed_handler(void)
 
    @param[in] app_data  Pointer to rx data
 */
+
+void lorawan_unconf_finished(void)
+{
+  Serial.println("TX finished");
+}
+
+void lorawan_conf_finished(bool result)
+{
+  Serial.printf("Confirmed TX %s\n", result ? "success" : "failed");
+}
+
 void lorawan_rx_handler(lmh_app_data_t *app_data)
 {
   Serial.printf("LoRa Packet received on port %d, size:%d, rssi:%d, snr:%d, data:%s\n",
@@ -329,7 +345,7 @@ void send_lora_frame(void)
   m_lora_app_data.buffer[loradatacount++] = (uint8_t)(White &  0x000000FF);
   m_lora_app_data.buffer[loradatacount++] = (uint8_t)((Als & 0x0000FF00) >> 8);
   m_lora_app_data.buffer[loradatacount++] = (uint8_t)(Als & 0xFF);
-  m_lora_app_data.buffsize =loradatacount;
+  m_lora_app_data.buffsize = loradatacount;
   lmh_error_status error = lmh_send(&m_lora_app_data, g_CurrentConfirm);
   if (error == LMH_SUCCESS)
   {
@@ -348,18 +364,8 @@ void send_lora_frame(void)
 */
 void tx_lora_periodic_handler(void)
 {
-  TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-  TimerStart(&appTimer);
+  appTimer.attach(tx_lora_periodic_handler, (std::chrono::microseconds)(LORAWAN_APP_INTERVAL * 1000));
   Serial.println("Sending frame now...");
-  send_lora_frame();
-}
-
-/**@brief Function for the Timer initialization.
-
-   @details Initializes the timer module. This creates and starts application timers.
-*/
-uint32_t timers_init(void)
-{
-  TimerInit(&appTimer, tx_lora_periodic_handler);
-  return 0;
+  // This is a timer interrupt, do not do lengthy things here. Signal the loop() instead
+  send_now = true;
 }

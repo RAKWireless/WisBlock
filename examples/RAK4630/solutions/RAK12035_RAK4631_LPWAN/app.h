@@ -17,7 +17,7 @@
 /** Add you required includes after Arduino.h */
 #include <Wire.h>
 
-#include <WisBlock-API.h>
+#include <WisBlock-API.h>  // Click here to get the library: http://librarymanager/All#WisBlock-API
 
 #include <at_cmd.h>
 

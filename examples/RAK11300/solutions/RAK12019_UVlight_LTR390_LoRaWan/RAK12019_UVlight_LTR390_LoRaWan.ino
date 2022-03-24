@@ -45,11 +45,17 @@ static void lorawan_join_failed_handler(void);
 static void lorawan_rx_handler(lmh_app_data_t *app_data);
 static void lorawan_confirm_class_handler(DeviceClass_t Class);
 static void send_lora_frame(void);
+void lorawan_unconf_finished(void);
+void lorawan_conf_finished(bool result);
 
 /**@brief Structure containing LoRaWan callback functions, needed for lmh_init()
 */
 static lmh_callback_t g_lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
-										  lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler, lorawan_join_failed_handler};
+                                          lorawan_rx_handler, lorawan_has_joined_handler,
+                                          lorawan_confirm_class_handler, lorawan_join_failed_handler,
+                                          lorawan_unconf_finished, lorawan_conf_finished
+                                         };
+
 //OTAA keys !!!! KEYS ARE MSB !!!!
 uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x44, 0x44};
 uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
@@ -66,8 +72,9 @@ uint8_t nodeAppsKey[16] = {0xFB, 0xAC, 0xB6, 0x47, 0xF3, 0x58, 0x45, 0xC7, 0x50,
 static uint8_t m_lora_app_data_buffer[LORAWAN_APP_DATA_BUFF_SIZE];			  //< Lora user application data buffer.
 static lmh_app_data_t m_lora_app_data = {m_lora_app_data_buffer, 0, 0, 0, 0}; //< Lora user application data structure.
 
-TimerEvent_t appTimer;
-static uint32_t timers_init(void);
+mbed::Ticker appTimer;
+void tx_lora_periodic_handler(void);
+
 static uint32_t count = 0;
 static uint32_t count_fail = 0;
 static float ALS = 0;
@@ -75,26 +82,28 @@ static float LUX = 0;
 static float UVS = 0;
 static float UVI = 0;
 
+bool send_now = false;
+
 void setup()
 {
-	pinMode(LED_BLUE, OUTPUT);
-	digitalWrite(LED_BLUE, HIGH);
-	// Initialize Serial for debug output
-	time_t timeout = millis();
-	Serial.begin(115200);
-	while (!Serial)
-	{
-		if ((millis() - timeout) < 5000)
-		{
-			delay(100);
-		}
-		else
-		{
-			break;
-		}
-	}
-	LoRaWan_OTaa_Init();
-	LTR390_Init();
+  pinMode(LED_BLUE, OUTPUT);
+  digitalWrite(LED_BLUE, HIGH);
+  // Initialize Serial for debug output
+  time_t timeout = millis();
+  Serial.begin(115200);
+  while (!Serial)
+  {
+    if ((millis() - timeout) < 5000)
+    {
+      delay(100);
+    }
+    else
+    {
+      break;
+    }
+  }
+  LoRaWan_OTaa_Init();
+  LTR390_Init();
 }
 
 /*
@@ -102,246 +111,256 @@ void setup()
 */
 void LTR390_Init(void)
 {
-	//Sensor power switch
-	pinMode(WB_IO2, OUTPUT);
-	digitalWrite(WB_IO2, HIGH);
-	delay(300);
+  //Sensor power switch
+  pinMode(WB_IO2, OUTPUT);
+  digitalWrite(WB_IO2, HIGH);
+  delay(300);
 
-	Serial.println("RAK12019 test");
-	Wire.begin();
-	if (!ltr.init())
-	{
-		Serial.println("Couldn't find LTR sensor!");
-		while (1)
-			delay(10);
-	}
-	Serial.println("Found LTR390 sensor!");
+  Serial.println("RAK12019 test");
+  Wire.begin();
+  if (!ltr.init())
+  {
+    Serial.println("Couldn't find LTR sensor!");
+    while (1)
+      delay(10);
+  }
+  Serial.println("Found LTR390 sensor!");
 
-	//if set LTR390_MODE_ALS,get ambient light data, if set LTR390_MODE_UVS,get ultraviolet light data.
-	ltr.setMode(LTR390_MODE_ALS); //LTR390_MODE_UVS
-	if (ltr.getMode() == LTR390_MODE_ALS)
-	{
-		Serial.println("In ALS mode");
-	}
-	else
-	{
-		Serial.println("In UVS mode");
-	}
+  //if set LTR390_MODE_ALS,get ambient light data, if set LTR390_MODE_UVS,get ultraviolet light data.
+  ltr.setMode(LTR390_MODE_ALS); //LTR390_MODE_UVS
+  if (ltr.getMode() == LTR390_MODE_ALS)
+  {
+    Serial.println("In ALS mode");
+  }
+  else
+  {
+    Serial.println("In UVS mode");
+  }
 
-	ltr.setGain(LTR390_GAIN_3);
-	Serial.print("Gain : ");
-	switch (ltr.getGain())
-	{
-	case LTR390_GAIN_1:
-		Serial.println(1);
-		break;
-	case LTR390_GAIN_3:
-		Serial.println(3);
-		break;
-	case LTR390_GAIN_6:
-		Serial.println(6);
-		break;
-	case LTR390_GAIN_9:
-		Serial.println(9);
-		break;
-	case LTR390_GAIN_18:
-		Serial.println(18);
-		break;
-	default:
-		Serial.println("Failed to set gain");
-		break;
-	}
-	ltr.setResolution(LTR390_RESOLUTION_16BIT);
-	Serial.print("Integration Time (ms): ");
-	switch (ltr.getResolution())
-	{
-	case LTR390_RESOLUTION_13BIT:
-		Serial.println(13);
-		break;
-	case LTR390_RESOLUTION_16BIT:
-		Serial.println(16);
-		break;
-	case LTR390_RESOLUTION_17BIT:
-		Serial.println(17);
-		break;
-	case LTR390_RESOLUTION_18BIT:
-		Serial.println(18);
-		break;
-	case LTR390_RESOLUTION_19BIT:
-		Serial.println(19);
-		break;
-	case LTR390_RESOLUTION_20BIT:
-		Serial.println(20);
-		break;
-	default:
-		Serial.println("Failed to set Integration Time");
-		break;
-	}
+  ltr.setGain(LTR390_GAIN_3);
+  Serial.print("Gain : ");
+  switch (ltr.getGain())
+  {
+    case LTR390_GAIN_1:
+      Serial.println(1);
+      break;
+    case LTR390_GAIN_3:
+      Serial.println(3);
+      break;
+    case LTR390_GAIN_6:
+      Serial.println(6);
+      break;
+    case LTR390_GAIN_9:
+      Serial.println(9);
+      break;
+    case LTR390_GAIN_18:
+      Serial.println(18);
+      break;
+    default:
+      Serial.println("Failed to set gain");
+      break;
+  }
+  ltr.setResolution(LTR390_RESOLUTION_16BIT);
+  Serial.print("Integration Time (ms): ");
+  switch (ltr.getResolution())
+  {
+    case LTR390_RESOLUTION_13BIT:
+      Serial.println(13);
+      break;
+    case LTR390_RESOLUTION_16BIT:
+      Serial.println(16);
+      break;
+    case LTR390_RESOLUTION_17BIT:
+      Serial.println(17);
+      break;
+    case LTR390_RESOLUTION_18BIT:
+      Serial.println(18);
+      break;
+    case LTR390_RESOLUTION_19BIT:
+      Serial.println(19);
+      break;
+    case LTR390_RESOLUTION_20BIT:
+      Serial.println(20);
+      break;
+    default:
+      Serial.println("Failed to set Integration Time");
+      break;
+  }
 
-	ltr.setThresholds(100, 1000); //Set the interrupt output threshold range for lower and upper.
-	if (ltr.getMode() == LTR390_MODE_ALS)
-	{
-		ltr.configInterrupt(true, LTR390_MODE_ALS); //Configure the interrupt based on the thresholds in setThresholds()
-	}
-	else
-	{
-		ltr.configInterrupt(true, LTR390_MODE_UVS);
-	}
+  ltr.setThresholds(100, 1000); //Set the interrupt output threshold range for lower and upper.
+  if (ltr.getMode() == LTR390_MODE_ALS)
+  {
+    ltr.configInterrupt(true, LTR390_MODE_ALS); //Configure the interrupt based on the thresholds in setThresholds()
+  }
+  else
+  {
+    ltr.configInterrupt(true, LTR390_MODE_UVS);
+  }
 }
 /*
   @brief Function for LoRaWan initialize
 */
 void LoRaWan_OTaa_Init(void)
 {
-	Serial.println("=====================================");
-	Serial.println("Welcome to RAK11300 LoRaWan!!!");
-	if (doOTAA)
-	{
-		Serial.println("Type: OTAA");
-	}
-	else
-	{
-		Serial.println("Type: ABP");
-	}
-	// Initialize LoRa chip.
-	lora_rak11300_init();
-	switch (g_CurrentRegion)
-	{
-	case LORAMAC_REGION_AS923:
-		Serial.println("Region: AS923-1");
-		break;
-	case LORAMAC_REGION_AU915:
-		Serial.println("Region: AU915");
-		break;
-	case LORAMAC_REGION_CN470:
-		Serial.println("Region: CN470");
-		break;
-	case LORAMAC_REGION_CN779:
-		Serial.println("Region: CN779");
-		break;
-	case LORAMAC_REGION_EU433:
-		Serial.println("Region: EU433");
-		break;
-	case LORAMAC_REGION_IN865:
-		Serial.println("Region: IN865");
-		break;
-	case LORAMAC_REGION_EU868:
-		Serial.println("Region: EU868");
-		break;
-	case LORAMAC_REGION_KR920:
-		Serial.println("Region: KR920");
-		break;
-	case LORAMAC_REGION_US915:
-		Serial.println("Region: US915");
-		break;
-	case LORAMAC_REGION_RU864:
-		Serial.println("Region: RU864");
-		break;
-	case LORAMAC_REGION_AS923_2:
-		Serial.println("Region: AS923-2");
-		break;
-	case LORAMAC_REGION_AS923_3:
-		Serial.println("Region: AS923-3");
-		break;
-	case LORAMAC_REGION_AS923_4:
-		Serial.println("Region: AS923-4");
-		break;
-	}
-	Serial.println("=====================================");
-	//creat a user timer to send data to server period
-	uint32_t err_code;
-	err_code = timers_init();
-	if (err_code != 0)
-	{
-		Serial.printf("timers_init failed - %d\n", err_code);
-		return;
-	}
+  Serial.println("=====================================");
+  Serial.println("Welcome to RAK11300 LoRaWan!!!");
+  if (doOTAA)
+  {
+    Serial.println("Type: OTAA");
+  }
+  else
+  {
+    Serial.println("Type: ABP");
+  }
+  // Initialize LoRa chip.
+  lora_rak11300_init();
+  switch (g_CurrentRegion)
+  {
+    case LORAMAC_REGION_AS923:
+      Serial.println("Region: AS923-1");
+      break;
+    case LORAMAC_REGION_AU915:
+      Serial.println("Region: AU915");
+      break;
+    case LORAMAC_REGION_CN470:
+      Serial.println("Region: CN470");
+      break;
+    case LORAMAC_REGION_CN779:
+      Serial.println("Region: CN779");
+      break;
+    case LORAMAC_REGION_EU433:
+      Serial.println("Region: EU433");
+      break;
+    case LORAMAC_REGION_IN865:
+      Serial.println("Region: IN865");
+      break;
+    case LORAMAC_REGION_EU868:
+      Serial.println("Region: EU868");
+      break;
+    case LORAMAC_REGION_KR920:
+      Serial.println("Region: KR920");
+      break;
+    case LORAMAC_REGION_US915:
+      Serial.println("Region: US915");
+      break;
+    case LORAMAC_REGION_RU864:
+      Serial.println("Region: RU864");
+      break;
+    case LORAMAC_REGION_AS923_2:
+      Serial.println("Region: AS923-2");
+      break;
+    case LORAMAC_REGION_AS923_3:
+      Serial.println("Region: AS923-3");
+      break;
+    case LORAMAC_REGION_AS923_4:
+      Serial.println("Region: AS923-4");
+      break;
+  }
+  Serial.println("=====================================");
 
-	// Setup the EUIs and Keys
-	if (doOTAA)
-	{
-		lmh_setDevEui(nodeDeviceEUI);
-		lmh_setAppEui(nodeAppEUI);
-		lmh_setAppKey(nodeAppKey);
-	}
-	else
-	{
-		lmh_setNwkSKey(nodeNwsKey);
-		lmh_setAppSKey(nodeAppsKey);
-		lmh_setDevAddr(nodeDevAddr);
-	}
+  // Setup the EUIs and Keys
+  if (doOTAA)
+  {
+    lmh_setDevEui(nodeDeviceEUI);
+    lmh_setAppEui(nodeAppEUI);
+    lmh_setAppKey(nodeAppKey);
+  }
+  else
+  {
+    lmh_setNwkSKey(nodeNwsKey);
+    lmh_setAppSKey(nodeAppsKey);
+    lmh_setDevAddr(nodeDevAddr);
+  }
 
-	// Initialize LoRaWan
-	err_code = lmh_init(&g_lora_callbacks, g_lora_param_init, doOTAA, g_CurrentClass, g_CurrentRegion);
-	if (err_code != 0)
-	{
-		Serial.printf("lmh_init failed - %d\n", err_code);
-		return;
-	}
+  // Initialize LoRaWan
+  uint32_t err_code = lmh_init(&g_lora_callbacks, g_lora_param_init, doOTAA, g_CurrentClass, g_CurrentRegion);
+  if (err_code != 0)
+  {
+    Serial.printf("lmh_init failed - %d\n", err_code);
+    return;
+  }
 
-	// Start Join procedure
-	lmh_join();
+  // Start Join procedure
+  lmh_join();
 }
 
 void loop()
 {
-	// Put your application tasks here, like reading of sensors,
-	// Controlling actuators and/or other functions.
-	if (ltr.newDataAvailable())
-	{
-		if (ltr.getMode() == LTR390_MODE_ALS)
-		{
-			ALS = ltr.readALS();
-			LUX = ltr.getLUX(); //calculate the lux
-		}
-		else
-		{
-			UVS = ltr.readUVS();
-			UVI = ltr.getUVI(); //calculate the UVI
-		}
-	}
-	delay(1000);
+  // Put your application tasks here, like reading of sensors,
+  // Controlling actuators and/or other functions.
+  if (ltr.newDataAvailable())
+  {
+    if (ltr.getMode() == LTR390_MODE_ALS)
+    {
+      ALS = ltr.readALS();
+      LUX = ltr.getLUX(); //calculate the lux
+    }
+    else
+    {
+      UVS = ltr.readUVS();
+      UVI = ltr.getUVI(); //calculate the UVI
+    }
+  }
+  delay(1000);
+  // Every LORAWAN_APP_INTERVAL milliseconds send_now will be set
+  // true by the application timer and collects and sends the data
+  if (send_now)
+  {
+    send_now = false;
+    send_lora_frame();
+  }
 }
 
 /**@brief LoRa function for handling HasJoined event.
 */
 void lorawan_has_joined_handler(void)
 {
-	Serial.println("OTAA Mode, Network Joined!");
+  Serial.println("OTAA Mode, Network Joined!");
 
-	lmh_error_status ret = lmh_class_request(g_CurrentClass);
-	if (ret == LMH_SUCCESS)
-	{
-		delay(1000);
-		TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-		TimerStart(&appTimer);
-	}
+  lmh_error_status ret = lmh_class_request(g_CurrentClass);
+  if (ret == LMH_SUCCESS)
+  {
+    delay(1000);
+    // Start the application timer. Time has to be in microseconds
+    appTimer.attach(tx_lora_periodic_handler, (std::chrono::microseconds)(LORAWAN_APP_INTERVAL * 1000));
+  }
 }
 /**@brief LoRa function for handling OTAA join failed
 */
 static void lorawan_join_failed_handler(void)
 {
-	Serial.println("OTAA join failed!");
-	Serial.println("Check your EUI's and Keys's!");
-	Serial.println("Check if a Gateway is in range!");
+  Serial.println("OTAA join failed!");
+  Serial.println("Check your EUI's and Keys's!");
+  Serial.println("Check if a Gateway is in range!");
 }
+
+void lorawan_unconf_finished(void)
+{
+  Serial.println("TX finished");
+}
+
+void lorawan_conf_finished(bool result)
+{
+  Serial.printf("Confirmed TX %s\n", result ? "success" : "failed");
+}
+
 /**@brief Function for handling LoRaWan received data from Gateway
 
    @param[in] app_data  Pointer to rx data
 */
 void lorawan_rx_handler(lmh_app_data_t *app_data)
 {
-	Serial.printf("LoRa Packet received on port %d, size:%d, rssi:%d, snr:%d, data:%s\n",
-				  app_data->port, app_data->buffsize, app_data->rssi, app_data->snr, app_data->buffer);
+  Serial.printf("LoRa Packet received on port %d, size:%d, rssi:%d, snr:%d, data:%s\n",
+                app_data->port, app_data->buffsize, app_data->rssi, app_data->snr, app_data->buffer);
 }
 
 void lorawan_confirm_class_handler(DeviceClass_t Class)
 {
-	Serial.printf("switch to class %c done\n", "ABC"[Class]);
-	// Informs the server that switch has occurred ASAP
-	m_lora_app_data.buffsize = 0;
-	m_lora_app_data.port = gAppPort;
-	lmh_send(&m_lora_app_data, g_CurrentConfirm);
+  Serial.printf("switch to class %c done\n", "ABC"[Class]);
+  // Informs the server that switch has occurred ASAP
+  m_lora_app_data.buffsize = 0;
+  m_lora_app_data.port = gAppPort;
+  lmh_send(&m_lora_app_data, g_CurrentConfirm);
 }
 
 /**@brief LoRa function for send data.
@@ -349,89 +368,79 @@ void lorawan_confirm_class_handler(DeviceClass_t Class)
 String data = "";
 void send_lora_frame(void)
 {
-	uint8_t loradatacount = 0;
-	if (lmh_join_status_get() != LMH_SET)
-	{
-		//Not joined, try again later
-		Serial.println("1Not joined");
-		return;
-	}
-	if (ltr.getMode() == LTR390_MODE_ALS)
-	{
-		uint32_t sendlux = 0;
-		uint32_t sendals = 0;
-		sendlux = LUX * 100;
-		sendals = ALS;
-		data = "Lux = " + String(LUX) + " " + "sendals=" + String(sendals) + " ";
-		Serial.println(data);
-		data = "";
-		memset(m_lora_app_data.buffer, 0, LORAWAN_APP_DATA_BUFF_SIZE);
-		m_lora_app_data.port = gAppPort;
-		m_lora_app_data.buffer[loradatacount++] = 0x08;
-		m_lora_app_data.buffer[loradatacount++] = ',';
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendlux & 0xFF000000) >> 24);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendlux & 0x00FF0000) >> 16);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendlux & 0x0000FF00) >> 8);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)(sendlux & 0x000000FF);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendals & 0xFF000000) >> 24);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendals & 0x00FF0000) >> 16);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendals & 0x0000FF00) >> 8);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)(sendals & 0x000000FF);
-		m_lora_app_data.buffsize = loradatacount;
-	}
-	else
-	{
-		uint32_t senduvs = 0;
-		uint32_t senduvi = 0;
-		senduvi = UVI * 100;
-		senduvs = UVS;
-		data = "UVI = " + String(UVI) + " " + " UVS=" + String(senduvs) + " ";
-		Serial.println(data);
-		data = "";
-		memset(m_lora_app_data.buffer, 0, LORAWAN_APP_DATA_BUFF_SIZE);
-		m_lora_app_data.port = gAppPort;
-		m_lora_app_data.buffer[loradatacount++] = 0x09;
-		m_lora_app_data.buffer[loradatacount++] = ',';
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvi & 0xFF000000) >> 24);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvi & 0x00FF0000) >> 16);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvi & 0x0000FF00) >> 8);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)(senduvi & 0x000000FF);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvs & 0xFF000000) >> 24);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvs & 0x00FF0000) >> 16);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvs & 0x0000FF00) >> 8);
-		m_lora_app_data.buffer[loradatacount++] = (uint8_t)(senduvs & 0x000000FF);
-		m_lora_app_data.buffsize = loradatacount;
-	}
-	lmh_error_status error = lmh_send(&m_lora_app_data, g_CurrentConfirm);
-	if (error == LMH_SUCCESS)
-	{
-		count++;
-		//Serial.printf("lmh_send ok count %d\n", count);
-	}
-	else
-	{
-		count_fail++;
-		//Serial.printf("lmh_send fail count %d\n", count_fail);
-	}
-	Serial.printf("lmh_send ok count %d---------lmh_send fail count %d\n", count, count_fail);
+  uint8_t loradatacount = 0;
+  if (lmh_join_status_get() != LMH_SET)
+  {
+    //Not joined, try again later
+    Serial.println("1Not joined");
+    return;
+  }
+  if (ltr.getMode() == LTR390_MODE_ALS)
+  {
+    uint32_t sendlux = 0;
+    uint32_t sendals = 0;
+    sendlux = LUX * 100;
+    sendals = ALS;
+    data = "Lux = " + String(LUX) + " " + "sendals=" + String(sendals) + " ";
+    Serial.println(data);
+    data = "";
+    memset(m_lora_app_data.buffer, 0, LORAWAN_APP_DATA_BUFF_SIZE);
+    m_lora_app_data.port = gAppPort;
+    m_lora_app_data.buffer[loradatacount++] = 0x08;
+    m_lora_app_data.buffer[loradatacount++] = ',';
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendlux & 0xFF000000) >> 24);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendlux & 0x00FF0000) >> 16);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendlux & 0x0000FF00) >> 8);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)(sendlux & 0x000000FF);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendals & 0xFF000000) >> 24);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendals & 0x00FF0000) >> 16);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((sendals & 0x0000FF00) >> 8);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)(sendals & 0x000000FF);
+    m_lora_app_data.buffsize = loradatacount;
+  }
+  else
+  {
+    uint32_t senduvs = 0;
+    uint32_t senduvi = 0;
+    senduvi = UVI * 100;
+    senduvs = UVS;
+    data = "UVI = " + String(UVI) + " " + " UVS=" + String(senduvs) + " ";
+    Serial.println(data);
+    data = "";
+    memset(m_lora_app_data.buffer, 0, LORAWAN_APP_DATA_BUFF_SIZE);
+    m_lora_app_data.port = gAppPort;
+    m_lora_app_data.buffer[loradatacount++] = 0x09;
+    m_lora_app_data.buffer[loradatacount++] = ',';
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvi & 0xFF000000) >> 24);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvi & 0x00FF0000) >> 16);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvi & 0x0000FF00) >> 8);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)(senduvi & 0x000000FF);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvs & 0xFF000000) >> 24);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvs & 0x00FF0000) >> 16);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)((senduvs & 0x0000FF00) >> 8);
+    m_lora_app_data.buffer[loradatacount++] = (uint8_t)(senduvs & 0x000000FF);
+    m_lora_app_data.buffsize = loradatacount;
+  }
+  lmh_error_status error = lmh_send(&m_lora_app_data, g_CurrentConfirm);
+  if (error == LMH_SUCCESS)
+  {
+    count++;
+    //Serial.printf("lmh_send ok count %d\n", count);
+  }
+  else
+  {
+    count_fail++;
+    //Serial.printf("lmh_send fail count %d\n", count_fail);
+  }
+  Serial.printf("lmh_send ok count %d---------lmh_send fail count %d\n", count, count_fail);
 }
 
 /**@brief Function for handling user timerout event.
 */
 void tx_lora_periodic_handler(void)
 {
-	TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-	TimerStart(&appTimer);
-	Serial.println("Sending frame now...");
-	send_lora_frame();
-}
-
-/**@brief Function for the Timer initialization.
-
-   @details Initializes the timer module. This creates and starts application timers.
-*/
-uint32_t timers_init(void)
-{
-	TimerInit(&appTimer, tx_lora_periodic_handler);
-	return 0;
+  appTimer.attach(tx_lora_periodic_handler, (std::chrono::microseconds)(LORAWAN_APP_INTERVAL * 1000));
+  Serial.println("Sending frame now...");
+  // This is a timer interrupt, do not do lengthy things here. Signal the loop() instead
+  send_now = true;
 }

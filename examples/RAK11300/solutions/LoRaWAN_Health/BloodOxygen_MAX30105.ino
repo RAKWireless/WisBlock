@@ -49,10 +49,10 @@ void max30105_measure()
     irBuffer[i] = particleSensor.getIR();
     particleSensor.nextSample(); //We're finished with this sample so move to next sample
 
-//    Serial.print(F("red="));
-//    Serial.print(redBuffer[i], DEC);
-//    Serial.print(F(", ir="));
-//    Serial.println(irBuffer[i], DEC);
+    //    Serial.print(F("red="));
+    //    Serial.print(redBuffer[i], DEC);
+    //    Serial.print(F(", ir="));
+    //    Serial.println(irBuffer[i], DEC);
   }
 
   //calculate heart rate and SpO2 after first 100 samples (first 4 seconds of samples)
@@ -81,10 +81,10 @@ void max30105_measure()
       particleSensor.nextSample(); //We're finished with this sample so move to next sample
 
       //send samples and calculation result to terminal program through UART
-//      Serial.print(F("red="));
-//      Serial.print(redBuffer[i], DEC);
-//      Serial.print(F(", ir="));
-//      Serial.print(irBuffer[i], DEC);
+      //      Serial.print(F("red="));
+      //      Serial.print(redBuffer[i], DEC);
+      //      Serial.print(F(", ir="));
+      //      Serial.print(irBuffer[i], DEC);
     }
     //After gathering 25 new samples recalculate HR and SP02
     maxim_heart_rate_and_oxygen_saturation(irBuffer, bufferLength, redBuffer, &spo2, &validSPO2, &heartRate, &validHeartRate);

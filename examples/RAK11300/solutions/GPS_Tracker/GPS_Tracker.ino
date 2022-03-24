@@ -1,15 +1,15 @@
 /**
- * @file GPS_Tracker.ino
- * @author rakwireless.com
- * @brief This sketch demonstrate a GPS tracker that collect location from a uBlox M7 GNSS sensor
- *    and send the data to lora gateway.
- *    It uses a 3-axis acceleration sensor to detect movement of the tracker
- * @version 0.2
- * @date 2021-04-30
- * 
- * @copyright Copyright (c) 2020
- *
- */
+   @file GPS_Tracker.ino
+   @author rakwireless.com
+   @brief This sketch demonstrate a GPS tracker that collect location from a uBlox M7 GNSS sensor
+      and send the data to lora gateway.
+      It uses a 3-axis acceleration sensor to detect movement of the tracker
+   @version 0.2
+   @date 2021-04-30
+
+   @copyright Copyright (c) 2020
+
+*/
 
 #include <Arduino.h>
 #include "LoRaWan-Arduino.h" //http://librarymanager/All#SX126x
@@ -47,7 +47,7 @@ lmh_confirm gCurrentConfirm = LMH_UNCONFIRMED_MSG;          /* confirm/unconfirm
 uint8_t gAppPort = LORAWAN_APP_PORT;                      /* data port*/
 
 /**@brief Structure containing LoRaWan parameters, needed for lmh_init()
- */
+*/
 static lmh_param_t lora_param_init = {LORAWAN_ADR_ON, LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
 
 // Foward declaration
@@ -56,13 +56,16 @@ static void lorawan_join_failed_handler(void);
 static void lorawan_rx_handler(lmh_app_data_t *app_data);
 static void lorawan_confirm_class_handler(DeviceClass_t Class);
 static void send_lora_frame(void);
+void lorawan_unconf_finished(void);
+void lorawan_conf_finished(bool result);
 
 /**@brief Structure containing LoRaWan callback functions, needed for lmh_init()
 */
 static lmh_callback_t lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
-                                        lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler, lorawan_join_failed_handler
+                                        lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler,
+                                        lorawan_join_failed_handler, lorawan_unconf_finished, lorawan_conf_finished
                                        };
-                                       
+
 //OTAA keys !!!! KEYS ARE MSB !!!!
 uint8_t nodeDeviceEUI[8] = {0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x33, 0x33};
 uint8_t nodeAppEUI[8] = {0xB8, 0x27, 0xEB, 0xFF, 0xFE, 0x39, 0x00, 0x00};
@@ -79,10 +82,13 @@ uint8_t nodeAppsKey[16] = {0xFB, 0xAC, 0xB6, 0x47, 0xF3, 0x58, 0x45, 0xC7, 0x50,
 static uint8_t m_lora_app_data_buffer[LORAWAN_APP_DATA_BUFF_SIZE];        //< Lora user application data buffer.
 static lmh_app_data_t m_lora_app_data = {m_lora_app_data_buffer, 0, 0, 0, 0}; //< Lora user application data structure.
 
-TimerEvent_t appTimer;
-static uint32_t timers_init(void);
+mbed::Ticker appTimer;
+void tx_lora_periodic_handler(void);
+
 static uint32_t count = 0;
 static uint32_t count_fail = 0;
+
+bool send_now = false;
 
 void setup()
 {
@@ -127,37 +133,37 @@ void setup()
       break;
     case LORAMAC_REGION_CN470:
       Serial.println("Region: CN470");
-    break;
-  case LORAMAC_REGION_CN779:
-    Serial.println("Region: CN779");
-    break;
-  case LORAMAC_REGION_EU433:
-    Serial.println("Region: EU433");
-    break;
-  case LORAMAC_REGION_IN865:
-    Serial.println("Region: IN865");
-    break;
-  case LORAMAC_REGION_EU868:
-    Serial.println("Region: EU868");
-    break;
-  case LORAMAC_REGION_KR920:
-    Serial.println("Region: KR920");
-    break;
-  case LORAMAC_REGION_US915:
-    Serial.println("Region: US915");
-    break;
-  case LORAMAC_REGION_RU864:
-    Serial.println("Region: RU864");
-    break;
-  case LORAMAC_REGION_AS923_2:
-    Serial.println("Region: AS923-2");
-    break;
-  case LORAMAC_REGION_AS923_3:
-    Serial.println("Region: AS923-3");
-    break;
-  case LORAMAC_REGION_AS923_4:
-    Serial.println("Region: AS923-4");
-    break;
+      break;
+    case LORAMAC_REGION_CN779:
+      Serial.println("Region: CN779");
+      break;
+    case LORAMAC_REGION_EU433:
+      Serial.println("Region: EU433");
+      break;
+    case LORAMAC_REGION_IN865:
+      Serial.println("Region: IN865");
+      break;
+    case LORAMAC_REGION_EU868:
+      Serial.println("Region: EU868");
+      break;
+    case LORAMAC_REGION_KR920:
+      Serial.println("Region: KR920");
+      break;
+    case LORAMAC_REGION_US915:
+      Serial.println("Region: US915");
+      break;
+    case LORAMAC_REGION_RU864:
+      Serial.println("Region: RU864");
+      break;
+    case LORAMAC_REGION_AS923_2:
+      Serial.println("Region: AS923-2");
+      break;
+    case LORAMAC_REGION_AS923_3:
+      Serial.println("Region: AS923-3");
+      break;
+    case LORAMAC_REGION_AS923_4:
+      Serial.println("Region: AS923-4");
+      break;
   }
   Serial.println("=====================================");
 
@@ -177,20 +183,10 @@ void setup()
   delay(1000);
   digitalWrite(WB_IO2, 1);
   delay(1000);
-  
+
   Serial1.begin(9600);
   while (!Serial1);
   Serial.println("gps uart init ok!");
-  
-  //creat a user timer to send data to server period
-  uint32_t err_code;
-
-  err_code = timers_init();
-  if (err_code != 0)
-  {
-    Serial.printf("timers_init failed - %d\n", err_code);
-    return;
-  }
 
   // Setup the EUIs and Keys
   if (doOTAA)
@@ -207,7 +203,7 @@ void setup()
   }
 
   // Initialize LoRaWan
-  err_code = lmh_init(&lora_callbacks, lora_param_init, doOTAA, gCurrentClass, gCurrentRegion);
+  uint32_t err_code = lmh_init(&lora_callbacks, lora_param_init, doOTAA, gCurrentClass, gCurrentRegion);
   if (err_code != 0)
   {
     Serial.printf("lmh_init failed - %d\n", err_code);
@@ -220,15 +216,21 @@ void setup()
 
 void loop()
 {
-  // Put your application tasks here, like reading of sensors,
-  // Controlling actuators and/or other functions. 
+  // Every LORAWAN_APP_INTERVAL milliseconds send_now will be set
+  // true by the application timer and collects and sends the data
+  if (send_now)
+  {
+    send_now = false;
+    digitalWrite(LED_BLUE, HIGH);
+    send_lora_frame();
+  }
 }
 
 /**@brief LoRa function for handling HasJoined event.
- */
+*/
 void lorawan_has_joined_handler(void)
 {
-  if(doOTAA == true)
+  if (doOTAA == true)
   {
     Serial.println("OTAA Mode, Network Joined!");
   }
@@ -240,10 +242,21 @@ void lorawan_has_joined_handler(void)
   if (ret == LMH_SUCCESS)
   {
     delay(1000);
-    TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-    TimerStart(&appTimer);
+    // Start the application timer. Time has to be in microseconds
+    appTimer.attach(tx_lora_periodic_handler, (std::chrono::microseconds)(LORAWAN_APP_INTERVAL * 1000));
   }
 }
+
+void lorawan_unconf_finished(void)
+{
+  Serial.println("TX finished");
+}
+
+void lorawan_conf_finished(bool result)
+{
+  Serial.printf("Confirmed TX %s\n", result ? "success" : "failed");
+}
+
 /**@brief LoRa function for handling OTAA join failed
 */
 static void lorawan_join_failed_handler(void)
@@ -253,13 +266,13 @@ static void lorawan_join_failed_handler(void)
   Serial.println("Check if a Gateway is in range!");
 }
 /**@brief Function for handling LoRaWan received data from Gateway
- *
- * @param[in] app_data  Pointer to rx data
- */
+
+   @param[in] app_data  Pointer to rx data
+*/
 void lorawan_rx_handler(lmh_app_data_t *app_data)
 {
   Serial.printf("LoRa Packet received on port %d, size:%d, rssi:%d, snr:%d, data:%s\n",
-          app_data->port, app_data->buffsize, app_data->rssi, app_data->snr, app_data->buffer);
+                app_data->port, app_data->buffsize, app_data->rssi, app_data->snr, app_data->buffer);
 }
 
 void lorawan_confirm_class_handler(DeviceClass_t Class)
@@ -290,44 +303,43 @@ void send_lora_frame(void)
     count_fail++;
     Serial.printf("lmh_send fail count %d\n", count_fail);
   }
-  TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-  TimerStart(&appTimer);
+  appTimer.attach(tx_lora_periodic_handler, (std::chrono::microseconds)(LORAWAN_APP_INTERVAL * 1000));
 }
 
 /**@brief Function for analytical direction.
- */
+*/
 void direction_parse(String tmp)
 {
-    if (tmp.indexOf(",E,") != -1)
-    {
-        direction_E_W = 0;
-    }
-    else
-    {
-        direction_E_W = 1;
-    }
-    
-    if (tmp.indexOf(",S,") != -1)
-    {
-        direction_S_N = 0;
-    }
-    else
-    {
-        direction_S_N = 1;
-    }
+  if (tmp.indexOf(",E,") != -1)
+  {
+    direction_E_W = 0;
+  }
+  else
+  {
+    direction_E_W = 1;
+  }
+
+  if (tmp.indexOf(",S,") != -1)
+  {
+    direction_S_N = 0;
+  }
+  else
+  {
+    direction_S_N = 1;
+  }
 }
 
 /**@brief Function for handling a LoRa tx timer timeout event.
- */
+*/
 String data = "";
 void tx_lora_periodic_handler(void)
-{ 
+{
   float x = 0;
   float y = 0;
   float z = 0;
 
   bool newData = false;
-  
+
   Serial.println("check acc!");
   x = SensorTwo.readFloatAccelX() * 1000;
   y = SensorTwo.readFloatAccelY() * 1000;
@@ -335,7 +347,7 @@ void tx_lora_periodic_handler(void)
   data = "X = " + String(x) + "mg" + " Y = " + String(y) + "mg" + " Z =" + String(z) + "mg";
   Serial.println(data);
   data = "";
-  if( abs(x-z) < 400)
+  if ( abs(x - z) < 400)
   {
     // For one second we parse GPS data and report some key values
     for (unsigned long start = millis(); millis() - start < 1000;)
@@ -355,7 +367,7 @@ void tx_lora_periodic_handler(void)
     int32_t ilat, ilon;
     if (newData)
     {
-      unsigned long age;  
+      unsigned long age;
       gps.f_get_position(&flat, &flon, &age);
       flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flat;
       ilat = flat * 100000;
@@ -369,20 +381,20 @@ void tx_lora_periodic_handler(void)
       m_lora_app_data.buffer[2] = (ilat & 0x00FF0000) >> 16;
       m_lora_app_data.buffer[3] = (ilat & 0x0000FF00) >> 8;
       m_lora_app_data.buffer[4] =  ilat & 0x000000FF;
-      if(direction_S_N == 0)
+      if (direction_S_N == 0)
       {
-        m_lora_app_data.buffer[5] = 'S';    
+        m_lora_app_data.buffer[5] = 'S';
       }
       else
       {
-        m_lora_app_data.buffer[5] = 'N';    
+        m_lora_app_data.buffer[5] = 'N';
       }
       //lon data
       m_lora_app_data.buffer[6] = (ilon & 0xFF000000) >> 24;
       m_lora_app_data.buffer[7] = (ilon & 0x00FF0000) >> 16;
       m_lora_app_data.buffer[8] = (ilon & 0x0000FF00) >> 8;
       m_lora_app_data.buffer[9] =  ilon & 0x000000FF;
-      if(direction_E_W == 0)
+      if (direction_E_W == 0)
       {
         m_lora_app_data.buffer[10] = 'E';
       }
@@ -395,23 +407,11 @@ void tx_lora_periodic_handler(void)
     }
     else
     {
-      TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-      TimerStart(&appTimer);
+      appTimer.attach(tx_lora_periodic_handler, (std::chrono::microseconds)(LORAWAN_APP_INTERVAL * 1000));
     }
   }
   else
   {
-    TimerSetValue(&appTimer, LORAWAN_APP_INTERVAL);
-    TimerStart(&appTimer);
+    appTimer.attach(tx_lora_periodic_handler, (std::chrono::microseconds)(LORAWAN_APP_INTERVAL * 1000));
   }
-}
-
-/**@brief Function for the Timer initialization.
- *
- * @details Initializes the timer module. This creates and starts application timers.
- */
-uint32_t timers_init(void)
-{
-  TimerInit(&appTimer, tx_lora_periodic_handler);
-  return 0;
 }
