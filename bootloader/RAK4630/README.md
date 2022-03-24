@@ -53,7 +53,7 @@ Different steps are required depending on your OS.
 
 #### For Windows
 
-Download the [adafruit-nrfutil.exe](https://github.com/adafruit/Adafruit_nRF52_nrfutil/releases/download/%24(APPVEYOR_REPO_TAG_NAME)/adafruit-nrfutil.exe) and the latest [RAK4631 bootloader firmware](./Latest/WisCore_RAK4631_Board_Bootloader.zip).
+Download the [adafruit-nrfutil.exe](https://github.com/adafruit/Adafruit_nRF52_nrfutil/releases/download/%24(APPVEYOR_REPO_TAG_NAME)/adafruit-nrfutil.exe) and the latest [RAK4631 bootloader firmware](https://github.com/RAKWireless/WisBlock/releases).
 
 Once you downloaded these files, you need to put them on a same directory/folder in your computer.
 
@@ -83,7 +83,7 @@ or
 
 `pip3 install --user adafruit-nrfutil`
 
-Then download the latest [RAK4631 bootloader firmware](./Latest/WisCore_RAK4631_Board_Bootloader.zip).
+Then download the latest [RAK4631 bootloader firmware](https://github.com/RAKWireless/WisBlock/releases).
 
 You also need to determine the port name of the RAK4631 using the command:
 
@@ -98,7 +98,7 @@ Then execute the following command:
 
 ##### For macOS
 
-The same with Windows and Linux procedures, download the latest [RAK4631 bootloader firmware](./Latest/WisCore_RAK4631_Board_Bootloader.zip).
+The same with Windows and Linux procedures, download the latest [RAK4631 bootloader firmware](https://github.com/RAKWireless/WisBlock/releases).
 
 There are two ways to update the RAK4631 bootloader in macOS.
 
@@ -197,7 +197,7 @@ Steps as below:
 - Open J-Flash
 - Create a new project. Choose the board as below
 - Go into Target->Connect
-- Download the booloader from [RAK4631 bootloader firmware](./Latest/WisCore_RAK4631_Board_Bootloader.zip)
+- Download the booloader from [RAK4631 bootloader firmware](https://github.com/RAKWireless/WisBlock/releases)
 - Drag the HEX to the J-Flash
 - Select Target->Production Programming. 
 
@@ -231,7 +231,7 @@ Use the figure below as a guide to connect RAKDAP1 SWD to RAK4631.
 
 ### Download the new bootloader
 
-Download the latest [RAK4631 bootloader firmware as hex file](https://github.com/RAKWireless/WisBlock/blob/master/bootloader/RAK4630/Latest/WisCore_RAK4631_Board_Bootloader.hex)
+Download the latest [RAK4631 bootloader firmware as hex file](https://github.com/RAKWireless/WisBlock/releases)
 
 
 Open the command prompt and change the folder where you have saved the bootloader.
