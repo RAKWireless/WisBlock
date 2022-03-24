@@ -140,6 +140,8 @@ jobs:
         mv RAK12035_SoilMoisture /home/runner/Arduino/libraries/RAK12035_SoilMoisture
         git clone --quiet https://github.com/RAKWireless/RAKwireless_Storage
         mv RAKwireless_Storage /home/runner/Arduino/libraries/RAKwireless_Storage
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13800_W5100S
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK12029-LDC1614
 
     - name: test platforms
       run: python3 ci/build_platform.py ${{ matrix.arduino-platform }}
