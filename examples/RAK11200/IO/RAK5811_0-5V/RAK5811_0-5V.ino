@@ -13,11 +13,12 @@
 
 void setup()
 {
- /*
-  * WisBLOCK 5811 Power On
-  */
-	pinMode(WB_IO1, OUTPUT | PULLUP);
+ 	/* WisBLOCK 5811 Power On*/
+	pinMode(WB_IO1, OUTPUT);
 	digitalWrite(WB_IO1, HIGH);
+	/* WisBLOCK 5811 Power On*/
+	pinMode(WB_IO2, OUTPUT);
+	digitalWrite(WB_IO2, HIGH);
 
 	adcAttachPin(WB_A1);	//Connect pin to ADC peripherals
 
