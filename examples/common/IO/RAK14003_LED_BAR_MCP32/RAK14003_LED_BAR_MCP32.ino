@@ -3,16 +3,16 @@
    @author rakwireless.com
    @brief Use MCP23017 to control LED Bar.
 		Colour：2 Red, 3 Yellow, 5 Green	
-   @version 0.1
-   @date 2021-6-18
-   @copyright Copyright (c) 2021
+   @version 0.2
+   @date 2022-5-11
+   @copyright Copyright (c) 2022
 **/
 #include <Wire.h>
-#include "Adafruit_MCP23017.h"  //http://librarymanager/All#Adafruit_MCP23017
+#include "Adafruit_MCP23X17.h"  //http://librarymanager/All#Adafruit_MCP23017
 
-#define IIC_ADDRESS 0X04 
+#define IIC_ADDRESS 0X24 
 
-Adafruit_MCP23017 mcp;
+Adafruit_MCP23X17 mcp;
   
 void setup() 
 {  
@@ -28,7 +28,7 @@ void setup()
   digitalWrite(WB_IO4, 1);
   delay(10);
   
-  mcp.begin(IIC_ADDRESS,&Wire); // use default address 0.
+  mcp.begin_I2C(IIC_ADDRESS); // use default address 0.
   
   for(int i=0 ;i < 16 ;i++)
   {
@@ -39,25 +39,25 @@ void setup()
 
 void loop() 
 {
-	int i;
-	for(i=0 ;i < 10 ;i++)
-	{
-		mcp.digitalWrite(i, LOW);
-		delay(200);
-	}
-	for(i=0 ;i < 10 ;i++)
-	{
-		mcp.digitalWrite(9-i, HIGH);
-		delay(200);
-	}
-	for(i=0 ;i < 10 ;i++)
-	{
-		mcp.digitalWrite(i, LOW);
-	}
-	delay(300);
-	for(i=0 ;i < 10 ;i++)
-	{
-		mcp.digitalWrite(i, HIGH);
-	}
-	delay(300);
+  int i;
+  for(i=0 ;i < 10 ;i++)
+  {
+    mcp.digitalWrite(i, LOW);
+    delay(200);
+  }
+  for(i=0 ;i < 10 ;i++)
+  {
+    mcp.digitalWrite(9-i, HIGH);
+    delay(200);
+  }
+  for(i=0 ;i < 10 ;i++)
+  {
+    mcp.digitalWrite(i, LOW);
+  }
+  delay(300);
+  for(i=0 ;i < 10 ;i++)
+  {
+    mcp.digitalWrite(i, HIGH);
+  }
+  delay(300);
 }
