@@ -3,15 +3,15 @@
    @author rakwireless.com
    @brief Use IIC to expand 16 GPIO. 
           Polling the expander status to detect whether there is a low level on PA or PB.
-   @version 0.1
-   @date 2021-2-24
-   @copyright Copyright (c) 2021
+   @version 0.2
+   @date 2022-5-11
+   @copyright Copyright (c) 2022
 **/
 
 #include <Wire.h>
-#include "Adafruit_MCP23017.h"  //http://librarymanager/All#Adafruit_MCP23017
+#include "Adafruit_MCP23X17.h"  //http://librarymanager/All#Adafruit_MCP23017
 
-Adafruit_MCP23017 mcp;
+Adafruit_MCP23X17 mcp;
 
 void setup()
 {  
@@ -44,12 +44,11 @@ void setup()
   
   Serial.println("MCP23017 Polls GPIO Test.");
   
-  mcp.begin();  // Use default address 0.
+  mcp.begin_I2C();  // Use default address 0.
   
   for(int i=0 ;i < 16 ;i++)
   {
-    mcp.pinMode(i, INPUT);  // Set GPIO to input mode.
-    mcp.pullUp(i, HIGH);  // Turn on a 100K pullup internally. 
+    mcp.pinMode(i, INPUT_PULLUP);  // Set GPIO to input mode with internal pullup resistor
   }
 }
 void loop()
