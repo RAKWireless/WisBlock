@@ -30,7 +30,7 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SD
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install modbus-esp8266
         
-        git clone --quiet https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library --branch 1.3.0
+        git clone --quiet https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library
         mv Adafruit-MCP23017-Arduino-Library /home/runner/Arduino/libraries/Adafruit-MCP23017-Arduino-Library
         git clone --quiet https://github.com/sparkfun/SparkFun_SHTC3_Arduino_Library
         mv SparkFun_SHTC3_Arduino_Library /home/runner/Arduino/libraries/SparkFun_SHTC3_Arduino_Library
