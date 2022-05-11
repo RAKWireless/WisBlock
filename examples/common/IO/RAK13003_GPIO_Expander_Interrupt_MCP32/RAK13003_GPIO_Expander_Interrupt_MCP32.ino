@@ -6,13 +6,13 @@
           Trigger an interrupt when the pin is taken to ground.
           The interrupt generated on port PA will trigger the interrupt on WisBlock IO6.
           The interrupt generated on port PB will trigger the interrupt on WisBlock IO5.
-   @version 0.1
-   @date 2021-2-24
-   @copyright Copyright (c) 2021
+   @version 0.2
+   @date 2022-5-11
+   @copyright Copyright (c) 2022
 **/
 
 #include <Wire.h>
-#include "Adafruit_MCP23017.h" //http://librarymanager/All#Adafruit_MCP23017
+#include "Adafruit_MCP23X17.h" //http://librarymanager/All#Adafruit_MCP23017
 
 #ifdef ESP32
   #define LED1 WB_LED1
@@ -22,7 +22,7 @@
   #define LED2 PIN_LED2   
 #endif
 
-Adafruit_MCP23017 mcp;
+Adafruit_MCP23X17 mcp;
 
 volatile boolean g_awake_by_InterruptA = false;
 volatile boolean g_awake_by_InterruptB = false;
@@ -64,15 +64,14 @@ void setup()
   
   Serial.println("MCP23017 GPIO Interrupt Test.");
 
-  mcp.begin(); // use default address 0.
+  mcp.begin_I2C(); // use default address 0.
    
   mcp.setupInterrupts(false,false,LOW); // INTs will be signaled with a LOW.
 
   for(int i=0 ;i < 16 ;i++)
   {
-    mcp.pinMode(i, INPUT);
-    mcp.pullUp(i, HIGH);  // Turn on a 100K pullup internally.
-    mcp.setupInterruptPin(i,FALLING); // interrupt will triger when the pin is taken to ground.
+    mcp.pinMode(i, INPUT_PULLUP);
+    mcp.setupInterruptPin(i,LOW); // interrupt will triger when the pin is taken to ground.
   }
 
   attachInterrupt(WB_IO6,INTACallBack,CHANGE);
