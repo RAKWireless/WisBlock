@@ -29,7 +29,6 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SD
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install modbus-esp8266
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_ADXL313
         
         git clone --quiet https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library
         mv Adafruit-MCP23017-Arduino-Library /home/runner/Arduino/libraries/Adafruit-MCP23017-Arduino-Library
@@ -103,6 +102,8 @@ jobs:
         mv ArduinoMqttClient /home/runner/Arduino/libraries/ArduinoMqttClient
         git clone --quiet https://github.com/Sensirion/arduino-i2c-sgp40
         mv arduino-i2c-sgp40 /home/runner/Arduino/libraries/arduino-i2c-sgp40
+        git clone --quiet https://github.com/sparkfun/SparkFun_ADXL313_Arduino_Library
+        mv SparkFun_ADXL313_Arduino_Library /home/runner/Arduino/libraries/SparkFun_ADXL313_Arduino_Library
 
         # ESP32 specific libraries
 
