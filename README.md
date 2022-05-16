@@ -58,7 +58,9 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
             - [RAK12010_VEML7700_Light](/examples/common/sensors/RAK12010_VEML7700_Light/)
             - [RAK12011_MEMS_Pressure_LPS33HW](/examples/common/sensors/RAK12011_MEMS_Pressure_LPS33HW/)
             - [RAK12019_UVlight_LTR390](/examples/common/sensors/RAK12019_UVlight_LTR390/)
+            - [RAK12025_Gyroscope](/examples/common/sensors/RAK12025_Gyroscope/)
             - [RAK12500_GPS_ZOE-M8Q](/examples/common/sensors/RAK12500_GPS_ZOE-M8Q/)
+            - [RAK14008_Gesture_PAJ7620](/examples/common/sensors/RAK14008_Gesture_PAJ7620/)     
             - [RAK15000_EEPROM_AT24C02](/examples/common/sensors/RAK15000_EEPROM_AT24C02/)     
             - [RAK15001_Flash_GD25Q16C](/examples/common/sensors/RAK15001_Flash_GD25Q16C/)     
             - [RAK19002_Boost_TPS61046](/examples/common/sensors/RAK19002_Boost_TPS61046/)     
@@ -66,6 +68,7 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
             - [RAK1921_OLED_SSD1306](/examples/common/IO/RAK1921_OLED_SSD1306/)
             - [RAK1921_Jumping_Ball_SSD1306](/examples/common/IO/RAK1921_Jumping_Ball_SSD1306/)
             - [RAK1921_Moving_Logo_SSD1306](/examples/common/IO/RAK1921_Moving_Logo_SSD1306/)
+			- [RAK12001_FingerPrint](/examples/common/IO/RAK12001_FingerPrint)
 			- [RAK12004_MQ2_read](/examples/common/IO/RAK12004_MQ2_read)
 			- [RAK12005_WaterDetector](/examples/common/IO/RAK12005_WaterDetector)
 			- [RAK12006_MotionDetection](/examples/common/IO/RAK12006_MotionDetection)
@@ -79,6 +82,7 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
 			- [RAK12016_Flex_FSL0095103ST](/examples/common/IO/RAK12016_Flex_FSL0095103ST)
 			- [RAK12017_IR_ITR20001T](/examples/common/IO/RAK12017_IR_ITR20001T)
 			- [RAK12018_CodeReader_LV3296](/examples/common/IO/RAK12018_CodeReader_LV3296)
+			- [RAK12031_T_Fork_SX1041](/examples/common/IO/RAK12031_T_Fork_SX1041)
 			- [RAK12035_SoilMoisture](/examples/common/IO/RAK12035_SoilMoisture)
 			- [RAK13001_Relay_OUT_Optocoupled_IN](/examples/common/IO/RAK13001_Relay_OUT_Optocoupled_IN)
 			- [RAK13003_GPIO_Expander_Interrupt_MCP32](/examples/common/IO/RAK13003_GPIO_Expander_Interrupt_MCP32)
@@ -86,6 +90,8 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
 			- [RAK13003_GPIO_Expander_Polls_MCP32](/examples/common/IO/RAK13003_GPIO_Expander_Polls_MCP32)
 			- [RAK13004_PWM_Expander_PCA9685](/examples/common/IO/RAK13004_PWM_Expander_PCA9685)
 			- [RAK13005_LIN_BUS](/examples/common/IO/RAK13005_LIN_BUS)
+			- [RAK13007_Relay_G5LE-14-DC3](/examples/common/IO/RAK13007_Relay_G5LE-14-DC3)
+			- [RAK13600_PN530_NFC](/examples/common/IO/RAK13600_PN530_NFC)
             - [RAK14000-Epaper-Monochrome](/examples/common/IO/RAK14000-Epaper-Monochrome/)
             - [RAK14000-Epaper-TriColor](/examples/common/IO/RAK14000-Epaper-Monochrome/)
 			- [RAK14001_NCP5623_GradualDimming](/examples/common/IO/RAK14001_NCP5623_GradualDimming)
@@ -94,8 +100,10 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
 			- [RAK14003_LED_BAR_MCP32](/examples/common/IO/RAK14003_LED_BAR_MCP32)
 			- [RAK14004_Atmega328pb_KeyPad](/examples/common/IO/RAK14004_Atmega328pb_KeyPad)
 			- [RAK14006_Rotary_Encoder](/examples/common/IO/RAK14006_Rotary_Encoder)
+			- [RAK14012_RGB_Matrix](/examples/common/IO/RAK14012_RGB_Matrix)
 			- [RAK16000_DcCurrent_INA219](/examples/common/IO/RAK16000_DcCurrent_INA219)
 			- [RAK16001_ADC_ADS7830](/examples/common/IO/RAK16001_ADC_ADS7830)
+			- [RAK16002_Coulomb](/examples/common/IO/RAK16002_Coulomb)
         - [Communications](/examples/common/communications/)
             - [Cellular](/examples/common/communications/Cellular/)
                 - [RAK5860](/examples/common/communications/Cellular/RAK5860_BG77_Module/)
@@ -107,6 +115,19 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
                    - [GPS](/examples/common/communications/Cellular/RAK13101_MC20_Module/GPS)
                    - [GSM_TCP](/examples/common/communications/Cellular/RAK13101_MC20_Module/GSM_TCP)
                    - [Unvarnished_Transmission](/examples/common/communications/Cellular/RAK13101_MC20_Module/Unvarnished_Transmission)
+            - [Ethernet](/examples/common/communications/Ethernet/)
+                   - [DHCP](/examples/common/communications/Ethernet/RAK13800_Ethernet_DHCP_W5100S)
+                   - [HTTP CLient](/examples/common/communications/Ethernet/RAK13800_Ethernet_HTTP_Client_W5100S)
+                   - [HTTP Server](/examples/common/communications/Ethernet/RAK13800_Ethernet_HTTP_Server_W5100S)
+                   - [MQTT Publish](/examples/common/communications/Ethernet/RAK13800_Ethernet_MQTT_Publish_W5100S)
+                   - [MQTT Subscribe](/examples/common/communications/Ethernet/RAK13800_Ethernet_MQTT_Subscribe_W5100S)
+                   - [TCP Client](/examples/common/communications/Ethernet/RAK13800_Ethernet_TCP_Client_W5100S)
+                   - [TCP Server](/examples/common/communications/Ethernet/RAK13800_Ethernet_TCP_Server_W5100S)
+                   - [UDP](/examples/common/communications/Ethernet/RAK13800_Ethernet_UDP_W5100S)
+    
+----
+    
+-    
     - [RAK4630 Examples](/examples/RAK4630/) 
         - [RAK4630 Slot A - D Modules](/examples/RAK4630/sensors/)
             - [RAK18001_Buzzer](/examples/RAK4630/sensors/RAK18001_Buzzer/)
@@ -152,6 +173,9 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
             - [RAK12019 LoRaWan](/examples/RAK4630/solutions/RAK12019_UVlight_LTR390_LoRaWan/)
             - [RAK12035 LoRaWan](/examples/RAK4630/solutions/RAK12035_RAK4631_LPWAN/)
 
+----
+    
+-    
     - [RAK11200 Examples](/examples/RAK11200/) 
         - [RAK11200 Slot A - D Modules](/examples/RAK11200/sensors/)
             - [RAK18001_Buzzer](/examples/RAK11200/sensors/RAK18001_Buzzer/)
@@ -183,6 +207,9 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
             - [Weather Display](/examples/RAK11200/solutions/weather_display/)
             - [mqtt_subscribe_publish](/examples/RAK11200/solutions/mqtt_subscribe_publish/)
 
+----
+    
+-    
     - [RAK11300 Examples](/examples/RAK11300/) 
         - [RAK11300 Slot A - D Modules](/examples/RAK11300/sensors/)
             - [RAK18001_Buzzer](/examples/RAK11300/sensors/RAK18001_Buzzer/)

@@ -32,10 +32,13 @@
 void setup() {
   pinMode(WB_IO2, OUTPUT);
   pinMode(RESET_PIN, OUTPUT);
-  digitalWrite(RESET_PIN, LOW);
   digitalWrite(WB_IO2, LOW);
+  digitalWrite(RESET_PIN, LOW);
+  delay(300);
+  digitalWrite(WB_IO2, HIGH);
+  delay(70);
+  digitalWrite(RESET_PIN, HIGH);
   delay(1000);
-  digitalWrite(WB_IO2, HIGH);  
   pinMode(INT_LED, OUTPUT);
   digitalWrite(INT_LED, LOW);
   Serial.begin(115200);
