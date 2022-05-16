@@ -29,6 +29,8 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SD
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install modbus-esp8266
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SensirionI2CSgp40
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_ADXL313
         
         git clone --quiet https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library
         mv Adafruit-MCP23017-Arduino-Library /home/runner/Arduino/libraries/Adafruit-MCP23017-Arduino-Library
@@ -144,6 +146,11 @@ jobs:
         mv RAK12035_SoilMoisture /home/runner/Arduino/libraries/RAK12035_SoilMoisture
         git clone --quiet https://github.com/RAKWireless/RAKwireless_Storage
         mv RAKwireless_Storage /home/runner/Arduino/libraries/RAKwireless_Storage
+        git clone --quiet https://github.com/RAKWireless/RAK12034-BMX160
+        mv RAK12034-BMX160 /home/runner/Arduino/libraries/RAK12034-BMX160
+        git clone --quiet https://github.com/RAKWireless/RAK12033-IIM42652
+        mv RAK12033-IIM42652 /home/runner/Arduino/libraries/RAK12033-IIM42652
+
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13800_W5100S
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK12029-LDC1614
 
