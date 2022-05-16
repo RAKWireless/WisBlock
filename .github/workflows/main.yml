@@ -102,6 +102,10 @@ jobs:
         mv ArduinoMqttClient /home/runner/Arduino/libraries/ArduinoMqttClient
         git clone --quiet https://github.com/Sensirion/arduino-i2c-sgp40
         mv arduino-i2c-sgp40 /home/runner/Arduino/libraries/arduino-i2c-sgp40
+        git clone --quiet https://github.com/sensirion/arduino-gas-index-algorithm
+        mv arduino-gas-index-algorithm /home/runner/Arduino/libraries/arduino-gas-index-algorithm
+        git clone --quiet https://github.com/sensirion/arduino-core
+        mv arduino-core /home/runner/Arduino/libraries/arduino-core
         git clone --quiet https://github.com/sparkfun/SparkFun_ADXL313_Arduino_Library
         mv SparkFun_ADXL313_Arduino_Library /home/runner/Arduino/libraries/SparkFun_ADXL313_Arduino_Library
 
