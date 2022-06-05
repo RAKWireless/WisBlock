@@ -19,8 +19,8 @@ Second is based on P2P mode. Nodes may connect directly among them and send mess
 
 Here you find several examples how to use the LoRa® communication with WisBlock. The examples are separated into two categories:     
 
-- Simple [LoRa® point to point communication](LoRa/LoRaP2P/)      
-- Using [LoRaWAN® ](LoRa/LoRaWAN/)
+- Simple [LoRa® point to point communication](./LoRaP2P/)      
+- Using [LoRaWAN® ](./LoRaWAN/)
 
 
 LoRa® is a registered trademark or service mark of Semtech Corporation or its affiliates. LoRaWAN® is a licensed mark.
