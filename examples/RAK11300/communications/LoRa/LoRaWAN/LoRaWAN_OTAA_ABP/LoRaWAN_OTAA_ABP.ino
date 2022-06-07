@@ -175,6 +175,7 @@ void loop()
   // true by the application timer and collects and sends the data
   if (send_now)
   {
+    Serial.println("Sending frame now...");
     send_now = false;
     send_lora_frame();
   }
@@ -275,7 +276,6 @@ void send_lora_frame(void)
 void tx_lora_periodic_handler(void)
 {
   appTimer.attach(tx_lora_periodic_handler, (std::chrono::microseconds)(LORAWAN_APP_INTERVAL * 1000));
-  Serial.println("Sending frame now...");
   // This is a timer interrupt, do not do lengthy things here. Signal the loop() instead
   send_now = true;
 }
