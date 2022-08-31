@@ -8,6 +8,9 @@
 **/
 
 #include <Arduino.h>
+#ifdef RAK4630
+#include <Adafruit_TinyUSB.h>
+#endif
 
 #define MOTOR_AIN1  SCK        
 #define MOTOR_AIN2  SS     

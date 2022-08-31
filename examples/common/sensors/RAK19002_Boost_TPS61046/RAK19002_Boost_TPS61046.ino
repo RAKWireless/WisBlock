@@ -8,6 +8,10 @@
 **/
 
 #include <Arduino.h>
+#ifdef RAK4630
+#include <Adafruit_TinyUSB.h>
+#endif
+
 
 //Attention: The PIN is changed with the Slot as below:
 //Slot A: WB_IO1

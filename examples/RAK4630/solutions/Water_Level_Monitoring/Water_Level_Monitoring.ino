@@ -8,6 +8,9 @@
  * @copyright Copyright (c) 2020
  */
 #include <Arduino.h>
+#ifdef RAK4630
+#include <Adafruit_TinyUSB.h>
+#endif
 
 #include <LoRaWan-RAK4630.h> //Click here to get the library: http://librarymanager/All#SX126x
 
