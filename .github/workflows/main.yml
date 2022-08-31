@@ -108,7 +108,9 @@ jobs:
         mv arduino-core /home/runner/Arduino/libraries/arduino-core
         git clone --quiet https://github.com/sparkfun/SparkFun_ADXL313_Arduino_Library
         mv SparkFun_ADXL313_Arduino_Library /home/runner/Arduino/libraries/SparkFun_ADXL313_Arduino_Library
-
+        git clone --quiet https://github.com/alessandro1105/D7S_Arduino_Library
+        mv D7S_Arduino_Library /home/runner/Arduino/libraries/D7S_Arduino_Library
+        
         # ESP32 specific libraries
 
         git clone --quiet https://github.com/h2zero/NimBLE-Arduino
