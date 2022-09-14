@@ -7,6 +7,8 @@
    @copyright Copyright (c) 2020
 **/
 #include <Wire.h>
+#include <Arduino.h>
+#include <Adafruit_TinyUSB.h>
 
 
 void setup() {
