@@ -9,7 +9,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 #ifdef NRF52_SERIES
-#include <Arduino.h>
+#include <Adafruit_TinyUSB.h>
 #endif
 
 void setup() {
