@@ -6,8 +6,11 @@
    @date 2021-8-28
    @copyright Copyright (c) 2020
 **/
+#include <Arduino.h>
 #include <Wire.h>
-
+#ifdef NRF52_SERIES
+#include <Arduino.h>
+#endif
 
 void setup() {
   pinMode(WB_IO2, OUTPUT);
