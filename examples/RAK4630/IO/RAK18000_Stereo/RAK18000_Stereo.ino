@@ -61,7 +61,7 @@ void setup() {
   // initialize PDM with:
   // - 2 means stereo, 1 means single
   // - a 16 kHz sample rate
-  if (!PDM.begin(2, 16000)) 
+  if (!PDM.begin(2, 4)) // 4 => 16000
   {
     Serial.println("Failed to start PDM!");
     while (1);
