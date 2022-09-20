@@ -6,6 +6,10 @@
  * @date 2021-05-24
  * @copyright Copyright (c) 2021
  */
+#ifdef _VARIANT_RAK4630_
+#include <Adafruit_TinyUSB.h>
+#endif
+
 #define SENSOR_PIN  WB_IO6   // Attach Water sensor to Arduino Digital Pin WB_IO6
 
 void setup() 

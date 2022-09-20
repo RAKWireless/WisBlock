@@ -6,6 +6,9 @@
    @date 2021-8-28
    @copyright Copyright (c) 2020
 **/
+#ifdef _VARIANT_RAK4630_
+#include <Adafruit_TinyUSB.h>
+#endif
 
 void setup()
 {

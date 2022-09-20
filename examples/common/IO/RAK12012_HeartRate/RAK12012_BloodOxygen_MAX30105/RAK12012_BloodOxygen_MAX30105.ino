@@ -6,6 +6,9 @@
    @date 2021-7-28
    @copyright Copyright (c) 2020
 **/
+#ifdef _VARIANT_RAK4630_
+#include <Adafruit_TinyUSB.h>
+#endif
 
 #include <Wire.h>
 #include "MAX30105.h"// Click here to get the library: http://librarymanager/All#Sparkfun_3010x
