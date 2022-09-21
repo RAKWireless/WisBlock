@@ -29,7 +29,7 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SD
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install modbus-esp8266
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_ADXL313_Arduino_Library
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install "SparkFun ADXL313 Arduino Library"
         
         git clone --quiet https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library
         mv Adafruit-MCP23017-Arduino-Library /home/runner/Arduino/libraries/Adafruit-MCP23017-Arduino-Library
