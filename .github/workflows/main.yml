@@ -67,7 +67,7 @@ jobs:
         mv Adafruit_FRAM_I2C /home/runner/Arduino/libraries/Adafruit_FRAM_I2C
         git clone --quiet https://github.com/adafruit/Adafruit_SPIFlash --branch 3.5.1
         mv Adafruit_SPIFlash /home/runner/Arduino/libraries/Adafruit_SPIFlash
-        git clone --quiet https://github.com/sparkfun/SparkFun_ADXL313_Arduino_Library --branch 1.0.0
+        git clone --quiet https://github.com/sparkfun/SparkFun_ADXL313_Arduino_Library
         mv SparkFun_ADXL313_Arduino_Library /home/runner/Arduino/libraries/SparkFun_ADXL313_Arduino_Library
         git clone --quiet https://github.com/adafruit/SdFat
         mv SdFat /home/runner/Arduino/libraries/SdFat
