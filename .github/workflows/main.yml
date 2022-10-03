@@ -29,7 +29,7 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SD
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install modbus-esp8266
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install "SparkFun ADXL313 Arduino Library"
+        # /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install "SparkFun ADXL313 Arduino Library"
         
         git clone --quiet https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library
         mv Adafruit-MCP23017-Arduino-Library /home/runner/Arduino/libraries/Adafruit-MCP23017-Arduino-Library
@@ -67,6 +67,8 @@ jobs:
         mv Adafruit_FRAM_I2C /home/runner/Arduino/libraries/Adafruit_FRAM_I2C
         git clone --quiet https://github.com/adafruit/Adafruit_SPIFlash --branch 3.5.1
         mv Adafruit_SPIFlash /home/runner/Arduino/libraries/Adafruit_SPIFlash
+        git clone --quiet https://github.com/sparkfun/SparkFun_ADXL313_Arduino_Library
+        mv SparkFun_ADXL313_Arduino_Library /home/runner/Arduino/libraries/SparkFun_ADXL313_Arduino_Library
         git clone --quiet https://github.com/adafruit/SdFat
         mv SdFat /home/runner/Arduino/libraries/SdFat
         git clone --quiet https://github.com/adafruit/Adafruit_LPS2X
@@ -107,8 +109,6 @@ jobs:
         mv arduino-gas-index-algorithm /home/runner/Arduino/libraries/arduino-gas-index-algorithm
         git clone --quiet https://github.com/sensirion/arduino-core
         mv arduino-core /home/runner/Arduino/libraries/arduino-core
-        # git clone --quiet https://github.com/sparkfun/SparkFun_ADXL313_Arduino_Library
-        # mv SparkFun_ADXL313_Arduino_Library /home/runner/Arduino/libraries/SparkFun_ADXL313_Arduino_Library
         git clone --quiet https://github.com/alessandro1105/D7S_Arduino_Library
         mv D7S_Arduino_Library /home/runner/Arduino/libraries/D7S_Arduino_Library
         
