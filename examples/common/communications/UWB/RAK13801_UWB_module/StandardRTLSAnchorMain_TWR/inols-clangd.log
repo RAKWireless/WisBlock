@@ -1,0 +1,969 @@
+
+
+
+
+
+
+
+Started logging.
+
+>>>
+Content-Length: 2158
+
+{"method":"initialize","params":{"processId":1792,"rootPath":"C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server182818355\\sketch","rootUri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch","clientInfo":{"name":"vscode","version":"1.53.2"},"trace":"off","initializationOptions":{},"capabilities":{"workspace":{"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"]},"applyEdit":true,"symbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"workspaceFolders":true,"configuration":true},"textDocument":{"declaration":{"linkSupport":true},"definition":{"linkSupport":true},"implementation":{"linkSupport":true,"dynamicRegistration":true},"typeDefinition":{"linkSupport":true},"synchronization":{"willSave":true,"didSave":true,"willSaveWaitUntil":true},"documentSymbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"completion":{"completionItem":{"documentationFormat":["markdown","plaintext"],"snippetSupport":true},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]},"contextSupport":true},"signatureHelp":{"signatureInformation":{"parameterInformation":{"labelOffsetSupport":true}}},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"hover":{"contentFormat":["markdown","plaintext"]},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"colorProvider":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}}},"id":0,"jsonrpc":"2.0"}Content-Length: 7255
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","languageId":"cpp","version":1,"text":"#include \u003cArduino.h\u003e\n#line 1 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\n/**\n   @file StandardRTLSAnchorMain_TWR.ino\n   @author rakwireless.com\n   @brief Standard RTLS AnchorMain TWR\n   @version 0.1\n   @date 2022-1-28\n   @copyright Copyright (c) 2020\n**/\n\n#include \u003cDW1000Ng.hpp\u003e\n#include \u003cDW1000NgUtils.hpp\u003e\n#include \u003cDW1000NgRanging.hpp\u003e\n#include \u003cDW1000NgRTLS.hpp\u003e\n\ntypedef struct Position {\n    double x;\n    double y;\n} Position;\n\n// connection pins\n#if defined(ESP8266)\nconst uint8_t PIN_SS = 15;\n#else\nconst uint8_t PIN_SS = SS; // spi select pin\nconst uint8_t PIN_RST = WB_IO6;\nconst uint8_t PIN_IRQ = WB_IO5;\n#endif\n\n\nPosition position_self = {0,0};\nPosition position_B = {0.25,0.15};\nPosition position_C = {0.75,0.18};\n\ndouble range_self;\ndouble range_B;\ndouble range_C;\n\nboolean received_B = false;\n\nbyte target_eui[8];\nbyte tag_shortAddress[] = {0x05, 0x00};\n\nbyte anchor_b[] = {0x02, 0x00};\nuint16_t next_anchor = 2;\nbyte anchor_c[] = {0x03, 0x00};\n\ndevice_configuration_t DEFAULT_CONFIG = {\n    false,\n    true,\n    true,\n    true,\n    false,\n    SFDMode::STANDARD_SFD,\n    Channel::CHANNEL_5,\n    DataRate::RATE_850KBPS,\n    PulseFrequency::FREQ_16MHZ,\n    PreambleLength::LEN_256,\n    PreambleCode::CODE_3\n};\n\nframe_filtering_configuration_t ANCHOR_FRAME_FILTER_CONFIG = {\n    false,\n    false,\n    true,\n    false,\n    false,\n    false,\n    false,\n    true /* This allows blink frames */\n};\n\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup();\n#line 127 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid calculatePosition(double \u0026x, double \u0026y);\n#line 141 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid loop();\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup() {\n  pinMode(WB_IO2, OUTPUT);\n  digitalWrite(WB_IO2, HIGH); //Turn on the power switch\n  delay(300);\n  time_t serial_timeout = millis();\n  // DEBUG monitoring\n  Serial.begin(115200);\n  while (!Serial)\n  {\n    if ((millis() - serial_timeout) \u003c 5000)\n    {\n      delay(100);\n    }\n    else\n    {\n      break;\n    }\n  }\n    Serial.println(F(\"### DW1000Ng-arduino-ranging-anchorMain ###\"));\n    // initialize the driver\n    #if defined(ESP8266)\n    DW1000Ng::initializeNoInterrupt(PIN_SS);\n    #else\n    DW1000Ng::initializeNoInterrupt(PIN_SS, PIN_RST);\n    #endif\n    Serial.println(F(\"DW1000Ng initialized ...\"));\n    // general configuration\n    DW1000Ng::applyConfiguration(DEFAULT_CONFIG);\n    DW1000Ng::enableFrameFiltering(ANCHOR_FRAME_FILTER_CONFIG);\n    \n    DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:01\");\n\n    DW1000Ng::setPreambleDetectionTimeout(64);\n    DW1000Ng::setSfdDetectionTimeout(273);\n    DW1000Ng::setReceiveFrameWaitTimeoutPeriod(5000);\n\n    DW1000Ng::setNetworkId(RTLS_APP_ID);\n    DW1000Ng::setDeviceAddress(1);\n\t\n    DW1000Ng::setAntennaDelay(16436);//16436\n    \n    Serial.println(F(\"Committed configuration ...\"));\n    // DEBUG chip info and registers pretty printed\n    char msg[128];\n    DW1000Ng::getPrintableDeviceIdentifier(msg);\n    Serial.print(\"Device ID: \"); Serial.println(msg);\n    DW1000Ng::getPrintableExtendedUniqueIdentifier(msg);\n    Serial.print(\"Unique ID: \"); Serial.println(msg);\n    DW1000Ng::getPri
+<<<
+Content-Length: 1671
+
+{"id":0,"jsonrpc":"2.0","result":{"capabilities":{"astProvider":true,"callHierarchyProvider":true,"codeActionProvider":{"codeActionKinds":["quickfix","refactor","info"]},"compilationDatabase":{"automaticReload":true},"completionProvider":{"allCommitCharacters":[" ","\t","(",")","[","]","{","}","<",">",":",";",",","+","-","/","*","%","^","&","#","?",".","=","\"","'","|"],"resolveProvider":false,"triggerCharacters":[".","<",">",":","\"","/"]},"declarationProvider":true,"definitionProvider":true,"documentFormattingProvider":true,"documentHighlightProvider":true,"documentLinkProvider":{"resolveProvider":false},"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n","moreTriggerCharacter":[]},"documentRangeFormattingProvider":true,"documentSymbolProvider":true,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]},"hoverProvider":true,"implementationProvider":true,"memoryUsageProvider":true,"referencesProvider":true,"renameProvider":{"prepareProvider":true},"selectionRangeProvider":true,"semanticTokensProvider":{"full":{"delta":true},"legend":{"tokenModifiers":[],"tokenTypes":["variable","variable","parameter","function","method","function","property","variable","class","enum","enumMember","type","dependent","dependent","namespace","typeParameter","concept","type","macro","comment"]},"range":false},"signatureHelpProvider":{"triggerCharacters":["(",","]},"textDocumentSync":{"change":2,"openClose":true,"save":true},"typeHierarchyProvider":true,"workspaceSymbolProvider":true},"serverInfo":{"name":"clangd","version":"clangd version 12.0.0 (https://github.com/llvm/llvm-project e841bd5f335864b8c4d81cbf4df08460ef39f2ae)"}}}
+>>>
+ntableNetworkIdAndShortAddress(msg);\n    Serial.print(\"Network ID \u0026 Device Address: \"); Serial.println(msg);\n    DW1000Ng::getPrintableDeviceMode(msg);\n    Serial.print(\"Device mode: \"); Serial.println(msg);    \n}\n\n/* using https://math.stackexchange.com/questions/884807/find-x-location-using-3-known-x-y-location-using-trilateration */\nvoid calculatePosition(double \u0026x, double \u0026y) {\n\n    /* This gives for granted that the z plane is the same for anchor and tags */\n    double A = ( (-2*position_self.x) + (2*position_B.x) );\n    double B = ( (-2*position_self.y) + (2*position_B.y) );\n    double C = (range_self*range_self) - (range_B*range_B) - (position_self.x*position_self.x) + (position_B.x*position_B.x) - (position_self.y*position_self.y) + (position_B.y*position_B.y);\n    double D = ( (-2*position_B.x) + (2*position_C.x) );\n    double E = ( (-2*position_B.y) + (2*position_C.y) );\n    double F = (range_B*range_B) - (range_C*range_C) - (position_B.x*position_B.x) + (position_C.x*position_C.x) - (position_B.y*position_B.y) + (position_C.y*position_C.y);\n\n    x = (C*E-F*B) / (E*A-B*D);\n    y = (C*D-A*F) / (B*D-A*E);\n}\n\nvoid loop() {\n    if(DW1000NgRTLS::receiveFrame()){\n        size_t recv_len = DW1000Ng::getReceivedDataLength();\n        byte recv_data[recv_len];\n        DW1000Ng::getReceivedData(recv_data, recv_len);\n\n        if(recv_data[0] == BLINK) {\n            DW1000NgRTLS::transmitRangingInitiation(\u0026recv_data[2], tag_shortAddress);\n            DW1000NgRTLS::waitForTransmission();\n\n            RangeAcceptResult result = DW1000NgRTLS::anchorRangeAccept(NextActivity::RANGING_CONFIRM, next_anchor);\n            if(!result.success) return;\n            range_self = result.range;\n\n            String rangeString = \"Range: \"; rangeString += range_self; rangeString += \" m\";\n            rangeString += \"\\t RX power: \"; rangeString += DW1000Ng::getReceivePower(); rangeString += \" dBm\";\n            Serial.println(rangeString);\n        } else if(recv_data[9] == 0x60) {\n            double range = static_cast\u003cdouble\u003e(DW1000NgUtils::bytesAsValue(\u0026recv_data[10],2) / 1000.0);\n            String rangeReportString = \"Range from: \"; rangeReportString += recv_data[7];\n            rangeReportString += \" = \"; rangeReportString += range;\n            Serial.println(rangeReportString);\n            if(received_B == false \u0026\u0026 recv_data[7] == anchor_b[0] \u0026\u0026 recv_data[8] == anchor_b[1]) {\n                range_B = range;\n                received_B = true;\n            } else if(received_B == true \u0026\u0026 recv_data[7] == anchor_c[0] \u0026\u0026 recv_data[8] == anchor_c[1]){\n                range_C = range;\n                double x,y;\n                calculatePosition(x,y);\n                String positioning = \"Found position - x: \";\n                positioning += x; positioning +=\" y: \";\n                positioning += y;\n                Serial.println(positioning);\n                received_B = false;\n            } else {\n                received_B = false;\n            }\n        }\n    }\n\n    \n}\n\n"}},"jsonrpc":"2.0"}Content-Length: 313
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":1,"jsonrpc":"2.0"}
+<<<
+Content-Length: 111
+
+{"id":0,"jsonrpc":"2.0","method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"}}
+>>>
+Content-Length: 38
+
+{"id":0,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"begin","percentage":0,"title":"indexing"}}}Content-Length: 141
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/1","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/36","percentage":8.3333333333333339}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/36","percentage":8.3333333333333339}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/36","percentage":11.111111111111111}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/36","percentage":11.111111111111111}}}Content-Length: 991
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"code":"pp_file_not_found","message":"In included file: 'stdlib.h' file not found\n\nC:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\cores\\arduino\\api/Interrupts.h:5:10:\nnote: error occurred here","range":{"end":{"character":10,"line":0},"start":{"character":9,"line":0}},"severity":1,"source":"clang"},{"code":"unknown_typename_suggest","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here","range":{"end":{"character":8,"line":84},"start":{"character":2,"line":84}},"severity":1,"source":"clang"}],"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":1}}Content-Length: 36
+
+{"id":1,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":2,"jsonrpc":"2.0"}
+<<<
+Content-Length: 5299
+
+{"id":2,"jsonrpc":"2.0","result":[{"children":[{"kind":8,"name":"x","range":{"end":{"character":12,"line":17},"start":{"character":4,"line":17}},"selectionRange":{"end":{"character":12,"line":17},"start":{"character":11,"line":17}}},{"kind":8,"name":"y","range":{"end":{"character":12,"line":18},"start":{"character":4,"line":18}},"selectionRange":{"end":{"character":12,"line":18},"start":{"character":11,"line":18}}}],"kind":23,"name":"Position","range":{"end":{"character":1,"line":19},"start":{"character":8,"line":16}},"selectionRange":{"end":{"character":23,"line":16},"start":{"character":15,"line":16}}},{"kind":5,"name":"Position","range":{"end":{"character":10,"line":19},"start":{"character":0,"line":16}},"selectionRange":{"end":{"character":10,"line":19},"start":{"character":2,"line":19}}},{"kind":13,"name":"PIN_SS","range":{"end":{"character":25,"line":25},"start":{"character":0,"line":25}},"selectionRange":{"end":{"character":20,"line":25},"start":{"character":14,"line":25}}},{"kind":13,"name":"PIN_RST","range":{"end":{"character":30,"line":26},"start":{"character":0,"line":26}},"selectionRange":{"end":{"character":21,"line":26},"start":{"character":14,"line":26}}},{"kind":13,"name":"PIN_IRQ","range":{"end":{"character":30,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":21,"line":27},"start":{"character":14,"line":27}}},{"kind":13,"name":"position_self","range":{"end":{"character":30,"line":31},"start":{"character":0,"line":31}},"selectionRange":{"end":{"character":22,"line":31},"start":{"character":9,"line":31}}},{"kind":13,"name":"position_B","range":{"end":{"character":33,"line":32},"start":{"character":0,"line":32}},"selectionRange":{"end":{"character":19,"line":32},"start":{"character":9,"line":32}}},{"kind":13,"name":"position_C","range":{"end":{"character":33,"line":33},"start":{"character":0,"line":33}},"selectionRange":{"end":{"character":19,"line":33},"start":{"character":9,"line":33}}},{"kind":13,"name":"range_self","range":{"end":{"character":17,"line":35},"start":{"character":0,"line":35}},"selectionRange":{"end":{"character":17,"line":35},"start":{"character":7,"line":35}}},{"kind":13,"name":"range_B","range":{"end":{"character":14,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":14,"line":36},"start":{"character":7,"line":36}}},{"kind":13,"name":"range_C","range":{"end":{"character":14,"line":37},"start":{"character":0,"line":37}},"selectionRange":{"end":{"character":14,"line":37},"start":{"character":7,"line":37}}},{"kind":13,"name":"received_B","range":{"end":{"character":26,"line":39},"start":{"character":0,"line":39}},"selectionRange":{"end":{"character":18,"line":39},"start":{"character":8,"line":39}}},{"kind":13,"name":"target_eui","range":{"end":{"character":18,"line":41},"start":{"character":0,"line":41}},"selectionRange":{"end":{"character":15,"line":41},"start":{"character":5,"line":41}}},{"kind":13,"name":"tag_shortAddress","range":{"end":{"character":38,"line":42},"start":{"character":0,"line":42}},"selectionRange":{"end":{"character":21,"line":42},"start":{"character":5,"line":42}}},{"kind":13,"name":"anchor_b","range":{"end":{"character":30,"line":44},"start":{"character":0,"line":44}},"selectionRange":{"end":{"character":13,"line":44},"start":{"character":5,"line":44}}},{"kind":13,"name":"next_anchor","range":{"end":{"character":24,"line":45},"start":{"character":0,"line":45}},"selectionRange":{"end":{"character":20,"line":45},"start":{"character":9,"line":45}}},{"kind":13,"name":"anchor_c","range":{"end":{"character":30,"line":46},"start":{"character":0,"line":46}},"selectionRange":{"end":{"character":13,"line":46},"start":{"character":5,"line":46}}},{"kind":13,"name":"DEFAULT_CONFIG","range":{"end":{"character":1,"line":60},"start":{"character":0,"line":48}},"selectionRange":{"end":{"character":37,"line":48},"start":{"character":23,"line":48}}},{"kind":13,"name":"ANCHOR_FRAME_FILTER_CONFIG","range":{"end":{"character":1,"line":71},"start":{"character":0,"line":62}},"selectionRange":{"end":{"character":58,"line":62},"start":{"character":32,"line":62}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":74},"start":{"character":0,"line":74}},"selectionRange":{"end":{"character":10,"line":74},"start":{"character":5,"line":74}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":44,"line":76},"start":{"character":0,"line":76}},"selectionRange":{"end":{"character":22,"line":76},"start":{"character":5,"line":76}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":78},"start":{"character":0,"line":78}},"selectionRange":{"end":{"character":9,"line":78},"start":{"character":5,"line":78}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":132},"start":{"character":0,"line":80}},"selectionRange":{"end":{"character":10,"line":80},"start":{"character":5,"line":80}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":1,"line":147},"start":{"character":0,"line":135}},"selectionRange":{"end":{"character":22,"line":135},"start":{"character":5,"line":135}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":190},"start":{"character":0,"line":149}},"selectionRange":{"end":{"character":9,"line":149},"start":{"character":5,"line":149}}}]}
+>>>
+Content-Length: 313
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":3,"jsonrpc":"2.0"}
+<<<
+Content-Length: 36
+
+{"id":3,"jsonrpc":"2.0","result":[]}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/36","percentage":13.888888888888889}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/36","percentage":13.888888888888889}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/36","percentage":16.666666666666668}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/36","percentage":16.666666666666668}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/36","percentage":19.444444444444443}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/36","percentage":19.444444444444443}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/36","percentage":22.222222222222221}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/36","percentage":22.222222222222221}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/36","percentage":25}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/36","percentage":25}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/36","percentage":27.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/36","percentage":27.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/36","percentage":30.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/36","percentage":30.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/36","percentage":33.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/36","percentage":33.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/36","percentage":36.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/36","percentage":36.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/36","percentage":38.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/36","percentage":38.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/36","percentage":41.666666666666664}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/36","percentage":41.666666666666664}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/36","percentage":44.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/36","percentage":44.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/36","percentage":47.222222222222221}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/36","percentage":47.222222222222221}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/36","percentage":50}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/36","percentage":50}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/36","percentage":52.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/36","percentage":52.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/36","percentage":55.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/36","percentage":55.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/36","percentage":58.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/36","percentage":58.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/36","percentage":61.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/36","percentage":61.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/36","percentage":63.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/36","percentage":63.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/36","percentage":66.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/36","percentage":66.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"25/36","percentage":69.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"25/36","percentage":69.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"26/36","percentage":72.222222222222229}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"26/36","percentage":72.222222222222229}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"27/36","percentage":75}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"27/36","percentage":75}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"28/36","percentage":77.777777777777771}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"28/36","percentage":77.777777777777771}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"29/36","percentage":80.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"29/36","percentage":80.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"30/36","percentage":83.333333333333329}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"30/36","percentage":83.333333333333329}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"31/36","percentage":86.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"31/36","percentage":86.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"32/36","percentage":88.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"32/36","percentage":88.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"33/36","percentage":91.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"34/36","percentage":94.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"35/36","percentage":97.222222222222229}}}Content-Length: 107
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"end"}}}
+>>>
+Content-Length: 388
+
+{"method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":2},"contentChanges":[{"range":{"start":{"line":119,"character":0},"end":{"line":120,"character":0}},"rangeLength":46,"text":"    DW1000Ng::setAntennaDelay(16637);//16436\r\n"}]},"jsonrpc":"2.0"}Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":4,"jsonrpc":"2.0"}
+<<<
+Content-Length: 101
+
+{"error":{"code":-32602,"message":"trying to get AST for non-added document"},"id":4,"jsonrpc":"2.0"}<<< Read Error: read |0: file already closed
+--- Stream closed, err=%!s(<nil>)
+
+
+
+
+
+
+
+Started logging.
+
+>>>
+Content-Length: 2158
+
+{"method":"initialize","params":{"processId":1792,"rootPath":"C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server396881547\\sketch","rootUri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch","clientInfo":{"name":"vscode","version":"1.53.2"},"trace":"off","initializationOptions":{},"capabilities":{"workspace":{"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"]},"applyEdit":true,"symbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"workspaceFolders":true,"configuration":true},"textDocument":{"declaration":{"linkSupport":true},"definition":{"linkSupport":true},"implementation":{"linkSupport":true,"dynamicRegistration":true},"typeDefinition":{"linkSupport":true},"synchronization":{"willSave":true,"didSave":true,"willSaveWaitUntil":true},"documentSymbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"completion":{"completionItem":{"documentationFormat":["markdown","plaintext"],"snippetSupport":true},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]},"contextSupport":true},"signatureHelp":{"signatureInformation":{"parameterInformation":{"labelOffsetSupport":true}}},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"hover":{"contentFormat":["markdown","plaintext"]},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"colorProvider":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}}},"id":0,"jsonrpc":"2.0"}
+<<<
+Content-Length: 1671
+
+{"id":0,"jsonrpc":"2.0","result":{"capabilities":{"astProvider":true,"callHierarchyProvider":true,"codeActionProvider":{"codeActionKinds":["quickfix","refactor","info"]},"compilationDatabase":{"automaticReload":true},"completionProvider":{"allCommitCharacters":[" ","\t","(",")","[","]","{","}","<",">",":",";",",","+","-","/","*","%","^","&","#","?",".","=","\"","'","|"],"resolveProvider":false,"triggerCharacters":[".","<",">",":","\"","/"]},"declarationProvider":true,"definitionProvider":true,"documentFormattingProvider":true,"documentHighlightProvider":true,"documentLinkProvider":{"resolveProvider":false},"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n","moreTriggerCharacter":[]},"documentRangeFormattingProvider":true,"documentSymbolProvider":true,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]},"hoverProvider":true,"implementationProvider":true,"memoryUsageProvider":true,"referencesProvider":true,"renameProvider":{"prepareProvider":true},"selectionRangeProvider":true,"semanticTokensProvider":{"full":{"delta":true},"legend":{"tokenModifiers":[],"tokenTypes":["variable","variable","parameter","function","method","function","property","variable","class","enum","enumMember","type","dependent","dependent","namespace","typeParameter","concept","type","macro","comment"]},"range":false},"signatureHelpProvider":{"triggerCharacters":["(",","]},"textDocumentSync":{"change":2,"openClose":true,"save":true},"typeHierarchyProvider":true,"workspaceSymbolProvider":true},"serverInfo":{"name":"clangd","version":"clangd version 12.0.0 (https://github.com/llvm/llvm-project e841bd5f335864b8c4d81cbf4df08460ef39f2ae)"}}}
+>>>
+Content-Length: 52
+
+{"method":"initialized","params":{},"jsonrpc":"2.0"}Content-Length: 7255
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","languageId":"cpp","version":1,"text":"#include \u003cArduino.h\u003e\n#line 1 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\n/**\n   @file StandardRTLSAnchorMain_TWR.ino\n   @author rakwireless.com\n   @brief Standard RTLS AnchorMain TWR\n   @version 0.1\n   @date 2022-1-28\n   @copyright Copyright (c) 2020\n**/\n\n#include \u003cDW1000Ng.hpp\u003e\n#include \u003cDW1000NgUtils.hpp\u003e\n#include \u003cDW1000NgRanging.hpp\u003e\n#include \u003cDW1000NgRTLS.hpp\u003e\n\ntypedef struct Position {\n    double x;\n    double y;\n} Position;\n\n// connection pins\n#if defined(ESP8266)\nconst uint8_t PIN_SS = 15;\n#else\nconst uint8_t PIN_SS = SS; // spi select pin\nconst uint8_t PIN_RST = WB_IO6;\nconst uint8_t PIN_IRQ = WB_IO5;\n#endif\n\n\nPosition position_self = {0,0};\nPosition position_B = {0.25,0.15};\nPosition position_C = {0.75,0.18};\n\ndouble range_self;\ndouble range_B;\ndouble range_C;\n\nboolean received_B = false;\n\nbyte target_eui[8];\nbyte tag_shortAddress[] = {0x05, 0x00};\n\nbyte anchor_b[] = {0x02, 0x00};\nuint16_t next_anchor = 2;\nbyte anchor_c[] = {0x03, 0x00};\n\ndevice_configuration_t DEFAULT_CONFIG = {\n    false,\n    true,\n    true,\n    true,\n    false,\n    SFDMode::STANDARD_SFD,\n    Channel::CHANNEL_5,\n    DataRate::RATE_850KBPS,\n    PulseFrequency::FREQ_16MHZ,\n    PreambleLength::LEN_256,\n    PreambleCode::CODE_3\n};\n\nframe_filtering_configuration_t ANCHOR_FRAME_FILTER_CONFIG = {\n    false,\n    false,\n    true,\n    false,\n    false,\n    false,\n    false,\n    true /* This allows blink frames */\n};\n\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup();\n#line 127 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid calculatePosition(double \u0026x, double \u0026y);\n#line 141 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid loop();\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup() {\n  pinMode(WB_IO2, OUTPUT);\n  digitalWrite(WB_IO2, HIGH); //Turn on the power switch\n  delay(300);\n  time_t serial_timeout = millis();\n  // DEBUG monitoring\n  Serial.begin(115200);\n  while (!Serial)\n  {\n    if ((millis() - serial_timeout) \u003c 5000)\n    {\n      delay(100);\n    }\n    else\n    {\n      break;\n    }\n  }\n    Serial.println(F(\"### DW1000Ng-arduino-ranging-anchorMain ###\"));\n    // initialize the driver\n    #if defined(ESP8266)\n    DW1000Ng::initializeNoInterrupt(PIN_SS);\n    #else\n    DW1000Ng::initializeNoInterrupt(PIN_SS, PIN_RST);\n    #endif\n    Serial.println(F(\"DW1000Ng initialized ...\"));\n    // general configuration\n    DW1000Ng::applyConfiguration(DEFAULT_CONFIG);\n    DW1000Ng::enableFrameFiltering(ANCHOR_FRAME_FILTER_CONFIG);\n    \n    DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:01\");\n\n    DW1000Ng::setPreambleDetectionTimeout(64);\n    DW1000Ng::setSfdDetectionTimeout(273);\n    DW1000Ng::setReceiveFrameWaitTimeoutPeriod(5000);\n\n    DW1000Ng::setNetworkId(RTLS_APP_ID);\n    DW1000Ng::setDeviceAddress(1);\n\t\n    DW1000Ng::setAntennaDelay(16637);//16436\n    \n    Serial.println(F(\"Committed configuration ...\"));\n    // DEBUG chip info and registers pretty printed\n    char msg[128];\n    DW1000Ng::getPrintableDeviceIdentifier(msg);\n    Serial.print(\"Device ID: \"); Serial.println(msg);\n    DW1000Ng::getPrintableExtendedUniqueIdentifier(msg);\n    Serial.print(\"Unique ID: \"); Serial.println(msg);\n    DW1000Ng::getPrintableNetworkIdAndShortAddress(msg);\n    Serial.print(\"Network ID \u0026 Device Address: \"); Serial.println(msg);\n    DW1000Ng::getPrintableDeviceMode(msg);\n    Serial.print(\"Device mode: \"); Serial.println(msg);    \n}\n\n/* using https://math.stackexchange.com/questions/884807/find-x-location-using-3-known-x-y-location-using-trilateration */\nvoid calculatePosition(double \u0026x, double \u0026y) {\n\n    /* This gives for granted that the z plane is the same for anchor and tags */\n    double A = ( (-2*position_self.x) + (2*position_B.x) );\n    double B = ( (-2*position_self.y) + (2*position_B.y) );\n    double C = (range_self*range_self) - (range_B*range_B) - (position_self.x*position_self.x) + (position_B.x*position_B.x) - (position_self.y*position_self.y) + (position_B.y*position_B.y);\n    double D = ( (-2*position_B.x) + (2*position_C.x) );\n    double E = ( (-2*position_B.y) + (2*position_C.y) );\n    double F = (range_B*range_B) - (range_C*range_C) - (position_B.x*position_B.x) + (position_C.x*position_C.x) - (position_B.y*position_B.y) + (position_C.y*position_C.y);\n\n    x = (C*E-F*B) / (E*A-B*D);\n    y = (C*D-A*F) / (B*D-A*E);\n}\n\nvoid loop() {\n    if(DW1000NgRTLS::receiveFrame()){\n        size_t recv_len = DW1000Ng::getReceivedDataLength();\n        byte recv_data[recv_len];\n        DW1000Ng::getReceivedData(recv_data, recv_len);\n\n        if(recv_data[0] == BLINK) {\n            DW1000NgRTLS::transmitRangingInitiation(\u0026recv_data[2], tag_shortAddress);\n            DW1000NgRTLS::waitForTransmission();\n\n            RangeAcceptResult result = DW1000NgRTLS::anchorRangeAccept(NextActivity::RANGING_CONFIRM, next_anchor);\n            if(!result.success) return;\n            range_self = result.range;\n\n            String rangeString = \"Range: \"; rangeString += range_self; rangeString += \" m\";\n            rangeString += \"\\t RX power: \"; rangeString += DW1000Ng::getReceivePower(); rangeString += \" dBm\";\n            Serial.println(rangeString);\n        } else if(recv_data[9] == 0x60) {\n            double range = static_cast\u003cdouble\u003e(DW1000NgUtils::bytesAsValue(\u0026recv_data[10],2) / 1000.0);\n            String rangeReportString = \"Range from: \"; rangeReportString += recv_data[7];\n            rangeReportString += \" = \"; rangeReportString += range;\n            Serial.println(rangeReportString);\n            if(received_B == false \u0026\u0026 recv_data[7] == anchor_b[0] \u0026\u0026 recv_data[8] == anchor_b[1]) {\n                range_B = range;\n                received_B = true;\n            } else if(received_B == true \u0026\u0026 recv_data[7] == anchor_c[0] \u0026\u0026 recv_data[8] == anchor_c[1]){\n                range_C = range;\n                double x,y;\n                calculatePosition(x,y);\n                String positioning = \"Found position - x: \";\n                positioning += x; positioning +=\" y: \";\n                positioning += y;\n                Serial.println(positioning);\n                received_B = false;\n            } else {\n                received_B = false;\n            }\n        }\n    }\n\n    \n}\n\n"}},"jsonrpc":"2.0"}Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":1,"jsonrpc":"2.0"}Content-Length: 313
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":2,"jsonrpc":"2.0"}
+<<<
+Content-Length: 111
+
+{"id":0,"jsonrpc":"2.0","method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"}}
+>>>
+Content-Length: 38
+
+{"id":0,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"begin","percentage":0,"title":"indexing"}}}Content-Length: 141
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/1","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/36","percentage":8.3333333333333339}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/36","percentage":8.3333333333333339}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/36","percentage":11.111111111111111}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/36","percentage":11.111111111111111}}}Content-Length: 991
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"code":"pp_file_not_found","message":"In included file: 'stdlib.h' file not found\n\nC:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\cores\\arduino\\api/Interrupts.h:5:10:\nnote: error occurred here","range":{"end":{"character":10,"line":0},"start":{"character":9,"line":0}},"severity":1,"source":"clang"},{"code":"unknown_typename_suggest","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here","range":{"end":{"character":8,"line":84},"start":{"character":2,"line":84}},"severity":1,"source":"clang"}],"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":1}}Content-Length: 5299
+
+{"id":1,"jsonrpc":"2.0","result":[{"children":[{"kind":8,"name":"x","range":{"end":{"character":12,"line":17},"start":{"character":4,"line":17}},"selectionRange":{"end":{"character":12,"line":17},"start":{"character":11,"line":17}}},{"kind":8,"name":"y","range":{"end":{"character":12,"line":18},"start":{"character":4,"line":18}},"selectionRange":{"end":{"character":12,"line":18},"start":{"character":11,"line":18}}}],"kind":23,"name":"Position","range":{"end":{"character":1,"line":19},"start":{"character":8,"line":16}},"selectionRange":{"end":{"character":23,"line":16},"start":{"character":15,"line":16}}},{"kind":5,"name":"Position","range":{"end":{"character":10,"line":19},"start":{"character":0,"line":16}},"selectionRange":{"end":{"character":10,"line":19},"start":{"character":2,"line":19}}},{"kind":13,"name":"PIN_SS","range":{"end":{"character":25,"line":25},"start":{"character":0,"line":25}},"selectionRange":{"end":{"character":20,"line":25},"start":{"character":14,"line":25}}},{"kind":13,"name":"PIN_RST","range":{"end":{"character":30,"line":26},"start":{"character":0,"line":26}},"selectionRange":{"end":{"character":21,"line":26},"start":{"character":14,"line":26}}},{"kind":13,"name":"PIN_IRQ","range":{"end":{"character":30,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":21,"line":27},"start":{"character":14,"line":27}}},{"kind":13,"name":"position_self","range":{"end":{"character":30,"line":31},"start":{"character":0,"line":31}},"selectionRange":{"end":{"character":22,"line":31},"start":{"character":9,"line":31}}},{"kind":13,"name":"position_B","range":{"end":{"character":33,"line":32},"start":{"character":0,"line":32}},"selectionRange":{"end":{"character":19,"line":32},"start":{"character":9,"line":32}}},{"kind":13,"name":"position_C","range":{"end":{"character":33,"line":33},"start":{"character":0,"line":33}},"selectionRange":{"end":{"character":19,"line":33},"start":{"character":9,"line":33}}},{"kind":13,"name":"range_self","range":{"end":{"character":17,"line":35},"start":{"character":0,"line":35}},"selectionRange":{"end":{"character":17,"line":35},"start":{"character":7,"line":35}}},{"kind":13,"name":"range_B","range":{"end":{"character":14,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":14,"line":36},"start":{"character":7,"line":36}}},{"kind":13,"name":"range_C","range":{"end":{"character":14,"line":37},"start":{"character":0,"line":37}},"selectionRange":{"end":{"character":14,"line":37},"start":{"character":7,"line":37}}},{"kind":13,"name":"received_B","range":{"end":{"character":26,"line":39},"start":{"character":0,"line":39}},"selectionRange":{"end":{"character":18,"line":39},"start":{"character":8,"line":39}}},{"kind":13,"name":"target_eui","range":{"end":{"character":18,"line":41},"start":{"character":0,"line":41}},"selectionRange":{"end":{"character":15,"line":41},"start":{"character":5,"line":41}}},{"kind":13,"name":"tag_shortAddress","range":{"end":{"character":38,"line":42},"start":{"character":0,"line":42}},"selectionRange":{"end":{"character":21,"line":42},"start":{"character":5,"line":42}}},{"kind":13,"name":"anchor_b","range":{"end":{"character":30,"line":44},"start":{"character":0,"line":44}},"selectionRange":{"end":{"character":13,"line":44},"start":{"character":5,"line":44}}},{"kind":13,"name":"next_anchor","range":{"end":{"character":24,"line":45},"start":{"character":0,"line":45}},"selectionRange":{"end":{"character":20,"line":45},"start":{"character":9,"line":45}}},{"kind":13,"name":"anchor_c","range":{"end":{"character":30,"line":46},"start":{"character":0,"line":46}},"selectionRange":{"end":{"character":13,"line":46},"start":{"character":5,"line":46}}},{"kind":13,"name":"DEFAULT_CONFIG","range":{"end":{"character":1,"line":60},"start":{"character":0,"line":48}},"selectionRange":{"end":{"character":37,"line":48},"start":{"character":23,"line":48}}},{"kind":13,"name":"ANCHOR_FRAME_FILTER_CONFIG","range":{"end":{"character":1,"line":71},"start":{"character":0,"line":62}},"selectionRange":{"end":{"character":58,"line":62},"start":{"character":32,"line":62}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":74},"start":{"character":0,"line":74}},"selectionRange":{"end":{"character":10,"line":74},"start":{"character":5,"line":74}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":44,"line":76},"start":{"character":0,"line":76}},"selectionRange":{"end":{"character":22,"line":76},"start":{"character":5,"line":76}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":78},"start":{"character":0,"line":78}},"selectionRange":{"end":{"character":9,"line":78},"start":{"character":5,"line":78}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":132},"start":{"character":0,"line":80}},"selectionRange":{"end":{"character":10,"line":80},"start":{"character":5,"line":80}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":1,"line":147},"start":{"character":0,"line":135}},"selectionRange":{"end":{"character":22,"line":135},"start":{"character":5,"line":135}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":190},"start":{"character":0,"line":149}},"selectionRange":{"end":{"character":9,"line":149},"start":{"character":5,"line":149}}}]}Content-Length: 36
+
+{"id":2,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":3,"jsonrpc":"2.0"}
+<<<
+Content-Length: 5299
+
+{"id":3,"jsonrpc":"2.0","result":[{"children":[{"kind":8,"name":"x","range":{"end":{"character":12,"line":17},"start":{"character":4,"line":17}},"selectionRange":{"end":{"character":12,"line":17},"start":{"character":11,"line":17}}},{"kind":8,"name":"y","range":{"end":{"character":12,"line":18},"start":{"character":4,"line":18}},"selectionRange":{"end":{"character":12,"line":18},"start":{"character":11,"line":18}}}],"kind":23,"name":"Position","range":{"end":{"character":1,"line":19},"start":{"character":8,"line":16}},"selectionRange":{"end":{"character":23,"line":16},"start":{"character":15,"line":16}}},{"kind":5,"name":"Position","range":{"end":{"character":10,"line":19},"start":{"character":0,"line":16}},"selectionRange":{"end":{"character":10,"line":19},"start":{"character":2,"line":19}}},{"kind":13,"name":"PIN_SS","range":{"end":{"character":25,"line":25},"start":{"character":0,"line":25}},"selectionRange":{"end":{"character":20,"line":25},"start":{"character":14,"line":25}}},{"kind":13,"name":"PIN_RST","range":{"end":{"character":30,"line":26},"start":{"character":0,"line":26}},"selectionRange":{"end":{"character":21,"line":26},"start":{"character":14,"line":26}}},{"kind":13,"name":"PIN_IRQ","range":{"end":{"character":30,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":21,"line":27},"start":{"character":14,"line":27}}},{"kind":13,"name":"position_self","range":{"end":{"character":30,"line":31},"start":{"character":0,"line":31}},"selectionRange":{"end":{"character":22,"line":31},"start":{"character":9,"line":31}}},{"kind":13,"name":"position_B","range":{"end":{"character":33,"line":32},"start":{"character":0,"line":32}},"selectionRange":{"end":{"character":19,"line":32},"start":{"character":9,"line":32}}},{"kind":13,"name":"position_C","range":{"end":{"character":33,"line":33},"start":{"character":0,"line":33}},"selectionRange":{"end":{"character":19,"line":33},"start":{"character":9,"line":33}}},{"kind":13,"name":"range_self","range":{"end":{"character":17,"line":35},"start":{"character":0,"line":35}},"selectionRange":{"end":{"character":17,"line":35},"start":{"character":7,"line":35}}},{"kind":13,"name":"range_B","range":{"end":{"character":14,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":14,"line":36},"start":{"character":7,"line":36}}},{"kind":13,"name":"range_C","range":{"end":{"character":14,"line":37},"start":{"character":0,"line":37}},"selectionRange":{"end":{"character":14,"line":37},"start":{"character":7,"line":37}}},{"kind":13,"name":"received_B","range":{"end":{"character":26,"line":39},"start":{"character":0,"line":39}},"selectionRange":{"end":{"character":18,"line":39},"start":{"character":8,"line":39}}},{"kind":13,"name":"target_eui","range":{"end":{"character":18,"line":41},"start":{"character":0,"line":41}},"selectionRange":{"end":{"character":15,"line":41},"start":{"character":5,"line":41}}},{"kind":13,"name":"tag_shortAddress","range":{"end":{"character":38,"line":42},"start":{"character":0,"line":42}},"selectionRange":{"end":{"character":21,"line":42},"start":{"character":5,"line":42}}},{"kind":13,"name":"anchor_b","range":{"end":{"character":30,"line":44},"start":{"character":0,"line":44}},"selectionRange":{"end":{"character":13,"line":44},"start":{"character":5,"line":44}}},{"kind":13,"name":"next_anchor","range":{"end":{"character":24,"line":45},"start":{"character":0,"line":45}},"selectionRange":{"end":{"character":20,"line":45},"start":{"character":9,"line":45}}},{"kind":13,"name":"anchor_c","range":{"end":{"character":30,"line":46},"start":{"character":0,"line":46}},"selectionRange":{"end":{"character":13,"line":46},"start":{"character":5,"line":46}}},{"kind":13,"name":"DEFAULT_CONFIG","range":{"end":{"character":1,"line":60},"start":{"character":0,"line":48}},"selectionRange":{"end":{"character":37,"line":48},"start":{"character":23,"line":48}}},{"kind":13,"name":"ANCHOR_FRAME_FILTER_CONFIG","range":{"end":{"character":1,"line":71},"start":{"character":0,"line":62}},"selectionRange":{"end":{"character":58,"line":62},"start":{"character":32,"line":62}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":74},"start":{"character":0,"line":74}},"selectionRange":{"end":{"character":10,"line":74},"start":{"character":5,"line":74}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":44,"line":76},"start":{"character":0,"line":76}},"selectionRange":{"end":{"character":22,"line":76},"start":{"character":5,"line":76}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":78},"start":{"character":0,"line":78}},"selectionRange":{"end":{"character":9,"line":78},"start":{"character":5,"line":78}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":132},"start":{"character":0,"line":80}},"selectionRange":{"end":{"character":10,"line":80},"start":{"character":5,"line":80}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":1,"line":147},"start":{"character":0,"line":135}},"selectionRange":{"end":{"character":22,"line":135},"start":{"character":5,"line":135}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":190},"start":{"character":0,"line":149}},"selectionRange":{"end":{"character":9,"line":149},"start":{"character":5,"line":149}}}]}
+>>>
+Content-Length: 243
+
+{"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"position":{"line":25,"character":27}},"id":4,"jsonrpc":"2.0"}
+<<<
+Content-Length: 38
+
+{"id":4,"jsonrpc":"2.0","result":null}
+>>>
+Content-Length: 62
+
+{"method":"$/cancelRequest","params":{"id":3},"jsonrpc":"2.0"}Content-Length: 313
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":5,"jsonrpc":"2.0"}
+<<<
+Content-Length: 36
+
+{"id":5,"jsonrpc":"2.0","result":[]}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/36","percentage":13.888888888888889}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/36","percentage":13.888888888888889}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/36","percentage":16.666666666666668}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/36","percentage":16.666666666666668}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/36","percentage":19.444444444444443}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/36","percentage":19.444444444444443}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/36","percentage":22.222222222222221}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/36","percentage":22.222222222222221}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/36","percentage":25}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/36","percentage":25}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/36","percentage":27.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/36","percentage":27.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/36","percentage":30.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/36","percentage":30.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/36","percentage":33.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/36","percentage":33.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/36","percentage":36.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/36","percentage":36.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/36","percentage":38.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/36","percentage":38.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/36","percentage":41.666666666666664}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/36","percentage":41.666666666666664}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/36","percentage":44.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/36","percentage":44.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/36","percentage":47.222222222222221}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/36","percentage":47.222222222222221}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/36","percentage":50}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/36","percentage":50}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/36","percentage":52.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/36","percentage":52.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/36","percentage":55.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/36","percentage":55.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/36","percentage":58.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/36","percentage":58.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/36","percentage":61.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/36","percentage":61.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/36","percentage":63.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/36","percentage":63.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/36","percentage":66.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/36","percentage":66.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"25/36","percentage":69.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"25/36","percentage":69.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"26/36","percentage":72.222222222222229}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"26/36","percentage":72.222222222222229}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"27/36","percentage":75}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"27/36","percentage":75}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"28/36","percentage":77.777777777777771}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"28/36","percentage":77.777777777777771}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"29/36","percentage":80.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"29/36","percentage":80.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"30/36","percentage":83.333333333333329}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"30/36","percentage":83.333333333333329}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"31/36","percentage":86.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"31/36","percentage":86.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"32/36","percentage":88.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"32/36","percentage":88.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"33/36","percentage":91.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"34/36","percentage":94.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"35/36","percentage":97.222222222222229}}}Content-Length: 107
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"end"}}}
+>>>
+Content-Length: 388
+
+{"method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":2},"contentChanges":[{"range":{"start":{"line":119,"character":0},"end":{"line":120,"character":0}},"rangeLength":46,"text":"    DW1000Ng::setAntennaDelay(16417);//16436\r\n"}]},"jsonrpc":"2.0"}Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":6,"jsonrpc":"2.0"}
+<<<
+Content-Length: 101
+
+{"error":{"code":-32602,"message":"trying to get AST for non-added document"},"id":6,"jsonrpc":"2.0"}<<< Read Error: read |0: file already closed
+--- Stream closed, err=%!s(<nil>)
+
+
+
+
+
+
+
+Started logging.
+
+>>>
+Content-Length: 2158
+
+{"method":"initialize","params":{"processId":1792,"rootPath":"C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server159266567\\sketch","rootUri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch","clientInfo":{"name":"vscode","version":"1.53.2"},"trace":"off","initializationOptions":{},"capabilities":{"workspace":{"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"]},"applyEdit":true,"symbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"workspaceFolders":true,"configuration":true},"textDocument":{"declaration":{"linkSupport":true},"definition":{"linkSupport":true},"implementation":{"linkSupport":true,"dynamicRegistration":true},"typeDefinition":{"linkSupport":true},"synchronization":{"willSave":true,"didSave":true,"willSaveWaitUntil":true},"documentSymbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"completion":{"completionItem":{"documentationFormat":["markdown","plaintext"],"snippetSupport":true},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]},"contextSupport":true},"signatureHelp":{"signatureInformation":{"parameterInformation":{"labelOffsetSupport":true}}},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"hover":{"contentFormat":["markdown","plaintext"]},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"colorProvider":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}}},"id":0,"jsonrpc":"2.0"}
+<<<
+Content-Length: 1671
+
+{"id":0,"jsonrpc":"2.0","result":{"capabilities":{"astProvider":true,"callHierarchyProvider":true,"codeActionProvider":{"codeActionKinds":["quickfix","refactor","info"]},"compilationDatabase":{"automaticReload":true},"completionProvider":{"allCommitCharacters":[" ","\t","(",")","[","]","{","}","<",">",":",";",",","+","-","/","*","%","^","&","#","?",".","=","\"","'","|"],"resolveProvider":false,"triggerCharacters":[".","<",">",":","\"","/"]},"declarationProvider":true,"definitionProvider":true,"documentFormattingProvider":true,"documentHighlightProvider":true,"documentLinkProvider":{"resolveProvider":false},"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n","moreTriggerCharacter":[]},"documentRangeFormattingProvider":true,"documentSymbolProvider":true,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]},"hoverProvider":true,"implementationProvider":true,"memoryUsageProvider":true,"referencesProvider":true,"renameProvider":{"prepareProvider":true},"selectionRangeProvider":true,"semanticTokensProvider":{"full":{"delta":true},"legend":{"tokenModifiers":[],"tokenTypes":["variable","variable","parameter","function","method","function","property","variable","class","enum","enumMember","type","dependent","dependent","namespace","typeParameter","concept","type","macro","comment"]},"range":false},"signatureHelpProvider":{"triggerCharacters":["(",","]},"textDocumentSync":{"change":2,"openClose":true,"save":true},"typeHierarchyProvider":true,"workspaceSymbolProvider":true},"serverInfo":{"name":"clangd","version":"clangd version 12.0.0 (https://github.com/llvm/llvm-project e841bd5f335864b8c4d81cbf4df08460ef39f2ae)"}}}
+>>>
+Content-Length: 52
+
+{"method":"initialized","params":{},"jsonrpc":"2.0"}Content-Length: 7255
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","languageId":"cpp","version":1,"text":"#include \u003cArduino.h\u003e\n#line 1 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\n/**\n   @file StandardRTLSAnchorMain_TWR.ino\n   @author rakwireless.com\n   @brief Standard RTLS AnchorMain TWR\n   @version 0.1\n   @date 2022-1-28\n   @copyright Copyright (c) 2020\n**/\n\n#include \u003cDW1000Ng.hpp\u003e\n#include \u003cDW1000NgUtils.hpp\u003e\n#include \u003cDW1000NgRanging.hpp\u003e\n#include \u003cDW1000NgRTLS.hpp\u003e\n\ntypedef struct Position {\n    double x;\n    double y;\n} Position;\n\n// connection pins\n#if defined(ESP8266)\nconst uint8_t PIN_SS = 15;\n#else\nconst uint8_t PIN_SS = SS; // spi select pin\nconst uint8_t PIN_RST = WB_IO6;\nconst uint8_t PIN_IRQ = WB_IO5;\n#endif\n\n\nPosition position_self = {0,0};\nPosition position_B = {0.25,0.15};\nPosition position_C = {0.75,0.18};\n\ndouble range_self;\ndouble range_B;\ndouble range_C;\n\nboolean received_B = false;\n\nbyte target_eui[8];\nbyte tag_shortAddress[] = {0x05, 0x00};\n\nbyte anchor_b[] = {0x02, 0x00};\nuint16_t next_anchor = 2;\nbyte anchor_c[] = {0x03, 0x00};\n\ndevice_configuration_t DEFAULT_CONFIG = {\n    false,\n    true,\n    true,\n    true,\n    false,\n    SFDMode::STANDARD_SFD,\n    Channel::CHANNEL_5,\n    DataRate::RATE_850KBPS,\n    PulseFrequency::FREQ_16MHZ,\n    PreambleLength::LEN_256,\n    PreambleCode::CODE_3\n};\n\nframe_filtering_configuration_t ANCHOR_FRAME_FILTER_CONFIG = {\n    false,\n    false,\n    true,\n    false,\n    false,\n    false,\n    false,\n    true /* This allows blink frames */\n};\n\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup();\n#line 127 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid calculatePosition(double \u0026x, double \u0026y);\n#line 141 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid loop();\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup() {\n  pinMode(WB_IO2, OUTPUT);\n  digitalWrite(WB_IO2, HIGH); //Turn on the power switch\n  delay(300);\n  time_t serial_timeout = millis();\n  // DEBUG monitoring\n  Serial.begin(115200);\n  while (!Serial)\n  {\n    if ((millis() - serial_timeout) \u003c 5000)\n    {\n      delay(100);\n    }\n    else\n    {\n      break;\n    }\n  }\n    Serial.println(F(\"### DW1000Ng-arduino-ranging-anchorMain ###\"));\n    // initialize the driver\n    #if defined(ESP8266)\n    DW1000Ng::initializeNoInterrupt(PIN_SS);\n    #else\n    DW1000Ng::initializeNoInterrupt(PIN_SS, PIN_RST);\n    #endif\n    Serial.println(F(\"DW1000Ng initialized ...\"));\n    // general configuration\n    DW1000Ng::applyConfiguration(DEFAULT_CONFIG);\n    DW1000Ng::enableFrameFiltering(ANCHOR_FRAME_FILTER_CONFIG);\n    \n    DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:01\");\n\n    DW1000Ng::setPreambleDetectionTimeout(64);\n    DW1000Ng::setSfdDetectionTimeout(273);\n    DW1000Ng::setReceiveFrameWaitTimeoutPeriod(5000);\n\n    DW1000Ng::setNetworkId(RTLS_APP_ID);\n    DW1000Ng::setDeviceAddress(1);\n\t\n    DW1000Ng::setAntennaDelay(16417);//16436\n    \n    Serial.println(F(\"Committed configuration ...\"));\n    // DEBUG chip info and registers pretty printed\n    char msg[128];\n    DW1000Ng::getPrintableDeviceIdentifier(msg);\n    Serial.print(\"Device ID: \"); Serial.println(msg);\n    DW1000Ng::getPrintableExtendedUniqueIdentifier(msg);\n    Serial.print(\"Unique ID: \"); Serial.println(msg);\n    DW1000Ng::getPrintableNetworkIdAndShortAddress(msg);\n    Serial.print(\"Network ID \u0026 Device Address: \"); Serial.println(msg);\n    DW1000Ng::getPrintableDeviceMode(msg);\n    Serial.print(\"Device mode: \"); Serial.println(msg);    \n}\n\n/* using https://math.stackexchange.com/questions/884807/find-x-location-using-3-known-x-y-location-using-trilateration */\nvoid calculatePosition(double \u0026x, double \u0026y) {\n\n    /* This gives for granted that the z plane is the same for anchor and tags */\n    double A = ( (-2*position_self.x) + (2*position_B.x) );\n    double B = ( (-2*position_self.y) + (2*position_B.y) );\n    double C = (range_self*range_self) - (range_B*range_B) - (position_self.x*position_self.x) + (position_B.x*position_B.x) - (position_self.y*position_self.y) + (position_B.y*position_B.y);\n    double D = ( (-2*position_B.x) + (2*position_C.x) );\n    double E = ( (-2*position_B.y) + (2*position_C.y) );\n    double F = (range_B*range_B) - (range_C*range_C) - (position_B.x*position_B.x) + (position_C.x*position_C.x) - (position_B.y*position_B.y) + (position_C.y*position_C.y);\n\n    x = (C*E-F*B) / (E*A-B*D);\n    y = (C*D-A*F) / (B*D-A*E);\n}\n\nvoid loop() {\n    if(DW1000NgRTLS::receiveFrame()){\n        size_t recv_len = DW1000Ng::getReceivedDataLength();\n        byte recv_data[recv_len];\n        DW1000Ng::getReceivedData(recv_data, recv_len);\n\n        if(recv_data[0] == BLINK) {\n            DW1000NgRTLS::transmitRangingInitiation(\u0026recv_data[2], tag_shortAddress);\n            DW1000NgRTLS::waitForTransmission();\n\n            RangeAcceptResult result = DW1000NgRTLS::anchorRangeAccept(NextActivity::RANGING_CONFIRM, next_anchor);\n            if(!result.success) return;\n            range_self = result.range;\n\n            String rangeString = \"Range: \"; rangeString += range_self; rangeString += \" m\";\n            rangeString += \"\\t RX power: \"; rangeString += DW1000Ng::getReceivePower(); rangeString += \" dBm\";\n            Serial.println(rangeString);\n        } else if(recv_data[9] == 0x60) {\n            double range = static_cast\u003cdouble\u003e(DW1000NgUtils::bytesAsValue(\u0026recv_data[10],2) / 1000.0);\n            String rangeReportString = \"Range from: \"; rangeReportString += recv_data[7];\n            rangeReportString += \" = \"; rangeReportString += range;\n            Serial.println(rangeReportString);\n            if(received_B == false \u0026\u0026 recv_data[7] == anchor_b[0] \u0026\u0026 recv_data[8] == anchor_b[1]) {\n                range_B = range;\n                received_B = true;\n            } else if(received_B == true \u0026\u0026 recv_data[7] == anchor_c[0] \u0026\u0026 recv_data[8] == anchor_c[1]){\n                range_C = range;\n                double x,y;\n                calculatePosition(x,y);\n                String positioning = \"Found position - x: \";\n                positioning += x; positioning +=\" y: \";\n                positioning += y;\n                Serial.println(positioning);\n                received_B = false;\n            } else {\n                received_B = false;\n            }\n        }\n    }\n\n    \n}\n\n"}},"jsonrpc":"2.0"}Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":1,"jsonrpc":"2.0"}
+<<<
+Content-Length: 111
+
+{"id":0,"jsonrpc":"2.0","method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"}}
+>>>
+Content-Length: 38
+
+{"id":0,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"begin","percentage":0,"title":"indexing"}}}Content-Length: 141
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/1","percentage":0}}}
+>>>
+Content-Length: 313
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":2,"jsonrpc":"2.0"}
+<<<
+Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 991
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"code":"pp_file_not_found","message":"In included file: 'stdlib.h' file not found\n\nC:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\cores\\arduino\\api/Interrupts.h:5:10:\nnote: error occurred here","range":{"end":{"character":10,"line":0},"start":{"character":9,"line":0}},"severity":1,"source":"clang"},{"code":"unknown_typename_suggest","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here","range":{"end":{"character":8,"line":84},"start":{"character":2,"line":84}},"severity":1,"source":"clang"}],"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":1}}Content-Length: 5299
+
+{"id":1,"jsonrpc":"2.0","result":[{"children":[{"kind":8,"name":"x","range":{"end":{"character":12,"line":17},"start":{"character":4,"line":17}},"selectionRange":{"end":{"character":12,"line":17},"start":{"character":11,"line":17}}},{"kind":8,"name":"y","range":{"end":{"character":12,"line":18},"start":{"character":4,"line":18}},"selectionRange":{"end":{"character":12,"line":18},"start":{"character":11,"line":18}}}],"kind":23,"name":"Position","range":{"end":{"character":1,"line":19},"start":{"character":8,"line":16}},"selectionRange":{"end":{"character":23,"line":16},"start":{"character":15,"line":16}}},{"kind":5,"name":"Position","range":{"end":{"character":10,"line":19},"start":{"character":0,"line":16}},"selectionRange":{"end":{"character":10,"line":19},"start":{"character":2,"line":19}}},{"kind":13,"name":"PIN_SS","range":{"end":{"character":25,"line":25},"start":{"character":0,"line":25}},"selectionRange":{"end":{"character":20,"line":25},"start":{"character":14,"line":25}}},{"kind":13,"name":"PIN_RST","range":{"end":{"character":30,"line":26},"start":{"character":0,"line":26}},"selectionRange":{"end":{"character":21,"line":26},"start":{"character":14,"line":26}}},{"kind":13,"name":"PIN_IRQ","range":{"end":{"character":30,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":21,"line":27},"start":{"character":14,"line":27}}},{"kind":13,"name":"position_self","range":{"end":{"character":30,"line":31},"start":{"character":0,"line":31}},"selectionRange":{"end":{"character":22,"line":31},"start":{"character":9,"line":31}}},{"kind":13,"name":"position_B","range":{"end":{"character":33,"line":32},"start":{"character":0,"line":32}},"selectionRange":{"end":{"character":19,"line":32},"start":{"character":9,"line":32}}},{"kind":13,"name":"position_C","range":{"end":{"character":33,"line":33},"start":{"character":0,"line":33}},"selectionRange":{"end":{"character":19,"line":33},"start":{"character":9,"line":33}}},{"kind":13,"name":"range_self","range":{"end":{"character":17,"line":35},"start":{"character":0,"line":35}},"selectionRange":{"end":{"character":17,"line":35},"start":{"character":7,"line":35}}},{"kind":13,"name":"range_B","range":{"end":{"character":14,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":14,"line":36},"start":{"character":7,"line":36}}},{"kind":13,"name":"range_C","range":{"end":{"character":14,"line":37},"start":{"character":0,"line":37}},"selectionRange":{"end":{"character":14,"line":37},"start":{"character":7,"line":37}}},{"kind":13,"name":"received_B","range":{"end":{"character":26,"line":39},"start":{"character":0,"line":39}},"selectionRange":{"end":{"character":18,"line":39},"start":{"character":8,"line":39}}},{"kind":13,"name":"target_eui","range":{"end":{"character":18,"line":41},"start":{"character":0,"line":41}},"selectionRange":{"end":{"character":15,"line":41},"start":{"character":5,"line":41}}},{"kind":13,"name":"tag_shortAddress","range":{"end":{"character":38,"line":42},"start":{"character":0,"line":42}},"selectionRange":{"end":{"character":21,"line":42},"start":{"character":5,"line":42}}},{"kind":13,"name":"anchor_b","range":{"end":{"character":30,"line":44},"start":{"character":0,"line":44}},"selectionRange":{"end":{"character":13,"line":44},"start":{"character":5,"line":44}}},{"kind":13,"name":"next_anchor","range":{"end":{"character":24,"line":45},"start":{"character":0,"line":45}},"selectionRange":{"end":{"character":20,"line":45},"start":{"character":9,"line":45}}},{"kind":13,"name":"anchor_c","range":{"end":{"character":30,"line":46},"start":{"character":0,"line":46}},"selectionRange":{"end":{"character":13,"line":46},"start":{"character":5,"line":46}}},{"kind":13,"name":"DEFAULT_CONFIG","range":{"end":{"character":1,"line":60},"start":{"character":0,"line":48}},"selectionRange":{"end":{"character":37,"line":48},"start":{"character":23,"line":48}}},{"kind":13,"name":"ANCHOR_FRAME_FILTER_CONFIG","range":{"end":{"character":1,"line":71},"start":{"character":0,"line":62}},"selectionRange":{"end":{"character":58,"line":62},"start":{"character":32,"line":62}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":74},"start":{"character":0,"line":74}},"selectionRange":{"end":{"character":10,"line":74},"start":{"character":5,"line":74}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":44,"line":76},"start":{"character":0,"line":76}},"selectionRange":{"end":{"character":22,"line":76},"start":{"character":5,"line":76}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":78},"start":{"character":0,"line":78}},"selectionRange":{"end":{"character":9,"line":78},"start":{"character":5,"line":78}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":132},"start":{"character":0,"line":80}},"selectionRange":{"end":{"character":10,"line":80},"start":{"character":5,"line":80}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":1,"line":147},"start":{"character":0,"line":135}},"selectionRange":{"end":{"character":22,"line":135},"start":{"character":5,"line":135}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":190},"start":{"character":0,"line":149}},"selectionRange":{"end":{"character":9,"line":149},"start":{"character":5,"line":149}}}]}Content-Length: 36
+
+{"id":2,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":3,"jsonrpc":"2.0"}
+<<<
+Content-Length: 5299
+
+{"id":3,"jsonrpc":"2.0","result":[{"children":[{"kind":8,"name":"x","range":{"end":{"character":12,"line":17},"start":{"character":4,"line":17}},"selectionRange":{"end":{"character":12,"line":17},"start":{"character":11,"line":17}}},{"kind":8,"name":"y","range":{"end":{"character":12,"line":18},"start":{"character":4,"line":18}},"selectionRange":{"end":{"character":12,"line":18},"start":{"character":11,"line":18}}}],"kind":23,"name":"Position","range":{"end":{"character":1,"line":19},"start":{"character":8,"line":16}},"selectionRange":{"end":{"character":23,"line":16},"start":{"character":15,"line":16}}},{"kind":5,"name":"Position","range":{"end":{"character":10,"line":19},"start":{"character":0,"line":16}},"selectionRange":{"end":{"character":10,"line":19},"start":{"character":2,"line":19}}},{"kind":13,"name":"PIN_SS","range":{"end":{"character":25,"line":25},"start":{"character":0,"line":25}},"selectionRange":{"end":{"character":20,"line":25},"start":{"character":14,"line":25}}},{"kind":13,"name":"PIN_RST","range":{"end":{"character":30,"line":26},"start":{"character":0,"line":26}},"selectionRange":{"end":{"character":21,"line":26},"start":{"character":14,"line":26}}},{"kind":13,"name":"PIN_IRQ","range":{"end":{"character":30,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":21,"line":27},"start":{"character":14,"line":27}}},{"kind":13,"name":"position_self","range":{"end":{"character":30,"line":31},"start":{"character":0,"line":31}},"selectionRange":{"end":{"character":22,"line":31},"start":{"character":9,"line":31}}},{"kind":13,"name":"position_B","range":{"end":{"character":33,"line":32},"start":{"character":0,"line":32}},"selectionRange":{"end":{"character":19,"line":32},"start":{"character":9,"line":32}}},{"kind":13,"name":"position_C","range":{"end":{"character":33,"line":33},"start":{"character":0,"line":33}},"selectionRange":{"end":{"character":19,"line":33},"start":{"character":9,"line":33}}},{"kind":13,"name":"range_self","range":{"end":{"character":17,"line":35},"start":{"character":0,"line":35}},"selectionRange":{"end":{"character":17,"line":35},"start":{"character":7,"line":35}}},{"kind":13,"name":"range_B","range":{"end":{"character":14,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":14,"line":36},"start":{"character":7,"line":36}}},{"kind":13,"name":"range_C","range":{"end":{"character":14,"line":37},"start":{"character":0,"line":37}},"selectionRange":{"end":{"character":14,"line":37},"start":{"character":7,"line":37}}},{"kind":13,"name":"received_B","range":{"end":{"character":26,"line":39},"start":{"character":0,"line":39}},"selectionRange":{"end":{"character":18,"line":39},"start":{"character":8,"line":39}}},{"kind":13,"name":"target_eui","range":{"end":{"character":18,"line":41},"start":{"character":0,"line":41}},"selectionRange":{"end":{"character":15,"line":41},"start":{"character":5,"line":41}}},{"kind":13,"name":"tag_shortAddress","range":{"end":{"character":38,"line":42},"start":{"character":0,"line":42}},"selectionRange":{"end":{"character":21,"line":42},"start":{"character":5,"line":42}}},{"kind":13,"name":"anchor_b","range":{"end":{"character":30,"line":44},"start":{"character":0,"line":44}},"selectionRange":{"end":{"character":13,"line":44},"start":{"character":5,"line":44}}},{"kind":13,"name":"next_anchor","range":{"end":{"character":24,"line":45},"start":{"character":0,"line":45}},"selectionRange":{"end":{"character":20,"line":45},"start":{"character":9,"line":45}}},{"kind":13,"name":"anchor_c","range":{"end":{"character":30,"line":46},"start":{"character":0,"line":46}},"selectionRange":{"end":{"character":13,"line":46},"start":{"character":5,"line":46}}},{"kind":13,"name":"DEFAULT_CONFIG","range":{"end":{"character":1,"line":60},"start":{"character":0,"line":48}},"selectionRange":{"end":{"character":37,"line":48},"start":{"character":23,"line":48}}},{"kind":13,"name":"ANCHOR_FRAME_FILTER_CONFIG","range":{"end":{"character":1,"line":71},"start":{"character":0,"line":62}},"selectionRange":{"end":{"character":58,"line":62},"start":{"character":32,"line":62}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":74},"start":{"character":0,"line":74}},"selectionRange":{"end":{"character":10,"line":74},"start":{"character":5,"line":74}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":44,"line":76},"start":{"character":0,"line":76}},"selectionRange":{"end":{"character":22,"line":76},"start":{"character":5,"line":76}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":78},"start":{"character":0,"line":78}},"selectionRange":{"end":{"character":9,"line":78},"start":{"character":5,"line":78}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":132},"start":{"character":0,"line":80}},"selectionRange":{"end":{"character":10,"line":80},"start":{"character":5,"line":80}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":1,"line":147},"start":{"character":0,"line":135}},"selectionRange":{"end":{"character":22,"line":135},"start":{"character":5,"line":135}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":190},"start":{"character":0,"line":149}},"selectionRange":{"end":{"character":9,"line":149},"start":{"character":5,"line":149}}}]}
+>>>
+Content-Length: 313
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":4,"jsonrpc":"2.0"}
+<<<
+Content-Length: 36
+
+{"id":4,"jsonrpc":"2.0","result":[]}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/36","percentage":8.3333333333333339}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/36","percentage":8.3333333333333339}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/36","percentage":11.111111111111111}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/36","percentage":11.111111111111111}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/36","percentage":13.888888888888889}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/36","percentage":13.888888888888889}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/36","percentage":16.666666666666668}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/36","percentage":16.666666666666668}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/36","percentage":19.444444444444443}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/36","percentage":19.444444444444443}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/36","percentage":22.222222222222221}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/36","percentage":22.222222222222221}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/36","percentage":25}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/36","percentage":25}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/36","percentage":27.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/36","percentage":27.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/36","percentage":30.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/36","percentage":30.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/36","percentage":33.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/36","percentage":33.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/36","percentage":36.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/36","percentage":36.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/36","percentage":38.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/36","percentage":38.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/36","percentage":41.666666666666664}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/36","percentage":41.666666666666664}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/36","percentage":44.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/36","percentage":44.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/36","percentage":47.222222222222221}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/36","percentage":47.222222222222221}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/36","percentage":50}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/36","percentage":50}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/36","percentage":52.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/36","percentage":52.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/36","percentage":55.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/36","percentage":55.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/36","percentage":58.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/36","percentage":58.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/36","percentage":61.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/36","percentage":61.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/36","percentage":63.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/36","percentage":63.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/36","percentage":66.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/36","percentage":66.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"25/36","percentage":69.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"25/36","percentage":69.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"26/36","percentage":72.222222222222229}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"26/36","percentage":72.222222222222229}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"27/36","percentage":75}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"27/36","percentage":75}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"28/36","percentage":77.777777777777771}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"28/36","percentage":77.777777777777771}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"29/36","percentage":80.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"29/36","percentage":80.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"30/36","percentage":83.333333333333329}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"30/36","percentage":83.333333333333329}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"31/36","percentage":86.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"31/36","percentage":86.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"32/36","percentage":88.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"32/36","percentage":88.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"33/36","percentage":91.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"34/36","percentage":94.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"35/36","percentage":97.222222222222229}}}Content-Length: 107
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"end"}}}
+>>>
+Content-Length: 388
+
+{"method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":2},"contentChanges":[{"range":{"start":{"line":119,"character":0},"end":{"line":120,"character":0}},"rangeLength":46,"text":"    DW1000Ng::setAntennaDelay(16425);//16436\r\n"}]},"jsonrpc":"2.0"}Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":5,"jsonrpc":"2.0"}
+<<<
+Content-Length: 101
+
+{"error":{"code":-32602,"message":"trying to get AST for non-added document"},"id":5,"jsonrpc":"2.0"}<<< Read Error: read |0: file already closed
+--- Stream closed, err=%!s(<nil>)
+
+
+
+
+
+
+
+Started logging.
+
+>>>
+Content-Length: 2158
+
+{"method":"initialize","params":{"processId":1792,"rootPath":"C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server775711895\\sketch","rootUri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch","clientInfo":{"name":"vscode","version":"1.53.2"},"trace":"off","initializationOptions":{},"capabilities":{"workspace":{"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"]},"applyEdit":true,"symbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"workspaceFolders":true,"configuration":true},"textDocument":{"declaration":{"linkSupport":true},"definition":{"linkSupport":true},"implementation":{"linkSupport":true,"dynamicRegistration":true},"typeDefinition":{"linkSupport":true},"synchronization":{"willSave":true,"didSave":true,"willSaveWaitUntil":true},"documentSymbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"completion":{"completionItem":{"documentationFormat":["markdown","plaintext"],"snippetSupport":true},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]},"contextSupport":true},"signatureHelp":{"signatureInformation":{"parameterInformation":{"labelOffsetSupport":true}}},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"hover":{"contentFormat":["markdown","plaintext"]},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"colorProvider":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}}},"id":0,"jsonrpc":"2.0"}
+<<<
+Content-Length: 1671
+
+{"id":0,"jsonrpc":"2.0","result":{"capabilities":{"astProvider":true,"callHierarchyProvider":true,"codeActionProvider":{"codeActionKinds":["quickfix","refactor","info"]},"compilationDatabase":{"automaticReload":true},"completionProvider":{"allCommitCharacters":[" ","\t","(",")","[","]","{","}","<",">",":",";",",","+","-","/","*","%","^","&","#","?",".","=","\"","'","|"],"resolveProvider":false,"triggerCharacters":[".","<",">",":","\"","/"]},"declarationProvider":true,"definitionProvider":true,"documentFormattingProvider":true,"documentHighlightProvider":true,"documentLinkProvider":{"resolveProvider":false},"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n","moreTriggerCharacter":[]},"documentRangeFormattingProvider":true,"documentSymbolProvider":true,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]},"hoverProvider":true,"implementationProvider":true,"memoryUsageProvider":true,"referencesProvider":true,"renameProvider":{"prepareProvider":true},"selectionRangeProvider":true,"semanticTokensProvider":{"full":{"delta":true},"legend":{"tokenModifiers":[],"tokenTypes":["variable","variable","parameter","function","method","function","property","variable","class","enum","enumMember","type","dependent","dependent","namespace","typeParameter","concept","type","macro","comment"]},"range":false},"signatureHelpProvider":{"triggerCharacters":["(",","]},"textDocumentSync":{"change":2,"openClose":true,"save":true},"typeHierarchyProvider":true,"workspaceSymbolProvider":true},"serverInfo":{"name":"clangd","version":"clangd version 12.0.0 (https://github.com/llvm/llvm-project e841bd5f335864b8c4d81cbf4df08460ef39f2ae)"}}}
+>>>
+Content-Length: 52
+
+{"method":"initialized","params":{},"jsonrpc":"2.0"}Content-Length: 7255
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","languageId":"cpp","version":1,"text":"#include \u003cArduino.h\u003e\n#line 1 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\n/**\n   @file StandardRTLSAnchorMain_TWR.ino\n   @author rakwireless.com\n   @brief Standard RTLS AnchorMain TWR\n   @version 0.1\n   @date 2022-1-28\n   @copyright Copyright (c) 2020\n**/\n\n#include \u003cDW1000Ng.hpp\u003e\n#include \u003cDW1000NgUtils.hpp\u003e\n#include \u003cDW1000NgRanging.hpp\u003e\n#include \u003cDW1000NgRTLS.hpp\u003e\n\ntypedef struct Position {\n    double x;\n    double y;\n} Position;\n\n// connection pins\n#if defined(ESP8266)\nconst uint8_t PIN_SS = 15;\n#else\nconst uint8_t PIN_SS = SS; // spi select pin\nconst uint8_t PIN_RST = WB_IO6;\nconst uint8_t PIN_IRQ = WB_IO5;\n#endif\n\n\nPosition position_self = {0,0};\nPosition position_B = {0.25,0.15};\nPosition position_C = {0.75,0.18};\n\ndouble range_self;\ndouble range_B;\ndouble range_C;\n\nboolean received_B = false;\n\nbyte target_eui[8];\nbyte tag_shortAddress[] = {0x05, 0x00};\n\nbyte anchor_b[] = {0x02, 0x00};\nuint16_t next_anchor = 2;\nbyte anchor_c[] = {0x03, 0x00};\n\ndevice_configuration_t DEFAULT_CONFIG = {\n    false,\n    true,\n    true,\n    true,\n    false,\n    SFDMode::STANDARD_SFD,\n    Channel::CHANNEL_5,\n    DataRate::RATE_850KBPS,\n    PulseFrequency::FREQ_16MHZ,\n    PreambleLength::LEN_256,\n    PreambleCode::CODE_3\n};\n\nframe_filtering_configuration_t ANCHOR_FRAME_FILTER_CONFIG = {\n    false,\n    false,\n    true,\n    false,\n    false,\n    false,\n    false,\n    true /* This allows blink frames */\n};\n\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup();\n#line 127 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid calculatePosition(double \u0026x, double \u0026y);\n#line 141 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid loop();\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup() {\n  pinMode(WB_IO2, OUTPUT);\n  digitalWrite(WB_IO2, HIGH); //Turn on the power switch\n  delay(300);\n  time_t serial_timeout = millis();\n  // DEBUG monitoring\n  Serial.begin(115200);\n  while (!Serial)\n  {\n    if ((millis() - serial_timeout) \u003c 5000)\n    {\n      delay(100);\n    }\n    else\n    {\n      break;\n    }\n  }\n    Serial.println(F(\"### DW1000Ng-arduino-ranging-anchorMain ###\"));\n    // initialize the driver\n    #if defined(ESP8266)\n    DW1000Ng::initializeNoInterrupt(PIN_SS);\n    #else\n    DW1000Ng::initializeNoInterrupt(PIN_SS, PIN_RST);\n    #endif\n    Serial.println(F(\"DW1000Ng initialized ...\"));\n    // general configuration\n    DW1000Ng::applyConfiguration(DEFAULT_CONFIG);\n    DW1000Ng::enableFrameFiltering(ANCHOR_FRAME_FILTER_CONFIG);\n    \n    DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:01\");\n\n    DW1000Ng::setPreambleDetectionTimeout(64);\n    DW1000Ng::setSfdDetectionTimeout(273);\n    DW1000Ng::setReceiveFrameWaitTimeoutPeriod(5000);\n\n    DW1000Ng::setNetworkId(RTLS_APP_ID);\n    DW1000Ng::setDeviceAddress(1);\n\t\n    DW1000Ng::setAntennaDelay(16425);//16436\n    \n    Serial.println(F(\"Committed configuration ...\"));\n    // DEBUG chip info and registers pretty printed\n    char msg[128];\n    DW1000Ng::getPrintableDeviceIdentifier(msg);\n    Serial.print(\"Device ID: \"); Serial.println(msg);\n    DW1000Ng::getPrintableExtendedUniqueIdentifier(msg);\n    Serial.print(\"Unique ID: \"); Serial.println(msg);\n    DW1000Ng::getPrintableNetworkIdAndShortAddress(msg);\n    Serial.print(\"Network ID \u0026 Device Address: \"); Serial.println(msg);\n    DW1000Ng::getPrintableDeviceMode(msg);\n    Serial.print(\"Device mode: \"); Serial.println(msg);    \n}\n\n/* using https://math.stackexchange.com/questions/884807/find-x-location-using-3-known-x-y-location-using-trilateration */\nvoid calculatePosition(double \u0026x, double \u0026y) {\n\n    /* This gives for granted that the z plane is the same for anchor and tags */\n    double A = ( (-2*position_self.x) + (2*position_B.x) );\n    double B = ( (-2*position_self.y) + (2*position_B.y) );\n    double C = (range_self*range_self) - (range_B*range_B) - (position_self.x*position_self.x) + (position_B.x*position_B.x) - (position_self.y*position_self.y) + (position_B.y*position_B.y);\n    double D = ( (-2*position_B.x) + (2*position_C.x) );\n    double E = ( (-2*position_B.y) + (2*position_C.y) );\n    double F = (range_B*range_B) - (range_C*range_C) - (position_B.x*position_B.x) + (position_C.x*position_C.x) - (position_B.y*position_B.y) + (position_C.y*position_C.y);\n\n    x = (C*E-F*B) / (E*A-B*D);\n    y = (C*D-A*F) / (B*D-A*E);\n}\n\nvoid loop() {\n    if(DW1000NgRTLS::receiveFrame()){\n        size_t recv_len = DW1000Ng::getReceivedDataLength();\n        byte recv_data[recv_len];\n        DW1000Ng::getReceivedData(recv_data, recv_len);\n\n        if(recv_data[0] == BLINK) {\n            DW1000NgRTLS::transmitRangingInitiation(\u0026recv_data[2], tag_shortAddress);\n            DW1000NgRTLS::waitForTransmission();\n\n            RangeAcceptResult result = DW1000NgRTLS::anchorRangeAccept(NextActivity::RANGING_CONFIRM, next_anchor);\n            if(!result.success) return;\n            range_self = result.range;\n\n            String rangeString = \"Range: \"; rangeString += range_self; rangeString += \" m\";\n            rangeString += \"\\t RX power: \"; rangeString += DW1000Ng::getReceivePower(); rangeString += \" dBm\";\n            Serial.println(rangeString);\n        } else if(recv_data[9] == 0x60) {\n            double range = static_cast\u003cdouble\u003e(DW1000NgUtils::bytesAsValue(\u0026recv_data[10],2) / 1000.0);\n            String rangeReportString = \"Range from: \"; rangeReportString += recv_data[7];\n            rangeReportString += \" = \"; rangeReportString += range;\n            Serial.println(rangeReportString);\n            if(received_B == false \u0026\u0026 recv_data[7] == anchor_b[0] \u0026\u0026 recv_data[8] == anchor_b[1]) {\n                range_B = range;\n                received_B = true;\n            } else if(received_B == true \u0026\u0026 recv_data[7] == anchor_c[0] \u0026\u0026 recv_data[8] == anchor_c[1]){\n                range_C = range;\n                double x,y;\n                calculatePosition(x,y);\n                String positioning = \"Found position - x: \";\n                positioning += x; positioning +=\" y: \";\n                positioning += y;\n                Serial.println(positioning);\n                received_B = false;\n            } else {\n                received_B = false;\n            }\n        }\n    }\n\n    \n}\n\n"}},"jsonrpc":"2.0"}Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":1,"jsonrpc":"2.0"}
+<<<
+Content-Length: 111
+
+{"id":0,"jsonrpc":"2.0","method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"}}
+>>>
+Content-Length: 38
+
+{"id":0,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"begin","percentage":0,"title":"indexing"}}}Content-Length: 141
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/1","percentage":0}}}
+>>>
+Content-Length: 313
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":2,"jsonrpc":"2.0"}
+<<<
+Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 991
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"code":"pp_file_not_found","message":"In included file: 'stdlib.h' file not found\n\nC:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\cores\\arduino\\api/Interrupts.h:5:10:\nnote: error occurred here","range":{"end":{"character":10,"line":0},"start":{"character":9,"line":0}},"severity":1,"source":"clang"},{"code":"unknown_typename_suggest","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here","range":{"end":{"character":8,"line":84},"start":{"character":2,"line":84}},"severity":1,"source":"clang"}],"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":1}}Content-Length: 5299
+
+{"id":1,"jsonrpc":"2.0","result":[{"children":[{"kind":8,"name":"x","range":{"end":{"character":12,"line":17},"start":{"character":4,"line":17}},"selectionRange":{"end":{"character":12,"line":17},"start":{"character":11,"line":17}}},{"kind":8,"name":"y","range":{"end":{"character":12,"line":18},"start":{"character":4,"line":18}},"selectionRange":{"end":{"character":12,"line":18},"start":{"character":11,"line":18}}}],"kind":23,"name":"Position","range":{"end":{"character":1,"line":19},"start":{"character":8,"line":16}},"selectionRange":{"end":{"character":23,"line":16},"start":{"character":15,"line":16}}},{"kind":5,"name":"Position","range":{"end":{"character":10,"line":19},"start":{"character":0,"line":16}},"selectionRange":{"end":{"character":10,"line":19},"start":{"character":2,"line":19}}},{"kind":13,"name":"PIN_SS","range":{"end":{"character":25,"line":25},"start":{"character":0,"line":25}},"selectionRange":{"end":{"character":20,"line":25},"start":{"character":14,"line":25}}},{"kind":13,"name":"PIN_RST","range":{"end":{"character":30,"line":26},"start":{"character":0,"line":26}},"selectionRange":{"end":{"character":21,"line":26},"start":{"character":14,"line":26}}},{"kind":13,"name":"PIN_IRQ","range":{"end":{"character":30,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":21,"line":27},"start":{"character":14,"line":27}}},{"kind":13,"name":"position_self","range":{"end":{"character":30,"line":31},"start":{"character":0,"line":31}},"selectionRange":{"end":{"character":22,"line":31},"start":{"character":9,"line":31}}},{"kind":13,"name":"position_B","range":{"end":{"character":33,"line":32},"start":{"character":0,"line":32}},"selectionRange":{"end":{"character":19,"line":32},"start":{"character":9,"line":32}}},{"kind":13,"name":"position_C","range":{"end":{"character":33,"line":33},"start":{"character":0,"line":33}},"selectionRange":{"end":{"character":19,"line":33},"start":{"character":9,"line":33}}},{"kind":13,"name":"range_self","range":{"end":{"character":17,"line":35},"start":{"character":0,"line":35}},"selectionRange":{"end":{"character":17,"line":35},"start":{"character":7,"line":35}}},{"kind":13,"name":"range_B","range":{"end":{"character":14,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":14,"line":36},"start":{"character":7,"line":36}}},{"kind":13,"name":"range_C","range":{"end":{"character":14,"line":37},"start":{"character":0,"line":37}},"selectionRange":{"end":{"character":14,"line":37},"start":{"character":7,"line":37}}},{"kind":13,"name":"received_B","range":{"end":{"character":26,"line":39},"start":{"character":0,"line":39}},"selectionRange":{"end":{"character":18,"line":39},"start":{"character":8,"line":39}}},{"kind":13,"name":"target_eui","range":{"end":{"character":18,"line":41},"start":{"character":0,"line":41}},"selectionRange":{"end":{"character":15,"line":41},"start":{"character":5,"line":41}}},{"kind":13,"name":"tag_shortAddress","range":{"end":{"character":38,"line":42},"start":{"character":0,"line":42}},"selectionRange":{"end":{"character":21,"line":42},"start":{"character":5,"line":42}}},{"kind":13,"name":"anchor_b","range":{"end":{"character":30,"line":44},"start":{"character":0,"line":44}},"selectionRange":{"end":{"character":13,"line":44},"start":{"character":5,"line":44}}},{"kind":13,"name":"next_anchor","range":{"end":{"character":24,"line":45},"start":{"character":0,"line":45}},"selectionRange":{"end":{"character":20,"line":45},"start":{"character":9,"line":45}}},{"kind":13,"name":"anchor_c","range":{"end":{"character":30,"line":46},"start":{"character":0,"line":46}},"selectionRange":{"end":{"character":13,"line":46},"start":{"character":5,"line":46}}},{"kind":13,"name":"DEFAULT_CONFIG","range":{"end":{"character":1,"line":60},"start":{"character":0,"line":48}},"selectionRange":{"end":{"character":37,"line":48},"start":{"character":23,"line":48}}},{"kind":13,"name":"ANCHOR_FRAME_FILTER_CONFIG","range":{"end":{"character":1,"line":71},"start":{"character":0,"line":62}},"selectionRange":{"end":{"character":58,"line":62},"start":{"character":32,"line":62}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":74},"start":{"character":0,"line":74}},"selectionRange":{"end":{"character":10,"line":74},"start":{"character":5,"line":74}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":44,"line":76},"start":{"character":0,"line":76}},"selectionRange":{"end":{"character":22,"line":76},"start":{"character":5,"line":76}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":78},"start":{"character":0,"line":78}},"selectionRange":{"end":{"character":9,"line":78},"start":{"character":5,"line":78}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":132},"start":{"character":0,"line":80}},"selectionRange":{"end":{"character":10,"line":80},"start":{"character":5,"line":80}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":1,"line":147},"start":{"character":0,"line":135}},"selectionRange":{"end":{"character":22,"line":135},"start":{"character":5,"line":135}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":190},"start":{"character":0,"line":149}},"selectionRange":{"end":{"character":9,"line":149},"start":{"character":5,"line":149}}}]}Content-Length: 36
+
+{"id":2,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":3,"jsonrpc":"2.0"}
+<<<
+Content-Length: 5299
+
+{"id":3,"jsonrpc":"2.0","result":[{"children":[{"kind":8,"name":"x","range":{"end":{"character":12,"line":17},"start":{"character":4,"line":17}},"selectionRange":{"end":{"character":12,"line":17},"start":{"character":11,"line":17}}},{"kind":8,"name":"y","range":{"end":{"character":12,"line":18},"start":{"character":4,"line":18}},"selectionRange":{"end":{"character":12,"line":18},"start":{"character":11,"line":18}}}],"kind":23,"name":"Position","range":{"end":{"character":1,"line":19},"start":{"character":8,"line":16}},"selectionRange":{"end":{"character":23,"line":16},"start":{"character":15,"line":16}}},{"kind":5,"name":"Position","range":{"end":{"character":10,"line":19},"start":{"character":0,"line":16}},"selectionRange":{"end":{"character":10,"line":19},"start":{"character":2,"line":19}}},{"kind":13,"name":"PIN_SS","range":{"end":{"character":25,"line":25},"start":{"character":0,"line":25}},"selectionRange":{"end":{"character":20,"line":25},"start":{"character":14,"line":25}}},{"kind":13,"name":"PIN_RST","range":{"end":{"character":30,"line":26},"start":{"character":0,"line":26}},"selectionRange":{"end":{"character":21,"line":26},"start":{"character":14,"line":26}}},{"kind":13,"name":"PIN_IRQ","range":{"end":{"character":30,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":21,"line":27},"start":{"character":14,"line":27}}},{"kind":13,"name":"position_self","range":{"end":{"character":30,"line":31},"start":{"character":0,"line":31}},"selectionRange":{"end":{"character":22,"line":31},"start":{"character":9,"line":31}}},{"kind":13,"name":"position_B","range":{"end":{"character":33,"line":32},"start":{"character":0,"line":32}},"selectionRange":{"end":{"character":19,"line":32},"start":{"character":9,"line":32}}},{"kind":13,"name":"position_C","range":{"end":{"character":33,"line":33},"start":{"character":0,"line":33}},"selectionRange":{"end":{"character":19,"line":33},"start":{"character":9,"line":33}}},{"kind":13,"name":"range_self","range":{"end":{"character":17,"line":35},"start":{"character":0,"line":35}},"selectionRange":{"end":{"character":17,"line":35},"start":{"character":7,"line":35}}},{"kind":13,"name":"range_B","range":{"end":{"character":14,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":14,"line":36},"start":{"character":7,"line":36}}},{"kind":13,"name":"range_C","range":{"end":{"character":14,"line":37},"start":{"character":0,"line":37}},"selectionRange":{"end":{"character":14,"line":37},"start":{"character":7,"line":37}}},{"kind":13,"name":"received_B","range":{"end":{"character":26,"line":39},"start":{"character":0,"line":39}},"selectionRange":{"end":{"character":18,"line":39},"start":{"character":8,"line":39}}},{"kind":13,"name":"target_eui","range":{"end":{"character":18,"line":41},"start":{"character":0,"line":41}},"selectionRange":{"end":{"character":15,"line":41},"start":{"character":5,"line":41}}},{"kind":13,"name":"tag_shortAddress","range":{"end":{"character":38,"line":42},"start":{"character":0,"line":42}},"selectionRange":{"end":{"character":21,"line":42},"start":{"character":5,"line":42}}},{"kind":13,"name":"anchor_b","range":{"end":{"character":30,"line":44},"start":{"character":0,"line":44}},"selectionRange":{"end":{"character":13,"line":44},"start":{"character":5,"line":44}}},{"kind":13,"name":"next_anchor","range":{"end":{"character":24,"line":45},"start":{"character":0,"line":45}},"selectionRange":{"end":{"character":20,"line":45},"start":{"character":9,"line":45}}},{"kind":13,"name":"anchor_c","range":{"end":{"character":30,"line":46},"start":{"character":0,"line":46}},"selectionRange":{"end":{"character":13,"line":46},"start":{"character":5,"line":46}}},{"kind":13,"name":"DEFAULT_CONFIG","range":{"end":{"character":1,"line":60},"start":{"character":0,"line":48}},"selectionRange":{"end":{"character":37,"line":48},"start":{"character":23,"line":48}}},{"kind":13,"name":"ANCHOR_FRAME_FILTER_CONFIG","range":{"end":{"character":1,"line":71},"start":{"character":0,"line":62}},"selectionRange":{"end":{"character":58,"line":62},"start":{"character":32,"line":62}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":74},"start":{"character":0,"line":74}},"selectionRange":{"end":{"character":10,"line":74},"start":{"character":5,"line":74}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":44,"line":76},"start":{"character":0,"line":76}},"selectionRange":{"end":{"character":22,"line":76},"start":{"character":5,"line":76}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":78},"start":{"character":0,"line":78}},"selectionRange":{"end":{"character":9,"line":78},"start":{"character":5,"line":78}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":132},"start":{"character":0,"line":80}},"selectionRange":{"end":{"character":10,"line":80},"start":{"character":5,"line":80}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":1,"line":147},"start":{"character":0,"line":135}},"selectionRange":{"end":{"character":22,"line":135},"start":{"character":5,"line":135}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":190},"start":{"character":0,"line":149}},"selectionRange":{"end":{"character":9,"line":149},"start":{"character":5,"line":149}}}]}
+>>>
+Content-Length: 313
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":4,"jsonrpc":"2.0"}
+<<<
+Content-Length: 36
+
+{"id":4,"jsonrpc":"2.0","result":[]}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/36","percentage":8.3333333333333339}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"3/36","percentage":8.3333333333333339}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/36","percentage":11.111111111111111}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"4/36","percentage":11.111111111111111}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/36","percentage":13.888888888888889}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"5/36","percentage":13.888888888888889}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/36","percentage":16.666666666666668}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"6/36","percentage":16.666666666666668}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/36","percentage":19.444444444444443}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"7/36","percentage":19.444444444444443}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/36","percentage":22.222222222222221}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"8/36","percentage":22.222222222222221}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/36","percentage":25}}}Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"9/36","percentage":25}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/36","percentage":27.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"10/36","percentage":27.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/36","percentage":30.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"11/36","percentage":30.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/36","percentage":33.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"12/36","percentage":33.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/36","percentage":36.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"13/36","percentage":36.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/36","percentage":38.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"14/36","percentage":38.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/36","percentage":41.666666666666664}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"15/36","percentage":41.666666666666664}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/36","percentage":44.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"16/36","percentage":44.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/36","percentage":47.222222222222221}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"17/36","percentage":47.222222222222221}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/36","percentage":50}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"18/36","percentage":50}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/36","percentage":52.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"19/36","percentage":52.777777777777779}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/36","percentage":55.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"20/36","percentage":55.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/36","percentage":58.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"21/36","percentage":58.333333333333336}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/36","percentage":61.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"22/36","percentage":61.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/36","percentage":63.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"23/36","percentage":63.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/36","percentage":66.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"24/36","percentage":66.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"25/36","percentage":69.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"25/36","percentage":69.444444444444443}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"26/36","percentage":72.222222222222229}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"26/36","percentage":72.222222222222229}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"27/36","percentage":75}}}Content-Length: 144
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"27/36","percentage":75}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"28/36","percentage":77.777777777777771}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"28/36","percentage":77.777777777777771}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"29/36","percentage":80.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"29/36","percentage":80.555555555555557}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"30/36","percentage":83.333333333333329}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"30/36","percentage":83.333333333333329}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"31/36","percentage":86.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"31/36","percentage":86.111111111111114}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"32/36","percentage":88.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"32/36","percentage":88.888888888888886}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"33/36","percentage":91.666666666666671}}}Content-Length: 160
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"34/36","percentage":94.444444444444443}}}
+>>>
+Content-Length: 388
+
+{"method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":2},"contentChanges":[{"range":{"start":{"line":119,"character":0},"end":{"line":120,"character":0}},"rangeLength":46,"text":"    DW1000Ng::setAntennaDelay(16430);//16436\r\n"}]},"jsonrpc":"2.0"}Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":5,"jsonrpc":"2.0"}
+<<<
+Content-Length: 101
+
+{"error":{"code":-32602,"message":"trying to get AST for non-added document"},"id":5,"jsonrpc":"2.0"}<<< Read Error: read |0: file already closed
+--- Stream closed, err=%!s(<nil>)
+
+
+
+
+
+
+
+Started logging.
+
+>>>
+Content-Length: 2158
+
+{"method":"initialize","params":{"processId":1792,"rootPath":"C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server035018831\\sketch","rootUri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch","clientInfo":{"name":"vscode","version":"1.53.2"},"trace":"off","initializationOptions":{},"capabilities":{"workspace":{"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"]},"applyEdit":true,"symbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"workspaceFolders":true,"configuration":true},"textDocument":{"declaration":{"linkSupport":true},"definition":{"linkSupport":true},"implementation":{"linkSupport":true,"dynamicRegistration":true},"typeDefinition":{"linkSupport":true},"synchronization":{"willSave":true,"didSave":true,"willSaveWaitUntil":true},"documentSymbol":{"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"completion":{"completionItem":{"documentationFormat":["markdown","plaintext"],"snippetSupport":true},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]},"contextSupport":true},"signatureHelp":{"signatureInformation":{"parameterInformation":{"labelOffsetSupport":true}}},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"hover":{"contentFormat":["markdown","plaintext"]},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"colorProvider":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}}},"id":0,"jsonrpc":"2.0"}
+<<<
+Content-Length: 1671
+
+{"id":0,"jsonrpc":"2.0","result":{"capabilities":{"astProvider":true,"callHierarchyProvider":true,"codeActionProvider":{"codeActionKinds":["quickfix","refactor","info"]},"compilationDatabase":{"automaticReload":true},"completionProvider":{"allCommitCharacters":[" ","\t","(",")","[","]","{","}","<",">",":",";",",","+","-","/","*","%","^","&","#","?",".","=","\"","'","|"],"resolveProvider":false,"triggerCharacters":[".","<",">",":","\"","/"]},"declarationProvider":true,"definitionProvider":true,"documentFormattingProvider":true,"documentHighlightProvider":true,"documentLinkProvider":{"resolveProvider":false},"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n","moreTriggerCharacter":[]},"documentRangeFormattingProvider":true,"documentSymbolProvider":true,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]},"hoverProvider":true,"implementationProvider":true,"memoryUsageProvider":true,"referencesProvider":true,"renameProvider":{"prepareProvider":true},"selectionRangeProvider":true,"semanticTokensProvider":{"full":{"delta":true},"legend":{"tokenModifiers":[],"tokenTypes":["variable","variable","parameter","function","method","function","property","variable","class","enum","enumMember","type","dependent","dependent","namespace","typeParameter","concept","type","macro","comment"]},"range":false},"signatureHelpProvider":{"triggerCharacters":["(",","]},"textDocumentSync":{"change":2,"openClose":true,"save":true},"typeHierarchyProvider":true,"workspaceSymbolProvider":true},"serverInfo":{"name":"clangd","version":"clangd version 12.0.0 (https://github.com/llvm/llvm-project e841bd5f335864b8c4d81cbf4df08460ef39f2ae)"}}}
+>>>
+Content-Length: 52
+
+{"method":"initialized","params":{},"jsonrpc":"2.0"}Content-Length: 7255
+
+{"method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","languageId":"cpp","version":1,"text":"#include \u003cArduino.h\u003e\n#line 1 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\n/**\n   @file StandardRTLSAnchorMain_TWR.ino\n   @author rakwireless.com\n   @brief Standard RTLS AnchorMain TWR\n   @version 0.1\n   @date 2022-1-28\n   @copyright Copyright (c) 2020\n**/\n\n#include \u003cDW1000Ng.hpp\u003e\n#include \u003cDW1000NgUtils.hpp\u003e\n#include \u003cDW1000NgRanging.hpp\u003e\n#include \u003cDW1000NgRTLS.hpp\u003e\n\ntypedef struct Position {\n    double x;\n    double y;\n} Position;\n\n// connection pins\n#if defined(ESP8266)\nconst uint8_t PIN_SS = 15;\n#else\nconst uint8_t PIN_SS = SS; // spi select pin\nconst uint8_t PIN_RST = WB_IO6;\nconst uint8_t PIN_IRQ = WB_IO5;\n#endif\n\n\nPosition position_self = {0,0};\nPosition position_B = {0.25,0.15};\nPosition position_C = {0.75,0.18};\n\ndouble range_self;\ndouble range_B;\ndouble range_C;\n\nboolean received_B = false;\n\nbyte target_eui[8];\nbyte tag_shortAddress[] = {0x05, 0x00};\n\nbyte anchor_b[] = {0x02, 0x00};\nuint16_t next_anchor = 2;\nbyte anchor_c[] = {0x03, 0x00};\n\ndevice_configuration_t DEFAULT_CONFIG = {\n    false,\n    true,\n    true,\n    true,\n    false,\n    SFDMode::STANDARD_SFD,\n    Channel::CHANNEL_5,\n    DataRate::RATE_850KBPS,\n    PulseFrequency::FREQ_16MHZ,\n    PreambleLength::LEN_256,\n    PreambleCode::CODE_3\n};\n\nframe_filtering_configuration_t ANCHOR_FRAME_FILTER_CONFIG = {\n    false,\n    false,\n    true,\n    false,\n    false,\n    false,\n    false,\n    true /* This allows blink frames */\n};\n\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup();\n#line 127 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid calculatePosition(double \u0026x, double \u0026y);\n#line 141 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid loop();\n#line 72 \"D:\\\\RAK-Work\\\\20210707\\\\RAK13801\\\\RAK13801-UWB-Library\\\\examples\\\\StandardRTLSAnchorMain_TWR\\\\StandardRTLSAnchorMain_TWR.ino\"\nvoid setup() {\n  pinMode(WB_IO2, OUTPUT);\n  digitalWrite(WB_IO2, HIGH); //Turn on the power switch\n  delay(300);\n  time_t serial_timeout = millis();\n  // DEBUG monitoring\n  Serial.begin(115200);\n  while (!Serial)\n  {\n    if ((millis() - serial_timeout) \u003c 5000)\n    {\n      delay(100);\n    }\n    else\n    {\n      break;\n    }\n  }\n    Serial.println(F(\"### DW1000Ng-arduino-ranging-anchorMain ###\"));\n    // initialize the driver\n    #if defined(ESP8266)\n    DW1000Ng::initializeNoInterrupt(PIN_SS);\n    #else\n    DW1000Ng::initializeNoInterrupt(PIN_SS, PIN_RST);\n    #endif\n    Serial.println(F(\"DW1000Ng initialized ...\"));\n    // general configuration\n    DW1000Ng::applyConfiguration(DEFAULT_CONFIG);\n    DW1000Ng::enableFrameFiltering(ANCHOR_FRAME_FILTER_CONFIG);\n    \n    DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:01\");\n\n    DW1000Ng::setPreambleDetectionTimeout(64);\n    DW1000Ng::setSfdDetectionTimeout(273);\n    DW1000Ng::setReceiveFrameWaitTimeoutPeriod(5000);\n\n    DW1000Ng::setNetworkId(RTLS_APP_ID);\n    DW1000Ng::setDeviceAddress(1);\n\t\n    DW1000Ng::setAntennaDelay(16430);//16436\n    \n    Serial.println(F(\"Committed configuration ...\"));\n    // DEBUG chip info and registers pretty printed\n    char msg[128];\n    DW1000Ng::getPrintableDeviceIdentifier(msg);\n    Serial.print(\"Device ID: \"); Serial.println(msg);\n    DW1000Ng::getPrintableExtendedUniqueIdentifier(msg);\n    Serial.print(\"Unique ID: \"); Serial.println(msg);\n    DW1000Ng::getPrintableNetworkIdAndShortAddress(msg);\n    Serial.print(\"Network ID \u0026 Device Address: \"); Serial.println(msg);\n    DW1000Ng::getPrintableDeviceMode(msg);\n    Serial.print(\"Device mode: \"); Serial.println(msg);    \n}\n\n/* using https://math.stackexchange.com/questions/884807/find-x-location-using-3-known-x-y-location-using-trilateration */\nvoid calculatePosition(double \u0026x, double \u0026y) {\n\n    /* This gives for granted that the z plane is the same for anchor and tags */\n    double A = ( (-2*position_self.x) + (2*position_B.x) );\n    double B = ( (-2*position_self.y) + (2*position_B.y) );\n    double C = (range_self*range_self) - (range_B*range_B) - (position_self.x*position_self.x) + (position_B.x*position_B.x) - (position_self.y*position_self.y) + (position_B.y*position_B.y);\n    double D = ( (-2*position_B.x) + (2*position_C.x) );\n    double E = ( (-2*position_B.y) + (2*position_C.y) );\n    double F = (range_B*range_B) - (range_C*range_C) - (position_B.x*position_B.x) + (position_C.x*position_C.x) - (position_B.y*position_B.y) + (position_C.y*position_C.y);\n\n    x = (C*E-F*B) / (E*A-B*D);\n    y = (C*D-A*F) / (B*D-A*E);\n}\n\nvoid loop() {\n    if(DW1000NgRTLS::receiveFrame()){\n        size_t recv_len = DW1000Ng::getReceivedDataLength();\n        byte recv_data[recv_len];\n        DW1000Ng::getReceivedData(recv_data, recv_len);\n\n        if(recv_data[0] == BLINK) {\n            DW1000NgRTLS::transmitRangingInitiation(\u0026recv_data[2], tag_shortAddress);\n            DW1000NgRTLS::waitForTransmission();\n\n            RangeAcceptResult result = DW1000NgRTLS::anchorRangeAccept(NextActivity::RANGING_CONFIRM, next_anchor);\n            if(!result.success) return;\n            range_self = result.range;\n\n            String rangeString = \"Range: \"; rangeString += range_self; rangeString += \" m\";\n            rangeString += \"\\t RX power: \"; rangeString += DW1000Ng::getReceivePower(); rangeString += \" dBm\";\n            Serial.println(rangeString);\n        } else if(recv_data[9] == 0x60) {\n            double range = static_cast\u003cdouble\u003e(DW1000NgUtils::bytesAsValue(\u0026recv_data[10],2) / 1000.0);\n            String rangeReportString = \"Range from: \"; rangeReportString += recv_data[7];\n            rangeReportString += \" = \"; rangeReportString += range;\n            Serial.println(rangeReportString);\n            if(received_B == false \u0026\u0026 recv_data[7] == anchor_b[0] \u0026\u0026 recv_data[8] == anchor_b[1]) {\n                range_B = range;\n                received_B = true;\n            } else if(received_B == true \u0026\u0026 recv_data[7] == anchor_c[0] \u0026\u0026 recv_data[8] == anchor_c[1]){\n                range_C = range;\n                double x,y;\n                calculatePosition(x,y);\n                String positioning = \"Found position - x: \";\n                positioning += x; positioning +=\" y: \";\n                positioning += y;\n                Serial.println(positioning);\n                received_B = false;\n            } else {\n                received_B = false;\n            }\n        }\n    }\n\n    \n}\n\n"}},"jsonrpc":"2.0"}Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":1,"jsonrpc":"2.0"}
+<<<
+Content-Length: 111
+
+{"id":0,"jsonrpc":"2.0","method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"}}
+>>>
+Content-Length: 38
+
+{"id":0,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 143
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"begin","percentage":0,"title":"indexing"}}}Content-Length: 141
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/1","percentage":0}}}
+>>>
+Content-Length: 313
+
+{"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"},"range":{"start":{"line":2,"character":0},"end":{"line":2,"character":0}},"context":{"diagnostics":[]}},"id":2,"jsonrpc":"2.0"}
+<<<
+Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 142
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"0/36","percentage":0}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"1/36","percentage":2.7777777777777777}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 159
+
+{"jsonrpc":"2.0","method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"report","message":"2/36","percentage":5.5555555555555554}}}Content-Length: 991
+
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"code":"pp_file_not_found","message":"In included file: 'stdlib.h' file not found\n\nC:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\cores\\arduino\\api/Interrupts.h:5:10:\nnote: error occurred here","range":{"end":{"character":10,"line":0},"start":{"character":9,"line":0}},"severity":1,"source":"clang"},{"code":"unknown_typename_suggest","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here","range":{"end":{"character":8,"line":84},"start":{"character":2,"line":84}},"severity":1,"source":"clang"}],"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":1}}Content-Length: 5299
+
+{"id":1,"jsonrpc":"2.0","result":[{"children":[{"kind":8,"name":"x","range":{"end":{"character":12,"line":17},"start":{"character":4,"line":17}},"selectionRange":{"end":{"character":12,"line":17},"start":{"character":11,"line":17}}},{"kind":8,"name":"y","range":{"end":{"character":12,"line":18},"start":{"character":4,"line":18}},"selectionRange":{"end":{"character":12,"line":18},"start":{"character":11,"line":18}}}],"kind":23,"name":"Position","range":{"end":{"character":1,"line":19},"start":{"character":8,"line":16}},"selectionRange":{"end":{"character":23,"line":16},"start":{"character":15,"line":16}}},{"kind":5,"name":"Position","range":{"end":{"character":10,"line":19},"start":{"character":0,"line":16}},"selectionRange":{"end":{"character":10,"line":19},"start":{"character":2,"line":19}}},{"kind":13,"name":"PIN_SS","range":{"end":{"character":25,"line":25},"start":{"character":0,"line":25}},"selectionRange":{"end":{"character":20,"line":25},"start":{"character":14,"line":25}}},{"kind":13,"name":"PIN_RST","range":{"end":{"character":30,"line":26},"start":{"character":0,"line":26}},"selectionRange":{"end":{"character":21,"line":26},"start":{"character":14,"line":26}}},{"kind":13,"name":"PIN_IRQ","range":{"end":{"character":30,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":21,"line":27},"start":{"character":14,"line":27}}},{"kind":13,"name":"position_self","range":{"end":{"character":30,"line":31},"start":{"character":0,"line":31}},"selectionRange":{"end":{"character":22,"line":31},"start":{"character":9,"line":31}}},{"kind":13,"name":"position_B","range":{"end":{"character":33,"line":32},"start":{"character":0,"line":32}},"selectionRange":{"end":{"character":19,"line":32},"start":{"character":9,"line":32}}},{"kind":13,"name":"position_C","range":{"end":{"character":33,"line":33},"start":{"character":0,"line":33}},"selectionRange":{"end":{"character":19,"line":33},"start":{"character":9,"line":33}}},{"kind":13,"name":"range_self","range":{"end":{"character":17,"line":35},"start":{"character":0,"line":35}},"selectionRange":{"end":{"character":17,"line":35},"start":{"character":7,"line":35}}},{"kind":13,"name":"range_B","range":{"end":{"character":14,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":14,"line":36},"start":{"character":7,"line":36}}},{"kind":13,"name":"range_C","range":{"end":{"character":14,"line":37},"start":{"character":0,"line":37}},"selectionRange":{"end":{"character":14,"line":37},"start":{"character":7,"line":37}}},{"kind":13,"name":"received_B","range":{"end":{"character":26,"line":39},"start":{"character":0,"line":39}},"selectionRange":{"end":{"character":18,"line":39},"start":{"character":8,"line":39}}},{"kind":13,"name":"target_eui","range":{"end":{"character":18,"line":41},"start":{"character":0,"line":41}},"selectionRange":{"end":{"character":15,"line":41},"start":{"character":5,"line":41}}},{"kind":13,"name":"tag_shortAddress","range":{"end":{"character":38,"line":42},"start":{"character":0,"line":42}},"selectionRange":{"end":{"character":21,"line":42},"start":{"character":5,"line":42}}},{"kind":13,"name":"anchor_b","range":{"end":{"character":30,"line":44},"start":{"character":0,"line":44}},"selectionRange":{"end":{"character":13,"line":44},"start":{"character":5,"line":44}}},{"kind":13,"name":"next_anchor","range":{"end":{"character":24,"line":45},"start":{"character":0,"line":45}},"selectionRange":{"end":{"character":20,"line":45},"start":{"character":9,"line":45}}},{"kind":13,"name":"anchor_c","range":{"end":{"character":30,"line":46},"start":{"character":0,"line":46}},"selectionRange":{"end":{"character":13,"line":46},"start":{"character":5,"line":46}}},{"kind":13,"name":"DEFAULT_CONFIG","range":{"end":{"character":1,"line":60},"start":{"character":0,"line":48}},"selectionRange":{"end":{"character":37,"line":48},"start":{"character":23,"line":48}}},{"kind":13,"name":"ANCHOR_FRAME_FILTER_CONFIG","range":{"end":{"character":1,"line":71},"start":{"character":0,"line":62}},"selectionRange":{"end":{"character":58,"line":62},"start":{"character":32,"line":62}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":74},"start":{"character":0,"line":74}},"selectionRange":{"end":{"character":10,"line":74},"start":{"character":5,"line":74}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":44,"line":76},"start":{"character":0,"line":76}},"selectionRange":{"end":{"character":22,"line":76},"start":{"character":5,"line":76}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":78},"start":{"character":0,"line":78}},"selectionRange":{"end":{"character":9,"line":78},"start":{"character":5,"line":78}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":132},"start":{"character":0,"line":80}},"selectionRange":{"end":{"character":10,"line":80},"start":{"character":5,"line":80}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":1,"line":147},"start":{"character":0,"line":135}},"selectionRange":{"end":{"character":22,"line":135},"start":{"character":5,"line":135}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":190},"start":{"character":0,"line":149}},"selectionRange":{"end":{"character":9,"line":149},"start":{"character":5,"line":149}}}]}Content-Length: 36
+
+{"id":2,"jsonrpc":"2.0","result":[]}
+>>>
+Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":3,"jsonrpc":"2.0"}
+<<<
+Content-Length: 5299
+
+{"id":3,"jsonrpc":"2.0","result":[{"children":[{"kind":8,"name":"x","range":{"end":{"character":12,"line":17},"start":{"character":4,"line":17}},"selectionRange":{"end":{"character":12,"line":17},"start":{"character":11,"line":17}}},{"kind":8,"name":"y","range":{"end":{"character":12,"line":18},"start":{"character":4,"line":18}},"selectionRange":{"end":{"character":12,"line":18},"start":{"character":11,"line":18}}}],"kind":23,"name":"Position","range":{"end":{"character":1,"line":19},"start":{"character":8,"line":16}},"selectionRange":{"end":{"character":23,"line":16},"start":{"character":15,"line":16}}},{"kind":5,"name":"Position","range":{"end":{"character":10,"line":19},"start":{"character":0,"line":16}},"selectionRange":{"end":{"character":10,"line":19},"start":{"character":2,"line":19}}},{"kind":13,"name":"PIN_SS","range":{"end":{"character":25,"line":25},"start":{"character":0,"line":25}},"selectionRange":{"end":{"character":20,"line":25},"start":{"character":14,"line":25}}},{"kind":13,"name":"PIN_RST","range":{"end":{"character":30,"line":26},"start":{"character":0,"line":26}},"selectionRange":{"end":{"character":21,"line":26},"start":{"character":14,"line":26}}},{"kind":13,"name":"PIN_IRQ","range":{"end":{"character":30,"line":27},"start":{"character":0,"line":27}},"selectionRange":{"end":{"character":21,"line":27},"start":{"character":14,"line":27}}},{"kind":13,"name":"position_self","range":{"end":{"character":30,"line":31},"start":{"character":0,"line":31}},"selectionRange":{"end":{"character":22,"line":31},"start":{"character":9,"line":31}}},{"kind":13,"name":"position_B","range":{"end":{"character":33,"line":32},"start":{"character":0,"line":32}},"selectionRange":{"end":{"character":19,"line":32},"start":{"character":9,"line":32}}},{"kind":13,"name":"position_C","range":{"end":{"character":33,"line":33},"start":{"character":0,"line":33}},"selectionRange":{"end":{"character":19,"line":33},"start":{"character":9,"line":33}}},{"kind":13,"name":"range_self","range":{"end":{"character":17,"line":35},"start":{"character":0,"line":35}},"selectionRange":{"end":{"character":17,"line":35},"start":{"character":7,"line":35}}},{"kind":13,"name":"range_B","range":{"end":{"character":14,"line":36},"start":{"character":0,"line":36}},"selectionRange":{"end":{"character":14,"line":36},"start":{"character":7,"line":36}}},{"kind":13,"name":"range_C","range":{"end":{"character":14,"line":37},"start":{"character":0,"line":37}},"selectionRange":{"end":{"character":14,"line":37},"start":{"character":7,"line":37}}},{"kind":13,"name":"received_B","range":{"end":{"character":26,"line":39},"start":{"character":0,"line":39}},"selectionRange":{"end":{"character":18,"line":39},"start":{"character":8,"line":39}}},{"kind":13,"name":"target_eui","range":{"end":{"character":18,"line":41},"start":{"character":0,"line":41}},"selectionRange":{"end":{"character":15,"line":41},"start":{"character":5,"line":41}}},{"kind":13,"name":"tag_shortAddress","range":{"end":{"character":38,"line":42},"start":{"character":0,"line":42}},"selectionRange":{"end":{"character":21,"line":42},"start":{"character":5,"line":42}}},{"kind":13,"name":"anchor_b","range":{"end":{"character":30,"line":44},"start":{"character":0,"line":44}},"selectionRange":{"end":{"character":13,"line":44},"start":{"character":5,"line":44}}},{"kind":13,"name":"next_anchor","range":{"end":{"character":24,"line":45},"start":{"character":0,"line":45}},"selectionRange":{"end":{"character":20,"line":45},"start":{"character":9,"line":45}}},{"kind":13,"name":"anchor_c","range":{"end":{"character":30,"line":46},"start":{"character":0,"line":46}},"selectionRange":{"end":{"character":13,"line":46},"start":{"character":5,"line":46}}},{"kind":13,"name":"DEFAULT_CONFIG","range":{"end":{"character":1,"line":60},"start":{"character":0,"line":48}},"selectionRange":{"end":{"character":37,"line":48},"start":{"character":23,"line":48}}},{"kind":13,"name":"ANCHOR_FRAME_FILTER_CONFIG","range":{"end":{"character":1,"line":71},"start":{"character":0,"line":62}},"selectionRange":{"end":{"character":58,"line":62},"start":{"character":32,"line":62}}},{"kind":12,"name":"setup","range":{"end":{"character":12,"line":74},"start":{"character":0,"line":74}},"selectionRange":{"end":{"character":10,"line":74},"start":{"character":5,"line":74}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":44,"line":76},"start":{"character":0,"line":76}},"selectionRange":{"end":{"character":22,"line":76},"start":{"character":5,"line":76}}},{"kind":12,"name":"loop","range":{"end":{"character":11,"line":78},"start":{"character":0,"line":78}},"selectionRange":{"end":{"character":9,"line":78},"start":{"character":5,"line":78}}},{"kind":12,"name":"setup","range":{"end":{"character":1,"line":132},"start":{"character":0,"line":80}},"selectionRange":{"end":{"character":10,"line":80},"start":{"character":5,"line":80}}},{"kind":12,"name":"calculatePosition","range":{"end":{"character":1,"line":147},"start":{"character":0,"line":135}},"selectionRange":{"end":{"character":22,"line":135},"start":{"character":5,"line":135}}},{"kind":12,"name":"loop","range":{"end":{"character":1,"line":190},"start":{"character":0,"line":149}},"selectionRange":{"end":{"character":9,"line":149},"start":{"character":5,"line":149}}}]}
+>>>
+Content-Length: 388
+
+{"method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp","version":2},"contentChanges":[{"range":{"start":{"line":119,"character":0},"end":{"line":120,"character":0}},"rangeLength":46,"text":"    DW1000Ng::setAntennaDelay(16433);//16436\r\n"}]},"jsonrpc":"2.0"}Content-Length: 62
+
+{"method":"$/cancelRequest","params":{"id":2},"jsonrpc":"2.0"}Content-Length: 62
+
+{"method":"$/cancelRequest","params":{"id":1},"jsonrpc":"2.0"}Content-Length: 214
+
+{"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp"}},"id":4,"jsonrpc":"2.0"}
+<<<
+Content-Length: 101
+
+{"error":{"code":-32602,"message":"trying to get AST for non-added document"},"id":4,"jsonrpc":"2.0"}--- Stream closed, err=%!s(<nil>)

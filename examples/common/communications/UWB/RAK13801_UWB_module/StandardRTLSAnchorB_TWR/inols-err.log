@@ -1,0 +1,773 @@
+
+
+
+
+
+
+
+Started logging.
+2022/05/30 14:21:59 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\inols.log
+2022/05/30 14:21:59 Initial board configuration: {"WisBlock RAK11300 Board" rakwireless:mbed_rp2040:WisCoreRAK11300Board}
+2022/05/30 14:21:59 Language server build path: C:\Users\ltp\AppData\Local\Temp\arduino-language-server744730647
+2022/05/30 14:21:59 Language server build sketch root: C:\Users\ltp\AppData\Local\Temp\arduino-language-server744730647\sketch
+2022/05/30 14:21:59 [92mIDE --> LS     CL: REQUEST initialize 0: [0m
+2022/05/30 14:21:59 IDE --> initialize 0 [93m locked[0m
+2022/05/30 14:21:59 IDE --> initialize 0 [93m unlocked[0m
+2022/05/30 14:21:59 INIT--- initializing workbench
+2022/05/30 14:21:59 INIT--- [93m locked[0m
+2022/05/30 14:21:59 [91mIDE <-- LS     CL: ANSWER UNBOUND (0): [0m
+2022/05/30 14:21:59     --> initialize(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR)
+2022/05/30 14:21:59 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml compile --fqbn rakwireless:mbed_rp2040:WisCoreRAK11300Board --only-compilation-database --clean --source-override C:\Users\ltp\AppData\Local\Temp\743195786 --build-path C:\Users\ltp\AppData\Local\Temp\arduino-language-server744730647 --format json D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR
+2022/05/30 14:21:59 [92mIDE --> LS     CL: NOTIFICATION initialized: [0m
+2022/05/30 14:23:56 arduino-cli output: {
+  "compiler_out": "",
+  "compiler_err": "",
+  "builder_result": {
+    "build_path": "C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server744730647",
+    "used_libraries": [
+      {
+        "name": "RAK13801-UWB-Library",
+        "author": "RAKWireless \u003crakwireless.com\u003e",
+        "maintainer": "RAKWireless \u003crakwireless.com\u003e",
+        "sentence": "Arduino library to use Decawave DW1000 IC.",
+        "paragraph": "This library is intended to be used with Decawave DW1000 IC and modules. It provides an API for hardware abstraction and high-level utilities for RTLS applications.",
+        "website": "https://github.com/RAKWireless/RAK13801-UWB-Library",
+        "category": "Uncategorized",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library",
+        "source_dir": "c:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\src",
+        "real_name": "RAK13801-UWB-Library",
+        "version": "1.0.0",
+        "license": "Unspecified",
+        "location": 1,
+        "layout": 1,
+        "examples": [
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicConnectivityTest",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicReceiver",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicSender",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\SimpleAntennaCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorB_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorC_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorMain_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TransmitSpectrumPowerCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingInitiator",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingResponder"
+        ],
+        "provides_includes": [
+          "DW1000Ng.hpp",
+          "DW1000NgCompileOptions.hpp",
+          "DW1000NgConfiguration.hpp",
+          "DW1000NgConstants.hpp",
+          "DW1000NgRTLS.hpp",
+          "DW1000NgRanging.hpp",
+          "DW1000NgRegisters.hpp",
+          "DW1000NgTime.hpp",
+          "DW1000NgUtils.hpp",
+          "SPIporting.hpp",
+          "deprecated.hpp",
+          "require_cpp11.hpp"
+        ]
+      },
+      {
+        "name": "SPI",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "source_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "container_platform": "rakwireless:mbed_rp2040@0.0.5",
+        "is_legacy": true,
+        "location": 2,
+        "provides_includes": [
+          "SPI.h"
+        ]
+      }
+    ]
+  },
+  "success": true
+}
+
+2022/05/30 14:23:57 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml config dump --format json
+2022/05/30 14:23:57 Arduino Data Dir ->  c:\Users\ltp\AppData\Local\Arduino15
+2022/05/30 14:23:57     Starting clangd: c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\bin\clangd.exe -log=verbose --compile-commands-dir=C:\Users\ltp\AppData\Local\Temp\arduino-language-server744730647 -query-driver=c:\Users\ltp\AppData\Local\Arduino15\packages\**
+2022/05/30 14:23:57 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\inols-clangd.log
+2022/05/30 14:23:57 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\inols-clangd-err.log
+2022/05/30 14:23:57 [91mIDE     LS --> CL: REQUEST initialize 0: [0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: ANSWER initialize 0 (0): [0m
+2022/05/30 14:23:57 [91mIDE     LS --> CL: NOTIFICATION initialized: [0m
+2022/05/30 14:23:57 INIT--- initializing workbench (done)
+2022/05/30 14:23:57 INIT--- [93m unlocked[0m
+2022/05/30 14:23:57 IDE --> initialized notif1 [93m read-locked[0m
+2022/05/30 14:23:57 IDE --> initialized notif1 notification is not propagated to clangd
+2022/05/30 14:23:57 IDE --> initialized notif1 [93m read-unlocked[0m
+2022/05/30 14:23:57 [92mIDE --> LS     CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 14:23:57 IDE --> textDocument/didOpen notif2 [93m locked[0m
+2022/05/30 14:23:57 IDE --> textDocument/didOpen notif2 (file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino@1 as 'cpp')
+2022/05/30 14:23:57     increasing .ino tracked files count: 1
+2022/05/30 14:23:57 IDE --> textDocument/didOpen notif2 to clang: didOpen(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp@1 as 'cpp')
+2022/05/30 14:23:57 IDE --> textDocument/didOpen notif2 sent to Clang
+2022/05/30 14:23:57 [91mIDE     LS --> CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 14:23:57 IDE --> textDocument/didOpen notif2 Queued resfreshing document symbols
+2022/05/30 14:23:57 IDE --> textDocument/didOpen notif2 [93m unlocked[0m
+2022/05/30 14:23:57 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 1: [0m
+2022/05/30 14:23:57 SYLD--- [93m read-locked[0m
+2022/05/30 14:23:57 IDE --> textDocument/codeAction 1 [93m read-locked[0m
+2022/05/30 14:23:57 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:0:0)
+2022/05/30 14:23:57 SYLD--- requesting documentSymbol for file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp
+2022/05/30 14:23:57 SYLD--- [93m read-unlocked[0m
+2022/05/30 14:23:57 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 1: [0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 14:23:57 [91mIDE     LS --> CL: ANSWER UNBOUND (0): [0m
+2022/05/30 14:23:57 [91mIDE <-- LS     CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 14:23:57     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:2:0)
+2022/05/30 14:23:57 IDE --> textDocument/codeAction 1 sent to Clang
+2022/05/30 14:23:57 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 2: [0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/1 0%[0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 14:23:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 (queued)
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 [93m read-locked[0m
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 (running)
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 publishDiagnostics(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp):
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 > 0:9 - 1: pp_file_not_found
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 > 66:2 - 1: unknown_typename_suggest
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 > 120:2 - 1: undeclared_var_use
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 1 (1): [0m
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 2 (2): [0m
+2022/05/30 14:24:00 SYLD--- [93m read-locked[0m
+2022/05/30 14:24:00 SYLD---    symbol: Function setup 56:0-56:12
+2022/05/30 14:24:00 SYLD---             > void setup()
+2022/05/30 14:24:00 SYLD---    symbol: Function transmitRangeReport 58:0-58:26
+2022/05/30 14:24:00 SYLD---             > void transmitRangeReport()
+2022/05/30 14:24:00 SYLD---    symbol: Function loop 60:0-60:11
+2022/05/30 14:24:00 SYLD---             > void loop()
+2022/05/30 14:24:00 SYLD---    symbol: Function setup 62:0-115:1
+2022/05/30 14:24:00 SYLD---      TRIMMED> void setup() 
+2022/05/30 14:24:00 SYLD---    symbol: Function transmitRangeReport 117:0-125:1
+2022/05/30 14:24:00 SYLD---      TRIMMED> void transmitRangeReport() 
+2022/05/30 14:24:00 SYLD---    symbol: Function loop 127:0-139:1
+2022/05/30 14:24:00 SYLD---      TRIMMED> void loop() 
+2022/05/30 14:24:00 SYLD--- [93m read-unlocked[0m
+2022/05/30 14:24:00 SYLD--- (done)
+2022/05/30 14:24:00     <-- codeAction(0 elements)
+2022/05/30 14:24:00 <-- codeAction(0 elements)
+2022/05/30 14:24:00 IDE --> textDocument/codeAction 1 [93m read-unlocked[0m
+2022/05/30 14:24:00 [91mIDE <-- LS     CL: ANSWER UNBOUND (1): [0m
+2022/05/30 14:24:00 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 2: [0m
+2022/05/30 14:24:00 IDE --> textDocument/documentSymbol 2 [93m read-locked[0m
+2022/05/30 14:24:00 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino)
+2022/05/30 14:24:00     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp)
+2022/05/30 14:24:00 IDE --> textDocument/documentSymbol 2 sent to Clang
+2022/05/30 14:24:00 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 3: [0m
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 3 (3): [0m
+2022/05/30 14:24:00     <-- documentSymbol(14 document symbols)
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Variable 20:0-20:25
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Variable 21:0-21:30
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Variable 22:0-22:30
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Variable 25:0-25:41
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Variable 26:0-26:24
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Variable 28:0-28:17
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Variable 30:0-42:1
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Variable 44:0-53:1
+2022/05/30 14:24:00     URI: converted 0:9-0:10 to /not-ino:0:9-0:10
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Function 56:0-56:12
+2022/05/30 14:24:00       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 14:24:00     > convert Function 58:0-58:26
+2022/05/30 14:24:00       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 14:24:00     > convert Function 60:0-60:11
+2022/05/30 14:24:00       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 14:24:00     > convert Function 62:0-115:1
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Function 117:0-125:1
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00     > convert Function 127:0-139:1
+2022/05/30 14:24:00     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino
+2022/05/30 14:24:00 IDE --> textDocument/documentSymbol 2 [93m read-unlocked[0m
+2022/05/30 14:24:00 [91mIDE <-- LS     CL: ANSWER UNBOUND (2): [0m
+2022/05/30 14:24:00 [92mIDE --> LS     CL: ANSWER window/workDoneProgress/create 0 (0): [0m
+2022/05/30 14:24:00 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 14:24:00 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 14:24:00     URI: converted 66:2-66:8 to D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino:57:2-57:8
+2022/05/30 14:24:00     URI: converted 120:2-120:8 to D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR\StandardRTLSAnchorB_TWR.ino:111:2-111:8
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 to IDE: publishDiagnostics(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino):
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 > 57:2 - 1: unknown_typename_suggest
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 > 111:2 - 1: undeclared_var_use
+2022/05/30 14:24:00 [91mIDE <-- LS     CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 14:24:00 CLG <-- textDocument/publishDiagnostics notif11 [93m read-unlocked[0m
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 14:24:00 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 14:24:00 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 14:24:00 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 14:24:00 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 3: [0m
+2022/05/30 14:24:00 IDE --> textDocument/codeAction 3 [93m read-locked[0m
+2022/05/30 14:24:00 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:0:0)
+2022/05/30 14:24:00     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:2:0)
+2022/05/30 14:24:00 IDE --> textDocument/codeAction 3 sent to Clang
+2022/05/30 14:24:00 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 4: [0m
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 4 (4): [0m
+2022/05/30 14:24:00 IDE --> textDocument/codeAction 3 Queued check document symbols
+2022/05/30 14:24:00 SYCK--- [93m read-locked[0m
+2022/05/30 14:24:00 SYCK--- requesting documentSymbol for file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp
+2022/05/30 14:24:00 SYCK--- [93m read-unlocked[0m
+2022/05/30 14:24:00 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 5: [0m
+2022/05/30 14:24:00     <-- codeAction(0 elements)
+2022/05/30 14:24:00 <-- codeAction(0 elements)
+2022/05/30 14:24:00 IDE --> textDocument/codeAction 3 [93m read-unlocked[0m
+2022/05/30 14:24:00 [91mIDE <-- LS     CL: ANSWER UNBOUND (3): [0m
+2022/05/30 14:24:00 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 5 (5): [0m
+2022/05/30 14:24:00 SYCK--- [93m read-locked[0m
+2022/05/30 14:24:00 SYCK---    symbol: Function setup 56:0-56:12
+2022/05/30 14:24:00 SYCK---             > void setup()
+2022/05/30 14:24:00 SYCK---    symbol: Function transmitRangeReport 58:0-58:26
+2022/05/30 14:24:00 SYCK---             > void transmitRangeReport()
+2022/05/30 14:24:00 SYCK---    symbol: Function loop 60:0-60:11
+2022/05/30 14:24:00 SYCK---             > void loop()
+2022/05/30 14:24:00 SYCK---    symbol: Function setup 62:0-115:1
+2022/05/30 14:24:00 SYCK---      TRIMMED> void setup() 
+2022/05/30 14:24:00 SYCK---    symbol: Function transmitRangeReport 117:0-125:1
+2022/05/30 14:24:00 SYCK---      TRIMMED> void transmitRangeReport() 
+2022/05/30 14:24:00 SYCK---    symbol: Function loop 127:0-139:1
+2022/05/30 14:24:00 SYCK---      TRIMMED> void loop() 
+2022/05/30 14:24:00 SYCK--- [93m read-unlocked[0m
+2022/05/30 14:24:00 SYCK--- (done)
+2022/05/30 14:24:01 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 14:24:01 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 14:24:01 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 14:24:01 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 14:24:01 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 14:24:01 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 14:24:01 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 14:24:01 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 14:24:01 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 14:24:01 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 14:24:03 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 14:24:03 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 14:24:03 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 14:24:04 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 14:24:04 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 14:24:04 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 14:24:04 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 14:24:05 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 14:24:05 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 14:24:05 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 14:24:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 14:24:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 14:24:07 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 14:24:07 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 14:24:08 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 14:24:08 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 14:24:08 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 14:24:08 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 14:24:08 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 14:24:08 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 14:24:08 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 14:24:08 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 14:24:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 14:24:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 14:24:10 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 14:24:10 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 14:24:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 14:24:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 14:24:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 14:24:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 14:24:13 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 14:24:13 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 14:24:13 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 14:24:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 14:24:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 14:24:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 14:24:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 14:24:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 14:24:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 14:24:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 14:24:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 14:24:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 14:24:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 14:24:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 14:24:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 14:24:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 14:24:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 14:24:15 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 14:24:15 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 14:24:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 14:24:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 14:24:15 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 14:24:15 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 14:24:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 14:24:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 14:24:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 14:24:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 14:24:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 14:24:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 14:24:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 14:24:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 14:24:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 14:24:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 14:24:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 14:24:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 14:24:18 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 14:24:18 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 14:24:18 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 14:24:18 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 14:24:19 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 14:24:19 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 14:24:19 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 14:24:19 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 14:24:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 14:24:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 14:24:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 14:24:24 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 14:24:24 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 14:24:24 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 14:24:24 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 14:24:26 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 14:24:26 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 14:24:26 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 14:24:26 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 14:24:26 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 14:24:26 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 14:24:26 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 14:24:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 14:24:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 14:24:32 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 14:24:32 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 14:24:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 14:24:32 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 14:24:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 14:24:32 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 14:24:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 14:24:33 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 14:24:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 14:24:33 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 14:24:38 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 35/36 97.22222222222223%[0m
+2022/05/30 14:24:38 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 35/36 97.22222222222223%[0m
+2022/05/30 14:24:39 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress END [0m
+2022/05/30 14:24:39 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress END [0m
+2022/05/30 15:23:59 [92mIDE --> LS     CL: REQUEST textDocument/hover 4: [0m
+2022/05/30 15:23:59 IDE --> textDocument/hover 4 [93m read-locked[0m
+2022/05/30 15:23:59 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:80:47)
+2022/05/30 15:23:59     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:89:47)
+2022/05/30 15:23:59 IDE --> textDocument/hover 4 sent to Clang
+2022/05/30 15:23:59 [91mIDE     LS --> CL: REQUEST textDocument/hover 6: [0m
+2022/05/30 15:23:59 [92mIDE     LS <-- CL: ANSWER textDocument/hover 6 (6): [0m
+2022/05/30 15:23:59 IDE --> textDocument/hover 4 [93m read-unlocked[0m
+2022/05/30 15:23:59 [91mIDE <-- LS     CL: ANSWER UNBOUND (4): [0m
+2022/05/30 15:23:59 [92mIDE --> LS     CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:23:59 IDE --> $/cancelRequest notif3 [93m read-locked[0m
+2022/05/30 15:23:59 IDE --> $/cancelRequest notif3 sent to Clang
+2022/05/30 15:23:59 [91mIDE     LS --> CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:23:59 IDE --> $/cancelRequest notif3 [93m read-unlocked[0m
+2022/05/30 15:23:59 [92mIDE --> LS     CL: REQUEST textDocument/hover 5: [0m
+2022/05/30 15:23:59 IDE --> textDocument/hover 5 [93m read-locked[0m
+2022/05/30 15:23:59 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:81:50)
+2022/05/30 15:23:59     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:90:50)
+2022/05/30 15:23:59 IDE --> textDocument/hover 5 sent to Clang
+2022/05/30 15:23:59 [91mIDE     LS --> CL: REQUEST textDocument/hover 7: [0m
+2022/05/30 15:24:00 [92mIDE     LS <-- CL: ANSWER textDocument/hover 7 (7): [0m
+2022/05/30 15:24:00 <-- hover("### variable `ANCHOR_FRAME_FILTER_CONFIG`  \n\n---\nType: `frame_filtering_configuration_t`  \nPassed as config  \n\n---\n```cpp\nframe_filtering_configuration_t ANCHOR_FRAME_FILTER_CONFIG = {\n    false, false, true, false, false, false, false, false}\n```")
+2022/05/30 15:24:00 IDE --> textDocument/hover 5 [93m read-unlocked[0m
+2022/05/30 15:24:00 [91mIDE <-- LS     CL: ANSWER UNBOUND (5): [0m
+2022/05/30 15:24:00 [92mIDE --> LS     CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:24:00 IDE --> $/cancelRequest notif4 [93m read-locked[0m
+2022/05/30 15:24:00 IDE --> $/cancelRequest notif4 sent to Clang
+2022/05/30 15:24:00 [91mIDE     LS --> CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:24:00 IDE --> $/cancelRequest notif4 [93m read-unlocked[0m
+2022/05/30 15:24:00 [92mIDE --> LS     CL: REQUEST textDocument/hover 6: [0m
+2022/05/30 15:24:00 IDE --> textDocument/hover 6 [93m read-locked[0m
+2022/05/30 15:24:00 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:81:51)
+2022/05/30 15:24:00     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:90:51)
+2022/05/30 15:24:00 IDE --> textDocument/hover 6 sent to Clang
+2022/05/30 15:24:00 [91mIDE     LS --> CL: REQUEST textDocument/hover 8: [0m
+2022/05/30 15:24:00 [92mIDE     LS <-- CL: ANSWER textDocument/hover 8 (8): [0m
+2022/05/30 15:24:00 <-- hover("### variable `ANCHOR_FRAME_FILTER_CONFIG`  \n\n---\nType: `frame_filtering_configuration_t`  \nPassed as config  \n\n---\n```cpp\nframe_filtering_configuration_t ANCHOR_FRAME_FILTER_CONFIG = {\n    false, false, true, false, false, false, false, false}\n```")
+2022/05/30 15:24:00 IDE --> textDocument/hover 6 [93m read-unlocked[0m
+2022/05/30 15:24:00 [91mIDE <-- LS     CL: ANSWER UNBOUND (6): [0m
+2022/05/30 15:24:20 [92mIDE --> LS     CL: REQUEST textDocument/hover 7: [0m
+2022/05/30 15:24:20 IDE --> textDocument/hover 7 [93m read-locked[0m
+2022/05/30 15:24:20 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:76:32)
+2022/05/30 15:24:20     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:85:32)
+2022/05/30 15:24:20 IDE --> textDocument/hover 7 sent to Clang
+2022/05/30 15:24:20 [91mIDE     LS --> CL: REQUEST textDocument/hover 9: [0m
+2022/05/30 15:24:20 [92mIDE     LS <-- CL: ANSWER textDocument/hover 9 (9): [0m
+2022/05/30 15:24:20 <-- hover("### function `initializeNoInterrupt`  \n\n---\n→ `void`  \nParameters:  \n- `uint8_t ss`\n- `uint8_t rst = 255`\n\nInitiates and starts a sessions with a DW1000 without interrupt. If rst is not set or value 0xff, a soft resets (i.e. command triggered) are used and it is assumed that no reset line is wired.  \n@param[in] ss The SPI Selection pin used to identify the specific connection  \n@param[in] rst The reset line/pin for hard resets of ICs that connect to the Arduino. Value 0xff means soft reset.  \n\n---\n```cpp\n// In namespace DW1000Ng\nvoid initializeNoInterrupt(uint8_t ss, uint8_t rst = 255)\n```")
+2022/05/30 15:24:20 IDE --> textDocument/hover 7 [93m read-unlocked[0m
+2022/05/30 15:24:20 [91mIDE <-- LS     CL: ANSWER UNBOUND (7): [0m
+2022/05/30 15:26:54 [92mIDE --> LS     CL: REQUEST textDocument/hover 8: [0m
+2022/05/30 15:26:54 IDE --> textDocument/hover 8 [93m read-locked[0m
+2022/05/30 15:26:54 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:76:24)
+2022/05/30 15:26:54     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:85:24)
+2022/05/30 15:26:54 IDE --> textDocument/hover 8 sent to Clang
+2022/05/30 15:26:54 [91mIDE     LS --> CL: REQUEST textDocument/hover 10: [0m
+2022/05/30 15:26:54 [92mIDE     LS <-- CL: ANSWER textDocument/hover 10 (10): [0m
+2022/05/30 15:26:54 <-- hover("### function `initializeNoInterrupt`  \n\n---\n→ `void`  \nParameters:  \n- `uint8_t ss`\n- `uint8_t rst = 255`\n\nInitiates and starts a sessions with a DW1000 without interrupt. If rst is not set or value 0xff, a soft resets (i.e. command triggered) are used and it is assumed that no reset line is wired.  \n@param[in] ss The SPI Selection pin used to identify the specific connection  \n@param[in] rst The reset line/pin for hard resets of ICs that connect to the Arduino. Value 0xff means soft reset.  \n\n---\n```cpp\n// In namespace DW1000Ng\nvoid initializeNoInterrupt(uint8_t ss, uint8_t rst = 255)\n```")
+2022/05/30 15:26:54 IDE --> textDocument/hover 8 [93m read-unlocked[0m
+2022/05/30 15:26:54 [91mIDE <-- LS     CL: ANSWER UNBOUND (8): [0m
+2022/05/30 15:56:03 [92mIDE --> LS     CL: REQUEST textDocument/hover 9: [0m
+2022/05/30 15:56:03 IDE --> textDocument/hover 9 [93m read-locked[0m
+2022/05/30 15:56:03 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:126:66)
+2022/05/30 15:56:03     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:135:66)
+2022/05/30 15:56:03 IDE --> textDocument/hover 9 sent to Clang
+2022/05/30 15:56:03 [91mIDE     LS --> CL: REQUEST textDocument/hover 11: [0m
+2022/05/30 15:56:03 [92mIDE     LS <-- CL: ANSWER textDocument/hover 11 (11): [0m
+2022/05/30 15:56:03 <-- hover("### variable `rangeString`  \n\n---\nType: `class arduino::String`  \n\n---\n```cpp\n// In loop\narduino::String rangeString = \"Range: \"\n```")
+2022/05/30 15:56:03 IDE --> textDocument/hover 9 [93m read-unlocked[0m
+2022/05/30 15:56:03 [91mIDE <-- LS     CL: ANSWER UNBOUND (9): [0m
+2022/05/30 15:56:27 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 10: [0m
+2022/05/30 15:56:27 IDE --> textDocument/codeAction 10 [93m read-locked[0m
+2022/05/30 15:56:27 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:130:1)
+2022/05/30 15:56:27     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:139:1)
+2022/05/30 15:56:27 IDE --> textDocument/codeAction 10 sent to Clang
+2022/05/30 15:56:27 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 12: [0m
+2022/05/30 15:56:27 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 12 (12): [0m
+2022/05/30 15:56:27     <-- codeAction(0 elements)
+2022/05/30 15:56:27 <-- codeAction(0 elements)
+2022/05/30 15:56:27 IDE --> textDocument/codeAction 10 [93m read-unlocked[0m
+2022/05/30 15:56:27 [91mIDE <-- LS     CL: ANSWER UNBOUND (10): [0m
+2022/05/30 15:56:31 [92mIDE --> LS     CL: REQUEST textDocument/hover 11: [0m
+2022/05/30 15:56:31 IDE --> textDocument/hover 11 [93m read-locked[0m
+2022/05/30 15:56:31 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:127:51)
+2022/05/30 15:56:31     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:136:51)
+2022/05/30 15:56:31 IDE --> textDocument/hover 11 sent to Clang
+2022/05/30 15:56:31 [91mIDE     LS --> CL: REQUEST textDocument/hover 13: [0m
+2022/05/30 15:56:31 [92mIDE     LS <-- CL: ANSWER textDocument/hover 13 (13): [0m
+2022/05/30 15:56:31 <-- hover("### namespace `DW1000Ng`  \n\n---\n```cpp\nnamespace DW1000Ng {}\n```")
+2022/05/30 15:56:31 IDE --> textDocument/hover 11 [93m read-unlocked[0m
+2022/05/30 15:56:31 [91mIDE <-- LS     CL: ANSWER UNBOUND (11): [0m
+2022/05/30 15:56:55 [92mIDE --> LS     CL: REQUEST textDocument/hover 12: [0m
+2022/05/30 15:56:55 IDE --> textDocument/hover 12 [93m read-locked[0m
+2022/05/30 15:56:55 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:127:54)
+2022/05/30 15:56:55     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:136:54)
+2022/05/30 15:56:55 IDE --> textDocument/hover 12 sent to Clang
+2022/05/30 15:56:55 [91mIDE     LS --> CL: REQUEST textDocument/hover 14: [0m
+2022/05/30 15:56:55 [92mIDE     LS <-- CL: ANSWER textDocument/hover 14 (14): [0m
+2022/05/30 15:56:55 <-- hover("### namespace `DW1000Ng`  \n\n---\n```cpp\nnamespace DW1000Ng {}\n```")
+2022/05/30 15:56:55 IDE --> textDocument/hover 12 [93m read-unlocked[0m
+2022/05/30 15:56:55 [91mIDE <-- LS     CL: ANSWER UNBOUND (12): [0m
+2022/05/30 15:56:57 [92mIDE --> LS     CL: REQUEST textDocument/hover 13: [0m
+2022/05/30 15:56:57 IDE --> textDocument/hover 13 [93m read-locked[0m
+2022/05/30 15:56:57 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:126:78)
+2022/05/30 15:56:57     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:135:78)
+2022/05/30 15:56:57 IDE --> textDocument/hover 13 sent to Clang
+2022/05/30 15:56:57 [91mIDE     LS --> CL: REQUEST textDocument/hover 15: [0m
+2022/05/30 15:56:57 [92mIDE     LS <-- CL: ANSWER textDocument/hover 15 (15): [0m
+2022/05/30 15:56:57 IDE --> textDocument/hover 13 [93m read-unlocked[0m
+2022/05/30 15:56:57 [91mIDE <-- LS     CL: ANSWER UNBOUND (13): [0m
+2022/05/30 15:56:57 [92mIDE --> LS     CL: REQUEST textDocument/hover 14: [0m
+2022/05/30 15:56:57 IDE --> textDocument/hover 14 [93m read-locked[0m
+2022/05/30 15:56:57 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:126:79)
+2022/05/30 15:56:57     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:135:79)
+2022/05/30 15:56:57 IDE --> textDocument/hover 14 sent to Clang
+2022/05/30 15:56:57 [91mIDE     LS --> CL: REQUEST textDocument/hover 16: [0m
+2022/05/30 15:56:57 [92mIDE     LS <-- CL: ANSWER textDocument/hover 16 (16): [0m
+2022/05/30 15:56:57 IDE --> textDocument/hover 14 [93m read-unlocked[0m
+2022/05/30 15:56:57 [91mIDE <-- LS     CL: ANSWER UNBOUND (14): [0m
+2022/05/30 15:56:58 [92mIDE --> LS     CL: REQUEST textDocument/hover 15: [0m
+2022/05/30 15:56:58 IDE --> textDocument/hover 15 [93m read-locked[0m
+2022/05/30 15:56:58 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:126:80)
+2022/05/30 15:56:58     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:135:80)
+2022/05/30 15:56:58 IDE --> textDocument/hover 15 sent to Clang
+2022/05/30 15:56:58 [91mIDE     LS --> CL: REQUEST textDocument/hover 17: [0m
+2022/05/30 15:56:58 [92mIDE     LS <-- CL: ANSWER textDocument/hover 17 (17): [0m
+2022/05/30 15:56:58 IDE --> textDocument/hover 15 [93m read-unlocked[0m
+2022/05/30 15:56:58 [91mIDE <-- LS     CL: ANSWER UNBOUND (15): [0m
+2022/05/30 15:56:58 [92mIDE --> LS     CL: REQUEST textDocument/hover 16: [0m
+2022/05/30 15:56:58 IDE --> textDocument/hover 16 [93m read-locked[0m
+2022/05/30 15:56:58 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:126:79)
+2022/05/30 15:56:58     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:135:79)
+2022/05/30 15:56:58 IDE --> textDocument/hover 16 sent to Clang
+2022/05/30 15:56:58 [91mIDE     LS --> CL: REQUEST textDocument/hover 18: [0m
+2022/05/30 15:56:58 [92mIDE     LS <-- CL: ANSWER textDocument/hover 18 (18): [0m
+2022/05/30 15:56:58 IDE --> textDocument/hover 16 [93m read-unlocked[0m
+2022/05/30 15:56:58 [91mIDE <-- LS     CL: ANSWER UNBOUND (16): [0m
+2022/05/30 15:56:59 [92mIDE --> LS     CL: REQUEST textDocument/hover 17: [0m
+2022/05/30 15:56:59 IDE --> textDocument/hover 17 [93m read-locked[0m
+2022/05/30 15:56:59 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:123:13)
+2022/05/30 15:56:59     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:132:13)
+2022/05/30 15:56:59 IDE --> textDocument/hover 17 sent to Clang
+2022/05/30 15:56:59 [91mIDE     LS --> CL: REQUEST textDocument/hover 19: [0m
+2022/05/30 15:56:59 [92mIDE     LS <-- CL: ANSWER textDocument/hover 19 (19): [0m
+2022/05/30 15:56:59 <-- hover("### variable `range_self`  \n\n---\nType: `double`  \n\n---\n```cpp\ndouble range_self\n```")
+2022/05/30 15:56:59 IDE --> textDocument/hover 17 [93m read-unlocked[0m
+2022/05/30 15:56:59 [91mIDE <-- LS     CL: ANSWER UNBOUND (17): [0m
+2022/05/30 15:57:00 [92mIDE --> LS     CL: REQUEST textDocument/hover 18: [0m
+2022/05/30 15:57:00 IDE --> textDocument/hover 18 [93m read-locked[0m
+2022/05/30 15:57:00 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:51)
+2022/05/30 15:57:00     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:51)
+2022/05/30 15:57:00 IDE --> textDocument/hover 18 sent to Clang
+2022/05/30 15:57:00 [91mIDE     LS --> CL: REQUEST textDocument/hover 20: [0m
+2022/05/30 15:57:00 [92mIDE     LS <-- CL: ANSWER textDocument/hover 20 (20): [0m
+2022/05/30 15:57:00 IDE --> textDocument/hover 18 [93m read-unlocked[0m
+2022/05/30 15:57:00 [91mIDE <-- LS     CL: ANSWER UNBOUND (18): [0m
+2022/05/30 15:57:00 [92mIDE --> LS     CL: REQUEST textDocument/hover 19: [0m
+2022/05/30 15:57:00 IDE --> textDocument/hover 19 [93m read-locked[0m
+2022/05/30 15:57:00 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:51)
+2022/05/30 15:57:00     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:51)
+2022/05/30 15:57:00 IDE --> textDocument/hover 19 sent to Clang
+2022/05/30 15:57:00 [91mIDE     LS --> CL: REQUEST textDocument/hover 21: [0m
+2022/05/30 15:57:00 [92mIDE     LS <-- CL: ANSWER textDocument/hover 21 (21): [0m
+2022/05/30 15:57:00 IDE --> textDocument/hover 19 [93m read-unlocked[0m
+2022/05/30 15:57:00 [91mIDE <-- LS     CL: ANSWER UNBOUND (19): [0m
+2022/05/30 15:59:42 [92mIDE --> LS     CL: REQUEST textDocument/hover 20: [0m
+2022/05/30 15:59:42 IDE --> textDocument/hover 20 [93m read-locked[0m
+2022/05/30 15:59:42 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:41)
+2022/05/30 15:59:42     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:41)
+2022/05/30 15:59:42 IDE --> textDocument/hover 20 sent to Clang
+2022/05/30 15:59:42 [91mIDE     LS --> CL: REQUEST textDocument/hover 22: [0m
+2022/05/30 15:59:42 [92mIDE     LS <-- CL: ANSWER textDocument/hover 22 (22): [0m
+2022/05/30 15:59:42 IDE --> textDocument/hover 20 [93m read-unlocked[0m
+2022/05/30 15:59:42 [91mIDE <-- LS     CL: ANSWER UNBOUND (20): [0m
+2022/05/30 15:59:55 [92mIDE --> LS     CL: REQUEST textDocument/hover 21: [0m
+2022/05/30 15:59:55 IDE --> textDocument/hover 21 [93m read-locked[0m
+2022/05/30 15:59:55 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:31)
+2022/05/30 15:59:55     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:31)
+2022/05/30 15:59:55 IDE --> textDocument/hover 21 sent to Clang
+2022/05/30 15:59:55 [91mIDE     LS --> CL: REQUEST textDocument/hover 23: [0m
+2022/05/30 15:59:55 [92mIDE     LS <-- CL: ANSWER textDocument/hover 23 (23): [0m
+2022/05/30 15:59:55 IDE --> textDocument/hover 21 [93m read-unlocked[0m
+2022/05/30 15:59:55 [91mIDE <-- LS     CL: ANSWER UNBOUND (21): [0m
+2022/05/30 15:59:56 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 22: [0m
+2022/05/30 15:59:56 IDE --> textDocument/codeAction 22 [93m read-locked[0m
+2022/05/30 15:59:56 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:7)
+2022/05/30 15:59:56     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:7)
+2022/05/30 15:59:56 IDE --> textDocument/codeAction 22 sent to Clang
+2022/05/30 15:59:56 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 24: [0m
+2022/05/30 15:59:56 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 24 (24): [0m
+2022/05/30 15:59:56     <-- codeAction(0 elements)
+2022/05/30 15:59:56 <-- codeAction(0 elements)
+2022/05/30 15:59:56 IDE --> textDocument/codeAction 22 [93m read-unlocked[0m
+2022/05/30 15:59:56 [91mIDE <-- LS     CL: ANSWER UNBOUND (22): [0m
+2022/05/30 15:59:56 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 23: [0m
+2022/05/30 15:59:56 IDE --> textDocument/codeAction 23 [93m read-locked[0m
+2022/05/30 15:59:56 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:9)
+2022/05/30 15:59:56     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:9)
+2022/05/30 15:59:56 IDE --> textDocument/codeAction 23 sent to Clang
+2022/05/30 15:59:56 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 25: [0m
+2022/05/30 15:59:56 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 25 (25): [0m
+2022/05/30 15:59:56     <-- codeAction(0 elements)
+2022/05/30 15:59:56 <-- codeAction(0 elements)
+2022/05/30 15:59:56 IDE --> textDocument/codeAction 23 [93m read-unlocked[0m
+2022/05/30 15:59:56 [91mIDE <-- LS     CL: ANSWER UNBOUND (23): [0m
+2022/05/30 15:59:57 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 24: [0m
+2022/05/30 15:59:57 IDE --> textDocument/codeAction 24 [93m read-locked[0m
+2022/05/30 15:59:57 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:8)
+2022/05/30 15:59:57     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:8)
+2022/05/30 15:59:57 IDE --> textDocument/codeAction 24 sent to Clang
+2022/05/30 15:59:57 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 26: [0m
+2022/05/30 15:59:57 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 26 (26): [0m
+2022/05/30 15:59:57     <-- codeAction(0 elements)
+2022/05/30 15:59:57 <-- codeAction(0 elements)
+2022/05/30 15:59:57 IDE --> textDocument/codeAction 24 [93m read-unlocked[0m
+2022/05/30 15:59:57 [91mIDE <-- LS     CL: ANSWER UNBOUND (24): [0m
+2022/05/30 15:59:57 [92mIDE --> LS     CL: REQUEST textDocument/hover 25: [0m
+2022/05/30 15:59:57 IDE --> textDocument/hover 25 [93m read-locked[0m
+2022/05/30 15:59:57 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:8)
+2022/05/30 15:59:57     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:8)
+2022/05/30 15:59:57 IDE --> textDocument/hover 25 sent to Clang
+2022/05/30 15:59:57 [91mIDE     LS --> CL: REQUEST textDocument/hover 27: [0m
+2022/05/30 15:59:57 [92mIDE     LS <-- CL: ANSWER textDocument/hover 27 (27): [0m
+2022/05/30 15:59:57 <-- hover("### function `delayMicroseconds`  \n\n---\n→ `void`  \nParameters:  \n- `unsigned int us`\n\n---\n```cpp\nvoid delayMicroseconds(unsigned int us)\n```")
+2022/05/30 15:59:57 IDE --> textDocument/hover 25 [93m read-unlocked[0m
+2022/05/30 15:59:57 [91mIDE <-- LS     CL: ANSWER UNBOUND (25): [0m
+2022/05/30 15:59:57 [92mIDE --> LS     CL: REQUEST textDocument/definition 26: [0m
+2022/05/30 15:59:57 IDE --> textDocument/definition 26 [93m read-locked[0m
+2022/05/30 15:59:57 --> textDocument/definition(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:8)
+2022/05/30 15:59:57     --> textDocument/definition(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:8)
+2022/05/30 15:59:57 IDE --> textDocument/definition 26 sent to Clang
+2022/05/30 15:59:57 [91mIDE     LS --> CL: REQUEST textDocument/definition 28: [0m
+2022/05/30 15:59:57 [92mIDE     LS <-- CL: ANSWER textDocument/definition 28 (28): [0m
+2022/05/30 15:59:57     'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' is not inside 'C:\Users\ltp\AppData\Local\Temp\arduino-language-server744730647\sketch'
+2022/05/30 15:59:57     keep doc identifier to 'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' as-is
+2022/05/30 15:59:57 IDE --> textDocument/definition 26 [93m read-unlocked[0m
+2022/05/30 15:59:57 [91mIDE <-- LS     CL: ANSWER UNBOUND (26): [0m
+2022/05/30 15:59:57 [92mIDE --> LS     CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:59:57 IDE --> textDocument/didOpen notif5 [93m locked[0m
+2022/05/30 15:59:57 IDE --> textDocument/didOpen notif5 (file:///c%3A/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp@1 as 'cpp')
+2022/05/30 15:59:57     could not determine if 'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' is inside 'D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR'
+2022/05/30 15:59:57 IDE --> textDocument/didOpen notif5 Error: Document is not available: file:///c%3A/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp
+2022/05/30 15:59:57 IDE --> textDocument/didOpen notif5 [93m unlocked[0m
+2022/05/30 15:59:57 [92mIDE --> LS     CL: NOTIFICATION textDocument/didClose: [0m
+2022/05/30 15:59:57 IDE --> textDocument/didClose notif6 [93m locked[0m
+2022/05/30 15:59:57 --> didClose(file:///c%3A/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp)
+2022/05/30 15:59:57     could not determine if 'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' is inside 'D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR'
+2022/05/30 15:59:57 IDE --> textDocument/didClose notif6 sent to Clang
+2022/05/30 15:59:57 [91mIDE     LS --> CL: NOTIFICATION textDocument/didClose: [0m
+2022/05/30 15:59:57 IDE --> textDocument/didClose notif6 [93m unlocked[0m
+2022/05/30 15:59:57 [92mIDE     LS <-- CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:59:57 CLG <-- textDocument/publishDiagnostics notif76 (queued)
+2022/05/30 15:59:57 CLG <-- textDocument/publishDiagnostics notif76 [93m read-locked[0m
+2022/05/30 15:59:57 CLG <-- textDocument/publishDiagnostics notif76 (running)
+2022/05/30 15:59:57 CLG <-- textDocument/publishDiagnostics notif76 publishDiagnostics(file:///c:/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp):
+2022/05/30 15:59:57     'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' is not inside 'C:\Users\ltp\AppData\Local\Temp\arduino-language-server744730647\sketch'
+2022/05/30 15:59:57     keep doc identifier to 'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' as-is
+2022/05/30 15:59:57 CLG <-- textDocument/publishDiagnostics notif76 to IDE: publishDiagnostics(file:///c:/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp):
+2022/05/30 15:59:57 [91mIDE <-- LS     CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:59:57 CLG <-- textDocument/publishDiagnostics notif76 [93m read-unlocked[0m
+2022/05/30 15:59:57 [92mIDE --> LS     CL: REQUEST textDocument/definition 27: [0m
+2022/05/30 15:59:57 IDE --> textDocument/definition 27 [93m read-locked[0m
+2022/05/30 15:59:57 --> textDocument/definition(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:8)
+2022/05/30 15:59:57     --> textDocument/definition(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:8)
+2022/05/30 15:59:57 IDE --> textDocument/definition 27 sent to Clang
+2022/05/30 15:59:57 [91mIDE     LS --> CL: REQUEST textDocument/definition 29: [0m
+2022/05/30 15:59:57 [92mIDE     LS <-- CL: ANSWER textDocument/definition 29 (29): [0m
+2022/05/30 15:59:57     'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' is not inside 'C:\Users\ltp\AppData\Local\Temp\arduino-language-server744730647\sketch'
+2022/05/30 15:59:57     keep doc identifier to 'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' as-is
+2022/05/30 15:59:57 IDE --> textDocument/definition 27 [93m read-unlocked[0m
+2022/05/30 15:59:57 [91mIDE <-- LS     CL: ANSWER UNBOUND (27): [0m
+2022/05/30 15:59:58 [92mIDE --> LS     CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:59:58 IDE --> textDocument/didOpen notif7 [93m locked[0m
+2022/05/30 15:59:58 IDE --> textDocument/didOpen notif7 (file:///c%3A/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp@1 as 'cpp')
+2022/05/30 15:59:58     could not determine if 'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' is inside 'D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR'
+2022/05/30 15:59:58 IDE --> textDocument/didOpen notif7 Error: Document is not available: file:///c%3A/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp
+2022/05/30 15:59:58 IDE --> textDocument/didOpen notif7 [93m unlocked[0m
+2022/05/30 15:59:58 [92mIDE --> LS     CL: NOTIFICATION textDocument/didClose: [0m
+2022/05/30 15:59:58 IDE --> textDocument/didClose notif8 [93m locked[0m
+2022/05/30 15:59:58 --> didClose(file:///c%3A/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp)
+2022/05/30 15:59:58     could not determine if 'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' is inside 'D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorB_TWR'
+2022/05/30 15:59:58 IDE --> textDocument/didClose notif8 sent to Clang
+2022/05/30 15:59:58 [91mIDE     LS --> CL: NOTIFICATION textDocument/didClose: [0m
+2022/05/30 15:59:58 IDE --> textDocument/didClose notif8 [93m unlocked[0m
+2022/05/30 15:59:58 [92mIDE     LS <-- CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:59:58 CLG <-- textDocument/publishDiagnostics notif77 (queued)
+2022/05/30 15:59:58 CLG <-- textDocument/publishDiagnostics notif77 [93m read-locked[0m
+2022/05/30 15:59:58 CLG <-- textDocument/publishDiagnostics notif77 (running)
+2022/05/30 15:59:58 CLG <-- textDocument/publishDiagnostics notif77 publishDiagnostics(file:///c:/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp):
+2022/05/30 15:59:58     'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' is not inside 'C:\Users\ltp\AppData\Local\Temp\arduino-language-server744730647\sketch'
+2022/05/30 15:59:58     keep doc identifier to 'C:\Users\ltp\AppData\Local\Arduino15\packages\rakwireless\hardware\mbed_rp2040\0.0.5\cores\arduino\wiring.cpp' as-is
+2022/05/30 15:59:58 CLG <-- textDocument/publishDiagnostics notif77 to IDE: publishDiagnostics(file:///c:/Users/ltp/AppData/Local/Arduino15/packages/rakwireless/hardware/mbed_rp2040/0.0.5/cores/arduino/wiring.cpp):
+2022/05/30 15:59:58 [91mIDE <-- LS     CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:59:58 CLG <-- textDocument/publishDiagnostics notif77 [93m read-unlocked[0m
+2022/05/30 15:59:58 [92mIDE --> LS     CL: REQUEST textDocument/hover 28: [0m
+2022/05/30 15:59:58 IDE --> textDocument/hover 28 [93m read-locked[0m
+2022/05/30 15:59:58 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:122:8)
+2022/05/30 15:59:58     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:131:8)
+2022/05/30 15:59:58 IDE --> textDocument/hover 28 sent to Clang
+2022/05/30 15:59:58 [91mIDE     LS --> CL: REQUEST textDocument/hover 30: [0m
+2022/05/30 15:59:58 [92mIDE     LS <-- CL: ANSWER textDocument/hover 30 (30): [0m
+2022/05/30 15:59:58 <-- hover("### function `delayMicroseconds`  \n\n---\n→ `void`  \nParameters:  \n- `unsigned int us`\n\n---\n```cpp\nvoid delayMicroseconds(unsigned int us)\n```")
+2022/05/30 15:59:58 IDE --> textDocument/hover 28 [93m read-unlocked[0m
+2022/05/30 15:59:58 [91mIDE <-- LS     CL: ANSWER UNBOUND (28): [0m
+2022/05/30 16:00:05 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 29: [0m
+2022/05/30 16:00:05 IDE --> textDocument/codeAction 29 [93m read-locked[0m
+2022/05/30 16:00:05 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:124:26)
+2022/05/30 16:00:05     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:133:26)
+2022/05/30 16:00:05 IDE --> textDocument/codeAction 29 sent to Clang
+2022/05/30 16:00:05 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 31: [0m
+2022/05/30 16:00:05 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 31 (31): [0m
+2022/05/30 16:00:05     <-- codeAction(0 elements)
+2022/05/30 16:00:05 <-- codeAction(0 elements)
+2022/05/30 16:00:05 IDE --> textDocument/codeAction 29 [93m read-unlocked[0m
+2022/05/30 16:00:05 [91mIDE <-- LS     CL: ANSWER UNBOUND (29): [0m
+2022/05/30 16:00:06 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 30: [0m
+2022/05/30 16:00:06 IDE --> textDocument/codeAction 30 [93m read-locked[0m
+2022/05/30 16:00:06 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:0:0)
+2022/05/30 16:00:06     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:2:0)
+2022/05/30 16:00:06 IDE --> textDocument/codeAction 30 sent to Clang
+2022/05/30 16:00:06 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 32: [0m
+2022/05/30 16:00:06 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 32 (32): [0m
+2022/05/30 16:00:06     <-- codeAction(1 elements)
+2022/05/30 16:00:06 <-- codeAction(1 elements)
+2022/05/30 16:00:06 IDE --> textDocument/codeAction 30 [93m read-unlocked[0m
+2022/05/30 16:00:06 [91mIDE <-- LS     CL: ANSWER UNBOUND (30): [0m
+2022/05/30 16:00:35 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 31: [0m
+2022/05/30 16:00:35 IDE --> textDocument/codeAction 31 [93m read-locked[0m
+2022/05/30 16:00:35 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:129:3)
+2022/05/30 16:00:35     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:138:3)
+2022/05/30 16:00:35 IDE --> textDocument/codeAction 31 sent to Clang
+2022/05/30 16:00:35 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 33: [0m
+2022/05/30 16:00:35 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 33 (33): [0m
+2022/05/30 16:00:35     <-- codeAction(0 elements)
+2022/05/30 16:00:35 <-- codeAction(0 elements)
+2022/05/30 16:00:35 IDE --> textDocument/codeAction 31 [93m read-unlocked[0m
+2022/05/30 16:00:35 [91mIDE <-- LS     CL: ANSWER UNBOUND (31): [0m
+2022/05/30 16:00:36 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 32: [0m
+2022/05/30 16:00:36 IDE --> textDocument/codeAction 32 [93m read-locked[0m
+2022/05/30 16:00:36 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:0:0)
+2022/05/30 16:00:36     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:2:0)
+2022/05/30 16:00:36 IDE --> textDocument/codeAction 32 sent to Clang
+2022/05/30 16:00:36 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 34: [0m
+2022/05/30 16:00:36 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 34 (34): [0m
+2022/05/30 16:00:36     <-- codeAction(1 elements)
+2022/05/30 16:00:36 <-- codeAction(1 elements)
+2022/05/30 16:00:36 IDE --> textDocument/codeAction 32 [93m read-unlocked[0m
+2022/05/30 16:00:36 [91mIDE <-- LS     CL: ANSWER UNBOUND (32): [0m
+2022/05/30 16:01:07 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 33: [0m
+2022/05/30 16:01:07 IDE --> textDocument/codeAction 33 [93m read-locked[0m
+2022/05/30 16:01:07 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:63:5)
+2022/05/30 16:01:07     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:72:5)
+2022/05/30 16:01:07 IDE --> textDocument/codeAction 33 sent to Clang
+2022/05/30 16:01:07 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 35: [0m
+2022/05/30 16:01:07 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 35 (35): [0m
+2022/05/30 16:01:07     <-- codeAction(0 elements)
+2022/05/30 16:01:07 <-- codeAction(0 elements)
+2022/05/30 16:01:07 IDE --> textDocument/codeAction 33 [93m read-unlocked[0m
+2022/05/30 16:01:07 [91mIDE <-- LS     CL: ANSWER UNBOUND (33): [0m
+2022/05/30 16:01:08 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 34: [0m
+2022/05/30 16:01:08 IDE --> textDocument/codeAction 34 [93m read-locked[0m
+2022/05/30 16:01:08 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:0:0)
+2022/05/30 16:01:08     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:2:0)
+2022/05/30 16:01:08 IDE --> textDocument/codeAction 34 sent to Clang
+2022/05/30 16:01:08 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 36: [0m
+2022/05/30 16:01:08 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 36 (36): [0m
+2022/05/30 16:01:08     <-- codeAction(1 elements)
+2022/05/30 16:01:08 <-- codeAction(1 elements)
+2022/05/30 16:01:08 IDE --> textDocument/codeAction 34 [93m read-unlocked[0m
+2022/05/30 16:01:08 [91mIDE <-- LS     CL: ANSWER UNBOUND (34): [0m
+2022/05/30 16:01:58 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 35: [0m
+2022/05/30 16:01:58 IDE --> textDocument/codeAction 35 [93m read-locked[0m
+2022/05/30 16:01:58 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:61:3)
+2022/05/30 16:01:58     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:70:3)
+2022/05/30 16:01:58 IDE --> textDocument/codeAction 35 sent to Clang
+2022/05/30 16:01:58 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 37: [0m
+2022/05/30 16:01:58 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 37 (37): [0m
+2022/05/30 16:01:58     <-- codeAction(0 elements)
+2022/05/30 16:01:58 <-- codeAction(0 elements)
+2022/05/30 16:01:58 IDE --> textDocument/codeAction 35 [93m read-unlocked[0m
+2022/05/30 16:01:58 [91mIDE <-- LS     CL: ANSWER UNBOUND (35): [0m
+2022/05/30 16:01:59 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 36: [0m
+2022/05/30 16:01:59 IDE --> textDocument/codeAction 36 [93m read-locked[0m
+2022/05/30 16:01:59 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorB_TWR/StandardRTLSAnchorB_TWR.ino:0:0)
+2022/05/30 16:01:59     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server744730647/sketch/StandardRTLSAnchorB_TWR.ino.cpp:2:0)
+2022/05/30 16:01:59 IDE --> textDocument/codeAction 36 sent to Clang
+2022/05/30 16:01:59 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 38: [0m
+2022/05/30 16:01:59 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 38 (38): [0m
+2022/05/30 16:01:59     <-- codeAction(1 elements)
+2022/05/30 16:01:59 <-- codeAction(1 elements)
+2022/05/30 16:01:59 IDE --> textDocument/codeAction 36 [93m read-unlocked[0m
+2022/05/30 16:01:59 [91mIDE <-- LS     CL: ANSWER UNBOUND (36): [0m
+2022/05/31 14:09:10 [92mIDE --> LS     CL: REQUEST shutdown 37: [0m
+2022/05/31 14:09:10 IDE --> shutdown 37 [93m read-locked[0m
+2022/05/31 14:09:10 IDE --> shutdown 37 sent to Clang
+2022/05/31 14:09:10 [91mIDE     LS --> CL: REQUEST shutdown 39: [0m
+2022/05/31 14:09:10 [92mIDE     LS <-- CL: ANSWER shutdown 39 (39): [0m
+2022/05/31 14:09:10 IDE --> shutdown 37 [93m read-unlocked[0m
+2022/05/31 14:09:10 [91mIDE <-- LS     CL: ANSWER UNBOUND (37): [0m
+2022/05/31 14:09:10 [92mIDE --> LS     CL: NOTIFICATION exit: [0m
+2022/05/31 14:09:10 IDE --> exit notif9 [93m read-locked[0m
+2022/05/31 14:09:10 IDE --> exit notif9 sent to Clang
+2022/05/31 14:09:10 [91mIDE     LS --> CL: NOTIFICATION exit: [0m
+2022/05/31 14:09:10 IDE --> exit notif9 [93m read-unlocked[0m
+2022/05/31 14:09:11 Lost connection with clangd!
+2022/05/31 14:09:11 removing buildpath

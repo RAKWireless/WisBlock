@@ -1,0 +1,1843 @@
+
+
+
+
+
+
+
+Started logging.
+2022/05/30 14:21:25 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols.log
+2022/05/30 14:21:26 Initial board configuration: {"WisBlock RAK11300 Board" rakwireless:mbed_rp2040:WisCoreRAK11300Board}
+2022/05/30 14:21:26 Language server build path: C:\Users\ltp\AppData\Local\Temp\arduino-language-server182818355
+2022/05/30 14:21:26 Language server build sketch root: C:\Users\ltp\AppData\Local\Temp\arduino-language-server182818355\sketch
+2022/05/30 14:21:26 [92mIDE --> LS     CL: REQUEST initialize 0: [0m
+2022/05/30 14:21:26 IDE --> initialize 0 [93m locked[0m
+2022/05/30 14:21:26 IDE --> initialize 0 [93m unlocked[0m
+2022/05/30 14:21:26 INIT--- initializing workbench
+2022/05/30 14:21:26 INIT--- [93m locked[0m
+2022/05/30 14:21:26     --> initialize(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR)
+2022/05/30 14:21:26 [91mIDE <-- LS     CL: ANSWER UNBOUND (0): [0m
+2022/05/30 14:21:26 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml compile --fqbn rakwireless:mbed_rp2040:WisCoreRAK11300Board --only-compilation-database --clean --source-override C:\Users\ltp\AppData\Local\Temp\756439542 --build-path C:\Users\ltp\AppData\Local\Temp\arduino-language-server182818355 --format json D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR
+2022/05/30 14:21:26 [92mIDE --> LS     CL: NOTIFICATION initialized: [0m
+2022/05/30 14:23:05 arduino-cli output: {
+  "compiler_out": "",
+  "compiler_err": "",
+  "builder_result": {
+    "build_path": "C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server182818355",
+    "used_libraries": [
+      {
+        "name": "RAK13801-UWB-Library",
+        "author": "RAKWireless \u003crakwireless.com\u003e",
+        "maintainer": "RAKWireless \u003crakwireless.com\u003e",
+        "sentence": "Arduino library to use Decawave DW1000 IC.",
+        "paragraph": "This library is intended to be used with Decawave DW1000 IC and modules. It provides an API for hardware abstraction and high-level utilities for RTLS applications.",
+        "website": "https://github.com/RAKWireless/RAK13801-UWB-Library",
+        "category": "Uncategorized",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library",
+        "source_dir": "c:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\src",
+        "real_name": "RAK13801-UWB-Library",
+        "version": "1.0.0",
+        "license": "Unspecified",
+        "location": 1,
+        "layout": 1,
+        "examples": [
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicConnectivityTest",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicReceiver",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicSender",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\SimpleAntennaCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorB_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorC_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorMain_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TransmitSpectrumPowerCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingInitiator",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingResponder"
+        ],
+        "provides_includes": [
+          "DW1000Ng.hpp",
+          "DW1000NgCompileOptions.hpp",
+          "DW1000NgConfiguration.hpp",
+          "DW1000NgConstants.hpp",
+          "DW1000NgRTLS.hpp",
+          "DW1000NgRanging.hpp",
+          "DW1000NgRegisters.hpp",
+          "DW1000NgTime.hpp",
+          "DW1000NgUtils.hpp",
+          "SPIporting.hpp",
+          "deprecated.hpp",
+          "require_cpp11.hpp"
+        ]
+      },
+      {
+        "name": "SPI",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "source_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "container_platform": "rakwireless:mbed_rp2040@0.0.5",
+        "is_legacy": true,
+        "location": 2,
+        "provides_includes": [
+          "SPI.h"
+        ]
+      }
+    ]
+  },
+  "success": true
+}
+
+2022/05/30 14:23:05 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml config dump --format json
+2022/05/30 14:23:05 Arduino Data Dir ->  c:\Users\ltp\AppData\Local\Arduino15
+2022/05/30 14:23:05     Starting clangd: c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\bin\clangd.exe -log=verbose --compile-commands-dir=C:\Users\ltp\AppData\Local\Temp\arduino-language-server182818355 -query-driver=c:\Users\ltp\AppData\Local\Arduino15\packages\**
+2022/05/30 14:23:05 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd.log
+2022/05/30 14:23:05 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd-err.log
+2022/05/30 14:23:05 [91mIDE     LS --> CL: REQUEST initialize 0: [0m
+2022/05/30 14:23:06     error initilizing clangd: context deadline exceeded
+2022/05/30 14:23:06 INIT--- initializing workbench (done)
+2022/05/30 14:23:06 INIT--- [93m unlocked[0m
+2022/05/30 14:23:06 IDE --> initialized notif1 [93m read-locked[0m
+2022/05/30 14:23:06 IDE --> initialized notif1 notification is not propagated to clangd
+2022/05/30 14:23:06 IDE --> initialized notif1 [93m read-unlocked[0m
+2022/05/30 14:23:06 [92mIDE --> LS     CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 14:23:06 IDE --> textDocument/didOpen notif2 [93m locked[0m
+2022/05/30 14:23:06 IDE --> textDocument/didOpen notif2 (file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@1 as 'cpp')
+2022/05/30 14:23:06     increasing .ino tracked files count: 1
+2022/05/30 14:23:06 IDE --> textDocument/didOpen notif2 to clang: didOpen(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@1 as 'cpp')
+2022/05/30 14:23:06 IDE --> textDocument/didOpen notif2 sent to Clang
+2022/05/30 14:23:06 [91mIDE     LS --> CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 14:23:06 IDE --> textDocument/didOpen notif2 [93m unlocked[0m
+2022/05/30 14:23:06 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 1: [0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: ANSWER initialize 0 (0): [0m
+2022/05/30 14:23:06 IDE --> textDocument/codeAction 1 [93m read-locked[0m
+2022/05/30 14:23:06 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:0:0)
+2022/05/30 14:23:06     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:2:0)
+2022/05/30 14:23:06 IDE --> textDocument/codeAction 1 sent to Clang
+2022/05/30 14:23:06 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 1: [0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 14:23:06 [91mIDE     LS --> CL: ANSWER UNBOUND (0): [0m
+2022/05/30 14:23:06 [91mIDE <-- LS     CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/1 0%[0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 14:23:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 14:23:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 14:23:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 14:23:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 14:23:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 14:23:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 14:23:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 14:23:11 [92mIDE     LS <-- CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 14:23:11 CLG <-- textDocument/publishDiagnostics notif15 (queued)
+2022/05/30 14:23:11 CLG <-- textDocument/publishDiagnostics notif15 [93m read-locked[0m
+2022/05/30 14:23:11 CLG <-- textDocument/publishDiagnostics notif15 (running)
+2022/05/30 14:23:11 CLG <-- textDocument/publishDiagnostics notif15 publishDiagnostics(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp):
+2022/05/30 14:23:11 CLG <-- textDocument/publishDiagnostics notif15 > 0:9 - 1: pp_file_not_found
+2022/05/30 14:23:11 CLG <-- textDocument/publishDiagnostics notif15 > 84:2 - 1: unknown_typename_suggest
+2022/05/30 14:23:11 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 1 (1): [0m
+2022/05/30 14:23:11     <-- codeAction(0 elements)
+2022/05/30 14:23:11 <-- codeAction(0 elements)
+2022/05/30 14:23:11 IDE --> textDocument/codeAction 1 [93m read-unlocked[0m
+2022/05/30 14:23:11 [91mIDE <-- LS     CL: ANSWER UNBOUND (1): [0m
+2022/05/30 14:23:11 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 2: [0m
+2022/05/30 14:23:11 IDE --> textDocument/documentSymbol 2 [93m read-locked[0m
+2022/05/30 14:23:11 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 14:23:11     URI: converted 0:9-0:10 to /not-ino:0:9-0:10
+2022/05/30 14:23:11     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 14:23:11 IDE --> textDocument/documentSymbol 2 sent to Clang
+2022/05/30 14:23:11 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 2: [0m
+2022/05/30 14:23:11     URI: converted 84:2-84:8 to D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino:75:2-75:8
+2022/05/30 14:23:11 CLG <-- textDocument/publishDiagnostics notif15 to IDE: publishDiagnostics(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino):
+2022/05/30 14:23:11 CLG <-- textDocument/publishDiagnostics notif15 > 75:2 - 1: unknown_typename_suggest
+2022/05/30 14:23:11 [91mIDE <-- LS     CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 14:23:11 CLG <-- textDocument/publishDiagnostics notif15 [93m read-unlocked[0m
+2022/05/30 14:23:11 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 2 (2): [0m
+2022/05/30 14:23:11     <-- documentSymbol(25 document symbols)
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Struct 16:8-19:1
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Field 17:4-17:12
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Field 18:4-18:12
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Class 16:0-19:10
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 25:0-25:25
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 26:0-26:30
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 27:0-27:30
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 31:0-31:30
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 32:0-32:33
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 33:0-33:33
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 35:0-35:17
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 36:0-36:14
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 37:0-37:14
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 39:0-39:26
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 41:0-41:18
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 42:0-42:38
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 44:0-44:30
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 45:0-45:24
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 46:0-46:30
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 48:0-60:1
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Variable 62:0-71:1
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Function 74:0-74:12
+2022/05/30 14:23:11       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 14:23:11     > convert Function 76:0-76:44
+2022/05/30 14:23:11       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 14:23:11     > convert Function 78:0-78:11
+2022/05/30 14:23:11       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 14:23:11     > convert Function 80:0-132:1
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Function 135:0-147:1
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11     > convert Function 149:0-190:1
+2022/05/30 14:23:11     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 14:23:11 IDE --> textDocument/documentSymbol 2 [93m read-unlocked[0m
+2022/05/30 14:23:11 [91mIDE <-- LS     CL: ANSWER UNBOUND (2): [0m
+2022/05/30 14:23:11 [92mIDE --> LS     CL: ANSWER window/workDoneProgress/create 0 (0): [0m
+2022/05/30 14:23:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 14:23:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 14:23:11 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 3: [0m
+2022/05/30 14:23:11 IDE --> textDocument/codeAction 3 [93m read-locked[0m
+2022/05/30 14:23:11 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:0:0)
+2022/05/30 14:23:11     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:2:0)
+2022/05/30 14:23:11 IDE --> textDocument/codeAction 3 sent to Clang
+2022/05/30 14:23:11 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 3: [0m
+2022/05/30 14:23:11 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 3 (3): [0m
+2022/05/30 14:23:11     <-- codeAction(0 elements)
+2022/05/30 14:23:11 <-- codeAction(0 elements)
+2022/05/30 14:23:11 IDE --> textDocument/codeAction 3 [93m read-unlocked[0m
+2022/05/30 14:23:11 [91mIDE <-- LS     CL: ANSWER UNBOUND (3): [0m
+2022/05/30 14:23:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 14:23:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 14:23:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 14:23:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 14:23:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 14:23:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 14:23:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 14:23:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 14:23:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 14:23:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 14:23:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 14:23:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 14:23:15 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 14:23:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 14:23:15 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 14:23:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 14:23:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 14:23:15 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 14:23:18 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 14:23:18 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 14:23:18 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 14:23:18 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 14:23:19 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 14:23:19 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 14:23:19 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 14:23:19 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 14:23:19 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 14:23:19 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 14:23:19 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 14:23:19 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 14:23:19 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 14:23:19 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 14:23:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 14:23:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 14:23:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 14:23:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 14:23:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 14:23:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 14:23:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 14:23:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 14:23:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 14:23:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 14:23:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 14:23:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 14:23:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 14:23:23 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 14:23:23 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 14:23:23 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 14:23:23 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 14:23:23 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 14:23:23 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 14:23:23 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 14:23:24 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 14:23:24 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 14:23:24 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 14:23:26 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 14:23:26 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 14:23:26 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 14:23:26 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 14:23:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 14:23:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 14:23:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 14:23:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 14:23:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 14:23:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 14:23:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 14:23:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 14:23:28 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 14:23:28 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 14:23:28 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 14:23:28 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 14:23:30 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 14:23:30 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 14:23:30 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 14:23:30 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 14:23:30 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 14:23:30 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 14:23:30 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 14:23:30 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 14:23:30 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 14:23:30 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 14:23:30 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 14:23:31 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 14:23:31 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 14:23:31 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 14:23:31 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 14:23:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 14:23:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 14:23:32 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 14:23:32 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 14:23:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 14:23:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 14:23:34 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 14:23:34 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 14:23:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 14:23:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 14:23:34 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 14:23:34 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 14:23:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 14:23:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 14:23:34 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 14:23:34 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 14:23:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 14:23:34 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 14:23:35 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 14:23:35 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 14:23:38 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 35/36 97.22222222222223%[0m
+2022/05/30 14:23:38 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 35/36 97.22222222222223%[0m
+2022/05/30 14:23:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress END [0m
+2022/05/30 14:23:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress END [0m
+2022/05/30 14:58:16 [92mIDE --> LS     CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 14:58:16 IDE --> textDocument/didChange notif3 [93m locked[0m
+2022/05/30 14:58:16 --> didChange(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@2)
+2022/05/30 14:58:16      > 110:0-111:0 -> "    DW1000Ng::setAntennaDelay(16637);//16436\r\n"
+2022/05/30 14:58:16 INCK--- #include change detected, triggering sketch rebuild!
+2022/05/30 14:58:16     --> didChange(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@2)
+2022/05/30 14:58:16          > 119:0-120:0 -> "    DW1000Ng::setAntennaDelay(16637);//16436\r\n"
+2022/05/30 14:58:16 [91mIDE     LS --> CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 14:58:16 IDE --> textDocument/didChange notif3 [93m unlocked[0m
+2022/05/30 14:58:16 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 4: [0m
+2022/05/30 14:58:16 IDE --> textDocument/documentSymbol 4 [93m read-locked[0m
+2022/05/30 14:58:16 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 14:58:16     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server182818355/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 14:58:16 IDE --> textDocument/documentSymbol 4 sent to Clang
+2022/05/30 14:58:16 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 4: [0m
+2022/05/30 14:58:16 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 4 (4): [0m
+2022/05/30 14:58:16 IDE --> textDocument/documentSymbol 4 The clangd process has lost track of the open document.
+2022/05/30 14:58:16 IDE --> textDocument/documentSymbol 4   jsonrpc2: code -32602 message: trying to get AST for non-added document
+2022/05/30 14:58:16 IDE --> textDocument/documentSymbol 4 Please restart the language server.
+2022/05/30 14:58:16 Lost connection with clangd!
+2022/05/30 14:58:16 removing buildpath
+2022/05/30 14:58:16     <-- null documentSymbol
+2022/05/30 14:58:16 IDE --> textDocument/documentSymbol 4 [93m read-unlocked[0m
+2022/05/30 14:58:16 [91mIDE <-- LS     CL: ANSWER UNBOUND (4): [0m
+
+
+
+
+
+
+
+Started logging.
+2022/05/30 14:58:16 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols.log
+2022/05/30 14:58:16 Initial board configuration: {"WisBlock RAK11300 Board" rakwireless:mbed_rp2040:WisCoreRAK11300Board}
+2022/05/30 14:58:16 Language server build path: C:\Users\ltp\AppData\Local\Temp\arduino-language-server396881547
+2022/05/30 14:58:16 Language server build sketch root: C:\Users\ltp\AppData\Local\Temp\arduino-language-server396881547\sketch
+2022/05/30 14:58:16 [92mIDE --> LS     CL: REQUEST initialize 0: [0m
+2022/05/30 14:58:16 IDE --> initialize 0 [93m locked[0m
+2022/05/30 14:58:16 IDE --> initialize 0 [93m unlocked[0m
+2022/05/30 14:58:16 INIT--- initializing workbench
+2022/05/30 14:58:16 INIT--- [93m locked[0m
+2022/05/30 14:58:16     --> initialize(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR)
+2022/05/30 14:58:16 [91mIDE <-- LS     CL: ANSWER UNBOUND (0): [0m
+2022/05/30 14:58:16 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml compile --fqbn rakwireless:mbed_rp2040:WisCoreRAK11300Board --only-compilation-database --clean --source-override C:\Users\ltp\AppData\Local\Temp\300725358 --build-path C:\Users\ltp\AppData\Local\Temp\arduino-language-server396881547 --format json D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR
+2022/05/30 14:58:16 [92mIDE --> LS     CL: NOTIFICATION initialized: [0m
+2022/05/30 15:00:06 arduino-cli output: {
+  "compiler_out": "",
+  "compiler_err": "",
+  "builder_result": {
+    "build_path": "C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server396881547",
+    "used_libraries": [
+      {
+        "name": "RAK13801-UWB-Library",
+        "author": "RAKWireless \u003crakwireless.com\u003e",
+        "maintainer": "RAKWireless \u003crakwireless.com\u003e",
+        "sentence": "Arduino library to use Decawave DW1000 IC.",
+        "paragraph": "This library is intended to be used with Decawave DW1000 IC and modules. It provides an API for hardware abstraction and high-level utilities for RTLS applications.",
+        "website": "https://github.com/RAKWireless/RAK13801-UWB-Library",
+        "category": "Uncategorized",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library",
+        "source_dir": "c:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\src",
+        "real_name": "RAK13801-UWB-Library",
+        "version": "1.0.0",
+        "license": "Unspecified",
+        "location": 1,
+        "layout": 1,
+        "examples": [
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicConnectivityTest",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicReceiver",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicSender",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\SimpleAntennaCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorB_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorC_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorMain_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TransmitSpectrumPowerCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingInitiator",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingResponder"
+        ],
+        "provides_includes": [
+          "DW1000Ng.hpp",
+          "DW1000NgCompileOptions.hpp",
+          "DW1000NgConfiguration.hpp",
+          "DW1000NgConstants.hpp",
+          "DW1000NgRTLS.hpp",
+          "DW1000NgRanging.hpp",
+          "DW1000NgRegisters.hpp",
+          "DW1000NgTime.hpp",
+          "DW1000NgUtils.hpp",
+          "SPIporting.hpp",
+          "deprecated.hpp",
+          "require_cpp11.hpp"
+        ]
+      },
+      {
+        "name": "SPI",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "source_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "container_platform": "rakwireless:mbed_rp2040@0.0.5",
+        "is_legacy": true,
+        "location": 2,
+        "provides_includes": [
+          "SPI.h"
+        ]
+      }
+    ]
+  },
+  "success": true
+}
+
+2022/05/30 15:00:06 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml config dump --format json
+2022/05/30 15:00:06 Arduino Data Dir ->  c:\Users\ltp\AppData\Local\Arduino15
+2022/05/30 15:00:06     Starting clangd: c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\bin\clangd.exe -log=verbose --compile-commands-dir=C:\Users\ltp\AppData\Local\Temp\arduino-language-server396881547 -query-driver=c:\Users\ltp\AppData\Local\Arduino15\packages\**
+2022/05/30 15:00:06 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd.log
+2022/05/30 15:00:06 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd-err.log
+2022/05/30 15:00:06 [91mIDE     LS --> CL: REQUEST initialize 0: [0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: ANSWER initialize 0 (0): [0m
+2022/05/30 15:00:06 [91mIDE     LS --> CL: NOTIFICATION initialized: [0m
+2022/05/30 15:00:06 INIT--- initializing workbench (done)
+2022/05/30 15:00:06 INIT--- [93m unlocked[0m
+2022/05/30 15:00:06 IDE --> initialized notif1 [93m read-locked[0m
+2022/05/30 15:00:06 IDE --> initialized notif1 notification is not propagated to clangd
+2022/05/30 15:00:06 IDE --> initialized notif1 [93m read-unlocked[0m
+2022/05/30 15:00:06 [92mIDE --> LS     CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:00:06 IDE --> textDocument/didOpen notif2 [93m locked[0m
+2022/05/30 15:00:06 IDE --> textDocument/didOpen notif2 (file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@2 as 'cpp')
+2022/05/30 15:00:06     increasing .ino tracked files count: 1
+2022/05/30 15:00:06 IDE --> textDocument/didOpen notif2 to clang: didOpen(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@1 as 'cpp')
+2022/05/30 15:00:06 IDE --> textDocument/didOpen notif2 sent to Clang
+2022/05/30 15:00:06 [91mIDE     LS --> CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:00:06 IDE --> textDocument/didOpen notif2 Queued resfreshing document symbols
+2022/05/30 15:00:06 IDE --> textDocument/didOpen notif2 [93m unlocked[0m
+2022/05/30 15:00:06 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 1: [0m
+2022/05/30 15:00:06 SYLD--- [93m read-locked[0m
+2022/05/30 15:00:06 SYLD--- requesting documentSymbol for file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp
+2022/05/30 15:00:06 SYLD--- [93m read-unlocked[0m
+2022/05/30 15:00:06 IDE --> textDocument/codeAction 1 [93m read-locked[0m
+2022/05/30 15:00:06 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:0:0)
+2022/05/30 15:00:06 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 1: [0m
+2022/05/30 15:00:06     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:2:0)
+2022/05/30 15:00:06 IDE --> textDocument/codeAction 1 sent to Clang
+2022/05/30 15:00:06 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 2: [0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 15:00:06 [91mIDE     LS --> CL: ANSWER UNBOUND (0): [0m
+2022/05/30 15:00:06 [91mIDE <-- LS     CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/1 0%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 15:00:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 15:00:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:00:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:00:09 [92mIDE     LS <-- CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:00:09 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 1 (1): [0m
+2022/05/30 15:00:09 CLG <-- textDocument/publishDiagnostics notif15 (queued)
+2022/05/30 15:00:09 CLG <-- textDocument/publishDiagnostics notif15 [93m read-locked[0m
+2022/05/30 15:00:09 CLG <-- textDocument/publishDiagnostics notif15 (running)
+2022/05/30 15:00:09 SYLD--- [93m read-locked[0m
+2022/05/30 15:00:09 SYLD---    symbol: Function setup 74:0-74:12
+2022/05/30 15:00:09 SYLD---             > void setup()
+2022/05/30 15:00:09 SYLD---    symbol: Function calculatePosition 76:0-76:44
+2022/05/30 15:00:09 SYLD---             > void calculatePosition(double &x, double &y)
+2022/05/30 15:00:09 SYLD---    symbol: Function loop 78:0-78:11
+2022/05/30 15:00:09 SYLD---             > void loop()
+2022/05/30 15:00:09 SYLD---    symbol: Function setup 80:0-132:1
+2022/05/30 15:00:09 SYLD---      TRIMMED> void setup() 
+2022/05/30 15:00:09 SYLD---    symbol: Function calculatePosition 135:0-147:1
+2022/05/30 15:00:09 SYLD---      TRIMMED> void calculatePosition(double &x, double &y) 
+2022/05/30 15:00:09 SYLD---    symbol: Function loop 149:0-190:1
+2022/05/30 15:00:09 SYLD---      TRIMMED> void loop() 
+2022/05/30 15:00:09 SYLD--- [93m read-unlocked[0m
+2022/05/30 15:00:09 SYLD--- (done)
+2022/05/30 15:00:09 CLG <-- textDocument/publishDiagnostics notif15 publishDiagnostics(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp):
+2022/05/30 15:00:09 CLG <-- textDocument/publishDiagnostics notif15 > 0:9 - 1: pp_file_not_found
+2022/05/30 15:00:09 CLG <-- textDocument/publishDiagnostics notif15 > 84:2 - 1: unknown_typename_suggest
+2022/05/30 15:00:09     URI: converted 0:9-0:10 to /not-ino:0:9-0:10
+2022/05/30 15:00:09 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 2 (2): [0m
+2022/05/30 15:00:09     <-- codeAction(0 elements)
+2022/05/30 15:00:09 <-- codeAction(0 elements)
+2022/05/30 15:00:09 IDE --> textDocument/codeAction 1 [93m read-unlocked[0m
+2022/05/30 15:00:09 [91mIDE <-- LS     CL: ANSWER UNBOUND (1): [0m
+2022/05/30 15:00:09 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 2: [0m
+2022/05/30 15:00:09 IDE --> textDocument/documentSymbol 2 [93m read-locked[0m
+2022/05/30 15:00:09 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 15:00:09     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 15:00:09 IDE --> textDocument/documentSymbol 2 sent to Clang
+2022/05/30 15:00:09 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 3: [0m
+2022/05/30 15:00:09     URI: converted 84:2-84:8 to D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino:75:2-75:8
+2022/05/30 15:00:09 CLG <-- textDocument/publishDiagnostics notif15 to IDE: publishDiagnostics(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino):
+2022/05/30 15:00:09 CLG <-- textDocument/publishDiagnostics notif15 > 75:2 - 1: unknown_typename_suggest
+2022/05/30 15:00:09 [91mIDE <-- LS     CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:00:09 CLG <-- textDocument/publishDiagnostics notif15 [93m read-unlocked[0m
+2022/05/30 15:00:09 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 3 (3): [0m
+2022/05/30 15:00:09     <-- documentSymbol(25 document symbols)
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Struct 16:8-19:1
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Field 17:4-17:12
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Field 18:4-18:12
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Class 16:0-19:10
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 25:0-25:25
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 26:0-26:30
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 27:0-27:30
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 31:0-31:30
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 32:0-32:33
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 33:0-33:33
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 35:0-35:17
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 36:0-36:14
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 37:0-37:14
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 39:0-39:26
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 41:0-41:18
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 42:0-42:38
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 44:0-44:30
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 45:0-45:24
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 46:0-46:30
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 48:0-60:1
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Variable 62:0-71:1
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Function 74:0-74:12
+2022/05/30 15:00:09       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:00:09     > convert Function 76:0-76:44
+2022/05/30 15:00:09       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:00:09     > convert Function 78:0-78:11
+2022/05/30 15:00:09       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:00:09     > convert Function 80:0-132:1
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Function 135:0-147:1
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09     > convert Function 149:0-190:1
+2022/05/30 15:00:09     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:00:09 IDE --> textDocument/documentSymbol 2 [93m read-unlocked[0m
+2022/05/30 15:00:09 [91mIDE <-- LS     CL: ANSWER UNBOUND (2): [0m
+2022/05/30 15:00:09 [92mIDE --> LS     CL: REQUEST textDocument/hover 3: [0m
+2022/05/30 15:00:09 IDE --> textDocument/hover 3 [93m read-locked[0m
+2022/05/30 15:00:09 --> hover(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:23:27)
+2022/05/30 15:00:09     --> hover(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:25:27)
+2022/05/30 15:00:09 IDE --> textDocument/hover 3 sent to Clang
+2022/05/30 15:00:09 [91mIDE     LS --> CL: REQUEST textDocument/hover 4: [0m
+2022/05/30 15:00:09 [92mIDE     LS <-- CL: ANSWER textDocument/hover 4 (4): [0m
+2022/05/30 15:00:09 IDE --> textDocument/hover 3 [93m read-unlocked[0m
+2022/05/30 15:00:09 [91mIDE <-- LS     CL: ANSWER UNBOUND (3): [0m
+2022/05/30 15:00:09 [92mIDE --> LS     CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:00:09 IDE --> $/cancelRequest notif3 [93m read-locked[0m
+2022/05/30 15:00:09 IDE --> $/cancelRequest notif3 sent to Clang
+2022/05/30 15:00:09 [91mIDE     LS --> CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:00:09 IDE --> $/cancelRequest notif3 [93m read-unlocked[0m
+2022/05/30 15:00:09 [92mIDE --> LS     CL: ANSWER window/workDoneProgress/create 0 (0): [0m
+2022/05/30 15:00:09 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 15:00:09 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:00:10 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 4: [0m
+2022/05/30 15:00:10 IDE --> textDocument/codeAction 4 [93m read-locked[0m
+2022/05/30 15:00:10 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:0:0)
+2022/05/30 15:00:10     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:2:0)
+2022/05/30 15:00:10 IDE --> textDocument/codeAction 4 sent to Clang
+2022/05/30 15:00:10 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 5: [0m
+2022/05/30 15:00:10 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 5 (5): [0m
+2022/05/30 15:00:10     <-- codeAction(0 elements)
+2022/05/30 15:00:10 <-- codeAction(0 elements)
+2022/05/30 15:00:10 IDE --> textDocument/codeAction 4 [93m read-unlocked[0m
+2022/05/30 15:00:10 [91mIDE <-- LS     CL: ANSWER UNBOUND (4): [0m
+2022/05/30 15:00:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:00:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:00:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:00:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:00:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:00:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:00:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:00:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:00:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:00:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:00:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:00:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:00:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:00:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:00:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:00:13 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:00:13 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:00:13 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:00:13 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:00:13 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:00:13 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:00:13 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:00:13 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:00:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:00:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:00:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:00:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:00:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:00:15 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:00:15 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:00:15 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:00:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:00:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:00:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:00:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:00:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:00:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:00:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:00:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:00:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:00:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:00:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:00:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:00:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:00:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:00:17 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:00:17 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:00:17 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:00:17 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:00:17 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:00:17 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:00:17 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:00:17 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:00:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:00:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:00:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:00:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:00:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:00:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:00:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:00:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:00:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:00:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:00:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:00:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:00:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:00:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:00:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:00:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:00:23 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:00:23 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:00:23 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:00:23 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:00:24 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:00:24 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:00:24 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:00:24 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:00:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:00:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:00:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:00:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:00:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:00:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:00:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:00:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:00:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:00:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:00:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:00:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:00:27 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:00:27 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:00:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:00:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:00:32 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:00:32 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:00:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:00:32 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:00:32 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:00:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:00:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:00:33 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:00:33 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:00:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:00:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:00:33 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:00:33 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:00:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 15:00:33 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 15:00:35 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 15:00:35 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 15:00:37 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 35/36 97.22222222222223%[0m
+2022/05/30 15:00:37 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 35/36 97.22222222222223%[0m
+2022/05/30 15:00:38 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress END [0m
+2022/05/30 15:00:38 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress END [0m
+2022/05/30 15:04:42 [92mIDE --> LS     CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 15:04:42 IDE --> textDocument/didChange notif4 [93m locked[0m
+2022/05/30 15:04:42 --> didChange(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@3)
+2022/05/30 15:04:42      > 110:0-111:0 -> "    DW1000Ng::setAntennaDelay(16417);//16436\r\n"
+2022/05/30 15:04:42 INCK--- #include change detected, triggering sketch rebuild!
+2022/05/30 15:04:42     --> didChange(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@2)
+2022/05/30 15:04:42          > 119:0-120:0 -> "    DW1000Ng::setAntennaDelay(16417);//16436\r\n"
+2022/05/30 15:04:42 [91mIDE     LS --> CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 15:04:42 IDE --> textDocument/didChange notif4 [93m unlocked[0m
+2022/05/30 15:04:42 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 5: [0m
+2022/05/30 15:04:42 IDE --> textDocument/documentSymbol 5 [93m read-locked[0m
+2022/05/30 15:04:42 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 15:04:42     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server396881547/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 15:04:42 IDE --> textDocument/documentSymbol 5 sent to Clang
+2022/05/30 15:04:42 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 6: [0m
+2022/05/30 15:04:42 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 6 (6): [0m
+2022/05/30 15:04:42 IDE --> textDocument/documentSymbol 5 The clangd process has lost track of the open document.
+2022/05/30 15:04:42 IDE --> textDocument/documentSymbol 5   jsonrpc2: code -32602 message: trying to get AST for non-added document
+2022/05/30 15:04:42 IDE --> textDocument/documentSymbol 5 Please restart the language server.
+2022/05/30 15:04:42 Lost connection with clangd!
+2022/05/30 15:04:42 removing buildpath
+2022/05/30 15:04:42     <-- null documentSymbol
+2022/05/30 15:04:42 IDE --> textDocument/documentSymbol 5 [93m read-unlocked[0m
+2022/05/30 15:04:42 [91mIDE <-- LS     CL: ANSWER UNBOUND (5): [0m
+
+
+
+
+
+
+
+Started logging.
+2022/05/30 15:04:42 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols.log
+2022/05/30 15:04:42 Initial board configuration: {"WisBlock RAK11300 Board" rakwireless:mbed_rp2040:WisCoreRAK11300Board}
+2022/05/30 15:04:42 Language server build path: C:\Users\ltp\AppData\Local\Temp\arduino-language-server159266567
+2022/05/30 15:04:42 Language server build sketch root: C:\Users\ltp\AppData\Local\Temp\arduino-language-server159266567\sketch
+2022/05/30 15:04:42 [92mIDE --> LS     CL: REQUEST initialize 0: [0m
+2022/05/30 15:04:42 IDE --> initialize 0 [93m locked[0m
+2022/05/30 15:04:42 IDE --> initialize 0 [93m unlocked[0m
+2022/05/30 15:04:42 INIT--- initializing workbench
+2022/05/30 15:04:42 INIT--- [93m locked[0m
+2022/05/30 15:04:42     --> initialize(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR)
+2022/05/30 15:04:42 [91mIDE <-- LS     CL: ANSWER UNBOUND (0): [0m
+2022/05/30 15:04:42 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml compile --fqbn rakwireless:mbed_rp2040:WisCoreRAK11300Board --only-compilation-database --clean --source-override C:\Users\ltp\AppData\Local\Temp\843496122 --build-path C:\Users\ltp\AppData\Local\Temp\arduino-language-server159266567 --format json D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR
+2022/05/30 15:04:42 [92mIDE --> LS     CL: NOTIFICATION initialized: [0m
+2022/05/30 15:06:28 arduino-cli output: {
+  "compiler_out": "",
+  "compiler_err": "",
+  "builder_result": {
+    "build_path": "C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server159266567",
+    "used_libraries": [
+      {
+        "name": "RAK13801-UWB-Library",
+        "author": "RAKWireless \u003crakwireless.com\u003e",
+        "maintainer": "RAKWireless \u003crakwireless.com\u003e",
+        "sentence": "Arduino library to use Decawave DW1000 IC.",
+        "paragraph": "This library is intended to be used with Decawave DW1000 IC and modules. It provides an API for hardware abstraction and high-level utilities for RTLS applications.",
+        "website": "https://github.com/RAKWireless/RAK13801-UWB-Library",
+        "category": "Uncategorized",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library",
+        "source_dir": "c:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\src",
+        "real_name": "RAK13801-UWB-Library",
+        "version": "1.0.0",
+        "license": "Unspecified",
+        "location": 1,
+        "layout": 1,
+        "examples": [
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicConnectivityTest",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicReceiver",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicSender",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\SimpleAntennaCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorB_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorC_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorMain_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TransmitSpectrumPowerCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingInitiator",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingResponder"
+        ],
+        "provides_includes": [
+          "DW1000Ng.hpp",
+          "DW1000NgCompileOptions.hpp",
+          "DW1000NgConfiguration.hpp",
+          "DW1000NgConstants.hpp",
+          "DW1000NgRTLS.hpp",
+          "DW1000NgRanging.hpp",
+          "DW1000NgRegisters.hpp",
+          "DW1000NgTime.hpp",
+          "DW1000NgUtils.hpp",
+          "SPIporting.hpp",
+          "deprecated.hpp",
+          "require_cpp11.hpp"
+        ]
+      },
+      {
+        "name": "SPI",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "source_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "container_platform": "rakwireless:mbed_rp2040@0.0.5",
+        "is_legacy": true,
+        "location": 2,
+        "provides_includes": [
+          "SPI.h"
+        ]
+      }
+    ]
+  },
+  "success": true
+}
+
+2022/05/30 15:06:28 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml config dump --format json
+2022/05/30 15:06:29 Arduino Data Dir ->  c:\Users\ltp\AppData\Local\Arduino15
+2022/05/30 15:06:29     Starting clangd: c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\bin\clangd.exe -log=verbose --compile-commands-dir=C:\Users\ltp\AppData\Local\Temp\arduino-language-server159266567 -query-driver=c:\Users\ltp\AppData\Local\Arduino15\packages\**
+2022/05/30 15:06:29 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd.log
+2022/05/30 15:06:29 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd-err.log
+2022/05/30 15:06:29 [91mIDE     LS --> CL: REQUEST initialize 0: [0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: ANSWER initialize 0 (0): [0m
+2022/05/30 15:06:29 [91mIDE     LS --> CL: NOTIFICATION initialized: [0m
+2022/05/30 15:06:29 INIT--- initializing workbench (done)
+2022/05/30 15:06:29 INIT--- [93m unlocked[0m
+2022/05/30 15:06:29 IDE --> initialized notif1 [93m read-locked[0m
+2022/05/30 15:06:29 IDE --> initialized notif1 notification is not propagated to clangd
+2022/05/30 15:06:29 IDE --> initialized notif1 [93m read-unlocked[0m
+2022/05/30 15:06:29 [92mIDE --> LS     CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:06:29 IDE --> textDocument/didOpen notif2 [93m locked[0m
+2022/05/30 15:06:29 IDE --> textDocument/didOpen notif2 (file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@3 as 'cpp')
+2022/05/30 15:06:29     increasing .ino tracked files count: 1
+2022/05/30 15:06:29 IDE --> textDocument/didOpen notif2 to clang: didOpen(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@1 as 'cpp')
+2022/05/30 15:06:29 IDE --> textDocument/didOpen notif2 sent to Clang
+2022/05/30 15:06:29 [91mIDE     LS --> CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:06:29 IDE --> textDocument/didOpen notif2 Queued resfreshing document symbols
+2022/05/30 15:06:29 IDE --> textDocument/didOpen notif2 [93m unlocked[0m
+2022/05/30 15:06:29 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 1: [0m
+2022/05/30 15:06:29 SYLD--- [93m read-locked[0m
+2022/05/30 15:06:29 IDE --> textDocument/codeAction 1 [93m read-locked[0m
+2022/05/30 15:06:29 SYLD--- requesting documentSymbol for file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp
+2022/05/30 15:06:29 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:0:0)
+2022/05/30 15:06:29 SYLD--- [93m read-unlocked[0m
+2022/05/30 15:06:29 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 1: [0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 15:06:29 [91mIDE     LS --> CL: ANSWER UNBOUND (0): [0m
+2022/05/30 15:06:29 [91mIDE <-- LS     CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/1 0%[0m
+2022/05/30 15:06:29     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:2:0)
+2022/05/30 15:06:29 IDE --> textDocument/codeAction 1 sent to Clang
+2022/05/30 15:06:29 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 2: [0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:06:29 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:06:31 [92mIDE     LS <-- CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:06:31 CLG <-- textDocument/publishDiagnostics notif9 (queued)
+2022/05/30 15:06:31 CLG <-- textDocument/publishDiagnostics notif9 [93m read-locked[0m
+2022/05/30 15:06:31 CLG <-- textDocument/publishDiagnostics notif9 (running)
+2022/05/30 15:06:31 CLG <-- textDocument/publishDiagnostics notif9 publishDiagnostics(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp):
+2022/05/30 15:06:31 CLG <-- textDocument/publishDiagnostics notif9 > 0:9 - 1: pp_file_not_found
+2022/05/30 15:06:31 CLG <-- textDocument/publishDiagnostics notif9 > 84:2 - 1: unknown_typename_suggest
+2022/05/30 15:06:31 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 1 (1): [0m
+2022/05/30 15:06:31 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 2 (2): [0m
+2022/05/30 15:06:31 SYLD--- [93m read-locked[0m
+2022/05/30 15:06:31 SYLD---    symbol: Function setup 74:0-74:12
+2022/05/30 15:06:31 SYLD---             > void setup()
+2022/05/30 15:06:31 SYLD---    symbol: Function calculatePosition 76:0-76:44
+2022/05/30 15:06:31 SYLD---             > void calculatePosition(double &x, double &y)
+2022/05/30 15:06:31 SYLD---    symbol: Function loop 78:0-78:11
+2022/05/30 15:06:31 SYLD---             > void loop()
+2022/05/30 15:06:31 SYLD---    symbol: Function setup 80:0-132:1
+2022/05/30 15:06:31 SYLD---      TRIMMED> void setup() 
+2022/05/30 15:06:31 SYLD---    symbol: Function calculatePosition 135:0-147:1
+2022/05/30 15:06:31     <-- codeAction(0 elements)
+2022/05/30 15:06:31 <-- codeAction(0 elements)
+2022/05/30 15:06:31 IDE --> textDocument/codeAction 1 [93m read-unlocked[0m
+2022/05/30 15:06:31 [91mIDE <-- LS     CL: ANSWER UNBOUND (1): [0m
+2022/05/30 15:06:31 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 2: [0m
+2022/05/30 15:06:31 IDE --> textDocument/documentSymbol 2 [93m read-locked[0m
+2022/05/30 15:06:31 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 15:06:31     URI: converted 0:9-0:10 to /not-ino:0:9-0:10
+2022/05/30 15:06:31     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 15:06:31 IDE --> textDocument/documentSymbol 2 sent to Clang
+2022/05/30 15:06:31 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 3: [0m
+2022/05/30 15:06:31 SYLD---      TRIMMED> void calculatePosition(double &x, double &y) 
+2022/05/30 15:06:31 SYLD---    symbol: Function loop 149:0-190:1
+2022/05/30 15:06:31 SYLD---      TRIMMED> void loop() 
+2022/05/30 15:06:31 SYLD--- [93m read-unlocked[0m
+2022/05/30 15:06:31 SYLD--- (done)
+2022/05/30 15:06:31     URI: converted 84:2-84:8 to D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino:75:2-75:8
+2022/05/30 15:06:31 CLG <-- textDocument/publishDiagnostics notif9 to IDE: publishDiagnostics(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino):
+2022/05/30 15:06:31 CLG <-- textDocument/publishDiagnostics notif9 > 75:2 - 1: unknown_typename_suggest
+2022/05/30 15:06:31 [91mIDE <-- LS     CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:06:31 CLG <-- textDocument/publishDiagnostics notif9 [93m read-unlocked[0m
+2022/05/30 15:06:31 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 3 (3): [0m
+2022/05/30 15:06:31     <-- documentSymbol(25 document symbols)
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Struct 16:8-19:1
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Field 17:4-17:12
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Field 18:4-18:12
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Class 16:0-19:10
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 25:0-25:25
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 26:0-26:30
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 27:0-27:30
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 31:0-31:30
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 32:0-32:33
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 33:0-33:33
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 35:0-35:17
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 36:0-36:14
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 37:0-37:14
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 39:0-39:26
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 41:0-41:18
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 42:0-42:38
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 44:0-44:30
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 45:0-45:24
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 46:0-46:30
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 48:0-60:1
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Variable 62:0-71:1
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Function 74:0-74:12
+2022/05/30 15:06:31       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:06:31     > convert Function 76:0-76:44
+2022/05/30 15:06:31       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:06:31     > convert Function 78:0-78:11
+2022/05/30 15:06:31       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:06:31     > convert Function 80:0-132:1
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Function 135:0-147:1
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31     > convert Function 149:0-190:1
+2022/05/30 15:06:31     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:06:31 IDE --> textDocument/documentSymbol 2 [93m read-unlocked[0m
+2022/05/30 15:06:31 [91mIDE <-- LS     CL: ANSWER UNBOUND (2): [0m
+2022/05/30 15:06:31 [92mIDE --> LS     CL: ANSWER window/workDoneProgress/create 0 (0): [0m
+2022/05/30 15:06:31 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 15:06:31 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:06:32 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 3: [0m
+2022/05/30 15:06:32 IDE --> textDocument/codeAction 3 [93m read-locked[0m
+2022/05/30 15:06:32 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:0:0)
+2022/05/30 15:06:32     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:2:0)
+2022/05/30 15:06:32 IDE --> textDocument/codeAction 3 sent to Clang
+2022/05/30 15:06:32 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 4: [0m
+2022/05/30 15:06:32 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 4 (4): [0m
+2022/05/30 15:06:32     <-- codeAction(0 elements)
+2022/05/30 15:06:32 <-- codeAction(0 elements)
+2022/05/30 15:06:32 IDE --> textDocument/codeAction 3 [93m read-unlocked[0m
+2022/05/30 15:06:32 [91mIDE <-- LS     CL: ANSWER UNBOUND (3): [0m
+2022/05/30 15:06:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:06:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:06:34 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:06:34 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:06:35 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 15:06:35 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 15:06:35 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 15:06:35 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 15:06:35 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:06:35 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:06:35 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:06:35 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:06:39 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:06:39 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:06:39 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:06:39 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:06:40 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:06:40 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:06:44 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:06:44 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:06:44 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:06:44 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:06:44 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:06:44 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:06:44 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:06:44 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:06:45 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:06:45 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:06:45 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:06:45 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:06:45 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:06:45 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:06:45 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:06:45 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:06:45 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:06:45 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:06:45 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:06:45 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:06:50 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:06:50 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:06:51 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:06:51 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:06:51 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:06:51 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:06:56 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:06:56 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:06:56 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:06:56 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:06:56 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:06:56 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:06:56 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:06:56 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:06:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:06:57 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:06:57 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:06:57 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:06:58 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:06:58 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:06:58 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:06:58 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:06:58 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:06:58 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:06:58 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:06:58 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:06:59 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:06:59 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:06:59 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:06:59 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:07:01 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:07:01 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:07:01 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:07:01 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:07:02 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:07:02 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:07:02 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:07:02 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:07:03 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:07:03 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:07:03 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:07:03 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:07:03 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:07:03 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:07:03 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:07:03 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:07:04 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:07:04 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:07:04 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:07:04 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:07:04 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 15:07:04 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 15:07:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 15:07:06 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 15:07:09 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 35/36 97.22222222222223%[0m
+2022/05/30 15:07:09 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 35/36 97.22222222222223%[0m
+2022/05/30 15:07:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress END [0m
+2022/05/30 15:07:10 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress END [0m
+2022/05/30 15:09:08 [92mIDE --> LS     CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 15:09:08 IDE --> textDocument/didChange notif3 [93m locked[0m
+2022/05/30 15:09:08 --> didChange(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@4)
+2022/05/30 15:09:08      > 110:0-111:0 -> "    DW1000Ng::setAntennaDelay(16425);//16436\r\n"
+2022/05/30 15:09:08 INCK--- #include change detected, triggering sketch rebuild!
+2022/05/30 15:09:08     --> didChange(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@2)
+2022/05/30 15:09:08          > 119:0-120:0 -> "    DW1000Ng::setAntennaDelay(16425);//16436\r\n"
+2022/05/30 15:09:08 [91mIDE     LS --> CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 15:09:08 IDE --> textDocument/didChange notif3 [93m unlocked[0m
+2022/05/30 15:09:08 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 4: [0m
+2022/05/30 15:09:08 IDE --> textDocument/documentSymbol 4 [93m read-locked[0m
+2022/05/30 15:09:08 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 15:09:08     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server159266567/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 15:09:08 IDE --> textDocument/documentSymbol 4 sent to Clang
+2022/05/30 15:09:08 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 5: [0m
+2022/05/30 15:09:08 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 5 (5): [0m
+2022/05/30 15:09:08 IDE --> textDocument/documentSymbol 4 The clangd process has lost track of the open document.
+2022/05/30 15:09:08 IDE --> textDocument/documentSymbol 4   jsonrpc2: code -32602 message: trying to get AST for non-added document
+2022/05/30 15:09:08 IDE --> textDocument/documentSymbol 4 Please restart the language server.
+2022/05/30 15:09:08 Lost connection with clangd!
+2022/05/30 15:09:08 removing buildpath
+2022/05/30 15:09:08     <-- null documentSymbol
+2022/05/30 15:09:08 IDE --> textDocument/documentSymbol 4 [93m read-unlocked[0m
+2022/05/30 15:09:08 [91mIDE <-- LS     CL: ANSWER UNBOUND (4): [0m
+
+
+
+
+
+
+
+Started logging.
+2022/05/30 15:09:08 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols.log
+2022/05/30 15:09:08 Initial board configuration: {"WisBlock RAK11300 Board" rakwireless:mbed_rp2040:WisCoreRAK11300Board}
+2022/05/30 15:09:08 Language server build path: C:\Users\ltp\AppData\Local\Temp\arduino-language-server775711895
+2022/05/30 15:09:08 Language server build sketch root: C:\Users\ltp\AppData\Local\Temp\arduino-language-server775711895\sketch
+2022/05/30 15:09:08 [92mIDE --> LS     CL: REQUEST initialize 0: [0m
+2022/05/30 15:09:08 IDE --> initialize 0 [93m locked[0m
+2022/05/30 15:09:08 IDE --> initialize 0 [93m unlocked[0m
+2022/05/30 15:09:08 INIT--- initializing workbench
+2022/05/30 15:09:08 INIT--- [93m locked[0m
+2022/05/30 15:09:08 [91mIDE <-- LS     CL: ANSWER UNBOUND (0): [0m
+2022/05/30 15:09:08     --> initialize(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR)
+2022/05/30 15:09:08 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml compile --fqbn rakwireless:mbed_rp2040:WisCoreRAK11300Board --only-compilation-database --clean --source-override C:\Users\ltp\AppData\Local\Temp\132699914 --build-path C:\Users\ltp\AppData\Local\Temp\arduino-language-server775711895 --format json D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR
+2022/05/30 15:09:08 [92mIDE --> LS     CL: NOTIFICATION initialized: [0m
+2022/05/30 15:10:46 arduino-cli output: {
+  "compiler_out": "",
+  "compiler_err": "",
+  "builder_result": {
+    "build_path": "C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server775711895",
+    "used_libraries": [
+      {
+        "name": "RAK13801-UWB-Library",
+        "author": "RAKWireless \u003crakwireless.com\u003e",
+        "maintainer": "RAKWireless \u003crakwireless.com\u003e",
+        "sentence": "Arduino library to use Decawave DW1000 IC.",
+        "paragraph": "This library is intended to be used with Decawave DW1000 IC and modules. It provides an API for hardware abstraction and high-level utilities for RTLS applications.",
+        "website": "https://github.com/RAKWireless/RAK13801-UWB-Library",
+        "category": "Uncategorized",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library",
+        "source_dir": "c:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\src",
+        "real_name": "RAK13801-UWB-Library",
+        "version": "1.0.0",
+        "license": "Unspecified",
+        "location": 1,
+        "layout": 1,
+        "examples": [
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicConnectivityTest",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicReceiver",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicSender",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\SimpleAntennaCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorB_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorC_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorMain_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TransmitSpectrumPowerCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingInitiator",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingResponder"
+        ],
+        "provides_includes": [
+          "DW1000Ng.hpp",
+          "DW1000NgCompileOptions.hpp",
+          "DW1000NgConfiguration.hpp",
+          "DW1000NgConstants.hpp",
+          "DW1000NgRTLS.hpp",
+          "DW1000NgRanging.hpp",
+          "DW1000NgRegisters.hpp",
+          "DW1000NgTime.hpp",
+          "DW1000NgUtils.hpp",
+          "SPIporting.hpp",
+          "deprecated.hpp",
+          "require_cpp11.hpp"
+        ]
+      },
+      {
+        "name": "SPI",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "source_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "container_platform": "rakwireless:mbed_rp2040@0.0.5",
+        "is_legacy": true,
+        "location": 2,
+        "provides_includes": [
+          "SPI.h"
+        ]
+      }
+    ]
+  },
+  "success": true
+}
+
+2022/05/30 15:10:46 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml config dump --format json
+2022/05/30 15:10:46 Arduino Data Dir ->  c:\Users\ltp\AppData\Local\Arduino15
+2022/05/30 15:10:46     Starting clangd: c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\bin\clangd.exe -log=verbose --compile-commands-dir=C:\Users\ltp\AppData\Local\Temp\arduino-language-server775711895 -query-driver=c:\Users\ltp\AppData\Local\Arduino15\packages\**
+2022/05/30 15:10:46 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd.log
+2022/05/30 15:10:46 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd-err.log
+2022/05/30 15:10:46 [91mIDE     LS --> CL: REQUEST initialize 0: [0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: ANSWER initialize 0 (0): [0m
+2022/05/30 15:10:46 [91mIDE     LS --> CL: NOTIFICATION initialized: [0m
+2022/05/30 15:10:46 INIT--- initializing workbench (done)
+2022/05/30 15:10:46 INIT--- [93m unlocked[0m
+2022/05/30 15:10:46 IDE --> initialized notif1 [93m read-locked[0m
+2022/05/30 15:10:46 IDE --> initialized notif1 notification is not propagated to clangd
+2022/05/30 15:10:46 IDE --> initialized notif1 [93m read-unlocked[0m
+2022/05/30 15:10:46 [92mIDE --> LS     CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:10:46 IDE --> textDocument/didOpen notif2 [93m locked[0m
+2022/05/30 15:10:46 IDE --> textDocument/didOpen notif2 (file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@4 as 'cpp')
+2022/05/30 15:10:46     increasing .ino tracked files count: 1
+2022/05/30 15:10:46 IDE --> textDocument/didOpen notif2 to clang: didOpen(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@1 as 'cpp')
+2022/05/30 15:10:46 IDE --> textDocument/didOpen notif2 sent to Clang
+2022/05/30 15:10:46 [91mIDE     LS --> CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:10:46 IDE --> textDocument/didOpen notif2 Queued resfreshing document symbols
+2022/05/30 15:10:46 IDE --> textDocument/didOpen notif2 [93m unlocked[0m
+2022/05/30 15:10:46 SYLD--- [93m read-locked[0m
+2022/05/30 15:10:46 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 1: [0m
+2022/05/30 15:10:46 SYLD--- requesting documentSymbol for file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp
+2022/05/30 15:10:46 SYLD--- [93m read-unlocked[0m
+2022/05/30 15:10:46 IDE --> textDocument/codeAction 1 [93m read-locked[0m
+2022/05/30 15:10:46 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:0:0)
+2022/05/30 15:10:46 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 1: [0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 15:10:46 [91mIDE     LS --> CL: ANSWER UNBOUND (0): [0m
+2022/05/30 15:10:46 [91mIDE <-- LS     CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/1 0%[0m
+2022/05/30 15:10:46     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:2:0)
+2022/05/30 15:10:46 IDE --> textDocument/codeAction 1 sent to Clang
+2022/05/30 15:10:46 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 2: [0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:10:46 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:10:48 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:10:48 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:10:49 [92mIDE     LS <-- CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:10:49 CLG <-- textDocument/publishDiagnostics notif11 (queued)
+2022/05/30 15:10:49 CLG <-- textDocument/publishDiagnostics notif11 [93m read-locked[0m
+2022/05/30 15:10:49 CLG <-- textDocument/publishDiagnostics notif11 (running)
+2022/05/30 15:10:49 CLG <-- textDocument/publishDiagnostics notif11 publishDiagnostics(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp):
+2022/05/30 15:10:49 CLG <-- textDocument/publishDiagnostics notif11 > 0:9 - 1: pp_file_not_found
+2022/05/30 15:10:49 CLG <-- textDocument/publishDiagnostics notif11 > 84:2 - 1: unknown_typename_suggest
+2022/05/30 15:10:49 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 1 (1): [0m
+2022/05/30 15:10:49 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 2 (2): [0m
+2022/05/30 15:10:49 SYLD--- [93m read-locked[0m
+2022/05/30 15:10:49 SYLD---    symbol: Function setup 74:0-74:12
+2022/05/30 15:10:49 SYLD---             > void setup()
+2022/05/30 15:10:49 SYLD---    symbol: Function calculatePosition 76:0-76:44
+2022/05/30 15:10:49 SYLD---             > void calculatePosition(double &x, double &y)
+2022/05/30 15:10:49 SYLD---    symbol: Function loop 78:0-78:11
+2022/05/30 15:10:49 SYLD---             > void loop()
+2022/05/30 15:10:49 SYLD---    symbol: Function setup 80:0-132:1
+2022/05/30 15:10:49 SYLD---      TRIMMED> void setup() 
+2022/05/30 15:10:49     <-- codeAction(0 elements)
+2022/05/30 15:10:49 <-- codeAction(0 elements)
+2022/05/30 15:10:49 SYLD---    symbol: Function calculatePosition 135:0-147:1
+2022/05/30 15:10:49 SYLD---      TRIMMED> void calculatePosition(double &x, double &y) 
+2022/05/30 15:10:49 SYLD---    symbol: Function loop 149:0-190:1
+2022/05/30 15:10:49 SYLD---      TRIMMED> void loop() 
+2022/05/30 15:10:49 SYLD--- [93m read-unlocked[0m
+2022/05/30 15:10:49 SYLD--- (done)
+2022/05/30 15:10:49 IDE --> textDocument/codeAction 1 [93m read-unlocked[0m
+2022/05/30 15:10:49 [91mIDE <-- LS     CL: ANSWER UNBOUND (1): [0m
+2022/05/30 15:10:49 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 2: [0m
+2022/05/30 15:10:49 IDE --> textDocument/documentSymbol 2 [93m read-locked[0m
+2022/05/30 15:10:49 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 15:10:49     URI: converted 0:9-0:10 to /not-ino:0:9-0:10
+2022/05/30 15:10:49     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 15:10:49 IDE --> textDocument/documentSymbol 2 sent to Clang
+2022/05/30 15:10:49 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 3: [0m
+2022/05/30 15:10:49     URI: converted 84:2-84:8 to D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino:75:2-75:8
+2022/05/30 15:10:49 CLG <-- textDocument/publishDiagnostics notif11 to IDE: publishDiagnostics(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino):
+2022/05/30 15:10:49 CLG <-- textDocument/publishDiagnostics notif11 > 75:2 - 1: unknown_typename_suggest
+2022/05/30 15:10:49 [91mIDE <-- LS     CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:10:49 CLG <-- textDocument/publishDiagnostics notif11 [93m read-unlocked[0m
+2022/05/30 15:10:49 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 3 (3): [0m
+2022/05/30 15:10:49     <-- documentSymbol(25 document symbols)
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Struct 16:8-19:1
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Field 17:4-17:12
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Field 18:4-18:12
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Class 16:0-19:10
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 25:0-25:25
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 26:0-26:30
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 27:0-27:30
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 31:0-31:30
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 32:0-32:33
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 33:0-33:33
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 35:0-35:17
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 36:0-36:14
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 37:0-37:14
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 39:0-39:26
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 41:0-41:18
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 42:0-42:38
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 44:0-44:30
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 45:0-45:24
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 46:0-46:30
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 48:0-60:1
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Variable 62:0-71:1
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Function 74:0-74:12
+2022/05/30 15:10:49       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:10:49     > convert Function 76:0-76:44
+2022/05/30 15:10:49       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:10:49     > convert Function 78:0-78:11
+2022/05/30 15:10:49       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:10:49     > convert Function 80:0-132:1
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Function 135:0-147:1
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49     > convert Function 149:0-190:1
+2022/05/30 15:10:49     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:10:49 IDE --> textDocument/documentSymbol 2 [93m read-unlocked[0m
+2022/05/30 15:10:49 [91mIDE <-- LS     CL: ANSWER UNBOUND (2): [0m
+2022/05/30 15:10:49 [92mIDE --> LS     CL: ANSWER window/workDoneProgress/create 0 (0): [0m
+2022/05/30 15:10:49 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 15:10:49 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:10:49 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 3: [0m
+2022/05/30 15:10:49 IDE --> textDocument/codeAction 3 [93m read-locked[0m
+2022/05/30 15:10:49 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:0:0)
+2022/05/30 15:10:49     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:2:0)
+2022/05/30 15:10:49 IDE --> textDocument/codeAction 3 sent to Clang
+2022/05/30 15:10:49 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 4: [0m
+2022/05/30 15:10:49 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 4 (4): [0m
+2022/05/30 15:10:49     <-- codeAction(0 elements)
+2022/05/30 15:10:49 <-- codeAction(0 elements)
+2022/05/30 15:10:49 IDE --> textDocument/codeAction 3 [93m read-unlocked[0m
+2022/05/30 15:10:49 [91mIDE <-- LS     CL: ANSWER UNBOUND (3): [0m
+2022/05/30 15:10:53 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 15:10:53 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 15:10:53 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 3/36 8.333333333333334%[0m
+2022/05/30 15:10:54 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:10:54 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:10:54 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:10:54 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 4/36 11.11111111111111%[0m
+2022/05/30 15:10:56 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:10:56 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:10:56 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 5/36 13.88888888888889%[0m
+2022/05/30 15:10:58 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:10:58 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:10:58 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:10:58 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 6/36 16.666666666666668%[0m
+2022/05/30 15:10:59 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:10:59 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:10:59 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:10:59 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 7/36 19.444444444444443%[0m
+2022/05/30 15:10:59 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:10:59 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:10:59 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:10:59 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 8/36 22.22222222222222%[0m
+2022/05/30 15:11:02 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:11:02 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:11:02 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:11:02 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 9/36 25%[0m
+2022/05/30 15:11:02 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:11:02 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:11:02 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:11:02 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 10/36 27.77777777777778%[0m
+2022/05/30 15:11:04 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:11:04 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:11:04 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:11:04 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 11/36 30.555555555555557%[0m
+2022/05/30 15:11:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:11:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:11:06 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:11:06 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 12/36 33.333333333333336%[0m
+2022/05/30 15:11:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:11:06 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:11:06 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:11:06 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 13/36 36.111111111111114%[0m
+2022/05/30 15:11:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:11:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:11:07 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:11:07 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 14/36 38.888888888888886%[0m
+2022/05/30 15:11:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:11:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:11:07 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:11:07 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 15/36 41.666666666666664%[0m
+2022/05/30 15:11:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:11:07 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:11:07 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:11:07 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 16/36 44.44444444444444%[0m
+2022/05/30 15:11:08 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:11:08 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:11:08 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:11:08 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 17/36 47.22222222222222%[0m
+2022/05/30 15:11:08 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:11:08 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:11:08 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 18/36 50%[0m
+2022/05/30 15:11:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:11:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:11:10 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:11:10 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 19/36 52.77777777777778%[0m
+2022/05/30 15:11:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:11:10 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:11:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:11:10 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 20/36 55.55555555555556%[0m
+2022/05/30 15:11:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:11:10 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:11:10 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:11:10 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 21/36 58.333333333333336%[0m
+2022/05/30 15:11:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:11:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:11:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:11:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 22/36 61.111111111111114%[0m
+2022/05/30 15:11:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:11:11 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:11:11 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 23/36 63.888888888888886%[0m
+2022/05/30 15:11:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:11:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:11:12 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:11:12 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 24/36 66.66666666666667%[0m
+2022/05/30 15:11:13 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:11:13 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:11:13 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:11:13 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 25/36 69.44444444444444%[0m
+2022/05/30 15:11:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:11:14 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:11:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:11:14 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 26/36 72.22222222222223%[0m
+2022/05/30 15:11:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:11:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:11:16 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:11:16 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 27/36 75%[0m
+2022/05/30 15:11:18 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:11:18 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:11:18 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:11:18 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 28/36 77.77777777777777%[0m
+2022/05/30 15:11:18 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:11:18 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:11:18 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 29/36 80.55555555555556%[0m
+2022/05/30 15:11:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:11:20 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:11:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:11:20 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 30/36 83.33333333333333%[0m
+2022/05/30 15:11:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:11:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:11:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:11:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 31/36 86.11111111111111%[0m
+2022/05/30 15:11:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:11:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:11:21 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:11:21 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 32/36 88.88888888888889%[0m
+2022/05/30 15:11:22 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 15:11:22 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 33/36 91.66666666666667%[0m
+2022/05/30 15:11:24 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 15:11:24 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 34/36 94.44444444444444%[0m
+2022/05/30 15:11:24 [92mIDE --> LS     CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 15:11:24 IDE --> textDocument/didChange notif3 [93m locked[0m
+2022/05/30 15:11:24 --> didChange(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@5)
+2022/05/30 15:11:24      > 110:0-111:0 -> "    DW1000Ng::setAntennaDelay(16430);//16436\r\n"
+2022/05/30 15:11:24 INCK--- #include change detected, triggering sketch rebuild!
+2022/05/30 15:11:24     --> didChange(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@2)
+2022/05/30 15:11:24          > 119:0-120:0 -> "    DW1000Ng::setAntennaDelay(16430);//16436\r\n"
+2022/05/30 15:11:24 [91mIDE     LS --> CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 15:11:24 IDE --> textDocument/didChange notif3 [93m unlocked[0m
+2022/05/30 15:11:24 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 4: [0m
+2022/05/30 15:11:24 IDE --> textDocument/documentSymbol 4 [93m read-locked[0m
+2022/05/30 15:11:24 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 15:11:24     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server775711895/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 15:11:24 IDE --> textDocument/documentSymbol 4 sent to Clang
+2022/05/30 15:11:24 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 5: [0m
+2022/05/30 15:11:24 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 5 (5): [0m
+2022/05/30 15:11:24 IDE --> textDocument/documentSymbol 4 The clangd process has lost track of the open document.
+2022/05/30 15:11:24 IDE --> textDocument/documentSymbol 4   jsonrpc2: code -32602 message: trying to get AST for non-added document
+2022/05/30 15:11:24 IDE --> textDocument/documentSymbol 4 Please restart the language server.
+2022/05/30 15:11:24 Lost connection with clangd!
+2022/05/30 15:11:24 removing buildpath
+2022/05/30 15:11:24     <-- null documentSymbol
+2022/05/30 15:11:24 IDE --> textDocument/documentSymbol 4 [93m read-unlocked[0m
+2022/05/30 15:11:24 [91mIDE <-- LS     CL: ANSWER UNBOUND (4): [0m
+
+
+
+
+
+
+
+Started logging.
+2022/05/30 15:11:25 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols.log
+2022/05/30 15:11:25 Initial board configuration: {"WisBlock RAK11300 Board" rakwireless:mbed_rp2040:WisCoreRAK11300Board}
+2022/05/30 15:11:25 Language server build path: C:\Users\ltp\AppData\Local\Temp\arduino-language-server035018831
+2022/05/30 15:11:25 Language server build sketch root: C:\Users\ltp\AppData\Local\Temp\arduino-language-server035018831\sketch
+2022/05/30 15:11:25 [92mIDE --> LS     CL: REQUEST initialize 0: [0m
+2022/05/30 15:11:25 IDE --> initialize 0 [93m locked[0m
+2022/05/30 15:11:25 IDE --> initialize 0 [93m unlocked[0m
+2022/05/30 15:11:25 INIT--- initializing workbench
+2022/05/30 15:11:25 INIT--- [93m locked[0m
+2022/05/30 15:11:25     --> initialize(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR)
+2022/05/30 15:11:25 [91mIDE <-- LS     CL: ANSWER UNBOUND (0): [0m
+2022/05/30 15:11:25 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml compile --fqbn rakwireless:mbed_rp2040:WisCoreRAK11300Board --only-compilation-database --clean --source-override C:\Users\ltp\AppData\Local\Temp\732400482 --build-path C:\Users\ltp\AppData\Local\Temp\arduino-language-server035018831 --format json D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR
+2022/05/30 15:11:25 [92mIDE --> LS     CL: NOTIFICATION initialized: [0m
+2022/05/30 15:13:32 arduino-cli output: {
+  "compiler_out": "",
+  "compiler_err": "",
+  "builder_result": {
+    "build_path": "C:\\Users\\ltp\\AppData\\Local\\Temp\\arduino-language-server035018831",
+    "used_libraries": [
+      {
+        "name": "RAK13801-UWB-Library",
+        "author": "RAKWireless \u003crakwireless.com\u003e",
+        "maintainer": "RAKWireless \u003crakwireless.com\u003e",
+        "sentence": "Arduino library to use Decawave DW1000 IC.",
+        "paragraph": "This library is intended to be used with Decawave DW1000 IC and modules. It provides an API for hardware abstraction and high-level utilities for RTLS applications.",
+        "website": "https://github.com/RAKWireless/RAK13801-UWB-Library",
+        "category": "Uncategorized",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library",
+        "source_dir": "c:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\src",
+        "real_name": "RAK13801-UWB-Library",
+        "version": "1.0.0",
+        "license": "Unspecified",
+        "location": 1,
+        "layout": 1,
+        "examples": [
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicConnectivityTest",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicReceiver",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\BasicSender",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\SimpleAntennaCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorB_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorC_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSAnchorMain_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TransmitSpectrumPowerCalibration",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingInitiator",
+          "C:\\Users\\ltp\\Documents\\Arduino\\libraries\\RAK13801-UWB-Library\\examples\\TwoWayRangingResponder"
+        ],
+        "provides_includes": [
+          "DW1000Ng.hpp",
+          "DW1000NgCompileOptions.hpp",
+          "DW1000NgConfiguration.hpp",
+          "DW1000NgConstants.hpp",
+          "DW1000NgRTLS.hpp",
+          "DW1000NgRanging.hpp",
+          "DW1000NgRegisters.hpp",
+          "DW1000NgTime.hpp",
+          "DW1000NgUtils.hpp",
+          "SPIporting.hpp",
+          "deprecated.hpp",
+          "require_cpp11.hpp"
+        ]
+      },
+      {
+        "name": "SPI",
+        "architectures": [
+          "*"
+        ],
+        "install_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "source_dir": "C:\\Users\\ltp\\AppData\\Local\\Arduino15\\packages\\rakwireless\\hardware\\mbed_rp2040\\0.0.5\\libraries\\SPI",
+        "container_platform": "rakwireless:mbed_rp2040@0.0.5",
+        "is_legacy": true,
+        "location": 2,
+        "provides_includes": [
+          "SPI.h"
+        ]
+      }
+    ]
+  },
+  "success": true
+}
+
+2022/05/30 15:13:32 running:  c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\arduino-cli.exe --config-file c:\Users\ltp\.arduinoIDE\arduino-cli.yaml config dump --format json
+2022/05/30 15:13:33 Arduino Data Dir ->  c:\Users\ltp\AppData\Local\Arduino15
+2022/05/30 15:13:33     Starting clangd: c:\Users\ltp\AppData\Local\Programs\Arduino IDE\resources\app\node_modules\arduino-ide-extension\build\bin\clangd.exe -log=verbose --compile-commands-dir=C:\Users\ltp\AppData\Local\Temp\arduino-language-server035018831 -query-driver=c:\Users\ltp\AppData\Local\Arduino15\packages\**
+2022/05/30 15:13:33 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd.log
+2022/05/30 15:13:33 logging to d:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\inols-clangd-err.log
+2022/05/30 15:13:33 [91mIDE     LS --> CL: REQUEST initialize 0: [0m
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: ANSWER initialize 0 (0): [0m
+2022/05/30 15:13:33 [91mIDE     LS --> CL: NOTIFICATION initialized: [0m
+2022/05/30 15:13:33 INIT--- initializing workbench (done)
+2022/05/30 15:13:33 INIT--- [93m unlocked[0m
+2022/05/30 15:13:33 IDE --> initialized notif1 [93m read-locked[0m
+2022/05/30 15:13:33 IDE --> initialized notif1 notification is not propagated to clangd
+2022/05/30 15:13:33 IDE --> initialized notif1 [93m read-unlocked[0m
+2022/05/30 15:13:33 [92mIDE --> LS     CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:13:33 IDE --> textDocument/didOpen notif2 [93m locked[0m
+2022/05/30 15:13:33 IDE --> textDocument/didOpen notif2 (file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@5 as 'cpp')
+2022/05/30 15:13:33     increasing .ino tracked files count: 1
+2022/05/30 15:13:33 IDE --> textDocument/didOpen notif2 to clang: didOpen(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@1 as 'cpp')
+2022/05/30 15:13:33 IDE --> textDocument/didOpen notif2 sent to Clang
+2022/05/30 15:13:33 [91mIDE     LS --> CL: NOTIFICATION textDocument/didOpen: [0m
+2022/05/30 15:13:33 IDE --> textDocument/didOpen notif2 Queued resfreshing document symbols
+2022/05/30 15:13:33 IDE --> textDocument/didOpen notif2 [93m unlocked[0m
+2022/05/30 15:13:33 [92mIDE --> LS     CL: REQUEST textDocument/codeAction 1: [0m
+2022/05/30 15:13:33 SYLD--- [93m read-locked[0m
+2022/05/30 15:13:33 SYLD--- requesting documentSymbol for file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp
+2022/05/30 15:13:33 SYLD--- [93m read-unlocked[0m
+2022/05/30 15:13:33 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 1: [0m
+2022/05/30 15:13:33 IDE --> textDocument/codeAction 1 [93m read-locked[0m
+2022/05/30 15:13:33 --> codeAction(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino:0:0)
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 15:13:33 [91mIDE     LS --> CL: ANSWER UNBOUND (0): [0m
+2022/05/30 15:13:33 [91mIDE <-- LS     CL: REQUEST window/workDoneProgress/create 0: [0m
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/1 0%[0m
+2022/05/30 15:13:33     --> codeAction(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp:2:0)
+2022/05/30 15:13:33 IDE --> textDocument/codeAction 1 sent to Clang
+2022/05/30 15:13:33 [91mIDE     LS --> CL: REQUEST textDocument/codeAction 2: [0m
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 0/36 0%[0m
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:13:33 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 1/36 2.7777777777777777%[0m
+2022/05/30 15:13:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:13:34 [92mIDE     LS <-- CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m
+2022/05/30 15:13:36 [92mIDE     LS <-- CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:13:36 CLG <-- textDocument/publishDiagnostics notif11 (queued)
+2022/05/30 15:13:36 CLG <-- textDocument/publishDiagnostics notif11 [93m read-locked[0m
+2022/05/30 15:13:36 CLG <-- textDocument/publishDiagnostics notif11 (running)
+2022/05/30 15:13:36 CLG <-- textDocument/publishDiagnostics notif11 publishDiagnostics(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp):
+2022/05/30 15:13:36 CLG <-- textDocument/publishDiagnostics notif11 > 0:9 - 1: pp_file_not_found
+2022/05/30 15:13:36 CLG <-- textDocument/publishDiagnostics notif11 > 84:2 - 1: unknown_typename_suggest
+2022/05/30 15:13:36     URI: converted 0:9-0:10 to /not-ino:0:9-0:10
+2022/05/30 15:13:36 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 1 (1): [0m
+2022/05/30 15:13:36 [92mIDE     LS <-- CL: ANSWER textDocument/codeAction 2 (2): [0m
+2022/05/30 15:13:36 SYLD--- [93m read-locked[0m
+2022/05/30 15:13:36 SYLD---    symbol: Function setup 74:0-74:12
+2022/05/30 15:13:36 SYLD---             > void setup()
+2022/05/30 15:13:36 SYLD---    symbol: Function calculatePosition 76:0-76:44
+2022/05/30 15:13:36 SYLD---             > void calculatePosition(double &x, double &y)
+2022/05/30 15:13:36 SYLD---    symbol: Function loop 78:0-78:11
+2022/05/30 15:13:36 SYLD---             > void loop()
+2022/05/30 15:13:36 SYLD---    symbol: Function setup 80:0-132:1
+2022/05/30 15:13:36 SYLD---      TRIMMED> void setup() 
+2022/05/30 15:13:36 SYLD---    symbol: Function calculatePosition 135:0-147:1
+2022/05/30 15:13:36 SYLD---      TRIMMED> void calculatePosition(double &x, double &y) 
+2022/05/30 15:13:36 SYLD---    symbol: Function loop 149:0-190:1
+2022/05/30 15:13:36 SYLD---      TRIMMED> void loop() 
+2022/05/30 15:13:36 SYLD--- [93m read-unlocked[0m
+2022/05/30 15:13:36 SYLD--- (done)
+2022/05/30 15:13:36     <-- codeAction(0 elements)
+2022/05/30 15:13:36 <-- codeAction(0 elements)
+2022/05/30 15:13:36 IDE --> textDocument/codeAction 1 [93m read-unlocked[0m
+2022/05/30 15:13:36     URI: converted 84:2-84:8 to D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino:75:2-75:8
+2022/05/30 15:13:36 CLG <-- textDocument/publishDiagnostics notif11 to IDE: publishDiagnostics(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino):
+2022/05/30 15:13:36 [91mIDE <-- LS     CL: ANSWER UNBOUND (1): [0m
+2022/05/30 15:13:36 CLG <-- textDocument/publishDiagnostics notif11 > 75:2 - 1: unknown_typename_suggest
+2022/05/30 15:13:36 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 2: [0m
+2022/05/30 15:13:36 [91mIDE <-- LS     CL: NOTIFICATION textDocument/publishDiagnostics: [0m
+2022/05/30 15:13:36 IDE --> textDocument/documentSymbol 2 [93m read-locked[0m
+2022/05/30 15:13:36 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 15:13:36 CLG <-- textDocument/publishDiagnostics notif11 [93m read-unlocked[0m
+2022/05/30 15:13:36     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 15:13:36 IDE --> textDocument/documentSymbol 2 sent to Clang
+2022/05/30 15:13:36 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 3: [0m
+2022/05/30 15:13:36 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 3 (3): [0m
+2022/05/30 15:13:36     <-- documentSymbol(25 document symbols)
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Struct 16:8-19:1
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Field 17:4-17:12
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Field 18:4-18:12
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Class 16:0-19:10
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 25:0-25:25
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 26:0-26:30
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 27:0-27:30
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 31:0-31:30
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 32:0-32:33
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 33:0-33:33
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 35:0-35:17
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 36:0-36:14
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 37:0-37:14
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 39:0-39:26
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 41:0-41:18
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 42:0-42:38
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 44:0-44:30
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 45:0-45:24
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 46:0-46:30
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 48:0-60:1
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Variable 62:0-71:1
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Function 74:0-74:12
+2022/05/30 15:13:36       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:13:36     > convert Function 76:0-76:44
+2022/05/30 15:13:36       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:13:36     > convert Function 78:0-78:11
+2022/05/30 15:13:36       symbol is in the preprocessed section of the sketch.ino.cpp
+2022/05/30 15:13:36     > convert Function 80:0-132:1
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Function 135:0-147:1
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36     > convert Function 149:0-190:1
+2022/05/30 15:13:36     filtering for requested ino file: D:\RAK-Work\20210707\RAK13801\RAK13801-UWB-Library\examples\StandardRTLSAnchorMain_TWR\StandardRTLSAnchorMain_TWR.ino
+2022/05/30 15:13:36 IDE --> textDocument/documentSymbol 2 [93m read-unlocked[0m
+2022/05/30 15:13:36 [91mIDE <-- LS     CL: ANSWER UNBOUND (2): [0m
+2022/05/30 15:13:36 [92mIDE --> LS     CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 15:13:36 IDE --> textDocument/didChange notif3 [93m locked[0m
+2022/05/30 15:13:36 --> didChange(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino@6)
+2022/05/30 15:13:36      > 110:0-111:0 -> "    DW1000Ng::setAntennaDelay(16433);//16436\r\n"
+2022/05/30 15:13:36 INCK--- #include change detected, triggering sketch rebuild!
+2022/05/30 15:13:36     --> didChange(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp@2)
+2022/05/30 15:13:36          > 119:0-120:0 -> "    DW1000Ng::setAntennaDelay(16433);//16436\r\n"
+2022/05/30 15:13:36 [91mIDE     LS --> CL: NOTIFICATION textDocument/didChange: [0m
+2022/05/30 15:13:36 IDE --> textDocument/didChange notif3 [93m unlocked[0m
+2022/05/30 15:13:36 [92mIDE --> LS     CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:13:36 IDE --> $/cancelRequest notif4 [93m read-locked[0m
+2022/05/30 15:13:36 IDE --> $/cancelRequest notif4 sent to Clang
+2022/05/30 15:13:36 [91mIDE     LS --> CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:13:36 IDE --> $/cancelRequest notif4 [93m read-unlocked[0m
+2022/05/30 15:13:36 [92mIDE --> LS     CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:13:36 IDE --> $/cancelRequest notif5 [93m read-locked[0m
+2022/05/30 15:13:36 IDE --> $/cancelRequest notif5 sent to Clang
+2022/05/30 15:13:36 [91mIDE     LS --> CL: NOTIFICATION $/cancelRequest: [0m
+2022/05/30 15:13:36 IDE --> $/cancelRequest notif5 [93m read-unlocked[0m
+2022/05/30 15:13:36 [92mIDE --> LS     CL: REQUEST textDocument/documentSymbol 3: [0m
+2022/05/30 15:13:36 IDE --> textDocument/documentSymbol 3 [93m read-locked[0m
+2022/05/30 15:13:36 --> documentSymbol(file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSAnchorMain_TWR/StandardRTLSAnchorMain_TWR.ino)
+2022/05/30 15:13:36     --> documentSymbol(file:///C:/Users/ltp/AppData/Local/Temp/arduino-language-server035018831/sketch/StandardRTLSAnchorMain_TWR.ino.cpp)
+2022/05/30 15:13:36 IDE --> textDocument/documentSymbol 3 sent to Clang
+2022/05/30 15:13:36 [91mIDE     LS --> CL: REQUEST textDocument/documentSymbol 4: [0m
+2022/05/30 15:13:36 [92mIDE     LS <-- CL: ANSWER textDocument/documentSymbol 4 (4): [0m
+2022/05/30 15:13:36 IDE --> textDocument/documentSymbol 3 The clangd process has lost track of the open document.
+2022/05/30 15:13:36 IDE --> textDocument/documentSymbol 3   jsonrpc2: code -32602 message: trying to get AST for non-added document
+2022/05/30 15:13:36 IDE --> textDocument/documentSymbol 3 Please restart the language server.
+2022/05/30 15:13:36 Lost connection with clangd!
+2022/05/30 15:13:36 removing buildpath
+2022/05/30 15:13:36     <-- null documentSymbol
+2022/05/30 15:13:36 IDE --> textDocument/documentSymbol 3 [93m read-unlocked[0m
+2022/05/30 15:13:36 [91mIDE <-- LS     CL: ANSWER UNBOUND (3): [0m
+2022/05/30 15:13:36 [92mIDE --> LS     CL: ANSWER window/workDoneProgress/create 0 (0): [0m
+2022/05/30 15:13:36 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress BEGIN indexing [0m
+2022/05/30 15:13:36 [91mIDE <-- LS     CL: NOTIFICATION $/progress: TOKEN=backgroundIndexProgress REPORT 2/36 5.555555555555555%[0m

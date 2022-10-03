@@ -1,0 +1,1750 @@
+
+
+
+
+
+
+
+Started logging.
+
+<<<
+Content-Length: 3173
+
+{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"processId":13068,"clientInfo":{"name":"vscode","version":"1.53.2"},"rootPath":"d:\\RAK-Work\\20210707\\RAK13801\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR","rootUri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR","capabilities":{"workspace":{"applyEdit":true,"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"],"failureHandling":"textOnlyTransactional"},"didChangeConfiguration":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"symbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"configuration":true,"workspaceFolders":true},"textDocument":{"publishDiagnostics":{"relatedInformation":true,"versionSupport":false,"tagSupport":{"valueSet":[1,2]}},"synchronization":{"dynamicRegistration":true,"willSave":true,"willSaveWaitUntil":true,"didSave":true},"completion":{"dynamicRegistration":true,"contextSupport":true,"completionItem":{"snippetSupport":true,"commitCharactersSupport":true,"documentationFormat":["markdown","plaintext"],"deprecatedSupport":true,"preselectSupport":true,"tagSupport":{"valueSet":[1]}},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]}},"hover":{"dynamicRegistration":true,"contentFormat":["markdown","plaintext"]},"signatureHelp":{"dynamicRegistration":true,"signatureInformation":{"documentationFormat":["markdown","plaintext"],"parameterInformation":{"labelOffsetSupport":true}},"contextSupport":true},"definition":{"dynamicRegistration":true,"linkSupport":true},"references":{"dynamicRegistration":true},"documentHighlight":{"dynamicRegistration":true},"documentSymbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"codeLens":{"dynamicRegistration":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"onTypeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"typeDefinition":{"dynamicRegistration":true,"linkSupport":true},"implementation":{"dynamicRegistration":true,"linkSupport":true},"colorProvider":{"dynamicRegistration":true},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"declaration":{"dynamicRegistration":true,"linkSupport":true},"selectionRange":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}},"initializationOptions":{},"trace":"off","workspaceFolders":[{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR","name":"StandardRTLSTag_TWR"}]}}
+>>>
+Content-Length: 598
+
+{"id":0,"result":{"capabilities":{"textDocumentSync":2,"hoverProvider":true,"completionProvider":{"triggerCharacters":[".","\u003e",":"]},"signatureHelpProvider":{"triggerCharacters":["(",","]},"definitionProvider":true,"documentHighlightProvider":true,"documentSymbolProvider":true,"workspaceSymbolProvider":true,"codeActionProvider":true,"documentFormattingProvider":true,"documentRangeFormattingProvider":true,"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n"},"renameProvider":false,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 52
+
+{"jsonrpc":"2.0","method":"initialized","params":{}}Content-Length: 3750
+
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","languageId":"cpp","version":1,"text":"/**\r\n   @file StandardRTLSTag_TWR.ino\r\n   @author rakwireless.com\r\n   @brief Standard RTLS Tag TWR\r\n   @version 0.1\r\n   @date 2022-1-28\r\n   @copyright Copyright (c) 2020\r\n**/\r\n\r\n#include <DW1000Ng.hpp>\r\n#include <DW1000NgUtils.hpp>\r\n#include <DW1000NgTime.hpp>\r\n#include <DW1000NgConstants.hpp>\r\n#include <DW1000NgRanging.hpp>\r\n#include <DW1000NgRTLS.hpp>\r\n\r\n// connection pins\r\n#if defined(ESP8266)\r\nconst uint8_t PIN_SS = 15;\r\n#else\r\nconst uint8_t PIN_SS = SS; // spi select pin\r\nconst uint8_t PIN_RST = WB_IO6;\r\nconst uint8_t PIN_IRQ = WB_IO5;\r\n#endif\r\n\r\nvolatile uint32_t blink_rate = 200;\r\n\r\ndevice_configuration_t DEFAULT_CONFIG = {\r\n  false,\r\n  true,\r\n  true,\r\n  true,\r\n  false,\r\n  SFDMode::STANDARD_SFD,\r\n  Channel::CHANNEL_5,\r\n  DataRate::RATE_850KBPS,\r\n  PulseFrequency::FREQ_16MHZ,\r\n  PreambleLength::LEN_256,\r\n  PreambleCode::CODE_3\r\n};\r\n\r\nframe_filtering_configuration_t TAG_FRAME_FILTER_CONFIG = {\r\n  false,\r\n  false,\r\n  true,\r\n  false,\r\n  false,\r\n  false,\r\n  false,\r\n  false\r\n};\r\n\r\nsleep_configuration_t SLEEP_CONFIG = {\r\n  false,  // onWakeUpRunADC   reg 0x2C:00\r\n  false,  // onWakeUpReceive\r\n  false,  // onWakeUpLoadEUI\r\n  true,   // onWakeUpLoadL64Param\r\n  true,   // preserveSleep\r\n  true,   // enableSLP    reg 0x2C:06\r\n  false,  // enableWakePIN\r\n  true    // enableWakeSPI\r\n};\r\n\r\nvoid setup() {\r\n  pinMode(WB_IO2, OUTPUT);\r\n  digitalWrite(WB_IO2, HIGH); //Turn on the power switch\r\n  delay(300);\r\n  time_t serial_timeout = millis();\r\n  // DEBUG monitoring\r\n  Serial.begin(115200);\r\n  while (!Serial)\r\n  {\r\n    if ((millis() - serial_timeout) < 5000)\r\n    {\r\n      delay(100);\r\n    }\r\n    else\r\n    {\r\n      break;\r\n    }\r\n  }\r\n  Serial.println(F(\"### DW1000Ng-arduino-ranging-tag ###\"));\r\n  // initialize the driver\r\n#if defined(ESP8266)\r\n  DW1000Ng::initializeNoInterrupt(PIN_SS);\r\n#else\r\n  DW1000Ng::initializeNoInterrupt(PIN_SS, PIN_RST);\r\n#endif\r\n  Serial.println(\"DW1000Ng initialized ...\");\r\n  // general configuration\r\n  DW1000Ng::applyConfiguration(DEFAULT_CONFIG);\r\n  DW1000Ng::enableFrameFiltering(TAG_FRAME_FILTER_CONFIG);\r\n\r\n  DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:00\");\r\n\r\n  DW1000Ng::setNetworkId(RTLS_APP_ID);\r\n\r\n  DW1000Ng::setAntennaDelay(16436);\r\n\r\n  DW1000Ng::applySleepConfiguration(SLEEP_CONFIG);\r\n\r\n  DW1000Ng::setPreambleDetectionTimeout(15);\r\n  DW1000Ng::setSfdDetectionTimeout(273);\r\n  DW1000Ng::setReceiveFrameWaitTimeoutPeriod(2000);\r\n\r\n  Serial.println(F(\"Committed configuration ...\"));\r\n  // DEBUG chip info and registers pretty printed\r\n  char msg[128];\r\n  DW1000Ng::getPrintableDeviceIdentifier(msg);\r\n  Serial.print(\"Device ID: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableExtendedUniqueIdentifier(msg);\r\n  Serial.print(\"Unique ID: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableNetworkIdAndShortAddress(msg);\r\n  Serial.print(\"Network ID & Device Address: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableDeviceMode(msg);\r\n  Serial.print(\"Device mode: \"); Serial.println(msg);\r\n}\r\n\r\nvoid loop() {\r\n  DW1000Ng::deepSleep();\r\n  delay(blink_rate);\r\n  DW1000Ng::spiWakeup();\r\n  DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:00\");\r\n  //  delay(2);\r\n  RangeInfrastructureResult res = DW1000NgRTLS::tagTwrLocalize(1500);\r\n  if (res.success)\r\n    blink_rate = res.new_blink_rate;\r\n}\r\n"}}}Content-Length: 312
+
+{"jsonrpc":"2.0","id":1,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}Content-Length: 213
+
+{"jsonrpc":"2.0","id":2,"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"}}}Content-Length: 242
+
+{"jsonrpc":"2.0","id":3,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":17,"character":19}}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":3}}Content-Length: 242
+
+{"jsonrpc":"2.0","id":4,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":86,"character":45}}}Content-Length: 254
+
+{"jsonrpc":"2.0","id":5,"method":"textDocument/documentHighlight","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":86,"character":46}}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":2}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":4}}Content-Length: 213
+
+{"jsonrpc":"2.0","id":6,"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"}}}Content-Length: 316
+
+{"jsonrpc":"2.0","id":7,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":86,"character":46},"end":{"line":86,"character":46}},"context":{"diagnostics":[]}}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":1}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":5}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":6}}Content-Length: 213
+
+{"jsonrpc":"2.0","id":8,"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"}}}Content-Length: 316
+
+{"jsonrpc":"2.0","id":9,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":84,"character":41},"end":{"line":84,"character":41}},"context":{"diagnostics":[]}}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":7}}
+>>>
+Content-Length: 111
+
+{"method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"},"id":0,"jsonrpc":"2.0"}Content-Length: 36
+
+{"id":1,"result":[],"jsonrpc":"2.0"}Content-Length: 623
+
+{"method":"textDocument/publishDiagnostics","params":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","diagnostics":[{"range":{"start":{"line":67,"character":2},"end":{"line":67,"character":8}},"severity":1,"code":"unknown_typename_suggest","source":"clang","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here"}]},"jsonrpc":"2.0"}Content-Length: 1794
+
+{"id":2,"result":[{"name":"PIN_SS","kind":13,"range":{"start":{"line":20,"character":0},"end":{"line":20,"character":25}},"selectionRange":{"start":{"line":20,"character":14},"end":{"line":20,"character":20}}},{"name":"PIN_RST","kind":13,"range":{"start":{"line":21,"character":0},"end":{"line":21,"character":30}},"selectionRange":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}}},{"name":"PIN_IRQ","kind":13,"range":{"start":{"line":22,"character":0},"end":{"line":22,"character":30}},"selectionRange":{"start":{"line":22,"character":14},"end":{"line":22,"character":21}}},{"name":"blink_rate","kind":13,"range":{"start":{"line":25,"character":0},"end":{"line":25,"character":34}},"selectionRange":{"start":{"line":25,"character":18},"end":{"line":25,"character":28}}},{"name":"DEFAULT_CONFIG","kind":13,"range":{"start":{"line":27,"character":0},"end":{"line":39,"character":1}},"selectionRange":{"start":{"line":27,"character":23},"end":{"line":27,"character":37}}},{"name":"TAG_FRAME_FILTER_CONFIG","kind":13,"range":{"start":{"line":41,"character":0},"end":{"line":50,"character":1}},"selectionRange":{"start":{"line":41,"character":32},"end":{"line":41,"character":55}}},{"name":"SLEEP_CONFIG","kind":13,"range":{"start":{"line":52,"character":0},"end":{"line":61,"character":1}},"selectionRange":{"start":{"line":52,"character":22},"end":{"line":52,"character":34}}},{"name":"setup","kind":12,"range":{"start":{"line":63,"character":0},"end":{"line":116,"character":1}},"selectionRange":{"start":{"line":63,"character":5},"end":{"line":63,"character":10}}},{"name":"loop","kind":12,"range":{"start":{"line":118,"character":0},"end":{"line":127,"character":1}},"selectionRange":{"start":{"line":118,"character":5},"end":{"line":118,"character":9}}}],"jsonrpc":"2.0"}Content-Length: 38
+
+{"id":3,"result":null,"jsonrpc":"2.0"}Content-Length: 295
+
+{"id":4,"result":{"contents":{"kind":"markdown","value":"### variable `PIN_RST`  \n\n---\nType: `const uint8_t`  \nValue = `8`  \nPassed as rst  \n\n---\n```cpp\nconst uint8_t PIN_RST = WB_IO6\n```"},"range":{"start":{"line":86,"character":42},"end":{"line":86,"character":49}}},"jsonrpc":"2.0"}Content-Length: 213
+
+{"id":5,"result":[{"range":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}},"kind":1},{"range":{"start":{"line":86,"character":42},"end":{"line":86,"character":49}},"kind":2}],"jsonrpc":"2.0"}Content-Length: 1794
+
+{"id":6,"result":[{"name":"PIN_SS","kind":13,"range":{"start":{"line":20,"character":0},"end":{"line":20,"character":25}},"selectionRange":{"start":{"line":20,"character":14},"end":{"line":20,"character":20}}},{"name":"PIN_RST","kind":13,"range":{"start":{"line":21,"character":0},"end":{"line":21,"character":30}},"selectionRange":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}}},{"name":"PIN_IRQ","kind":13,"range":{"start":{"line":22,"character":0},"end":{"line":22,"character":30}},"selectionRange":{"start":{"line":22,"character":14},"end":{"line":22,"character":21}}},{"name":"blink_rate","kind":13,"range":{"start":{"line":25,"character":0},"end":{"line":25,"character":34}},"selectionRange":{"start":{"line":25,"character":18},"end":{"line":25,"character":28}}},{"name":"DEFAULT_CONFIG","kind":13,"range":{"start":{"line":27,"character":0},"end":{"line":39,"character":1}},"selectionRange":{"start":{"line":27,"character":23},"end":{"line":27,"character":37}}},{"name":"TAG_FRAME_FILTER_CONFIG","kind":13,"range":{"start":{"line":41,"character":0},"end":{"line":50,"character":1}},"selectionRange":{"start":{"line":41,"character":32},"end":{"line":41,"character":55}}},{"name":"SLEEP_CONFIG","kind":13,"range":{"start":{"line":52,"character":0},"end":{"line":61,"character":1}},"selectionRange":{"start":{"line":52,"character":22},"end":{"line":52,"character":34}}},{"name":"setup","kind":12,"range":{"start":{"line":63,"character":0},"end":{"line":116,"character":1}},"selectionRange":{"start":{"line":63,"character":5},"end":{"line":63,"character":10}}},{"name":"loop","kind":12,"range":{"start":{"line":118,"character":0},"end":{"line":127,"character":1}},"selectionRange":{"start":{"line":118,"character":5},"end":{"line":118,"character":9}}}],"jsonrpc":"2.0"}Content-Length: 36
+
+{"id":7,"result":[],"jsonrpc":"2.0"}Content-Length: 1794
+
+{"id":8,"result":[{"name":"PIN_SS","kind":13,"range":{"start":{"line":20,"character":0},"end":{"line":20,"character":25}},"selectionRange":{"start":{"line":20,"character":14},"end":{"line":20,"character":20}}},{"name":"PIN_RST","kind":13,"range":{"start":{"line":21,"character":0},"end":{"line":21,"character":30}},"selectionRange":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}}},{"name":"PIN_IRQ","kind":13,"range":{"start":{"line":22,"character":0},"end":{"line":22,"character":30}},"selectionRange":{"start":{"line":22,"character":14},"end":{"line":22,"character":21}}},{"name":"blink_rate","kind":13,"range":{"start":{"line":25,"character":0},"end":{"line":25,"character":34}},"selectionRange":{"start":{"line":25,"character":18},"end":{"line":25,"character":28}}},{"name":"DEFAULT_CONFIG","kind":13,"range":{"start":{"line":27,"character":0},"end":{"line":39,"character":1}},"selectionRange":{"start":{"line":27,"character":23},"end":{"line":27,"character":37}}},{"name":"TAG_FRAME_FILTER_CONFIG","kind":13,"range":{"start":{"line":41,"character":0},"end":{"line":50,"character":1}},"selectionRange":{"start":{"line":41,"character":32},"end":{"line":41,"character":55}}},{"name":"SLEEP_CONFIG","kind":13,"range":{"start":{"line":52,"character":0},"end":{"line":61,"character":1}},"selectionRange":{"start":{"line":52,"character":22},"end":{"line":52,"character":34}}},{"name":"setup","kind":12,"range":{"start":{"line":63,"character":0},"end":{"line":116,"character":1}},"selectionRange":{"start":{"line":63,"character":5},"end":{"line":63,"character":10}}},{"name":"loop","kind":12,"range":{"start":{"line":118,"character":0},"end":{"line":127,"character":1}},"selectionRange":{"start":{"line":118,"character":5},"end":{"line":118,"character":9}}}],"jsonrpc":"2.0"}Content-Length: 36
+
+{"id":9,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 38
+
+{"jsonrpc":"2.0","id":0,"result":null}
+>>>
+Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"title":"indexing","percentage":0,"kind":"begin"}},"jsonrpc":"2.0"}Content-Length: 158
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"8/36","percentage":22.22222222222222,"kind":"report"}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 317
+
+{"jsonrpc":"2.0","id":10,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":84,"character":41},"end":{"line":84,"character":41}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":10,"result":[],"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"9/36","percentage":25,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"9/36","percentage":25,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"10/36","percentage":27.77777777777778,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"10/36","percentage":27.77777777777778,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"11/36","percentage":30.555555555555557,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"11/36","percentage":30.555555555555557,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"12/36","percentage":33.333333333333336,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"12/36","percentage":33.333333333333336,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"13/36","percentage":36.111111111111114,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"13/36","percentage":36.111111111111114,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"14/36","percentage":38.888888888888886,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"14/36","percentage":38.888888888888886,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"15/36","percentage":41.666666666666664,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"16/36","percentage":44.44444444444444,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"16/36","percentage":44.44444444444444,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"17/36","percentage":47.22222222222222,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"17/36","percentage":47.22222222222222,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 144
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"18/36","percentage":50,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 144
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"18/36","percentage":50,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"19/36","percentage":52.77777777777778,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"19/36","percentage":52.77777777777778,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"20/36","percentage":55.55555555555556,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"20/36","percentage":55.55555555555556,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"21/36","percentage":58.333333333333336,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"21/36","percentage":58.333333333333336,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"22/36","percentage":61.111111111111114,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"22/36","percentage":61.111111111111114,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"23/36","percentage":63.888888888888886,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"23/36","percentage":63.888888888888886,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"24/36","percentage":66.66666666666667,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"24/36","percentage":66.66666666666667,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"25/36","percentage":69.44444444444444,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"25/36","percentage":69.44444444444444,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"26/36","percentage":72.22222222222223,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"26/36","percentage":72.22222222222223,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 144
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"27/36","percentage":75,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 144
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"27/36","percentage":75,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"28/36","percentage":77.77777777777777,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"28/36","percentage":77.77777777777777,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"29/36","percentage":80.55555555555556,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"29/36","percentage":80.55555555555556,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"30/36","percentage":83.33333333333333,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"30/36","percentage":83.33333333333333,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"31/36","percentage":86.11111111111111,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"32/36","percentage":88.88888888888889,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"32/36","percentage":88.88888888888889,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"33/36","percentage":91.66666666666667,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"34/36","percentage":94.44444444444444,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"35/36","percentage":97.22222222222223,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 107
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"end"}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":11,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":86,"character":43}}}
+>>>
+Content-Length: 296
+
+{"id":11,"result":{"contents":{"kind":"markdown","value":"### variable `PIN_RST`  \n\n---\nType: `const uint8_t`  \nValue = `8`  \nPassed as rst  \n\n---\n```cpp\nconst uint8_t PIN_RST = WB_IO6\n```"},"range":{"start":{"line":86,"character":42},"end":{"line":86,"character":49}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 59
+
+{"jsonrpc":"2.0","id":12,"method":"shutdown","params":null}
+>>>
+Content-Length: 39
+
+{"id":12,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 47
+
+{"jsonrpc":"2.0","method":"exit","params":null}<<< Read Error: EOF
+
+
+
+
+
+
+
+Started logging.
+
+<<<
+Content-Length: 3173
+
+{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"processId":16732,"clientInfo":{"name":"vscode","version":"1.53.2"},"rootPath":"d:\\RAK-Work\\20210707\\RAK13801\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR","rootUri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR","capabilities":{"workspace":{"applyEdit":true,"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"],"failureHandling":"textOnlyTransactional"},"didChangeConfiguration":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"symbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"configuration":true,"workspaceFolders":true},"textDocument":{"publishDiagnostics":{"relatedInformation":true,"versionSupport":false,"tagSupport":{"valueSet":[1,2]}},"synchronization":{"dynamicRegistration":true,"willSave":true,"willSaveWaitUntil":true,"didSave":true},"completion":{"dynamicRegistration":true,"contextSupport":true,"completionItem":{"snippetSupport":true,"commitCharactersSupport":true,"documentationFormat":["markdown","plaintext"],"deprecatedSupport":true,"preselectSupport":true,"tagSupport":{"valueSet":[1]}},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]}},"hover":{"dynamicRegistration":true,"contentFormat":["markdown","plaintext"]},"signatureHelp":{"dynamicRegistration":true,"signatureInformation":{"documentationFormat":["markdown","plaintext"],"parameterInformation":{"labelOffsetSupport":true}},"contextSupport":true},"definition":{"dynamicRegistration":true,"linkSupport":true},"references":{"dynamicRegistration":true},"documentHighlight":{"dynamicRegistration":true},"documentSymbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"codeLens":{"dynamicRegistration":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"onTypeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"typeDefinition":{"dynamicRegistration":true,"linkSupport":true},"implementation":{"dynamicRegistration":true,"linkSupport":true},"colorProvider":{"dynamicRegistration":true},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"declaration":{"dynamicRegistration":true,"linkSupport":true},"selectionRange":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}},"initializationOptions":{},"trace":"off","workspaceFolders":[{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR","name":"StandardRTLSTag_TWR"}]}}
+>>>
+Content-Length: 598
+
+{"id":0,"result":{"capabilities":{"textDocumentSync":2,"hoverProvider":true,"completionProvider":{"triggerCharacters":[".","\u003e",":"]},"signatureHelpProvider":{"triggerCharacters":["(",","]},"definitionProvider":true,"documentHighlightProvider":true,"documentSymbolProvider":true,"workspaceSymbolProvider":true,"codeActionProvider":true,"documentFormattingProvider":true,"documentRangeFormattingProvider":true,"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n"},"renameProvider":false,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 52
+
+{"jsonrpc":"2.0","method":"initialized","params":{}}Content-Length: 3757
+
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","languageId":"cpp","version":1,"text":"/**\r\n   @file StandardRTLSTag_TWR.ino\r\n   @author rakwireless.com\r\n   @brief Standard RTLS Tag TWR\r\n   @version 0.1\r\n   @date 2022-1-28\r\n   @copyright Copyright (c) 2020\r\n**/\r\n\r\n#include <DW1000Ng.hpp>\r\n#include <DW1000NgUtils.hpp>\r\n#include <DW1000NgTime.hpp>\r\n#include <DW1000NgConstants.hpp>\r\n#include <DW1000NgRanging.hpp>\r\n#include <DW1000NgRTLS.hpp>\r\n\r\n// connection pins\r\n#if defined(ESP8266)\r\nconst uint8_t PIN_SS = 15;\r\n#else\r\nconst uint8_t PIN_SS = SS; // spi select pin\r\nconst uint8_t PIN_RST = WB_IO6;\r\nconst uint8_t PIN_IRQ = WB_IO5;\r\n#endif\r\n\r\nvolatile uint32_t blink_rate = 500;\r\n\r\ndevice_configuration_t DEFAULT_CONFIG = {\r\n  false,\r\n  true,\r\n  true,\r\n  true,\r\n  false,\r\n  SFDMode::STANDARD_SFD,\r\n  Channel::CHANNEL_5,\r\n  DataRate::RATE_850KBPS,\r\n  PulseFrequency::FREQ_16MHZ,\r\n  PreambleLength::LEN_256,\r\n  PreambleCode::CODE_3\r\n};\r\n\r\nframe_filtering_configuration_t TAG_FRAME_FILTER_CONFIG = {\r\n  false,\r\n  false,\r\n  true,\r\n  false,\r\n  false,\r\n  false,\r\n  false,\r\n  false\r\n};\r\n\r\nsleep_configuration_t SLEEP_CONFIG = {\r\n  false,  // onWakeUpRunADC   reg 0x2C:00\r\n  false,  // onWakeUpReceive\r\n  false,  // onWakeUpLoadEUI\r\n  true,   // onWakeUpLoadL64Param\r\n  true,   // preserveSleep\r\n  true,   // enableSLP    reg 0x2C:06\r\n  false,  // enableWakePIN\r\n  true    // enableWakeSPI\r\n};\r\n\r\nvoid setup() {\r\n  pinMode(WB_IO2, OUTPUT);\r\n  digitalWrite(WB_IO2, HIGH); //Turn on the power switch\r\n  delay(300);\r\n  time_t serial_timeout = millis();\r\n  // DEBUG monitoring\r\n  Serial.begin(115200);\r\n  while (!Serial)\r\n  {\r\n    if ((millis() - serial_timeout) < 5000)\r\n    {\r\n      delay(100);\r\n    }\r\n    else\r\n    {\r\n      break;\r\n    }\r\n  }\r\n  Serial.println(F(\"### DW1000Ng-arduino-ranging-tag ###\"));\r\n  // initialize the driver\r\n#if defined(ESP8266)\r\n  DW1000Ng::initializeNoInterrupt(PIN_SS);\r\n#else\r\n  DW1000Ng::initializeNoInterrupt(PIN_SS, PIN_RST);\r\n#endif\r\n  Serial.println(\"DW1000Ng initialized ...\");\r\n  // general configuration\r\n  DW1000Ng::applyConfiguration(DEFAULT_CONFIG);\r\n  DW1000Ng::enableFrameFiltering(TAG_FRAME_FILTER_CONFIG);\r\n\r\n  DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:00\");\r\n\r\n  DW1000Ng::setNetworkId(RTLS_APP_ID);\r\n\r\n  DW1000Ng::setAntennaDelay(16436);//16436\r\n\r\n  DW1000Ng::applySleepConfiguration(SLEEP_CONFIG);\r\n\r\n  DW1000Ng::setPreambleDetectionTimeout(15);\r\n  DW1000Ng::setSfdDetectionTimeout(273);\r\n  DW1000Ng::setReceiveFrameWaitTimeoutPeriod(2000);\r\n\r\n  Serial.println(F(\"Committed configuration ...\"));\r\n  // DEBUG chip info and registers pretty printed\r\n  char msg[128];\r\n  DW1000Ng::getPrintableDeviceIdentifier(msg);\r\n  Serial.print(\"Device ID: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableExtendedUniqueIdentifier(msg);\r\n  Serial.print(\"Unique ID: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableNetworkIdAndShortAddress(msg);\r\n  Serial.print(\"Network ID & Device Address: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableDeviceMode(msg);\r\n  Serial.print(\"Device mode: \"); Serial.println(msg);\r\n}\r\n\r\nvoid loop() {\r\n  DW1000Ng::deepSleep();\r\n  delay(blink_rate);\r\n  DW1000Ng::spiWakeup();\r\n  DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:00\");\r\n  //  delay(2);\r\n  RangeInfrastructureResult res = DW1000NgRTLS::tagTwrLocalize(1500);\r\n  if (res.success)\r\n    blink_rate = res.new_blink_rate;\r\n}\r\n"}}}
+
+
+
+
+
+
+Started logging.
+
+<<<
+Content-Length: 3173
+
+{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"processId":57568,"clientInfo":{"name":"vscode","version":"1.53.2"},"rootPath":"d:\\RAK-Work\\20210707\\RAK13801\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR","rootUri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR","capabilities":{"workspace":{"applyEdit":true,"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"],"failureHandling":"textOnlyTransactional"},"didChangeConfiguration":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"symbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"configuration":true,"workspaceFolders":true},"textDocument":{"publishDiagnostics":{"relatedInformation":true,"versionSupport":false,"tagSupport":{"valueSet":[1,2]}},"synchronization":{"dynamicRegistration":true,"willSave":true,"willSaveWaitUntil":true,"didSave":true},"completion":{"dynamicRegistration":true,"contextSupport":true,"completionItem":{"snippetSupport":true,"commitCharactersSupport":true,"documentationFormat":["markdown","plaintext"],"deprecatedSupport":true,"preselectSupport":true,"tagSupport":{"valueSet":[1]}},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]}},"hover":{"dynamicRegistration":true,"contentFormat":["markdown","plaintext"]},"signatureHelp":{"dynamicRegistration":true,"signatureInformation":{"documentationFormat":["markdown","plaintext"],"parameterInformation":{"labelOffsetSupport":true}},"contextSupport":true},"definition":{"dynamicRegistration":true,"linkSupport":true},"references":{"dynamicRegistration":true},"documentHighlight":{"dynamicRegistration":true},"documentSymbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"codeLens":{"dynamicRegistration":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"onTypeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"typeDefinition":{"dynamicRegistration":true,"linkSupport":true},"implementation":{"dynamicRegistration":true,"linkSupport":true},"colorProvider":{"dynamicRegistration":true},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"declaration":{"dynamicRegistration":true,"linkSupport":true},"selectionRange":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}},"initializationOptions":{},"trace":"off","workspaceFolders":[{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR","name":"StandardRTLSTag_TWR"}]}}
+>>>
+Content-Length: 598
+
+{"id":0,"result":{"capabilities":{"textDocumentSync":2,"hoverProvider":true,"completionProvider":{"triggerCharacters":[".","\u003e",":"]},"signatureHelpProvider":{"triggerCharacters":["(",","]},"definitionProvider":true,"documentHighlightProvider":true,"documentSymbolProvider":true,"workspaceSymbolProvider":true,"codeActionProvider":true,"documentFormattingProvider":true,"documentRangeFormattingProvider":true,"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n"},"renameProvider":false,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 52
+
+{"jsonrpc":"2.0","method":"initialized","params":{}}Content-Length: 3757
+
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","languageId":"cpp","version":1,"text":"/**\r\n   @file StandardRTLSTag_TWR.ino\r\n   @author rakwireless.com\r\n   @brief Standard RTLS Tag TWR\r\n   @version 0.1\r\n   @date 2022-1-28\r\n   @copyright Copyright (c) 2020\r\n**/\r\n\r\n#include <DW1000Ng.hpp>\r\n#include <DW1000NgUtils.hpp>\r\n#include <DW1000NgTime.hpp>\r\n#include <DW1000NgConstants.hpp>\r\n#include <DW1000NgRanging.hpp>\r\n#include <DW1000NgRTLS.hpp>\r\n\r\n// connection pins\r\n#if defined(ESP8266)\r\nconst uint8_t PIN_SS = 15;\r\n#else\r\nconst uint8_t PIN_SS = SS; // spi select pin\r\nconst uint8_t PIN_RST = WB_IO6;\r\nconst uint8_t PIN_IRQ = WB_IO5;\r\n#endif\r\n\r\nvolatile uint32_t blink_rate = 500;\r\n\r\ndevice_configuration_t DEFAULT_CONFIG = {\r\n  false,\r\n  true,\r\n  true,\r\n  true,\r\n  false,\r\n  SFDMode::STANDARD_SFD,\r\n  Channel::CHANNEL_5,\r\n  DataRate::RATE_850KBPS,\r\n  PulseFrequency::FREQ_16MHZ,\r\n  PreambleLength::LEN_256,\r\n  PreambleCode::CODE_3\r\n};\r\n\r\nframe_filtering_configuration_t TAG_FRAME_FILTER_CONFIG = {\r\n  false,\r\n  false,\r\n  true,\r\n  false,\r\n  false,\r\n  false,\r\n  false,\r\n  false\r\n};\r\n\r\nsleep_configuration_t SLEEP_CONFIG = {\r\n  false,  // onWakeUpRunADC   reg 0x2C:00\r\n  false,  // onWakeUpReceive\r\n  false,  // onWakeUpLoadEUI\r\n  true,   // onWakeUpLoadL64Param\r\n  true,   // preserveSleep\r\n  true,   // enableSLP    reg 0x2C:06\r\n  false,  // enableWakePIN\r\n  true    // enableWakeSPI\r\n};\r\n\r\nvoid setup() {\r\n  pinMode(WB_IO2, OUTPUT);\r\n  digitalWrite(WB_IO2, HIGH); //Turn on the power switch\r\n  delay(300);\r\n  time_t serial_timeout = millis();\r\n  // DEBUG monitoring\r\n  Serial.begin(115200);\r\n  while (!Serial)\r\n  {\r\n    if ((millis() - serial_timeout) < 5000)\r\n    {\r\n      delay(100);\r\n    }\r\n    else\r\n    {\r\n      break;\r\n    }\r\n  }\r\n  Serial.println(F(\"### DW1000Ng-arduino-ranging-tag ###\"));\r\n  // initialize the driver\r\n#if defined(ESP8266)\r\n  DW1000Ng::initializeNoInterrupt(PIN_SS);\r\n#else\r\n  DW1000Ng::initializeNoInterrupt(PIN_SS, PIN_RST);\r\n#endif\r\n  Serial.println(\"DW1000Ng initialized ...\");\r\n  // general configuration\r\n  DW1000Ng::applyConfiguration(DEFAULT_CONFIG);\r\n  DW1000Ng::enableFrameFiltering(TAG_FRAME_FILTER_CONFIG);\r\n\r\n  DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:00\");\r\n\r\n  DW1000Ng::setNetworkId(RTLS_APP_ID);\r\n\r\n  DW1000Ng::setAntennaDelay(16436);//16436\r\n\r\n  DW1000Ng::applySleepConfiguration(SLEEP_CONFIG);\r\n\r\n  DW1000Ng::setPreambleDetectionTimeout(15);\r\n  DW1000Ng::setSfdDetectionTimeout(273);\r\n  DW1000Ng::setReceiveFrameWaitTimeoutPeriod(2000);\r\n\r\n  Serial.println(F(\"Committed configuration ...\"));\r\n  // DEBUG chip info and registers pretty printed\r\n  char msg[128];\r\n  DW1000Ng::getPrintableDeviceIdentifier(msg);\r\n  Serial.print(\"Device ID: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableExtendedUniqueIdentifier(msg);\r\n  Serial.print(\"Unique ID: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableNetworkIdAndShortAddress(msg);\r\n  Serial.print(\"Network ID & Device Address: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableDeviceMode(msg);\r\n  Serial.print(\"Device mode: \"); Serial.println(msg);\r\n}\r\n\r\nvoid loop() {\r\n  DW1000Ng::deepSleep();\r\n  delay(blink_rate);\r\n  DW1000Ng::spiWakeup();\r\n  DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:00\");\r\n  //  delay(2);\r\n  RangeInfrastructureResult res = DW1000NgRTLS::tagTwrLocalize(1500);\r\n  if (res.success)\r\n    blink_rate = res.new_blink_rate;\r\n}\r\n"}}}Content-Length: 312
+
+{"jsonrpc":"2.0","id":1,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}Content-Length: 312
+
+{"jsonrpc":"2.0","id":2,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}Content-Length: 213
+
+{"jsonrpc":"2.0","id":3,"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"}}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":3}}Content-Length: 213
+
+{"jsonrpc":"2.0","id":4,"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"}}}Content-Length: 241
+
+{"jsonrpc":"2.0","id":5,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":2,"character":10}}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":5}}Content-Length: 241
+
+{"jsonrpc":"2.0","id":6,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":2,"character":12}}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":6}}Content-Length: 241
+
+{"jsonrpc":"2.0","id":7,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":1,"character":11}}}Content-Length: 62
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":7}}
+>>>
+Content-Length: 111
+
+{"method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"},"id":0,"jsonrpc":"2.0"}Content-Length: 623
+
+{"method":"textDocument/publishDiagnostics","params":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","diagnostics":[{"range":{"start":{"line":67,"character":2},"end":{"line":67,"character":8}},"severity":1,"code":"unknown_typename_suggest","source":"clang","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here"}]},"jsonrpc":"2.0"}Content-Length: 36
+
+{"id":1,"result":[],"jsonrpc":"2.0"}Content-Length: 36
+
+{"id":2,"result":[],"jsonrpc":"2.0"}Content-Length: 1794
+
+{"id":3,"result":[{"name":"PIN_SS","kind":13,"range":{"start":{"line":20,"character":0},"end":{"line":20,"character":25}},"selectionRange":{"start":{"line":20,"character":14},"end":{"line":20,"character":20}}},{"name":"PIN_RST","kind":13,"range":{"start":{"line":21,"character":0},"end":{"line":21,"character":30}},"selectionRange":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}}},{"name":"PIN_IRQ","kind":13,"range":{"start":{"line":22,"character":0},"end":{"line":22,"character":30}},"selectionRange":{"start":{"line":22,"character":14},"end":{"line":22,"character":21}}},{"name":"blink_rate","kind":13,"range":{"start":{"line":25,"character":0},"end":{"line":25,"character":34}},"selectionRange":{"start":{"line":25,"character":18},"end":{"line":25,"character":28}}},{"name":"DEFAULT_CONFIG","kind":13,"range":{"start":{"line":27,"character":0},"end":{"line":39,"character":1}},"selectionRange":{"start":{"line":27,"character":23},"end":{"line":27,"character":37}}},{"name":"TAG_FRAME_FILTER_CONFIG","kind":13,"range":{"start":{"line":41,"character":0},"end":{"line":50,"character":1}},"selectionRange":{"start":{"line":41,"character":32},"end":{"line":41,"character":55}}},{"name":"SLEEP_CONFIG","kind":13,"range":{"start":{"line":52,"character":0},"end":{"line":61,"character":1}},"selectionRange":{"start":{"line":52,"character":22},"end":{"line":52,"character":34}}},{"name":"setup","kind":12,"range":{"start":{"line":63,"character":0},"end":{"line":116,"character":1}},"selectionRange":{"start":{"line":63,"character":5},"end":{"line":63,"character":10}}},{"name":"loop","kind":12,"range":{"start":{"line":118,"character":0},"end":{"line":127,"character":1}},"selectionRange":{"start":{"line":118,"character":5},"end":{"line":118,"character":9}}}],"jsonrpc":"2.0"}Content-Length: 1794
+
+{"id":4,"result":[{"name":"PIN_SS","kind":13,"range":{"start":{"line":20,"character":0},"end":{"line":20,"character":25}},"selectionRange":{"start":{"line":20,"character":14},"end":{"line":20,"character":20}}},{"name":"PIN_RST","kind":13,"range":{"start":{"line":21,"character":0},"end":{"line":21,"character":30}},"selectionRange":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}}},{"name":"PIN_IRQ","kind":13,"range":{"start":{"line":22,"character":0},"end":{"line":22,"character":30}},"selectionRange":{"start":{"line":22,"character":14},"end":{"line":22,"character":21}}},{"name":"blink_rate","kind":13,"range":{"start":{"line":25,"character":0},"end":{"line":25,"character":34}},"selectionRange":{"start":{"line":25,"character":18},"end":{"line":25,"character":28}}},{"name":"DEFAULT_CONFIG","kind":13,"range":{"start":{"line":27,"character":0},"end":{"line":39,"character":1}},"selectionRange":{"start":{"line":27,"character":23},"end":{"line":27,"character":37}}},{"name":"TAG_FRAME_FILTER_CONFIG","kind":13,"range":{"start":{"line":41,"character":0},"end":{"line":50,"character":1}},"selectionRange":{"start":{"line":41,"character":32},"end":{"line":41,"character":55}}},{"name":"SLEEP_CONFIG","kind":13,"range":{"start":{"line":52,"character":0},"end":{"line":61,"character":1}},"selectionRange":{"start":{"line":52,"character":22},"end":{"line":52,"character":34}}},{"name":"setup","kind":12,"range":{"start":{"line":63,"character":0},"end":{"line":116,"character":1}},"selectionRange":{"start":{"line":63,"character":5},"end":{"line":63,"character":10}}},{"name":"loop","kind":12,"range":{"start":{"line":118,"character":0},"end":{"line":127,"character":1}},"selectionRange":{"start":{"line":118,"character":5},"end":{"line":118,"character":9}}}],"jsonrpc":"2.0"}Content-Length: 38
+
+{"id":5,"result":null,"jsonrpc":"2.0"}Content-Length: 38
+
+{"id":6,"result":null,"jsonrpc":"2.0"}Content-Length: 38
+
+{"id":7,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 38
+
+{"jsonrpc":"2.0","id":0,"result":null}
+>>>
+Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"title":"indexing","percentage":0,"kind":"begin"}},"jsonrpc":"2.0"}Content-Length: 158
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"4/36","percentage":11.11111111111111,"kind":"report"}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 312
+
+{"jsonrpc":"2.0","id":8,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}Content-Length: 312
+
+{"jsonrpc":"2.0","id":9,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 36
+
+{"id":8,"result":[],"jsonrpc":"2.0"}Content-Length: 36
+
+{"id":9,"result":[],"jsonrpc":"2.0"}Content-Length: 158
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"5/36","percentage":13.88888888888889,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 158
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"5/36","percentage":13.88888888888889,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"6/36","percentage":16.666666666666668,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"6/36","percentage":16.666666666666668,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"7/36","percentage":19.444444444444443,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"7/36","percentage":19.444444444444443,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 158
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"8/36","percentage":22.22222222222222,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 158
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"8/36","percentage":22.22222222222222,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"9/36","percentage":25,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"9/36","percentage":25,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"10/36","percentage":27.77777777777778,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"10/36","percentage":27.77777777777778,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"11/36","percentage":30.555555555555557,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"12/36","percentage":33.333333333333336,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"12/36","percentage":33.333333333333336,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"13/36","percentage":36.111111111111114,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"14/36","percentage":38.888888888888886,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"14/36","percentage":38.888888888888886,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"15/36","percentage":41.666666666666664,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"15/36","percentage":41.666666666666664,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"16/36","percentage":44.44444444444444,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"16/36","percentage":44.44444444444444,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"17/36","percentage":47.22222222222222,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"17/36","percentage":47.22222222222222,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 144
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"18/36","percentage":50,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 144
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"18/36","percentage":50,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"19/36","percentage":52.77777777777778,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"19/36","percentage":52.77777777777778,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"20/36","percentage":55.55555555555556,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"20/36","percentage":55.55555555555556,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"21/36","percentage":58.333333333333336,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"21/36","percentage":58.333333333333336,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"22/36","percentage":61.111111111111114,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"22/36","percentage":61.111111111111114,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"23/36","percentage":63.888888888888886,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 160
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"23/36","percentage":63.888888888888886,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"24/36","percentage":66.66666666666667,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"24/36","percentage":66.66666666666667,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"25/36","percentage":69.44444444444444,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"26/36","percentage":72.22222222222223,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"26/36","percentage":72.22222222222223,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 144
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"27/36","percentage":75,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 144
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"27/36","percentage":75,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"28/36","percentage":77.77777777777777,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"28/36","percentage":77.77777777777777,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"29/36","percentage":80.55555555555556,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"29/36","percentage":80.55555555555556,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"30/36","percentage":83.33333333333333,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"30/36","percentage":83.33333333333333,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"31/36","percentage":86.11111111111111,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"31/36","percentage":86.11111111111111,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"32/36","percentage":88.88888888888889,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"32/36","percentage":88.88888888888889,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"33/36","percentage":91.66666666666667,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"34/36","percentage":94.44444444444444,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 159
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"35/36","percentage":97.22222222222223,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 107
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"end"}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":10,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":86,"character":50}}}
+>>>
+Content-Length: 770
+
+{"id":10,"result":{"contents":{"kind":"markdown","value":"### function `initializeNoInterrupt`  \n\n---\n→ `void`  \nParameters:  \n- `uint8_t ss`\n- `uint8_t rst = 255`\n\nInitiates and starts a sessions with a DW1000 without interrupt. If rst is not set or value 0xff, a soft resets (i.e. command triggered) are used and it is assumed that no reset line is wired.  \n@param[in] ss The SPI Selection pin used to identify the specific connection  \n@param[in] rst The reset line/pin for hard resets of ICs that connect to the Arduino. Value 0xff means soft reset.  \n\n---\n```cpp\n// In namespace DW1000Ng\nvoid initializeNoInterrupt(uint8_t ss, uint8_t rst = 255)\n```"},"range":{"start":{"line":86,"character":50},"end":{"line":86,"character":51}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 244
+
+{"jsonrpc":"2.0","id":11,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":124,"character":52}}}
+>>>
+Content-Length: 552
+
+{"id":11,"result":{"contents":{"kind":"markdown","value":"### function `tagTwrLocalize`  \n\n---\n→ `RangeInfrastructureResult`  \nParameters:  \n- `uint16_t finalMessageDelay`\n\nCan be used as a single function start the localization process from the tag.  \nFinalmessagedelay is the same as in function tagRangeInfrastructure  \n\n---\n```cpp\n// In namespace DW1000NgRTLS\nRangeInfrastructureResult tagTwrLocalize(uint16_t finalMessageDelay)\n```"},"range":{"start":{"line":124,"character":48},"end":{"line":124,"character":62}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 244
+
+{"jsonrpc":"2.0","id":12,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":124,"character":55}}}
+>>>
+Content-Length: 552
+
+{"id":12,"result":{"contents":{"kind":"markdown","value":"### function `tagTwrLocalize`  \n\n---\n→ `RangeInfrastructureResult`  \nParameters:  \n- `uint16_t finalMessageDelay`\n\nCan be used as a single function start the localization process from the tag.  \nFinalmessagedelay is the same as in function tagRangeInfrastructure  \n\n---\n```cpp\n// In namespace DW1000NgRTLS\nRangeInfrastructureResult tagTwrLocalize(uint16_t finalMessageDelay)\n```"},"range":{"start":{"line":124,"character":48},"end":{"line":124,"character":62}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 244
+
+{"jsonrpc":"2.0","id":13,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":124,"character":57}}}
+>>>
+Content-Length: 552
+
+{"id":13,"result":{"contents":{"kind":"markdown","value":"### function `tagTwrLocalize`  \n\n---\n→ `RangeInfrastructureResult`  \nParameters:  \n- `uint16_t finalMessageDelay`\n\nCan be used as a single function start the localization process from the tag.  \nFinalmessagedelay is the same as in function tagRangeInfrastructure  \n\n---\n```cpp\n// In namespace DW1000NgRTLS\nRangeInfrastructureResult tagTwrLocalize(uint16_t finalMessageDelay)\n```"},"range":{"start":{"line":124,"character":48},"end":{"line":124,"character":62}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 244
+
+{"jsonrpc":"2.0","id":14,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":109,"character":46}}}
+>>>
+Content-Length: 303
+
+{"id":14,"result":{"contents":{"kind":"markdown","value":"### variable `msg`  \n\n---\nType: `char [128]`  \nDEBUG chip info and registers pretty printed  \n\n---\n```cpp\n// In setup\nchar msg[128]\n```"},"range":{"start":{"line":109,"character":46},"end":{"line":109,"character":49}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":15,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":99,"character":46}}}
+>>>
+Content-Length: 403
+
+{"id":15,"result":{"contents":{"kind":"markdown","value":"### variable `SLEEP_CONFIG`  \n\n---\nType: `sleep_configuration_t`  \nPassed as sleep_config  \n\n---\n```cpp\nsleep_configuration_t SLEEP_CONFIG = {false, false, false, true,\n                                      true,  true,  false, true}\n```"},"range":{"start":{"line":99,"character":36},"end":{"line":99,"character":48}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":16,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":99,"character":43}}}
+>>>
+Content-Length: 403
+
+{"id":16,"result":{"contents":{"kind":"markdown","value":"### variable `SLEEP_CONFIG`  \n\n---\nType: `sleep_configuration_t`  \nPassed as sleep_config  \n\n---\n```cpp\nsleep_configuration_t SLEEP_CONFIG = {false, false, false, true,\n                                      true,  true,  false, true}\n```"},"range":{"start":{"line":99,"character":36},"end":{"line":99,"character":48}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":17,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":99,"character":42}}}
+>>>
+Content-Length: 403
+
+{"id":17,"result":{"contents":{"kind":"markdown","value":"### variable `SLEEP_CONFIG`  \n\n---\nType: `sleep_configuration_t`  \nPassed as sleep_config  \n\n---\n```cpp\nsleep_configuration_t SLEEP_CONFIG = {false, false, false, true,\n                                      true,  true,  false, true}\n```"},"range":{"start":{"line":99,"character":36},"end":{"line":99,"character":48}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":18,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":31}}}
+>>>
+Content-Length: 39
+
+{"id":18,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 255
+
+{"jsonrpc":"2.0","id":19,"method":"textDocument/documentHighlight","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":32}}}
+>>>
+Content-Length: 37
+
+{"id":19,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 317
+
+{"jsonrpc":"2.0","id":20,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":28},"end":{"line":97,"character":33}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 433
+
+{"id":20,"result":[{"title":"Extract subexpression to variable","kind":"refactor","command":{"title":"Extract subexpression to variable","command":"clangd.applyTweak","arguments":[{"tweakID":"ExtractVariable","file":"file:///D:/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","selection":{"start":{"line":97,"character":28},"end":{"line":97,"character":33}}}]}}],"jsonrpc":"2.0"}
+<<<
+Content-Length: 343
+
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","version":2},"contentChanges":[{"range":{"start":{"line":97,"character":28},"end":{"line":97,"character":33}},"rangeLength":5,"text":"16637"}]}}Content-Length: 214
+
+{"jsonrpc":"2.0","id":21,"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"}}}
+>>>
+Content-Length: 1795
+
+{"id":21,"result":[{"name":"PIN_SS","kind":13,"range":{"start":{"line":20,"character":0},"end":{"line":20,"character":25}},"selectionRange":{"start":{"line":20,"character":14},"end":{"line":20,"character":20}}},{"name":"PIN_RST","kind":13,"range":{"start":{"line":21,"character":0},"end":{"line":21,"character":30}},"selectionRange":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}}},{"name":"PIN_IRQ","kind":13,"range":{"start":{"line":22,"character":0},"end":{"line":22,"character":30}},"selectionRange":{"start":{"line":22,"character":14},"end":{"line":22,"character":21}}},{"name":"blink_rate","kind":13,"range":{"start":{"line":25,"character":0},"end":{"line":25,"character":34}},"selectionRange":{"start":{"line":25,"character":18},"end":{"line":25,"character":28}}},{"name":"DEFAULT_CONFIG","kind":13,"range":{"start":{"line":27,"character":0},"end":{"line":39,"character":1}},"selectionRange":{"start":{"line":27,"character":23},"end":{"line":27,"character":37}}},{"name":"TAG_FRAME_FILTER_CONFIG","kind":13,"range":{"start":{"line":41,"character":0},"end":{"line":50,"character":1}},"selectionRange":{"start":{"line":41,"character":32},"end":{"line":41,"character":55}}},{"name":"SLEEP_CONFIG","kind":13,"range":{"start":{"line":52,"character":0},"end":{"line":61,"character":1}},"selectionRange":{"start":{"line":52,"character":22},"end":{"line":52,"character":34}}},{"name":"setup","kind":12,"range":{"start":{"line":63,"character":0},"end":{"line":116,"character":1}},"selectionRange":{"start":{"line":63,"character":5},"end":{"line":63,"character":10}}},{"name":"loop","kind":12,"range":{"start":{"line":118,"character":0},"end":{"line":127,"character":1}},"selectionRange":{"start":{"line":118,"character":5},"end":{"line":118,"character":9}}}],"jsonrpc":"2.0"}
+<<<
+Content-Length: 248
+
+{"jsonrpc":"2.0","id":22,"method":"textDocument/definition","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":32}}}
+>>>
+Content-Length: 37
+
+{"id":22,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 248
+
+{"jsonrpc":"2.0","id":23,"method":"textDocument/definition","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":37}}}
+>>>
+Content-Length: 37
+
+{"id":23,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 317
+
+{"jsonrpc":"2.0","id":24,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":33},"end":{"line":97,"character":33}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":24,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 211
+
+{"jsonrpc":"2.0","method":"textDocument/didSave","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","version":2}}}Content-Length: 255
+
+{"jsonrpc":"2.0","id":25,"method":"textDocument/documentHighlight","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":42}}}
+>>>
+Content-Length: 37
+
+{"id":25,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 317
+
+{"jsonrpc":"2.0","id":26,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":42},"end":{"line":97,"character":42}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":26,"result":[],"jsonrpc":"2.0"}Content-Length: 116
+
+{"method":"window/workDoneProgress/create","params":{"token":"arduinoLanguageServerRebuild"},"id":1,"jsonrpc":"2.0"}
+<<<
+Content-Length: 38
+
+{"jsonrpc":"2.0","id":1,"result":null}
+>>>
+Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"title":"Building sketch","kind":"begin"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":27,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":95,"character":32}}}
+>>>
+Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 140
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling...","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 138
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling.","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 139
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"compiling..","kind":"report"}},"jsonrpc":"2.0"}Content-Length: 129
+
+{"method":"$/progress","params":{"token":"arduinoLanguageServerRebuild","value":{"message":"done","kind":"end"}},"jsonrpc":"2.0"}Content-Length: 623
+
+{"method":"textDocument/publishDiagnostics","params":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","diagnostics":[{"range":{"start":{"line":67,"character":2},"end":{"line":67,"character":8}},"severity":1,"code":"unknown_typename_suggest","source":"clang","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here"}]},"jsonrpc":"2.0"}Content-Length: 111
+
+{"method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"},"id":2,"jsonrpc":"2.0"}Content-Length: 376
+
+{"id":27,"result":{"contents":{"kind":"markdown","value":"### variable `RTLS_APP_ID`  \n\n---\nType: `const uint16_t`  \nValue = `24730`  \nPassed as val  \n\n---\n```cpp\nconstexpr uint16_t RTLS_APP_ID =\n    RTLS_APP_ID_LOW | ((uint16_t)(RTLS_APP_ID_HIGH \u003c\u003c 8))\n```"},"range":{"start":{"line":95,"character":25},"end":{"line":95,"character":36}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 63
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":27}}Content-Length: 248
+
+{"jsonrpc":"2.0","id":28,"method":"textDocument/definition","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":93,"character":43}}}Content-Length: 243
+
+{"jsonrpc":"2.0","id":29,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":93,"character":43}}}Content-Length: 63
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":29}}Content-Length: 243
+
+{"jsonrpc":"2.0","id":30,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":99,"character":36}}}Content-Length: 63
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":30}}Content-Length: 243
+
+{"jsonrpc":"2.0","id":31,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":99,"character":38}}}Content-Length: 63
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":31}}Content-Length: 243
+
+{"jsonrpc":"2.0","id":32,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":99,"character":36}}}Content-Length: 63
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":32}}Content-Length: 38
+
+{"jsonrpc":"2.0","id":2,"result":null}
+>>>
+Content-Length: 37
+
+{"id":28,"result":[],"jsonrpc":"2.0"}Content-Length: 39
+
+{"id":29,"result":null,"jsonrpc":"2.0"}Content-Length: 403
+
+{"id":30,"result":{"contents":{"kind":"markdown","value":"### variable `SLEEP_CONFIG`  \n\n---\nType: `sleep_configuration_t`  \nPassed as sleep_config  \n\n---\n```cpp\nsleep_configuration_t SLEEP_CONFIG = {false, false, false, true,\n                                      true,  true,  false, true}\n```"},"range":{"start":{"line":99,"character":36},"end":{"line":99,"character":48}}},"jsonrpc":"2.0"}Content-Length: 403
+
+{"id":31,"result":{"contents":{"kind":"markdown","value":"### variable `SLEEP_CONFIG`  \n\n---\nType: `sleep_configuration_t`  \nPassed as sleep_config  \n\n---\n```cpp\nsleep_configuration_t SLEEP_CONFIG = {false, false, false, true,\n                                      true,  true,  false, true}\n```"},"range":{"start":{"line":99,"character":36},"end":{"line":99,"character":48}}},"jsonrpc":"2.0"}Content-Length: 403
+
+{"id":32,"result":{"contents":{"kind":"markdown","value":"### variable `SLEEP_CONFIG`  \n\n---\nType: `sleep_configuration_t`  \nPassed as sleep_config  \n\n---\n```cpp\nsleep_configuration_t SLEEP_CONFIG = {false, false, false, true,\n                                      true,  true,  false, true}\n```"},"range":{"start":{"line":99,"character":36},"end":{"line":99,"character":48}}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"title":"indexing","percentage":0,"kind":"begin"}},"jsonrpc":"2.0"}Content-Length: 107
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"end"}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 313
+
+{"jsonrpc":"2.0","id":33,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":33,"result":[],"jsonrpc":"2.0"}Content-Length: 623
+
+{"method":"textDocument/publishDiagnostics","params":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","diagnostics":[{"range":{"start":{"line":67,"character":2},"end":{"line":67,"character":8}},"severity":1,"code":"unknown_typename_suggest","source":"clang","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here"}]},"jsonrpc":"2.0"}
+<<<
+Content-Length: 313
+
+{"jsonrpc":"2.0","id":34,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":34,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":35,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":88,"character":40}}}
+>>>
+Content-Length: 39
+
+{"id":35,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 63
+
+{"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":35}}Content-Length: 243
+
+{"jsonrpc":"2.0","id":36,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":29}}}
+>>>
+Content-Length: 39
+
+{"id":36,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":37,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":30}}}
+>>>
+Content-Length: 39
+
+{"id":37,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 255
+
+{"jsonrpc":"2.0","id":38,"method":"textDocument/documentHighlight","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":30}}}
+>>>
+Content-Length: 37
+
+{"id":38,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 317
+
+{"jsonrpc":"2.0","id":39,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":30},"end":{"line":97,"character":32}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 433
+
+{"id":39,"result":[{"title":"Extract subexpression to variable","kind":"refactor","command":{"title":"Extract subexpression to variable","command":"clangd.applyTweak","arguments":[{"tweakID":"ExtractVariable","file":"file:///D:/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","selection":{"start":{"line":97,"character":30},"end":{"line":97,"character":32}}}]}}],"jsonrpc":"2.0"}
+<<<
+Content-Length: 317
+
+{"jsonrpc":"2.0","id":40,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":30},"end":{"line":97,"character":33}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 433
+
+{"id":40,"result":[{"title":"Extract subexpression to variable","kind":"refactor","command":{"title":"Extract subexpression to variable","command":"clangd.applyTweak","arguments":[{"tweakID":"ExtractVariable","file":"file:///D:/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","selection":{"start":{"line":97,"character":30},"end":{"line":97,"character":33}}}]}}],"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":41,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":32}}}
+>>>
+Content-Length: 39
+
+{"id":41,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 339
+
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","version":3},"contentChanges":[{"range":{"start":{"line":97,"character":30},"end":{"line":97,"character":33}},"rangeLength":3,"text":"5"}]}}Content-Length: 214
+
+{"jsonrpc":"2.0","id":42,"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"}}}
+>>>
+Content-Length: 1795
+
+{"id":42,"result":[{"name":"PIN_SS","kind":13,"range":{"start":{"line":20,"character":0},"end":{"line":20,"character":25}},"selectionRange":{"start":{"line":20,"character":14},"end":{"line":20,"character":20}}},{"name":"PIN_RST","kind":13,"range":{"start":{"line":21,"character":0},"end":{"line":21,"character":30}},"selectionRange":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}}},{"name":"PIN_IRQ","kind":13,"range":{"start":{"line":22,"character":0},"end":{"line":22,"character":30}},"selectionRange":{"start":{"line":22,"character":14},"end":{"line":22,"character":21}}},{"name":"blink_rate","kind":13,"range":{"start":{"line":25,"character":0},"end":{"line":25,"character":34}},"selectionRange":{"start":{"line":25,"character":18},"end":{"line":25,"character":28}}},{"name":"DEFAULT_CONFIG","kind":13,"range":{"start":{"line":27,"character":0},"end":{"line":39,"character":1}},"selectionRange":{"start":{"line":27,"character":23},"end":{"line":27,"character":37}}},{"name":"TAG_FRAME_FILTER_CONFIG","kind":13,"range":{"start":{"line":41,"character":0},"end":{"line":50,"character":1}},"selectionRange":{"start":{"line":41,"character":32},"end":{"line":41,"character":55}}},{"name":"SLEEP_CONFIG","kind":13,"range":{"start":{"line":52,"character":0},"end":{"line":61,"character":1}},"selectionRange":{"start":{"line":52,"character":22},"end":{"line":52,"character":34}}},{"name":"setup","kind":12,"range":{"start":{"line":63,"character":0},"end":{"line":116,"character":1}},"selectionRange":{"start":{"line":63,"character":5},"end":{"line":63,"character":10}}},{"name":"loop","kind":12,"range":{"start":{"line":118,"character":0},"end":{"line":127,"character":1}},"selectionRange":{"start":{"line":118,"character":5},"end":{"line":118,"character":9}}}],"jsonrpc":"2.0"}
+<<<
+Content-Length: 317
+
+{"jsonrpc":"2.0","id":43,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":31},"end":{"line":97,"character":31}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":43,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":44,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":35}}}
+>>>
+Content-Length: 39
+
+{"id":44,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 211
+
+{"jsonrpc":"2.0","method":"textDocument/didSave","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","version":3}}}Content-Length: 243
+
+{"jsonrpc":"2.0","id":45,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":36}}}
+>>>
+Content-Length: 39
+
+{"id":45,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 339
+
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","version":4},"contentChanges":[{"range":{"start":{"line":97,"character":31},"end":{"line":97,"character":31}},"rangeLength":0,"text":"0"}]}}Content-Length: 214
+
+{"jsonrpc":"2.0","id":46,"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"}}}
+>>>
+Content-Length: 1795
+
+{"id":46,"result":[{"name":"PIN_SS","kind":13,"range":{"start":{"line":20,"character":0},"end":{"line":20,"character":25}},"selectionRange":{"start":{"line":20,"character":14},"end":{"line":20,"character":20}}},{"name":"PIN_RST","kind":13,"range":{"start":{"line":21,"character":0},"end":{"line":21,"character":30}},"selectionRange":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}}},{"name":"PIN_IRQ","kind":13,"range":{"start":{"line":22,"character":0},"end":{"line":22,"character":30}},"selectionRange":{"start":{"line":22,"character":14},"end":{"line":22,"character":21}}},{"name":"blink_rate","kind":13,"range":{"start":{"line":25,"character":0},"end":{"line":25,"character":34}},"selectionRange":{"start":{"line":25,"character":18},"end":{"line":25,"character":28}}},{"name":"DEFAULT_CONFIG","kind":13,"range":{"start":{"line":27,"character":0},"end":{"line":39,"character":1}},"selectionRange":{"start":{"line":27,"character":23},"end":{"line":27,"character":37}}},{"name":"TAG_FRAME_FILTER_CONFIG","kind":13,"range":{"start":{"line":41,"character":0},"end":{"line":50,"character":1}},"selectionRange":{"start":{"line":41,"character":32},"end":{"line":41,"character":55}}},{"name":"SLEEP_CONFIG","kind":13,"range":{"start":{"line":52,"character":0},"end":{"line":61,"character":1}},"selectionRange":{"start":{"line":52,"character":22},"end":{"line":52,"character":34}}},{"name":"setup","kind":12,"range":{"start":{"line":63,"character":0},"end":{"line":116,"character":1}},"selectionRange":{"start":{"line":63,"character":5},"end":{"line":63,"character":10}}},{"name":"loop","kind":12,"range":{"start":{"line":118,"character":0},"end":{"line":127,"character":1}},"selectionRange":{"start":{"line":118,"character":5},"end":{"line":118,"character":9}}}],"jsonrpc":"2.0"}
+<<<
+Content-Length: 339
+
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","version":5},"contentChanges":[{"range":{"start":{"line":97,"character":32},"end":{"line":97,"character":32}},"rangeLength":0,"text":"0"}]}}Content-Length: 214
+
+{"jsonrpc":"2.0","id":47,"method":"textDocument/documentSymbol","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"}}}
+>>>
+Content-Length: 1795
+
+{"id":47,"result":[{"name":"PIN_SS","kind":13,"range":{"start":{"line":20,"character":0},"end":{"line":20,"character":25}},"selectionRange":{"start":{"line":20,"character":14},"end":{"line":20,"character":20}}},{"name":"PIN_RST","kind":13,"range":{"start":{"line":21,"character":0},"end":{"line":21,"character":30}},"selectionRange":{"start":{"line":21,"character":14},"end":{"line":21,"character":21}}},{"name":"PIN_IRQ","kind":13,"range":{"start":{"line":22,"character":0},"end":{"line":22,"character":30}},"selectionRange":{"start":{"line":22,"character":14},"end":{"line":22,"character":21}}},{"name":"blink_rate","kind":13,"range":{"start":{"line":25,"character":0},"end":{"line":25,"character":34}},"selectionRange":{"start":{"line":25,"character":18},"end":{"line":25,"character":28}}},{"name":"DEFAULT_CONFIG","kind":13,"range":{"start":{"line":27,"character":0},"end":{"line":39,"character":1}},"selectionRange":{"start":{"line":27,"character":23},"end":{"line":27,"character":37}}},{"name":"TAG_FRAME_FILTER_CONFIG","kind":13,"range":{"start":{"line":41,"character":0},"end":{"line":50,"character":1}},"selectionRange":{"start":{"line":41,"character":32},"end":{"line":41,"character":55}}},{"name":"SLEEP_CONFIG","kind":13,"range":{"start":{"line":52,"character":0},"end":{"line":61,"character":1}},"selectionRange":{"start":{"line":52,"character":22},"end":{"line":52,"character":34}}},{"name":"setup","kind":12,"range":{"start":{"line":63,"character":0},"end":{"line":116,"character":1}},"selectionRange":{"start":{"line":63,"character":5},"end":{"line":63,"character":10}}},{"name":"loop","kind":12,"range":{"start":{"line":118,"character":0},"end":{"line":127,"character":1}},"selectionRange":{"start":{"line":118,"character":5},"end":{"line":118,"character":9}}}],"jsonrpc":"2.0"}
+<<<
+Content-Length: 317
+
+{"jsonrpc":"2.0","id":48,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":33},"end":{"line":97,"character":33}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":48,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 255
+
+{"jsonrpc":"2.0","id":49,"method":"textDocument/documentHighlight","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":97,"character":42}}}
+>>>
+Content-Length: 37
+
+{"id":49,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 211
+
+{"jsonrpc":"2.0","method":"textDocument/didSave","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","version":5}}}Content-Length: 317
+
+{"jsonrpc":"2.0","id":50,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":42},"end":{"line":97,"character":42}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":50,"result":[],"jsonrpc":"2.0"}Content-Length: 623
+
+{"method":"textDocument/publishDiagnostics","params":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","diagnostics":[{"range":{"start":{"line":67,"character":2},"end":{"line":67,"character":8}},"severity":1,"code":"unknown_typename_suggest","source":"clang","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here"}]},"jsonrpc":"2.0"}
+<<<
+Content-Length: 243
+
+{"jsonrpc":"2.0","id":51,"method":"textDocument/hover","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":99,"character":46}}}
+>>>
+Content-Length: 403
+
+{"id":51,"result":{"contents":{"kind":"markdown","value":"### variable `SLEEP_CONFIG`  \n\n---\nType: `sleep_configuration_t`  \nPassed as sleep_config  \n\n---\n```cpp\nsleep_configuration_t SLEEP_CONFIG = {false, false, false, true,\n                                      true,  true,  false, true}\n```"},"range":{"start":{"line":99,"character":36},"end":{"line":99,"character":48}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 313
+
+{"jsonrpc":"2.0","id":52,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}Content-Length: 317
+
+{"jsonrpc":"2.0","id":53,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":42},"end":{"line":97,"character":42}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":52,"result":[],"jsonrpc":"2.0"}Content-Length: 37
+
+{"id":53,"result":[],"jsonrpc":"2.0"}Content-Length: 623
+
+{"method":"textDocument/publishDiagnostics","params":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","diagnostics":[{"range":{"start":{"line":67,"character":2},"end":{"line":67,"character":8}},"severity":1,"code":"unknown_typename_suggest","source":"clang","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here"}]},"jsonrpc":"2.0"}
+<<<
+Content-Length: 313
+
+{"jsonrpc":"2.0","id":54,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}Content-Length: 317
+
+{"jsonrpc":"2.0","id":55,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":97,"character":42},"end":{"line":97,"character":42}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 37
+
+{"id":54,"result":[],"jsonrpc":"2.0"}Content-Length: 37
+
+{"id":55,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 59
+
+{"jsonrpc":"2.0","id":56,"method":"shutdown","params":null}
+>>>
+Content-Length: 39
+
+{"id":56,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 47
+
+{"jsonrpc":"2.0","method":"exit","params":null}
+
+
+
+
+
+
+Started logging.
+
+<<<
+Content-Length: 3172
+
+{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"processId":7080,"clientInfo":{"name":"vscode","version":"1.53.2"},"rootPath":"d:\\RAK-Work\\20210707\\RAK13801\\RAK13801-UWB-Library\\examples\\StandardRTLSTag_TWR","rootUri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR","capabilities":{"workspace":{"applyEdit":true,"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"],"failureHandling":"textOnlyTransactional"},"didChangeConfiguration":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"symbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"configuration":true,"workspaceFolders":true},"textDocument":{"publishDiagnostics":{"relatedInformation":true,"versionSupport":false,"tagSupport":{"valueSet":[1,2]}},"synchronization":{"dynamicRegistration":true,"willSave":true,"willSaveWaitUntil":true,"didSave":true},"completion":{"dynamicRegistration":true,"contextSupport":true,"completionItem":{"snippetSupport":true,"commitCharactersSupport":true,"documentationFormat":["markdown","plaintext"],"deprecatedSupport":true,"preselectSupport":true,"tagSupport":{"valueSet":[1]}},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]}},"hover":{"dynamicRegistration":true,"contentFormat":["markdown","plaintext"]},"signatureHelp":{"dynamicRegistration":true,"signatureInformation":{"documentationFormat":["markdown","plaintext"],"parameterInformation":{"labelOffsetSupport":true}},"contextSupport":true},"definition":{"dynamicRegistration":true,"linkSupport":true},"references":{"dynamicRegistration":true},"documentHighlight":{"dynamicRegistration":true},"documentSymbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"codeAction":{"dynamicRegistration":true,"isPreferredSupport":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"codeLens":{"dynamicRegistration":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"onTypeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"documentLink":{"dynamicRegistration":true,"tooltipSupport":true},"typeDefinition":{"dynamicRegistration":true,"linkSupport":true},"implementation":{"dynamicRegistration":true,"linkSupport":true},"colorProvider":{"dynamicRegistration":true},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"declaration":{"dynamicRegistration":true,"linkSupport":true},"selectionRange":{"dynamicRegistration":true}},"window":{"workDoneProgress":true}},"initializationOptions":{},"trace":"off","workspaceFolders":[{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR","name":"StandardRTLSTag_TWR"}]}}
+>>>
+Content-Length: 598
+
+{"id":0,"result":{"capabilities":{"textDocumentSync":2,"hoverProvider":true,"completionProvider":{"triggerCharacters":[".","\u003e",":"]},"signatureHelpProvider":{"triggerCharacters":["(",","]},"definitionProvider":true,"documentHighlightProvider":true,"documentSymbolProvider":true,"workspaceSymbolProvider":true,"codeActionProvider":true,"documentFormattingProvider":true,"documentRangeFormattingProvider":true,"documentOnTypeFormattingProvider":{"firstTriggerCharacter":"\n"},"renameProvider":false,"executeCommandProvider":{"commands":["clangd.applyFix","clangd.applyTweak"]}}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 52
+
+{"jsonrpc":"2.0","method":"initialized","params":{}}Content-Length: 3757
+
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","languageId":"cpp","version":5,"text":"/**\r\n   @file StandardRTLSTag_TWR.ino\r\n   @author rakwireless.com\r\n   @brief Standard RTLS Tag TWR\r\n   @version 0.1\r\n   @date 2022-1-28\r\n   @copyright Copyright (c) 2020\r\n**/\r\n\r\n#include <DW1000Ng.hpp>\r\n#include <DW1000NgUtils.hpp>\r\n#include <DW1000NgTime.hpp>\r\n#include <DW1000NgConstants.hpp>\r\n#include <DW1000NgRanging.hpp>\r\n#include <DW1000NgRTLS.hpp>\r\n\r\n// connection pins\r\n#if defined(ESP8266)\r\nconst uint8_t PIN_SS = 15;\r\n#else\r\nconst uint8_t PIN_SS = SS; // spi select pin\r\nconst uint8_t PIN_RST = WB_IO6;\r\nconst uint8_t PIN_IRQ = WB_IO5;\r\n#endif\r\n\r\nvolatile uint32_t blink_rate = 500;\r\n\r\ndevice_configuration_t DEFAULT_CONFIG = {\r\n  false,\r\n  true,\r\n  true,\r\n  true,\r\n  false,\r\n  SFDMode::STANDARD_SFD,\r\n  Channel::CHANNEL_5,\r\n  DataRate::RATE_850KBPS,\r\n  PulseFrequency::FREQ_16MHZ,\r\n  PreambleLength::LEN_256,\r\n  PreambleCode::CODE_3\r\n};\r\n\r\nframe_filtering_configuration_t TAG_FRAME_FILTER_CONFIG = {\r\n  false,\r\n  false,\r\n  true,\r\n  false,\r\n  false,\r\n  false,\r\n  false,\r\n  false\r\n};\r\n\r\nsleep_configuration_t SLEEP_CONFIG = {\r\n  false,  // onWakeUpRunADC   reg 0x2C:00\r\n  false,  // onWakeUpReceive\r\n  false,  // onWakeUpLoadEUI\r\n  true,   // onWakeUpLoadL64Param\r\n  true,   // preserveSleep\r\n  true,   // enableSLP    reg 0x2C:06\r\n  false,  // enableWakePIN\r\n  true    // enableWakeSPI\r\n};\r\n\r\nvoid setup() {\r\n  pinMode(WB_IO2, OUTPUT);\r\n  digitalWrite(WB_IO2, HIGH); //Turn on the power switch\r\n  delay(300);\r\n  time_t serial_timeout = millis();\r\n  // DEBUG monitoring\r\n  Serial.begin(115200);\r\n  while (!Serial)\r\n  {\r\n    if ((millis() - serial_timeout) < 5000)\r\n    {\r\n      delay(100);\r\n    }\r\n    else\r\n    {\r\n      break;\r\n    }\r\n  }\r\n  Serial.println(F(\"### DW1000Ng-arduino-ranging-tag ###\"));\r\n  // initialize the driver\r\n#if defined(ESP8266)\r\n  DW1000Ng::initializeNoInterrupt(PIN_SS);\r\n#else\r\n  DW1000Ng::initializeNoInterrupt(PIN_SS, PIN_RST);\r\n#endif\r\n  Serial.println(\"DW1000Ng initialized ...\");\r\n  // general configuration\r\n  DW1000Ng::applyConfiguration(DEFAULT_CONFIG);\r\n  DW1000Ng::enableFrameFiltering(TAG_FRAME_FILTER_CONFIG);\r\n\r\n  DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:00\");\r\n\r\n  DW1000Ng::setNetworkId(RTLS_APP_ID);\r\n\r\n  DW1000Ng::setAntennaDelay(16500);//16436\r\n\r\n  DW1000Ng::applySleepConfiguration(SLEEP_CONFIG);\r\n\r\n  DW1000Ng::setPreambleDetectionTimeout(15);\r\n  DW1000Ng::setSfdDetectionTimeout(273);\r\n  DW1000Ng::setReceiveFrameWaitTimeoutPeriod(2000);\r\n\r\n  Serial.println(F(\"Committed configuration ...\"));\r\n  // DEBUG chip info and registers pretty printed\r\n  char msg[128];\r\n  DW1000Ng::getPrintableDeviceIdentifier(msg);\r\n  Serial.print(\"Device ID: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableExtendedUniqueIdentifier(msg);\r\n  Serial.print(\"Unique ID: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableNetworkIdAndShortAddress(msg);\r\n  Serial.print(\"Network ID & Device Address: \"); Serial.println(msg);\r\n  DW1000Ng::getPrintableDeviceMode(msg);\r\n  Serial.print(\"Device mode: \"); Serial.println(msg);\r\n}\r\n\r\nvoid loop() {\r\n  DW1000Ng::deepSleep();\r\n  delay(blink_rate);\r\n  DW1000Ng::spiWakeup();\r\n  DW1000Ng::setEUI(\"AA:BB:CC:DD:EE:FF:00:00\");\r\n  //  delay(2);\r\n  RangeInfrastructureResult res = DW1000NgRTLS::tagTwrLocalize(1500);\r\n  if (res.success)\r\n    blink_rate = res.new_blink_rate;\r\n}\r\n"}}}Content-Length: 312
+
+{"jsonrpc":"2.0","id":1,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}Content-Length: 254
+
+{"jsonrpc":"2.0","id":2,"method":"textDocument/documentHighlight","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"position":{"line":95,"character":36}}}Content-Length: 316
+
+{"jsonrpc":"2.0","id":3,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":95,"character":36},"end":{"line":95,"character":36}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 111
+
+{"method":"window/workDoneProgress/create","params":{"token":"backgroundIndexProgress"},"id":0,"jsonrpc":"2.0"}Content-Length: 36
+
+{"id":1,"result":[],"jsonrpc":"2.0"}Content-Length: 623
+
+{"method":"textDocument/publishDiagnostics","params":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino","diagnostics":[{"range":{"start":{"line":67,"character":2},"end":{"line":67,"character":8}},"severity":1,"code":"unknown_typename_suggest","source":"clang","message":"Unknown type name 'time_t'; did you mean 'size_t'? (fix available)\n\nc:\\Users\\ltp\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\node_modules\\arduino-ide-extension\\build\\lib\\clang\\12.0.0\\include\\stddef.h:46:23:\nnote: 'size_t' declared here"}]},"jsonrpc":"2.0"}Content-Length: 124
+
+{"id":2,"result":[{"range":{"start":{"line":95,"character":12},"end":{"line":95,"character":24}},"kind":1}],"jsonrpc":"2.0"}Content-Length: 36
+
+{"id":3,"result":[],"jsonrpc":"2.0"}
+<<<
+Content-Length: 38
+
+{"jsonrpc":"2.0","id":0,"result":null}
+>>>
+Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"title":"indexing","percentage":0,"kind":"begin"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"3/100","percentage":3,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"4/100","percentage":4,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"4/100","percentage":4,"kind":"report"}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 312
+
+{"jsonrpc":"2.0","id":4,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":0,"character":0},"end":{"line":0,"character":0}},"context":{"diagnostics":[]}}}Content-Length: 316
+
+{"jsonrpc":"2.0","id":5,"method":"textDocument/codeAction","params":{"textDocument":{"uri":"file:///d%3A/RAK-Work/20210707/RAK13801/RAK13801-UWB-Library/examples/StandardRTLSTag_TWR/StandardRTLSTag_TWR.ino"},"range":{"start":{"line":95,"character":36},"end":{"line":95,"character":36}},"context":{"diagnostics":[]}}}
+>>>
+Content-Length: 36
+
+{"id":4,"result":[],"jsonrpc":"2.0"}Content-Length: 36
+
+{"id":5,"result":[],"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"5/100","percentage":5,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"5/100","percentage":5,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"6/100","percentage":6,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"7/100","percentage":7,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"7/100","percentage":7,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"8/100","percentage":8,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 143
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"9/100","percentage":9,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"10/100","percentage":10,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"11/100","percentage":11,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"12/100","percentage":12,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"13/100","percentage":13,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"13/100","percentage":13,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"14/100","percentage":14,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"14/100","percentage":14,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"15/100","percentage":15,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"15/100","percentage":15,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"16/100","percentage":16,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"16/100","percentage":16,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"17/100","percentage":17,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"17/100","percentage":17,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"18/100","percentage":18,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"18/100","percentage":18,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"19/100","percentage":19,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"19/100","percentage":19,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"20/100","percentage":20,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"21/100","percentage":21,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"21/100","percentage":21,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"22/100","percentage":22,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"22/100","percentage":22,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"23/100","percentage":23,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"24/100","percentage":24,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"25/100","percentage":25,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"26/100","percentage":26,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"27/100","percentage":27,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"27/100","percentage":27,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"28/100","percentage":28,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"28/100","percentage":28,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"29/100","percentage":29,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"30/100","percentage":30,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"31/100","percentage":31,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"31/100","percentage":31,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"32/100","percentage":32,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"32/100","percentage":32,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"33/100","percentage":33,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"33/100","percentage":33,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"34/100","percentage":34,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"34/100","percentage":34,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"35/100","percentage":35,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"35/100","percentage":35,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"36/100","percentage":36,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"36/100","percentage":36,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"37/100","percentage":37,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"38/100","percentage":38,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"39/100","percentage":39,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"40/100","percentage":40,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"40/100","percentage":40,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"41/100","percentage":41,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"41/100","percentage":41,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"42/100","percentage":42,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"43/100","percentage":43,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"43/100","percentage":43,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"44/100","percentage":44,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"44/100","percentage":44,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"45/100","percentage":45,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"45/100","percentage":45,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"46/100","percentage":46,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"46/100","percentage":46,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"47/100","percentage":47,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"47/100","percentage":47,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"48/100","percentage":48,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"48/100","percentage":48,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"49/100","percentage":49,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"49/100","percentage":49,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"50/100","percentage":50,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"50/100","percentage":50,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"51/100","percentage":51,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"51/100","percentage":51,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"52/100","percentage":52,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"53/100","percentage":53,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"54/100","percentage":54,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"54/100","percentage":54,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"55/100","percentage":55,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"55/100","percentage":55,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"56/100","percentage":56,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"56/100","percentage":56,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"57/100","percentage":57,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"57/100","percentage":57,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"58/100","percentage":58,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"58/100","percentage":58,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"59/100","percentage":59,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"59/100","percentage":59,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"60/100","percentage":60,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"61/100","percentage":61,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"61/100","percentage":61,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"62/100","percentage":62,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"62/100","percentage":62,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"63/100","percentage":63,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"63/100","percentage":63,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"64/100","percentage":64,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"64/100","percentage":64,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"65/100","percentage":65,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"66/100","percentage":66,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"66/100","percentage":66,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"67/100","percentage":67,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"67/100","percentage":67,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"68/100","percentage":68,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"69/100","percentage":69,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"69/100","percentage":69,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"70/100","percentage":70,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"70/100","percentage":70,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"71/100","percentage":71,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"71/100","percentage":71,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"72/100","percentage":72,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"72/100","percentage":72,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"73/100","percentage":73,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"73/100","percentage":73,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"74/100","percentage":74,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"74/100","percentage":74,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"75/100","percentage":75,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"75/100","percentage":75,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"76/100","percentage":76,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"77/100","percentage":77,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"77/100","percentage":77,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"78/100","percentage":78,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"79/100","percentage":79,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"79/100","percentage":79,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"80/100","percentage":80,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"80/100","percentage":80,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"81/100","percentage":81,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"81/100","percentage":81,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"82/100","percentage":82,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"83/100","percentage":83,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"83/100","percentage":83,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"84/100","percentage":84,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"84/100","percentage":84,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"85/100","percentage":85,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"86/100","percentage":86,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"87/100","percentage":87,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"87/100","percentage":87,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"88/100","percentage":88,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"88/100","percentage":88,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"89/100","percentage":89,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"89/100","percentage":89,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"90/100","percentage":90,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"90/100","percentage":90,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"91/100","percentage":91,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"91/100","percentage":91,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"92/100","percentage":92,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"92/100","percentage":92,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"93/100","percentage":93,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"94/100","percentage":94,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"94/100","percentage":94,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"95/100","percentage":95,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"95/100","percentage":95,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"96/100","percentage":96,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"96/100","percentage":96,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"97/100","percentage":97,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"98/100","percentage":98,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 145
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"message":"99/100","percentage":99,"kind":"report"}},"jsonrpc":"2.0"}Content-Length: 107
+
+{"method":"$/progress","params":{"token":"backgroundIndexProgress","value":{"kind":"end"}},"jsonrpc":"2.0"}
+<<<
+Content-Length: 58
+
+{"jsonrpc":"2.0","id":6,"method":"shutdown","params":null}
+>>>
+Content-Length: 38
+
+{"id":6,"result":null,"jsonrpc":"2.0"}
+<<<
+Content-Length: 47
+
+{"jsonrpc":"2.0","method":"exit","params":null}
