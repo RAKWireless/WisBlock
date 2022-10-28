@@ -7,7 +7,10 @@
    @date 2022-03-11
    @copyright Copyright (c) 2022
 **/
-#include "RAK13010_SDI12.h"  // Click to install library: http://librarymanager/All#RAK12033-SDI12
+#ifdef NRF52_SERIES
+#include <Adafruit_TinyUSB.h>
+#endif 
+#include "RAK13010_SDI12.h" // Click to install library: http://librarymanager/All#RAK12033-SDI12
 
 #define DATA_PIN    WB_IO6   // The pin of the SDI-12 data bus.
 

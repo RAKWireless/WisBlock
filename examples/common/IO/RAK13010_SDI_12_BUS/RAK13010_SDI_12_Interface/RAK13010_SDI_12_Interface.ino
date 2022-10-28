@@ -11,6 +11,9 @@
    @date 2022-03-11
    @copyright Copyright (c) 2022
 **/
+#ifdef NRF52_SERIES
+#include <Adafruit_TinyUSB.h>
+#endif
 
 #include "RAK13010_SDI12.h"  // Click to install library: http://librarymanager/All#RAK12033-SDI12
 
