@@ -165,9 +165,9 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13800_W5100S
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK12029-LDC1614
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAKwireless-Audio-library
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK12039-PMSA003I
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK12039_PM_Sensor
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13006-MCP2518
-        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13010-SDI
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAKwireless_SDI-12
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13801_UWB 
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK12027-D7S
 
