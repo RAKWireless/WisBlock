@@ -9,7 +9,7 @@
    @copyright Copyright (c) 2022
 */
 
-#include <arduino.h>
+#include <Arduino.h>
 #include "audio.h" // Click here to install the library: http://librarymanager/All#RAKwireless-Audio
 
 // Audio sample buffers used for analysis and display
