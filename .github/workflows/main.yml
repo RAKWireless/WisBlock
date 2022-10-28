@@ -29,6 +29,8 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install ArduinoModbus
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SD
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install modbus-esp8266
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install MPU9250_WE
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install SparkFun_SCD30_Arduino_Library
         # /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install "SparkFun ADXL313 Arduino Library"
         
         git clone --quiet https://github.com/adafruit/Adafruit-MCP23017-Arduino-Library
@@ -164,6 +166,10 @@ jobs:
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK12029-LDC1614
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAKwireless-Audio-library
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK12039-PMSA003I
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13006-MCP2518
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13010-SDI
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13801_UWB 
+        /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK12027-D7S
 
     - name: test platforms
       run: python3 ci/build_platform.py rak4631 rak11200 rak11300
