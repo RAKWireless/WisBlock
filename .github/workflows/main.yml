@@ -162,7 +162,7 @@ jobs:
         mv RAK12034-BMX160 /home/runner/Arduino/libraries/RAK12034-BMX160
         git clone --quiet https://github.com/RAKWireless/RAK12033-IIM42652
         mv RAK12033-IIM42652 /home/runner/Arduino/libraries/RAK12033-IIM42652
-        git clone --quiet https://github.com/RAKWireless/https://github.com/RAKWireless/RAK13006-MCP2518
+        git clone --quiet https://github.com/RAKWireless/RAK13006-MCP2518
         mv RAK13006-MCP2518 /home/runner/Arduino/libraries/RAK13006-MCP2518
 
         /home/runner/work/WisBlock/WisBlock/bin/arduino-cli lib install RAK13800_W5100S
