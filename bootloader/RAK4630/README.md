@@ -5,7 +5,7 @@
 This guide describes how to download the bootloader of RAK4630 in case of any crash or erase during use. The below is important:
 
 - Bootloader includes softdevice and boot of nRF52840. 
-- Version is V0.4.2 with softdevice version 140.6.1.1
+- Version is V0.4.3 with softdevice version 140.6.1.1
 - Download of Arduino depends on this bootloader
 - Every board contains bootloader after leaving factory, so user does not need to flash it.
 
@@ -26,14 +26,20 @@ There will be a new drive named `RAK4631` that will be shown on your folder expl
 
 If you open `INFO_UF2.TXT`, you'll see 
 ```txt
-UF2 Bootloader 0.4.2 lib/nrfx (v2.0.0) lib/tinyusb (0.10.1-293-gaf8e5a90) lib/uf2 (remotes/origin/configupdate-9-gadbb8c7)
+UF2 Bootloader 0.4.3
 Model: WisBlock RAK4631 Board
 Board-ID: WisBlock-RAK4631-Board
-Date: Dec  1 2021
+Date: May 20 2023
+Ver: 0.4.3
 SoftDevice: S140 6.1.1
 ```
 
 If you have a different drive name or older date, it means you do not have the updated RAK4631 Bootloader and you need to update it. 
+
+----
+
+# ATTENTION
+Updating the bootloader means that your current application on the RAK4631 will be overwritten.
 
 ----
 
@@ -43,9 +49,9 @@ If you have a different drive name or older date, it means you do not have the u
 
 Required:
 
-- WisBlock Base RAK5005-O
+- WisBlock Base Board
 - WisBlock Core RAK4631
-- The latest bootloader (V0.4.2 - WisCore_RAK4631_Board_Bootloader.zip)
+- The latest bootloader (V0.4.3 - WisCore_RAK4631_Board_Bootloader.zip)
 - Adafruit-nrfutil application depending on your OS version     
 - USB cable
 
@@ -139,9 +145,9 @@ Your RAK4631 will now have the updated Bootloader Firmware.
 
 Required:
 
-- WisBlock Base RAK5005-O
+- WisBlock Base Board
 - WisBlock Core RAK4631
-- The latest bootloader (V0.4.2 - WisCore_RAK4631_Board_Bootloader.zip)
+- The latest bootloader (V0.4.3 - WisCore_RAK4631_Board_Bootloader.zip)
 - [nRF Connect for Mobile](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile)
 - RAK4631 flashed with a firmware that supports OTA DFU, e.g. [ble_ota_dfu](https://github.com/RAKWireless/WisBlock/tree/master/examples/RAK4630/communications/BLE/ble_ota_dfu)
 
@@ -174,9 +180,9 @@ Required:
 
 Required:
 
-- WisBlock Base RAK5005-O
+- WisBlock Base Board
 - WisBlock Core RAK4631
-- The latest bootloader (V0.4.2 - WisCore_RAK4631_Board_Bootloader.zip)
+- The latest bootloader (V0.4.3 - WisCore_RAK4631_Board_Bootloader.hex)
 - J-Link Debugger
 - JFlash application
 
@@ -209,9 +215,9 @@ Steps as below:
 
 Required:
 
-- WisBlock Base RAK5005-O
+- WisBlock Base Board
 - WisBlock Core RAK4631
-- The latest bootloader (V0.4.2 - WisCore_RAK4631_Board_Bootloader.zip)
+- The latest bootloader (V0.4.3 - WisCore_RAK4631_Board_Bootloader.zip)
 - [RAKDAP1 tool](https://store.rakwireless.com/products/daplink-tool)
 - pyOCD
 
@@ -242,3 +248,22 @@ After that, you can flash the bootloader using the command:
 pyocd flash -t nrf52840 WisCore_RAK4631_Board_Bootloader.hex
 ```
 <img src="assets/pyocd-flash.png" width="90%" caption="RAKDAP1 flash" />
+
+## Update over UF2 drive
+
+### Hardware and Tools Required
+
+Required:
+
+- WisBlock Base Board
+- WisBlock Core RAK4631
+- The latest bootloader (V0.4.3 - WisCore_RAK4631_Board_Bootloader.zip)
+
+### Start the update
+
+- Double push the reset button of the WisBlock Base Board
+- A new external drive will appear with the name _**`RAK4631`**_
+- Copy the WisCore_RAK4631_Board_Bootloader.UF2 into this new drive
+- The new bootloader will be automatically flashed
+
+

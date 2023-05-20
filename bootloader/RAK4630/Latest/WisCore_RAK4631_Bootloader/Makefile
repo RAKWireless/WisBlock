@@ -24,10 +24,10 @@ MBR_HEX			 = lib/softdevice/mbr/hex/mbr_nrf52_2.4.1_mbr.hex
 # linker by MCU eg. nrf52840.ld
 LD_FILE      = linker/$(MCU_SUB_VARIANT).ld
 
-# Modify software version to 0.4.2.Add by Michael.
+# Modify software version to 0.4.3.Add by Michael.
 # This version is based on Adafruit_nRF52_Bootloader 0.6.2-11 modification.
 # GIT_VERSION := $(shell git describe --dirty --always --tags)
-GIT_VERSION := 0.4.2
+GIT_VERSION := 0.4.3
 GIT_SUBMODULE_VERSIONS := $(shell git submodule status | cut -d" " -f3,4 | paste -s -d" " -)
 
 # compiled file name
@@ -60,7 +60,7 @@ RM = rm -rf
 CP = cp
 
 # Flasher utility options
-NRFUTIL = adafruit-nrfutil
+NRFUTIL = ./adafruit-nrfutil.exe
 NRFJPROG = nrfjprog
 FLASHER ?= nrfjprog
 PYOCD ?= pyocd
@@ -258,7 +258,6 @@ CFLAGS += \
 	-fdata-sections \
 	-fno-builtin \
 	-fshort-enums \
-	-fstack-usage \
 	-fno-strict-aliasing \
 	-Wall \
 	-Wextra \
@@ -274,6 +273,8 @@ CFLAGS += \
 	-Wno-endif-labels \
 	-Wunreachable-code \
 	-ggdb
+
+# 	-fstack-usage \
 
 # Suppress warning caused by SDK
 CFLAGS += -Wno-unused-parameter -Wno-expansion-to-defined
@@ -303,7 +304,8 @@ ifneq ($(USE_NFCT),yes)
 endif
 
 CFLAGS += -DSOFTDEVICE_PRESENT
-CFLAGS += -DUF2_VERSION='"$(GIT_VERSION) $(GIT_SUBMODULE_VERSIONS)"'
+CFLAGS += -DUF2_VERSION='"0.4.3"'
+#'"$(GIT_VERSION) $(GIT_SUBMODULE_VERSIONS)"'
 CFLAGS += -DBLEDIS_FW_VERSION='"$(GIT_VERSION) $(SD_NAME) $(SD_VERSION)"'
 
 _VER = $(subst ., ,$(word 1, $(subst -, ,$(GIT_VERSION))))
@@ -360,6 +362,10 @@ INC_PATHS = $(addprefix -I,$(IPATH))
 
 # default target to build
 all: $(BUILD)/$(OUT_NAME).out $(BUILD)/$(OUT_NAME)_nosd.hex $(BUILD)/update-$(OUT_NAME)_nosd.uf2 $(BUILD)/$(MERGED_FILE).hex $(BUILD)/$(MERGED_FILE).zip
+
+zip: 
+(BUILD)/$(MERGED_FILE).zip: $(BUILD)/$(OUT_NAME).hex
+	@$(NRFUTIL) dfu genpkg --dev-type 0x0052 --dev-revision $(DFU_DEV_REV) --bootloader $< --softdevice $(SD_HEX) $@
 
 # Print out the value of a make variable.
 # https://stackoverflow.com/questions/16467718/how-to-print-out-a-variable-in-makefile
