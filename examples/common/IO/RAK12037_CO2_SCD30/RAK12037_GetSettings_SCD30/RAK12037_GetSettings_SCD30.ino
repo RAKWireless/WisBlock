@@ -36,6 +36,8 @@ void setup()
 	
 	Wire.begin();
 
+	delay(500);
+
 	// Start sensor using the Wire port, but disable the auto-calibration
 	if (airSensor.begin(Wire, false) == false)
 	{

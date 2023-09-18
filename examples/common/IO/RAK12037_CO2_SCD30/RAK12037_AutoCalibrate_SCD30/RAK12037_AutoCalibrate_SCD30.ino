@@ -34,6 +34,8 @@ void setup()
 
 	Serial.println("SCD30 Automatic self-calibration Example.");
 	
+	delay(500);
+	
 	Wire.begin();
 
 	//Start sensor using the Wire port and enable the auto-calibration (ASC)

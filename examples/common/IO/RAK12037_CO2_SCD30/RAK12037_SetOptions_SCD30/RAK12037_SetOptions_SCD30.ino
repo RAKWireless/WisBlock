@@ -35,6 +35,8 @@ void setup()
 	
   Wire.begin();
 
+  delay(500);
+  
   if (airSensor.begin() == false)
   {
     Serial.println("Air sensor not detected. Please check wiring. Freezing...");
