@@ -61,6 +61,8 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
             - [RAK12008_CO2](/examples/common/sensors/RAK12008/)
             - [RAK12011_MEMS_Pressure_LPS33HW](/examples/common/sensors/RAK12011_MEMS_Pressure_LPS33HW/)
             - [RAK12019_UVlight_LTR390](/examples/common/sensors/RAK12019_UVlight_LTR390/)
+            - [RAK12020_Light_TSL_INT_TSL2591](/examples/common/sensors/RAK12020_Light_TSL_INT_TSL2591/)
+            - [RAK12020_Light_TSL_Read_TSL2591](/examples/common/sensors/RAK12020_Light_TSL_Read_TSL2591/)
             - [RAK12025_Gyroscope](/examples/common/sensors/RAK12025_Gyroscope/)
             - [RAK12027_Earthquake](/examples/common/sensors/RAK12027_Earthquake/)
             - [RAK12032_3_Axis_ADXL313](/examples/common/sensors/RAK12032_3_Axis_ADXL313/)
