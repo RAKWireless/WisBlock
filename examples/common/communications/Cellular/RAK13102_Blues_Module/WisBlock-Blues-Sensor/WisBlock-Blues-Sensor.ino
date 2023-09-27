@@ -9,6 +9,24 @@
 // This tutorial requires an external Adafruit BME680 Sensor.
 //
 
+// **********************************************************************
+// **********************************************************************
+// **********************************************************************
+// This example is adapted to work with RAKwireless WisBlock Core module
+// It works with the following modules:
+// WisBlock Core
+//      RAK4631
+//      RAK11200
+//      RAK11310
+// WisBlock Base Boards
+//      RAK19007
+//      RAK19001
+// WisBlock Sensor
+//      RAK1906
+// **********************************************************************
+// **********************************************************************
+// **********************************************************************
+
 // Include the Arduino library for the Notecard
 #include <Notecard.h>               // Click to install library: http://librarymanager/All#Blues-Wireless-Notecard
 #ifdef NRF52
