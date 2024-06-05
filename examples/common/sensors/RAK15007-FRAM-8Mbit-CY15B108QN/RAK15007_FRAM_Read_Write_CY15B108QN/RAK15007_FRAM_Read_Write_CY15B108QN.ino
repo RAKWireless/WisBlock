@@ -8,9 +8,9 @@
 **/
 #include "RAK15007_CY15B108QN.h"  //http://librarymanager/All#RAK15007_CY15B108QN
 
-#define FRAM_WP_PIN WB_IO1   //SlotA installation, please do not use it on SLOTB
+//#define FRAM_WP_PIN WB_IO1   //SlotA installation, please do not use it on SLOTB
 //#define FRAM_WP_PIN WB_IO3 //SlotC installation.
-//#define FRAM_WP_PIN WB_IO5 //SlotD installation.
+#define FRAM_WP_PIN WB_IO5 //SlotD installation.
 
 #define FRAM_8M_SIZE  0x100000
 uint8_t fram_cy15b108_CS = SS;

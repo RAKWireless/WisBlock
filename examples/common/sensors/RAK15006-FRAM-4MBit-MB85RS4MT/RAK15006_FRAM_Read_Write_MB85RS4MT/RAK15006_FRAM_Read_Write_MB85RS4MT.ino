@@ -10,9 +10,9 @@
 #include <SPI.h>
 #include "Adafruit_FRAM_SPI.h" //http://librarymanager/All#Adafruit_FRAM_SPI version:2.4.1        http://librarymanager/All#Adafruit_BusIO  version:1.11.6
 
-#define FRAM_WP_PIN WB_IO1   //SlotA installation, please do not use it on SLOTB
+//#define FRAM_WP_PIN WB_IO1   //SlotA installation, please do not use it on SLOTB
 //#define FRAM_WP_PIN WB_IO3 //SlotC installation.
-//#define FRAM_WP_PIN WB_IO5 //SlotD installation.
+#define FRAM_WP_PIN WB_IO5 //SlotD installation.
 
 #define FRAM_4M_SIZE  0x80000
 
