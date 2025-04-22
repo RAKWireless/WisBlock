@@ -80,7 +80,7 @@ void setup()
 
 	// Start LoRa
 	Serial.println("Starting Radio.Rx");
-	Radio.Rx(RX_TIMEOUT_VALUE);
+	Radio.Rx(0);
 }
 
 void loop()
@@ -105,7 +105,7 @@ void OnRxDone(uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
 		Serial.printf("%02X ", RcvBuffer[idx]);
 	}
 	Serial.println("");
-	Radio.Rx(RX_TIMEOUT_VALUE);
+	Radio.Rx(0);
 }
 
 /**@brief Function to be executed on Radio Rx Timeout event
@@ -113,7 +113,7 @@ void OnRxDone(uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
 void OnRxTimeout(void)
 {
 	Serial.println("OnRxTimeout");
-	Radio.Rx(RX_TIMEOUT_VALUE);
+	Radio.Rx(0);
 }
 
 /**@brief Function to be executed on Radio Rx Error event
@@ -121,5 +121,5 @@ void OnRxTimeout(void)
 void OnRxError(void)
 {
 	Serial.println("OnRxError");
-	Radio.Rx(RX_TIMEOUT_VALUE);
+	Radio.Rx(0);
 }
