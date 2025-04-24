@@ -7,12 +7,11 @@
    @date 2022-03-11
    @copyright Copyright (c) 2022
 **/
-#ifdef NRF52_SERIES
-#include <Adafruit_TinyUSB.h>
-#endif
-#include "RAK13010_SDI12.h" // Click to install library: http://librarymanager/All#RAK12033-SDI12
+#include "RAK13010_SDI12.h"  // Click to install library: http://librarymanager/All#RAK13010
 
-#define DATA_PIN    WB_IO6   // The pin of the SDI-12 data bus.
+#define TX_PIN    WB_IO6   // The pin of the SDI-12 data bus.
+#define RX_PIN    WB_IO5   // The pin of the SDI-12 data bus.
+#define OE        WB_IO4   // Output enable pin, active low.
 
 char sensorAddress = 'A';    // A character between '0'-'9', 'a'-'z', or 'A'-'Z'.
 int  state         = 0;
@@ -21,7 +20,7 @@ int  state         = 0;
 #define INITIATE_CONCURRENT   1
 #define INITIATE_MEASUREMENT  2
 
-RAK_SDI12 slaveSDI12(DATA_PIN);
+RAK_SDI12 slaveSDI12(RX_PIN,TX_PIN,OE);
 
 void pollSensor(float* measurementValues)
 {
@@ -179,10 +178,11 @@ void setup()
 {
   pinMode(WB_IO2, OUTPUT);
   digitalWrite(WB_IO2, HIGH);  // Power the sensors.
-  
+
   // Initialize Serial for debug output.
   time_t timeout = millis();
-  Serial.begin(115200);
+  // Serial.begin(115200,RAK_CUSTOM_MODE); // Uncomment if using RUI BSP.
+	Serial.begin(115200);
   while (!Serial)
   {
     if ((millis() - timeout) < 5000)

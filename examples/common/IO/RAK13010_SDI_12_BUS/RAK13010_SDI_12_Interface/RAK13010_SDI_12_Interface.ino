@@ -11,11 +11,8 @@
    @date 2022-03-11
    @copyright Copyright (c) 2022
 **/
-#ifdef NRF52_SERIES
-#include <Adafruit_TinyUSB.h>
-#endif
 
-#include "RAK13010_SDI12.h"  // Click to install library: http://librarymanager/All#RAK12033-SDI12
+#include "RAK13010_SDI12.h"  // Click to install library: // Click to install library: http://librarymanager/All#RAK13010
 
 #define HELPTEXT                                                                          \
         "OPTIONS:\r\n"                                                                    \
@@ -28,9 +25,12 @@
         "for developers)\r\n"                                                             \
         "(else) : send command to SDI-12 bus"
 
-#define DATA_PIN    WB_IO6   // The pin of the SDI-12 data bus.
+#define TX_PIN    WB_IO6   // The pin of the SDI-12 data bus.
+#define RX_PIN    WB_IO5   // The pin of the SDI-12 data bus.
+#define OE        WB_IO4   // Output enable pin, active low.
 
-RAK_SDI12 mySDI12(DATA_PIN);
+
+RAK_SDI12 mySDI12(RX_PIN,TX_PIN,OE);
 
 void setup() 
 {
@@ -39,7 +39,8 @@ void setup()
 
   // Initialize Serial for debug output.
   time_t timeout = millis();
-  Serial.begin(115200);
+  // Serial.begin(115200,RAK_CUSTOM_MODE); // Uncomment if using RUI BSP.
+	Serial.begin(115200);
   while (!Serial)
   {
     if ((millis() - timeout) < 5000)
@@ -130,7 +131,6 @@ void loop()
     sdiMsgReady = false;  // Reset String for next SDI-12 message.
     sdiMsgStr   = "";
   }
-
   
   if (serialMsgReady) // Send completed Serial message as SDI-12 command.
   {

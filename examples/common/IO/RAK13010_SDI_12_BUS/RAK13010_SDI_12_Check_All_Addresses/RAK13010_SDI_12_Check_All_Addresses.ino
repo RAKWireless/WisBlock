@@ -11,14 +11,13 @@
    @date 2022-03-11
    @copyright Copyright (c) 2022
 **/
-#ifdef NRF52_SERIES
-#include <Adafruit_TinyUSB.h>
-#endif
-#include "RAK13010_SDI12.h" // Click to install library: http://librarymanager/All#RAK12033-SDI12
+#include "RAK13010_SDI12.h" // Click to install library: // Click to install library: http://librarymanager/All#RAK13010
 
-#define DATA_PIN    WB_IO6   // The pin of the SDI-12 data bus.
+#define TX_PIN WB_IO6 // The pin of the SDI-12 data bus.
+#define RX_PIN WB_IO5 // The pin of the SDI-12 data bus.
+#define OE WB_IO4	  // Output enable pin, active low.
 
-RAK_SDI12 mySDI12(DATA_PIN);
+RAK_SDI12 mySDI12(RX_PIN, TX_PIN, OE);
 
 /**
  * @brief Gets identification information from a sensor, and prints it to the serial port expects.
