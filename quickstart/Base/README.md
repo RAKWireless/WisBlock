@@ -51,7 +51,7 @@ Please read the following items carefully so that WisBlock can be used safely.
 
 RAK5005-O is the WisBlock Base board which can connect with the core board and other sensor boards through some slots. RAK5005-O has an USB interface which connect with the core MCU's USB pins so that you can use Arduino IDE to upload and debug it directly.
 
-<center><img src="../../assets/repo/rak5005-o-top-tilt.png" alt="rak5005-o-top-tilt" width="75%" /></center>
+<center><img src="../../assets/repo/rak19007-top-tilt.png" alt="rak19007-top-tilt" width="75%" /></center>
 
 Please note: as you see, there are 6 slots on RAK5005-O, "CPU SLOT" is used for the core board which has the main MCU, "IO SLOT" is used for IO extension, for example, RS485 board, 4-20mA/0-5V board, Wi-Fi board, Cellular board. "SLOT A", "SLOT B", "SLOT C", and "SLOT D" are used to connect with I2C board, while "SLOT A" can be used for GPS board too.
 

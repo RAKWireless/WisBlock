@@ -75,11 +75,11 @@ The principal purpose of this section is how to get location, time, date and mov
 
 ### 3.1 Hardware required
 
-To build this system the WisBlock Core RAK4631 microcontroller is using the RAK12501 GPS module. With just two WisBlock boards plugged into the WisBlock Base RAK5005-O board the system is ready to be used.
+To build this system the WisBlock Core RAK4631 microcontroller is using the RAK12501 GPS module. With just two WisBlock boards plugged into the WisBlock Base RAK19007 board the system is ready to be used.
 
 - [WisBlock Base RAK9007](https://store.rakwireless.com/)    
 
-  ![rak5005-o-top-tilt](../../../../assets/repo/rak19007-top-tilt.png)
+  ![rak19007-o-top-tilt](../../../../assets/repo/rak19007-top-tilt.png)
 
 - WisBlock Core RAK4631    
     

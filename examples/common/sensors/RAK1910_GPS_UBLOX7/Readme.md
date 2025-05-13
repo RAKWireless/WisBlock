@@ -99,7 +99,7 @@ To build this system the WisBlock Core RAK4631 microcontroller is using the RAK1
 
 - [WisBlock Base RAK5005-O](https://store.rakwireless.com/)    
 
-  ![rak5005-o-top-tilt](../../../../assets/repo/rak5005-o-top-tilt.png)
+  ![rak19007-top-tilt](../../../../assets/repo/rak19007-top-tilt.png)
 
 - WisBlock Core RAK4631    
     
