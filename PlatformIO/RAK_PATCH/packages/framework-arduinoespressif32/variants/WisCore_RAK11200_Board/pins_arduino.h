@@ -1,6 +1,10 @@
 #ifndef Pins_Arduino_h
 #define Pins_Arduino_h
 
+#ifndef _VARIANT_RAK11200_
+#define _VARIANT_RAK11200_
+#endif
+
 #include <stdint.h>
 
 #define EXTERNAL_NUM_INTERRUPTS 16
