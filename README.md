@@ -241,6 +241,22 @@ To buy WisBlock modules please visit our [online store](https://store.rakwireles
 ----
     
 -    
+    - [RAK3112 Examples](/examples/RAK3112/) 
+        - [RAK11200 Communications](/examples/RAK3112/communications/)
+            - [BLE](/examples/RAK3112/communications/BLE/)
+                - [RAK3112_BLE_UART](/examples/RAK3112/communications/BLE/RAK3112_BLE_UART/)
+            - [WiFi](/examples/RAK3112/communications/WIFI/)
+                - [RAK3112_WiFi_AccessPoint](/examples/RAK3112/communications/WIFI/RAK3112_WiFi_AccessPoint/)
+                - [RAK3112_WiFi_Client](/examples/RAK3112/communications/WIFI/RAK3112_WiFi_Client/)
+            - [LoRa](/examples/RAK3112/communications/LoRa/)
+                - [LoRaWAN RAK3112_OTAA](/examples/RAK3112/communications/LoRa/RAK3112_OTAA/)
+                - [LoRaWAN RAK3112_ABP](/examples/RAK3112/communications/LoRa/RAK3112_ABP/)
+                - [LoRa P2P](/examples/RAK3112/communications/LoRa/RAK3112_P2P-PingPong/)
+
+
+----
+    
+-    
     - [RAK11200 Examples](/examples/RAK11200/) 
         - [RAK11200 Audio](/examples/WisBlock-Audio/RAK11200/)
             - [AnalogMicAudio_Alarm](/examples/WisBlock-Audio/RAK11200/AnalogMicAudio_Alarm/) 		
