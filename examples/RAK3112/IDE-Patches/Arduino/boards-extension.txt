@@ -1,0 +1,135 @@
+##############################################################
+
+#RAK3112 WisDuo module
+rak3112.name=WisDuo_RAK3112
+
+rak3112.bootloader.tool=esptool_py
+rak3112.bootloader.tool.default=esptool_py
+
+rak3112.upload.tool=esptool_py
+rak3112.upload.tool.default=esptool_py
+rak3112.upload.tool.network=esp_ota
+
+rak3112.upload.maximum_size=1310720
+rak3112.upload.maximum_data_size=327680
+rak3112.upload.speed=921600
+rak3112.upload.flags=
+rak3112.upload.extra_flags=
+rak3112.upload.use_1200bps_touch=true
+rak3112.upload.wait_for_upload_port=true
+
+rak3112.serial.disableDTR=false
+rak3112.serial.disableRTS=false
+
+rak3112.build.tarch=xtensa
+rak3112.build.bootloader_addr=0x0
+rak3112.build.target=esp32s3
+rak3112.build.mcu=esp32s3
+rak3112.build.core=esp32
+rak3112.build.variant=WisDuo_RAK3112
+rak3112.build.board=WisDuo_RAK3112
+
+rak3112.build.usb_mode=1
+rak3112.build.cdc_on_boot=1
+rak3112.build.msc_on_boot=0
+rak3112.build.dfu_on_boot=0
+rak3112.build.f_cpu=240000000L
+rak3112.build.flash_size=16MB
+rak3112.build.flash_freq=80m
+rak3112.build.flash_mode=dio
+rak3112.build.boot=dio
+rak3112.build.partitions=default
+rak3112.build.defines=-DBOARD_HAS_PSRAM
+rak3112.build.memory_type=qio_opi
+rak3112.build.loop_core=-DARDUINO_RUNNING_CORE=1
+rak3112.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
+
+## IDE 2.0 Seems to not update the value
+## rak3112.menu.JTAGAdapter.default=Disabled
+## rak3112.menu.JTAGAdapter.default.build.copy_jtag_files=0
+## rak3112.menu.JTAGAdapter.builtin=Integrated USB JTAG
+## rak3112.menu.JTAGAdapter.builtin.build.openocdscript=esp32s3-builtin.cfg
+## rak3112.menu.JTAGAdapter.builtin.build.copy_jtag_files=1
+## rak3112.menu.JTAGAdapter.external=FTDI Adapter
+## rak3112.menu.JTAGAdapter.external.build.openocdscript=esp32s3-ftdi.cfg
+## rak3112.menu.JTAGAdapter.external.build.copy_jtag_files=1
+## rak3112.menu.JTAGAdapter.bridge=ESP USB Bridge
+## rak3112.menu.JTAGAdapter.bridge.build.openocdscript=esp32s3-bridge.cfg
+## rak3112.menu.JTAGAdapter.bridge.build.copy_jtag_files=1
+
+## rak3112.menu.USBMode.hwcdc=Hardware CDC and JTAG
+## rak3112.menu.USBMode.hwcdc.build.usb_mode=1
+## rak3112.menu.USBMode.hwcdc.upload.use_1200bps_touch=false
+## rak3112.menu.USBMode.hwcdc.upload.wait_for_upload_port=false
+## rak3112.menu.USBMode.default=USB-OTG
+## rak3112.menu.USBMode.default.build.usb_mode=0
+## rak3112.menu.USBMode.default.upload.use_1200bps_touch=true
+## rak3112.menu.USBMode.default.upload.wait_for_upload_port=true
+
+rak3112.menu.LoopCore.1=Core 1
+rak3112.menu.LoopCore.1.build.loop_core=-DARDUINO_RUNNING_CORE=1
+rak3112.menu.LoopCore.0=Core 0
+rak3112.menu.LoopCore.0.build.loop_core=-DARDUINO_RUNNING_CORE=0
+
+rak3112.menu.EventsCore.1=Core 1
+rak3112.menu.EventsCore.1.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
+rak3112.menu.EventsCore.0=Core 0
+rak3112.menu.EventsCore.0.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=0
+
+rak3112.menu.PartitionScheme.app3M_fat9M_16MB=16M Flash (3MB APP/9.9MB FATFS)
+rak3112.menu.PartitionScheme.app3M_fat9M_16MB.build.partitions=app3M_fat9M_16MB
+rak3112.menu.PartitionScheme.app3M_fat9M_16MB.upload.maximum_size=3145728
+rak3112.menu.PartitionScheme.fatflash=16M Flash (2MB APP/12.5MB FATFS)
+rak3112.menu.PartitionScheme.fatflash.build.partitions=ffat
+rak3112.menu.PartitionScheme.fatflash.upload.maximum_size=2097152
+rak3112.menu.PartitionScheme.custom=Custom
+rak3112.menu.PartitionScheme.custom.build.partitions=
+rak3112.menu.PartitionScheme.custom.upload.maximum_size=16777216
+
+rak3112.menu.CPUFreq.240=240MHz (WiFi)
+rak3112.menu.CPUFreq.240.build.f_cpu=240000000L
+rak3112.menu.CPUFreq.160=160MHz (WiFi)
+rak3112.menu.CPUFreq.160.build.f_cpu=160000000L
+rak3112.menu.CPUFreq.80=80MHz (WiFi)
+rak3112.menu.CPUFreq.80.build.f_cpu=80000000L
+rak3112.menu.CPUFreq.40=40MHz
+rak3112.menu.CPUFreq.40.build.f_cpu=40000000L
+rak3112.menu.CPUFreq.20=20MHz
+rak3112.menu.CPUFreq.20.build.f_cpu=20000000L
+rak3112.menu.CPUFreq.10=10MHz
+rak3112.menu.CPUFreq.10.build.f_cpu=10000000L
+
+rak3112.menu.UploadSpeed.921600=921600
+rak3112.menu.UploadSpeed.921600.upload.speed=921600
+rak3112.menu.UploadSpeed.115200=115200
+rak3112.menu.UploadSpeed.115200.upload.speed=115200
+rak3112.menu.UploadSpeed.256000.windows=256000
+rak3112.menu.UploadSpeed.256000.upload.speed=256000
+rak3112.menu.UploadSpeed.230400.windows.upload.speed=256000
+rak3112.menu.UploadSpeed.230400=230400
+rak3112.menu.UploadSpeed.230400.upload.speed=230400
+rak3112.menu.UploadSpeed.460800.linux=460800
+rak3112.menu.UploadSpeed.460800.macosx=460800
+rak3112.menu.UploadSpeed.460800.upload.speed=460800
+rak3112.menu.UploadSpeed.512000.windows=512000
+rak3112.menu.UploadSpeed.512000.upload.speed=512000
+
+rak3112.menu.DebugLevel.none=None
+rak3112.menu.DebugLevel.none.build.code_debug=0
+rak3112.menu.DebugLevel.error=Error
+rak3112.menu.DebugLevel.error.build.code_debug=1
+rak3112.menu.DebugLevel.warn=Warn
+rak3112.menu.DebugLevel.warn.build.code_debug=2
+rak3112.menu.DebugLevel.info=Info
+rak3112.menu.DebugLevel.info.build.code_debug=3
+rak3112.menu.DebugLevel.debug=Debug
+rak3112.menu.DebugLevel.debug.build.code_debug=4
+rak3112.menu.DebugLevel.verbose=Verbose
+rak3112.menu.DebugLevel.verbose.build.code_debug=5
+
+rak3112.menu.EraseFlash.none=Disabled
+rak3112.menu.EraseFlash.none.upload.erase_cmd=
+rak3112.menu.EraseFlash.all=Enabled
+rak3112.menu.EraseFlash.all.upload.erase_cmd=-e
+
+##############################################################
