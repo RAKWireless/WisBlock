@@ -1,14 +1,13 @@
 /**
-   @file api-test.ino
+   @file RAK3112-BLE-Scanner.ino
    @author Bernd Giesecke (bernd.giesecke@rakwireless.com)
    @brief BLE Scanner example
    @version 0.1
-   @date 2021-09-10
+   @date 2025-06-15
 
-   @copyright Copyright (c) 2021
+   @copyright Copyright (c) 2025
 
 */
-
 #include <Arduino.h>
 #include <BLEDevice.h>
 #include <BLEUtils.h>
