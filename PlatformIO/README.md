@@ -146,7 +146,7 @@ lib_deps =
 ; other required environment definitions
 ```
 
-## Examples projects for RAK_PATCH_V2
+## Example projects for RAK_PATCH_V2
 
 Two examples are available to show the usage of the patch.    
 The first example [WisBlock-LoRaWAN-OTAA](./RAK_PATCH_V2/examples/WisBlock-LoRaWAN-OTAA/) is a simple example using the SX126x-Arduino library to establish an OTAA based connection to a LoRaWAN server.    
