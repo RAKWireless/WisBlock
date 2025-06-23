@@ -3,7 +3,7 @@
 
 ## ⚠️ Update
 While the Python script to add WisDuo and WisBlock boards to the PlatformIO BSP's is still working, the problem with the script is that it has to be run every time PlatformIO updates the platforms.     
-To get around this, I checked the possibilities of PlatformIO to add custom boards to existing platforms, and I found a different solution, inspired by the work of [Meshtastic](). They are using PlatformIO's features to add (or better add customized) additional boards to the existing platforms.    
+To get around this, I checked the possibilities of PlatformIO to add custom boards to existing platforms, and I found a different solution, inspired by the work of [Meshtastic](https://github.com/meshtastic/firmware). They are using PlatformIO's features to add (or better add customized) additional boards to the existing platforms.    
 RAK_PATCH_V2 is the result of my findings.    
 
 # RAK_PATCH_V2
