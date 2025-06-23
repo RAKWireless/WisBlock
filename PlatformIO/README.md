@@ -146,6 +146,14 @@ lib_deps =
 ; other required environment definitions
 ```
 
+## Examples projects for RAK_PATCH_V2
+
+Two examples are available to show the usage of the patch.    
+The first example [WisBlock-LoRaWAN-OTAA](./RAK_PATCH_V2/examples/WisBlock-LoRaWAN-OTAA/) is a simple example using the SX126x-Arduino library to establish an OTAA based connection to a LoRaWAN server.    
+The second example [WisBlock-API-V2-Example](./RAK_PATCH_V2/examples/WisBlock-API-V2-Example/) is based on the [WisBlock-API-V2](https://github.com/beegee-tokyo/WisBlock-API-V2) API, that provides low power coding and an AT command interface to setup the devices.    
+
+Both examples work on the RAK4630/RAK4631, RAK11300/RAK11310, RAK3112/RAK3312 and RAK11200 + RAK13300 modules.    
+
 # RAK_PATCH (old version)
 A small script that installs or updates RAKwireless WisBlock modules in PlatformIO BSP's    
 This script does not install the required BSP's (platform and package), it only patches already installed BSP's.
