@@ -12,13 +12,11 @@
 
 // GPIO's
 #define WB_IO1 21
-#define WB_IO2 2
-// #define WB_IO2 14
+#define WB_IO2 14
 #define WB_IO3 41
 #define WB_IO4 42
 #define WB_IO5 38
 #define WB_IO6 39
-// #define WB_SW1 35 NC
 #define WB_A0 1
 #define WB_A1 2
 #define WB_CS 12
