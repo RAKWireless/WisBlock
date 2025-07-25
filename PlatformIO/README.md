@@ -93,7 +93,7 @@ To use the WisBlock Core RAK3312 or WisDuo RAK3112 stamp module the platformio.i
 boards_dir = rakwireless/boards
 ; other required definitions
 
-[env:rak11200]
+[env:rak3112]
 platform = espressif32
 board = RAK3112 
 framework = arduino
