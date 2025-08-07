@@ -49,7 +49,7 @@ The GPS module gives us information about:
 
 This GPS module uses the UART_2 on **SLOT A** in [WisBlock Base RAK19007][#3.1 Hardware required] to communicate with the microcontroller.
 
-The GPS starts up by default at 4800 bps. This speed can be increased using the library functions that have been designed for controlling and managing the module.
+The GPS starts up by default at 9600 bps. This speed can be increased using the library functions that have been designed for controlling and managing the module.
 
 The GPS receiver operates with NMEA (National Marine Electronic Association) mode. NMEA mode uses statements from this standard to obtain location, time and date.
 
