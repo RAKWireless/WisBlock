@@ -1,0 +1,5 @@
+{
+    "configuration": "PSRAM=enabled,LoopCore=1,EventsCore=1,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,PartitionScheme=default_16MB,CPUFreq=240,FlashMode=qio,FlashFreq=80,UploadSpeed=921600,DebugLevel=none,EraseFlash=none",
+    "board": "esp32:esp32:rakwireless_rak3112",
+    "sketch": "LoRa-P2P-MQTT-GW-Sensor-Arduino.ino"
+}
