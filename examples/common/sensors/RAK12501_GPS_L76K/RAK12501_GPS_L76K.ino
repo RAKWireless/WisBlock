@@ -44,7 +44,11 @@ void setup()
 	pinMode(LED_BLUE, OUTPUT);
 	digitalWrite(LED_BLUE, LOW);
 
+#if defined(_VARIANT_RAK4630_) || defined(_VARIANT_RAK11200_) || defined(_VARIANT_RAK11300_)
 	Serial1.begin(9600);
+#else
+	Serial1.begin(9600, SERIAL_8N1, RX, TX); // Serial1.begin(9600, SERIAL_8N1, RX, TX);
+#endif
 	while (!Serial1)
 		;
 	Serial.println("GPS uart init ok!");

@@ -32,7 +32,11 @@ void setup() {
         break;
     }   
   }
-  Serial1.begin(9600, SERIAL_8N1);
+#if defined(_VARIANT_RAK4630_) || defined(_VARIANT_RAK11200_) || defined(_VARIANT_RAK11300_)
+  Serial1.begin(9600);
+#else
+  Serial1.begin(9600, SERIAL_8N1, RX, TX); // Serial1.begin(9600, SERIAL_8N1, RX, TX);
+#endif
   g_mb.begin(&Serial1);
   g_mb.slave(SLAVE_ID); //Set the device to operate in slave mode
   g_mb.addHreg(REGN);

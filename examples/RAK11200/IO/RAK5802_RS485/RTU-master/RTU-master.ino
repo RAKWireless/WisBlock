@@ -37,12 +37,17 @@ void setup() {
             break;
         }
 	}
-  Serial1.begin(9600,SERIAL_8N1);    //Data bit 8, check bit None, Stop bit 1
-  while (!Serial1);
-  g_mb.begin(&Serial1);
-  g_mb.master();
-  
-  Serial.println("MODBUS RTU-Master Init Succeed.");
+#if defined(_VARIANT_RAK4630_) || defined(_VARIANT_RAK11200_) || defined(_VARIANT_RAK11300_)
+	Serial1.begin(9600);
+#else
+	Serial1.begin(9600, SERIAL_8N1, RX, TX); // Serial1.begin(9600, SERIAL_8N1, RX, TX);
+#endif
+	while (!Serial1)
+		;
+	g_mb.begin(&Serial1);
+	g_mb.master();
+
+	Serial.println("MODBUS RTU-Master Init Succeed.");
 }
 
 bool coils[20];

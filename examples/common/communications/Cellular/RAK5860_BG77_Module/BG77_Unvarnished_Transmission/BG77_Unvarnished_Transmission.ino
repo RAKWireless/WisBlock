@@ -30,7 +30,11 @@ void setup()
 	// Check if the modem is already awake
 	time_t timeout = millis();
 	bool moduleSleeps = true;
-	Serial1.begin(115200);
+#if defined(_VARIANT_RAK4630_) || defined(_VARIANT_RAK11200_) || defined(_VARIANT_RAK11300_)
+	Serial1.begin(9600);
+#else
+	Serial1.begin(9600, SERIAL_8N1, RX, TX); // Serial1.begin(9600, SERIAL_8N1, RX, TX);
+#endif
 	delay(1000);
 	Serial1.println("ATI");
 	//BG77 init

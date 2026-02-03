@@ -178,7 +178,11 @@ void setup()
   Serial.println("=====================================");
 
   //  Init Modbus
-  Serial1.begin(9600, SERIAL_8N1);
+#if defined(_VARIANT_RAK4630_) || defined(_VARIANT_RAK11200_) || defined(_VARIANT_RAK11300_)
+  Serial1.begin(9600);
+#else
+  Serial1.begin(9600, SERIAL_8N1, RX, TX); // Serial1.begin(9600, SERIAL_8N1, RX, TX);
+#endif
   mb.begin(&Serial1);
   mb.setBaudrate(9600);
   mb.master();
