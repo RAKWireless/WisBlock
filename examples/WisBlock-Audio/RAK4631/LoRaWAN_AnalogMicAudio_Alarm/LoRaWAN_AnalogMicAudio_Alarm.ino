@@ -20,7 +20,7 @@
    WB_IO5     <->  P0.09 (GPIO 9)
    WB_IO6     <->  P0.10 (GPIO 10)
    WB_SW1     <->  P0.01 (GPIO 1)
-   WB_A0      <->  P0.04/AIN2 (AnalogIn A2)
+   WB_A0      <->  P0.05/AIN3 (AnalogIn A3)
    WB_A1      <->  P0.31/AIN7 (AnalogIn A7)
 */
 #include <Arduino.h>
