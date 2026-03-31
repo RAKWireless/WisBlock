@@ -42,7 +42,7 @@ void BG77_write(const char *command)
   Serial1.println();
 }
 
-/* Fill your "AmazonRootCA1.pem" wiht LINE ENDING */
+/* Fill your "AmazonRootCA1.pem" with LINE ENDING */
 char* pem_CA= \
 "-----BEGIN CERTIFICATE-----\n\
 MIIDQTCCAimgAwIBAgITBmyfz5m/jAo54vB4ikPmljZbyjANBgkqhkiG9w0BAQsF\n\
@@ -65,7 +65,7 @@ o/ufQJVtMVT8QtPHRh8jrdkPSHCa2XV4cdFyQzR1bldZwgJcJmApzyMZFo6IQ6XU\n\
 rqXRfboQnoZsG4q5WTP468SQvvG5\n\
 -----END CERTIFICATE-----\n";
 
-/* Fill your "certificate.pem" wiht LINE ENDING */
+/* Fill your "certificate.pem" with LINE ENDING */
 char* pem_cert= \
 "-----BEGIN CERTIFICATE-----\n\
 MIIDWTCCAkGgAwIBAgIUUbHuAt0ylV96HctAKuUSYw7X0c0wDQYJKoZIhvcNAQEL\n\
@@ -89,7 +89,7 @@ KfwivJZzTUC7sbZJTMctN7K2CuLaf/tyMn/Xmf4PbW6v5SyEDf9p1zy5Uvxo\n\
 -----END CERTIFICATE-----\n";
 
 
-/* Fill your "private.pem" wiht LINE ENDING */
+/* Fill your "private.pem" with LINE ENDING */
 char* pem_pkey= \
 "-----BEGIN RSA PRIVATE KEY-----\n\
 MIIEpAIBAAKCAQEA0anfR2ngm0sQaMl9dRGjnaHnQ7UzHQX99UyUbUIxDBp0y6ch\n\
